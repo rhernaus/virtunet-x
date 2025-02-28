@@ -300,6 +300,9 @@ section {
 
 .tech-icon.ai {
     background: linear-gradient(135deg, #9C27B0, #673AB7);
+    z-index: 5;
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.5);
 }
 
 .tech-icon.data {
@@ -406,7 +409,7 @@ section {
 .service-icon {
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    color: var(--primary-color);
+    color: #9C27B0; /* Purple for AI */
 }
 
 .service-card:nth-child(2) .service-icon {
