@@ -70,7 +70,13 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.style.position = '';
             icon.style.left = '';
             icon.style.top = '';
-            icon.style.transform = '';
+            
+            // Preserve the transform for the AI core icon
+            if (icon.classList.contains('ai-core')) {
+                // Keep the CSS transform for the AI core icon
+            } else {
+                icon.style.transform = '';
+            }
             
             // Add a subtle float animation based on the icon type
             const delay = Math.random() * 2;
