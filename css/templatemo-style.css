@@ -402,7 +402,7 @@ section {
 .contact-form .form-control {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 1);
     padding: 0.8rem 1.2rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
@@ -413,6 +413,21 @@ section {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--primary-color);
     box-shadow: none;
+}
+
+/* Placeholder styles for all browsers */
+.contact-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.9);
+}
+.contact-form .form-control::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.9);
+}
+.contact-form .form-control::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 1;
+}
+.contact-form .form-control:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .contact-form .btn {

@@ -474,17 +474,30 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <form class="contact-form" action="https://formspree.io/f/mdkaqaga" method="POST">
                         <div class="mb-3">
-                            <input type="text" name="name" class="form-control" placeholder="Uw naam" required>
+                            <label for="name" class="form-label">Uw naam <span class="text-danger">*</span></label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Uw naam" required>
                         </div>
                         <div class="mb-3">
-                            <input type="email" name="email" class="form-control" placeholder="Uw e-mail" required>
+                            <label for="email" class="form-label">Uw e-mail <span class="text-danger">*</span></label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Uw e-mail" required>
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="subject" class="form-control" placeholder="Onderwerp">
+                            <label for="phone" class="form-label">Uw telefoonnummer <span class="text-muted">(optioneel)</span></label>
+                            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Uw telefoonnummer">
                         </div>
                         <div class="mb-3">
-                            <textarea name="message" class="form-control" rows="5" placeholder="Uw bericht" required></textarea>
+                            <label for="subject" class="form-label">Onderwerp <span class="text-muted">(optioneel)</span></label>
+                            <input type="text" name="subject" id="subject" class="form-control" placeholder="Onderwerp">
                         </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Uw bericht <span class="text-danger">*</span></label>
+                            <textarea name="message" id="message" class="form-control" rows="5" placeholder="Uw bericht" required></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="callbackCheck" name="callback">
+                            <label class="form-check-label" for="callbackCheck">Ik wil graag teruggebeld worden</label>
+                        </div>
+                        <p class="text-white small mb-3"><span class="text-danger">*</span> Verplichte velden</p>
                         <button type="submit" class="btn btn-primary">Bericht Versturen</button>
                     </form>
                 </div>
