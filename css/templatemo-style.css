@@ -350,20 +350,46 @@ section {
     bottom: -40px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
     color: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 5px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     white-space: nowrap;
     opacity: 0;
     transition: all 0.3s ease;
     pointer-events: none;
+    max-width: 200px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .tech-icon:hover:before {
     opacity: 1;
     bottom: -35px;
+}
+
+/* Specific tooltip treatments for long text */
+.tech-icon[data-tooltip="Natural Language Processing"]:before,
+.tech-icon[data-tooltip="Enterprise AI Solutions"]:before,
+.tech-icon[data-tooltip="AI Research & Development"]:before,
+.tech-icon[data-tooltip="AI Cloud Infrastructure"]:before,
+.tech-icon[data-tooltip="Large Language Models"]:before {
+    font-size: 0.65rem;
+    padding: 5px 10px;
+}
+
+@media (max-width: 767.98px) {
+    .tech-icon:before {
+        font-size: 0.65rem;
+        padding: 4px 8px;
+        bottom: -30px;
+    }
+    
+    .tech-icon:hover:before {
+        bottom: -28px;
+    }
 }
 
 /* Connection lines */
