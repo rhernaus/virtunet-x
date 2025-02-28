@@ -221,8 +221,10 @@ section {
     left: 0;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 50px;
+    gap: 40px;
+    padding: 0 20px;
     z-index: 2;
 }
 
@@ -294,6 +296,18 @@ section {
 
 .tech-icon.serverless {
     background: linear-gradient(135deg, #DC3545, #a81b29);
+}
+
+.tech-icon.ai {
+    background: linear-gradient(135deg, #9C27B0, #673AB7);
+}
+
+.tech-icon.data {
+    background: linear-gradient(135deg, #FF5722, #FF9800);
+}
+
+.tech-icon.hybrid {
+    background: linear-gradient(135deg, #607D8B, #455A64);
 }
 
 /* Tooltip on hover */
