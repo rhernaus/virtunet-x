@@ -237,38 +237,27 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease;
-    cursor: grab;
+    cursor: default;
     z-index: 3;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
     position: relative;
 }
 
-.tech-icon.dragging {
-    cursor: grabbing;
-    z-index: 10;
-    opacity: 0.8;
+.tech-icon.ai-core {
+    width: 105px;
+    height: 105px;
+    z-index: 5;
+    box-shadow: 0 10px 30px rgba(156, 39, 176, 0.7);
 }
 
 .tech-icon i {
     font-size: 2rem;
     color: white;
-    transition: all 0.3s ease;
-    pointer-events: none; /* Ensures drag works properly */
+    pointer-events: none;
 }
 
-.tech-icon:hover {
-    transform: scale(1.15);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px currentColor;
-}
-
-.tech-icon.ai-core:hover {
-    transform: scale(1.6) !important;
-    box-shadow: 0 10px 30px rgba(156, 39, 176, 0.8), 0 0 20px rgba(156, 39, 176, 0.6);
-}
-
-.tech-icon:hover i {
-    transform: scale(1.1);
+.tech-icon.ai-core i {
+    font-size: 3rem;
 }
 
 /* Individual icon styling */
@@ -306,11 +295,6 @@ section {
 
 .tech-icon.ai-core {
     background: linear-gradient(135deg, #9C27B0, #673AB7);
-    z-index: 5;
-    transform: scale(1.5) !important; /* Important to ensure it overrides any inline styles */
-    box-shadow: 0 8px 30px rgba(156, 39, 176, 0.7);
-    width: 90px !important; /* Explicit width */
-    height: 90px !important; /* Explicit height */
 }
 
 .tech-icon.llms {
@@ -787,13 +771,12 @@ section {
     }
     
     .tech-icon.ai-core {
-        transform: scale(1.3) !important;
-        width: 80px !important;
-        height: 80px !important;
+        width: 90px;
+        height: 90px;
     }
     
-    .tech-icon.ai-core:hover {
-        transform: scale(1.4) !important;
+    .tech-icon.ai-core i {
+        font-size: 2.5rem;
     }
 }
 

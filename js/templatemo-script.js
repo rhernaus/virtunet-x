@@ -63,27 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const svgContainer = document.querySelector('.connections-svg');
     
     if (iconContainer && draggableIcons.length > 0) {
-        // Let CSS handle the positioning through the provider-group and capability-group elements
-        draggableIcons.forEach(icon => {
-            // No need to set absolute positioning, as that's handled by the flexbox layout
-            // Just remove any inline styles that might interfere with the CSS layout
-            icon.style.position = '';
-            icon.style.left = '';
-            icon.style.top = '';
-            
-            // Clear transform for all icons except AI core
-            if (icon.classList.contains('ai-core')) {
-                // Explicitly set the scale for the AI core icon to ensure it remains large
-                icon.style.transform = 'scale(1.5)';
-            } else {
-                icon.style.transform = '';
-            }
-            
-            // Add a subtle float animation based on the icon type
-            const delay = Math.random() * 2;
-            const duration = 3 + Math.random() * 2;
-            icon.style.animation = `float-icon ${duration}s ease-in-out ${delay}s infinite`;
-        });
+        // Let CSS handle everything with no animations or resizing
         
         // Draw all connections statically
         updateAllConnections();
