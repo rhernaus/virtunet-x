@@ -71,10 +71,10 @@
                             
                             <!-- Cloud Capabilities Group -->
                             <div class="capability-group">
-                                <div class="tech-icon kubernetes draggable capability" data-tooltip="Kubernetes" data-type="capability" data-id="kubernetes" data-connects="azure,aws,gcp">
+                                <div class="tech-icon kubernetes draggable capability" data-tooltip="Container Orchestration" data-type="capability" data-id="kubernetes" data-connects="azure,aws,gcp">
                                     <i class="fab fa-docker"></i>
                                 </div>
-                                <div class="tech-icon terraform draggable capability" data-tooltip="Terraform" data-type="capability" data-id="terraform" data-connects="azure,aws,gcp">
+                                <div class="tech-icon terraform draggable capability" data-tooltip="Infrastructure as Code" data-type="capability" data-id="terraform" data-connects="azure,aws,gcp">
                                     <i class="fas fa-cubes"></i>
                                 </div>
                                 <div class="tech-icon devops draggable capability" data-tooltip="DevOps" data-type="capability" data-id="devops" data-connects="azure,aws">
@@ -86,7 +86,7 @@
                                 <div class="tech-icon serverless draggable capability" data-tooltip="Serverless" data-type="capability" data-id="serverless" data-connects="azure,aws,gcp">
                                     <i class="fas fa-bolt"></i>
                                 </div>
-                                <div class="tech-icon ai draggable capability" data-tooltip="AI/ML Services" data-type="capability" data-id="ai" data-connects="azure,aws,gcp">
+                                <div class="tech-icon ai draggable capability" data-tooltip="AI/ML & Document Analysis" data-type="capability" data-id="ai" data-connects="azure,aws,gcp">
                                     <i class="fas fa-brain"></i>
                                 </div>
                                 <div class="tech-icon data draggable capability" data-tooltip="Data Analytics" data-type="capability" data-id="data" data-connects="azure,aws,gcp">
@@ -155,37 +155,37 @@
                     </div>
                 </div>
                 
-                <!-- Kubernetes -->
+                <!-- Containers & Orchestration -->
                 <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="card service-card h-100">
                         <div class="card-body p-4">
                             <div class="service-icon mb-4">
                                 <i class="fa-brands fa-docker"></i>
                             </div>
-                            <h3 class="card-title text-warning">Kubernetes</h3>
-                            <p class="card-text">Kubernetes is een draagbaar, uitbreidbaar, open-source platform voor het beheren van gecontaineriseerde workloads en services, dat zowel declaratieve configuratie als automatisering faciliteert. Het heeft een groot, snel groeiend ecosysteem.</p>
+                            <h3 class="card-title text-warning">Container Orchestratie</h3>
+                            <p class="card-text">Kubernetes en andere container orchestratie platforms maken het mogelijk om schaalbare, veerkrachtige en portable applicaties te draaien. Deze technologieën faciliteren declaratieve configuratie en automatisering voor bedrijfskritische workloads.</p>
                             <ul class="list-unstyled mt-3">
                                 <li><i class="fas fa-check-circle text-success me-2"></i>Container Orchestratie</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Auto-scaling</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Auto-scaling & Load Balancing</li>
                                 <li><i class="fas fa-check-circle text-success me-2"></i>Zelfherstellende Infrastructuur</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Terraform -->
+                <!-- Infrastructure as Code -->
                 <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="card service-card h-100">
                         <div class="card-body p-4">
                             <div class="service-icon mb-4">
                                 <i class="fa-solid fa-code"></i>
                             </div>
-                            <h3 class="card-title text-danger">Terraform</h3>
-                            <p class="card-text">Terraform is een tool voor het bouwen, wijzigen en versioning van infrastructuur op een veilige en efficiënte manier. Terraform kan bestaande en populaire serviceproviders beheren, evenals aangepaste in-house oplossingen.</p>
+                            <h3 class="card-title text-danger">Infrastructure as Code</h3>
+                            <p class="card-text">Tools zoals Terraform, CloudFormation en Pulumi stellen ons in staat om infrastructuur te beheren en uit te rollen als code op een veilige, herhaalbare en efficiënte manier voor diverse cloud providers.</p>
                             <ul class="list-unstyled mt-3">
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Infrastructure as Code</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Reproduceerbare Infrastructuur</li>
                                 <li><i class="fas fa-check-circle text-success me-2"></i>Multi-cloud Implementatie</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Versiebeheer Integratie</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Versiebeheer & Automatisering</li>
                             </ul>
                         </div>
                     </div>
@@ -210,7 +210,7 @@
                             <i class="fa-solid fa-diagram-project"></i>
                         </div>
                         <h3>Oplossingsarchitectuur</h3>
-                        <p>Het ontwerpen van uitgebreide cloudoplossingen op maat van bedrijfsbehoeften, met focus op schaalbaarheid, veiligheid en prestaties.</p>
+                        <p>Het ontwerpen van uitgebreide cloudoplossingen op maat van bedrijfsbehoeften, met focus op schaalbaarheid, veiligheid en prestaties. Inclusief Digital Twin implementaties voor geavanceerde simulaties.</p>
                     </div>
                 </div>
                 
@@ -266,6 +266,28 @@
                         </div>
                         <h3>Kostenoptimalisatie</h3>
                         <p>Het analyseren en optimaliseren van clouduitgaven met FinOps-praktijken en aanbevelingen voor resource right-sizing.</p>
+                    </div>
+                </div>
+                
+                <!-- Software Development -->
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="architecture-card">
+                        <div class="architecture-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3>Software Development</h3>
+                        <p>Ontwikkeling van cloud-native applicaties en AI/ML systemen voor documentanalyse en dataverwerking met innovatieve technologieën.</p>
+                    </div>
+                </div>
+                
+                <!-- Digital Twins -->
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="architecture-card">
+                        <div class="architecture-icon">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h3>Digital Twins</h3>
+                        <p>Creatie van virtuele representaties van fysieke objecten en systemen voor realtime monitoring, simulatie en optimalisatie in diverse industrieën.</p>
                     </div>
                 </div>
             </div>
