@@ -712,12 +712,13 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="js/templatemo-script.js"></script>
     
-    <!-- Chatbot Script (Placeholder) -->
+    <!-- AI Chatbot Integration -->
     <script type="text/javascript">
         // Wait for page to load
         window.addEventListener('load', function() {
-            // Create chat widget container
+            // Delayed initialization for optimal performance
             setTimeout(function() {
+                // Create chat widget container
                 const chatWidget = document.createElement('div');
                 chatWidget.className = 'chat-widget';
                 chatWidget.innerHTML = `
@@ -726,19 +727,24 @@
                     </div>
                     <div class="chat-widget-popup">
                         <div class="chat-widget-header">
-                            <h5>Virtunet AI Assistent</h5>
+                            <h5><i class="fas fa-robot me-2"></i>Virtunet AI Assistant</h5>
                             <button class="chat-close-btn">&times;</button>
                         </div>
                         <div class="chat-widget-body">
                             <div class="chat-message bot">
-                                <p>👋 Hallo! Ik ben de AI assistent van Virtunet. Waarmee kan ik u helpen?</p>
-                                <p>Kies een optie:</p>
+                                <p>👋 Hallo! Ik ben de AI assistent van Virtunet. Ik ben getraind op alle diensten en expertise van Virtunet. Waarmee kan ik u helpen?</p>
+                                <p>U kunt typen of een optie kiezen:</p>
                             </div>
                             <div class="chat-buttons">
-                                <button class="chat-option-btn" data-response="Ik wil meer weten over AI oplossingen">AI Oplossingen</button>
-                                <button class="chat-option-btn" data-response="Ik heb interesse in cloud migratie">Cloud Migratie</button>
-                                <button class="chat-option-btn" data-response="Ik wil graag advies over DevOps">DevOps & CI/CD</button>
-                                <button class="chat-option-btn" data-response="Ik wil graag een afspraak maken">Plan een Gesprek</button>
+                                <button class="chat-option-btn" data-response="Vertel me meer over AI oplossingen">AI Oplossingen</button>
+                                <button class="chat-option-btn" data-response="Wat zijn de voordelen van cloud migratie?">Cloud Migratie</button>
+                                <button class="chat-option-btn" data-response="Hoe kan DevOps ons helpen?">DevOps & CI/CD</button>
+                                <button class="chat-option-btn" data-response="Ik wil graag contact opnemen">Contact</button>
+                            </div>
+                        </div>
+                        <div class="chat-widget-body-footer">
+                            <div id="typing-indicator" class="typing-indicator">
+                                <span></span><span></span><span></span>
                             </div>
                         </div>
                         <div class="chat-widget-footer">
@@ -751,7 +757,7 @@
                 `;
                 document.body.appendChild(chatWidget);
                 
-                // Add styles
+                // Add enhanced styles
                 const style = document.createElement('style');
                 style.textContent = `
                     .chat-widget {
@@ -812,20 +818,45 @@
                         overflow-y: auto;
                         padding: 15px;
                         background-color: #f8f9fa;
+                        scrollbar-width: thin;
+                        scrollbar-color: #ccc #f8f9fa;
+                        position: relative;
+                    }
+                    .chat-widget-body::-webkit-scrollbar {
+                        width: 6px;
+                    }
+                    .chat-widget-body::-webkit-scrollbar-track {
+                        background: #f8f9fa;
+                    }
+                    .chat-widget-body::-webkit-scrollbar-thumb {
+                        background-color: #ccc;
+                        border-radius: 6px;
+                    }
+                    .chat-widget-body-footer {
+                        position: relative;
+                        padding: 0 15px;
+                        background-color: #f8f9fa;
                     }
                     .chat-widget-footer {
                         padding: 10px;
                         border-top: 1px solid #eee;
+                        position: relative;
                     }
                     #chat-form {
                         display: flex;
                     }
                     #chat-input {
                         flex: 1;
-                        padding: 10px;
+                        padding: 10px 15px;
                         border: 1px solid #ddd;
                         border-radius: 20px;
                         outline: none;
+                        font-size: 14px;
+                        transition: border-color 0.3s;
+                    }
+                    #chat-input:focus {
+                        border-color: #007bff;
+                        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
                     }
                     #chat-form button {
                         background-color: #007bff;
@@ -836,20 +867,31 @@
                         border-radius: 50%;
                         margin-left: 10px;
                         cursor: pointer;
+                        transition: background-color 0.3s;
+                    }
+                    #chat-form button:hover {
+                        background-color: #0069d9;
                     }
                     .chat-message {
                         margin-bottom: 15px;
                         max-width: 80%;
+                        animation: fadeIn 0.3s ease-in-out;
+                    }
+                    @keyframes fadeIn {
+                        from { opacity: 0; transform: translateY(10px); }
+                        to { opacity: 1; transform: translateY(0); }
                     }
                     .chat-message p {
                         margin: 5px 0;
                         padding: 10px 15px;
                         border-radius: 15px;
                         color: #333;
+                        line-height: 1.5;
                     }
                     .chat-message.bot p {
                         background-color: #e9ecef;
                         border-top-left-radius: 5px;
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
                     }
                     .chat-message.user {
                         margin-left: auto;
@@ -858,6 +900,7 @@
                         background-color: #007bff;
                         color: white;
                         border-top-right-radius: 5px;
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
                     }
                     .chat-buttons {
                         display: flex;
@@ -873,15 +916,50 @@
                         cursor: pointer;
                         transition: all 0.2s;
                         font-size: 0.9rem;
+                        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
                     }
                     .chat-option-btn:hover {
                         background-color: #007bff;
                         color: white;
+                        transform: translateY(-2px);
+                    }
+                    .chat-message a {
+                        color: inherit;
+                        text-decoration: underline;
+                    }
+                    .typing-indicator {
+                        display: none;
+                        position: relative;
+                        margin: 0px 0 5px 0;
+                        background: rgba(0,0,0,0.1);
+                        padding: 6px 12px;
+                        border-radius: 15px;
+                        width: fit-content;
+                    }
+                    .typing-indicator span {
+                        height: 8px;
+                        width: 8px;
+                        background: #777;
+                        display: inline-block;
+                        border-radius: 50%;
+                        margin-right: 3px;
+                        animation: typing 1.3s infinite;
+                    }
+                    .typing-indicator span:nth-child(2) {
+                        animation-delay: 0.2s;
+                    }
+                    .typing-indicator span:nth-child(3) {
+                        animation-delay: 0.4s;
+                        margin-right: 0;
+                    }
+                    @keyframes typing {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-5px); }
                     }
                 `;
                 document.head.appendChild(style);
                 
-                // Add interaction
+                // Initialize variables
                 const chatButton = document.querySelector('.chat-widget-button');
                 const chatPopup = document.querySelector('.chat-widget-popup');
                 const closeBtn = document.querySelector('.chat-close-btn');
@@ -889,18 +967,171 @@
                 const chatInput = document.getElementById('chat-input');
                 const chatBody = document.querySelector('.chat-widget-body');
                 const optionBtns = document.querySelectorAll('.chat-option-btn');
+                const typingIndicator = document.getElementById('typing-indicator');
+                
+                // Conversation context tracker
+                let conversationContext = {
+                    lastTopic: null,
+                    mentions: {
+                        ai: 0,
+                        cloud: 0,
+                        devops: 0,
+                        contact: 0
+                    },
+                    questionsAsked: 0,
+                    sessionStartTime: new Date(),
+                    interactions: []
+                };
+                
+                // Knowledge base for more dynamic responses
+                const knowledgeBase = {
+                    ai: [
+                        "Virtunet specialiseert zich in het implementeren van state-of-the-art AI-oplossingen die direct toegevoegde waarde leveren voor uw bedrijf. Dit omvat generatieve AI, LLMs, computer vision en NLP-technologieën.",
+                        "Onze AI-implementaties hebben gemiddeld 85% automatisering opgeleverd in klantenservice en 94% nauwkeurigheid in productieomgevingen.",
+                        "We ontwerpen AI-oplossingen die naadloos integreren met uw bestaande systemen en workflows, met minimale verstoring en maximale business impact.",
+                        "Generatieve AI kan u helpen bij het automatiseren van contentcreatie, klantenservice verbeteren via intelligente chatbots, en organisatiekennis toegankelijk maken.",
+                        "Voor een financiële dienstverlener heeft onze AI-assistent 85% van veelvoorkomende klantvragen automatisch afgehandeld, met 35% snellere responstijden en 28% hogere klanttevredenheid."
+                    ],
+                    cloud: [
+                        "Virtunet heeft expertise in het strategisch migreren van on-premises workloads naar de cloud, met gemiddeld 42% kostenbesparing en 3x snellere implementatie van nieuwe functionaliteiten.",
+                        "Onze cloud architecturen zijn ontworpen voor optimale schaalbaarheid, beveiliging en kostenefficiëntie, aangepast aan uw specifieke bedrijfsbehoeften.",
+                        "We bieden cloud readiness assessments om inzicht te krijgen in uw huidige infrastructuur en een roadmap te creëren voor een succesvolle migratie.",
+                        "Voor een middelgrote retailer migreerden we een legacy systeem naar een microservices architectuur in de cloud, wat resulteerde in 42% kostenbesparing, 99.99% uptime en 3x snellere implementatie.",
+                        "Onze multi-cloud strategieën voorkomen vendor lock-in en optimaliseren kosten en prestaties over verschillende cloudproviders."
+                    ],
+                    devops: [
+                        "Onze DevOps-implementaties verkorten ontwikkelingscycli van weken naar dagen en verminderen productiefouten met gemiddeld 80%.",
+                        "We helpen teams met het implementeren van CI/CD-pipelines, geautomatiseerde testing en Infrastructure as Code voor snellere en betrouwbaardere releases.",
+                        "Voor een softwareontwikkelingsbedrijf implementeerden we een complete CI/CD pipeline die de release cyclus verkort heeft van weken naar dagen, met 75% minder handmatige interventies.",
+                        "DevOps verbetert niet alleen technische processen, maar creëert ook een cultuur van samenwerking tussen development, operations en business teams.",
+                        "Onze aanpak integreert beveiligingspraktijken (DevSecOps) vanaf het begin van de ontwikkelingscyclus voor veiligere applicaties."
+                    ],
+                    contact: [
+                        "U kunt direct contact opnemen met onze oprichter en CEO Ron Hernaus via telefoon: +31 6 42117210 of via email: info@virtunet.nl.",
+                        "Vul het contactformulier in op onze website, en wij nemen binnen 24 uur contact met u op voor een vrijblijvend adviesgesprek.",
+                        "We bieden gratis strategiesessies waarin we uw uitdagingen bespreken en u concrete, praktische adviezen geven over hoe AI en cloud uw business kunnen transformeren.",
+                        "Virtunet is gevestigd in Oirschot, Nederland, maar we werken met klanten door heel Nederland en Europa.",
+                        "Interesse in een specifieke oplossing? Laat een telefoonnummer achter en wij bellen u terug op een moment dat u schikt."
+                    ],
+                    general: [
+                        "Virtunet biedt expertise in zowel AI-innovatie als cloud-technologie, wat ons in staat stelt om end-to-end oplossingen te leveren die direct business value creëren.",
+                        "Onze klanten zien gemiddeld 42% kostenbesparing, 85% automatisering van repetitieve taken, en 3x snellere time-to-market voor nieuwe features.",
+                        "We hebben branchespecifieke oplossingen voor o.a. financiële dienstverlening, gezondheidszorg, productie & industrie, retail, overheid en onderwijs.",
+                        "Onze aanpak bestaat uit vier stappen: Ontdekken, Ontwerpen, Implementeren en Optimaliseren, wat een gestructureerde en effectieve implementatie garandeert.",
+                        "Naast implementatie bieden we ook training, kennisoverdracht en 24/7 support om het succes van uw projecten op lange termijn te waarborgen."
+                    ]
+                };
+
+                // Enhanced response generator
+                function generateResponse(userMessage) {
+                    const message = userMessage.toLowerCase();
+                    conversationContext.questionsAsked++;
+                    conversationContext.interactions.push({
+                        user: userMessage,
+                        timestamp: new Date()
+                    });
+                    
+                    // Increment topic counters based on user message
+                    if (message.includes('ai') || message.includes('kunstmatige') || message.includes('intelligentie') || 
+                        message.includes('machine learning') || message.includes('robot') || message.includes('automatiseren')) {
+                        conversationContext.mentions.ai++;
+                        conversationContext.lastTopic = 'ai';
+                    }
+                    
+                    if (message.includes('cloud') || message.includes('migratie') || message.includes('aws') || 
+                        message.includes('azure') || message.includes('google cloud') || message.includes('infrastructuur')) {
+                        conversationContext.mentions.cloud++;
+                        conversationContext.lastTopic = 'cloud';
+                    }
+                    
+                    if (message.includes('devops') || message.includes('ci/cd') || message.includes('pipeline') || 
+                        message.includes('integratie') || message.includes('deployment') || message.includes('automatisering')) {
+                        conversationContext.mentions.devops++;
+                        conversationContext.lastTopic = 'devops';
+                    }
+                    
+                    if (message.includes('contact') || message.includes('afspraak') || message.includes('gesprek') || 
+                        message.includes('bellen') || message.includes('mail') || message.includes('email')) {
+                        conversationContext.mentions.contact++;
+                        conversationContext.lastTopic = 'contact';
+                    }
+                    
+                    // Select response based on context and message content
+                    let response = '';
+                    let responseDelay = 1000 + Math.random() * 1500; // Realistic typing delay
+                    
+                    if (conversationContext.questionsAsked > 3 && Math.random() > 0.6) {
+                        // Occasionally suggest moving to direct contact after a few exchanges
+                        response = "Ik merk dat u specifieke vragen heeft over onze diensten. Zou u willen dat een van onze experts persoonlijk contact met u opneemt voor een meer gedetailleerd gesprek? <br><br><a href='#contact' class='btn btn-primary btn-sm mt-2'>Direct contact opnemen</a>";
+                    } else {
+                        // Find most relevant topic based on message content or continue with the last topic
+                        let topicCounts = Object.entries(conversationContext.mentions).sort((a, b) => b[1] - a[1]);
+                        let dominantTopic = topicCounts[0][1] > 0 ? topicCounts[0][0] : 'general';
+                        
+                        // If the message clearly indicates a specific topic, override the dominant topic
+                        if (message.includes('ai') || message.includes('intelligentie')) {
+                            dominantTopic = 'ai';
+                        } else if (message.includes('cloud') || message.includes('migratie')) {
+                            dominantTopic = 'cloud';
+                        } else if (message.includes('devops') || message.includes('ci/cd')) {
+                            dominantTopic = 'devops';
+                        } else if (message.includes('contact') || message.includes('afspraak')) {
+                            dominantTopic = 'contact';
+                        } else if (conversationContext.lastTopic) {
+                            // Continue with the last topic if the message doesn't clearly indicate a new topic
+                            dominantTopic = conversationContext.lastTopic;
+                        }
+                        
+                        // Select a response from the knowledge base
+                        const topicResponses = knowledgeBase[dominantTopic];
+                        let selectedResponse = topicResponses[Math.floor(Math.random() * topicResponses.length)];
+                        
+                        // For longer responses, add a delay proportional to the length
+                        responseDelay += selectedResponse.length * 10;
+                        
+                        // Add follow-up question based on the dominant topic
+                        let followUp = '';
+                        if (dominantTopic === 'ai') {
+                            followUp = "<br><br>Heeft u een specifiek AI-gebruik in gedachten voor uw organisatie?";
+                        } else if (dominantTopic === 'cloud') {
+                            followUp = "<br><br>Gebruikt u momenteel al cloud-diensten of bent u geïnteresseerd in een eerste migratie?";
+                        } else if (dominantTopic === 'devops') {
+                            followUp = "<br><br>Wat zijn de grootste uitdagingen in uw huidige ontwikkelingsproces?";
+                        } else if (dominantTopic === 'contact') {
+                            followUp = "<br><br>Wilt u dat we u bellen of heeft u voorkeur voor een videogesprek?";
+                        } else {
+                            followUp = "<br><br>Waar bent u het meest in geïnteresseerd: AI-implementatie, cloud-migratie of DevOps-transformatie?";
+                        }
+                        
+                        response = selectedResponse + followUp;
+                    }
+                    
+                    // For special queries, provide custom responses
+                    if (message.includes('prijs') || message.includes('kosten') || message.includes('tarief')) {
+                        response = "Onze prijzen zijn afhankelijk van de specifieke behoeften en de omvang van uw project. We werken met verschillende prijsmodellen, waaronder fixed price projecten en agile-gebaseerde sprints. Graag bespreken we uw specifieke situatie in een vrijblijvend gesprek om een nauwkeurige inschatting te kunnen maken.<br><br><a href='#contact' class='btn btn-primary btn-sm mt-2'>Offerte aanvragen</a>";
+                    } else if (message.includes('ervaring') || message.includes('expertise') || message.includes('klanten')) {
+                        response = "Virtunet heeft uitgebreide ervaring in diverse branches, waaronder financiële dienstverlening, retail, productie en overheid. Onze experts hebben jarenlange ervaring in AI, cloud en DevOps-implementaties bij zowel grote ondernemingen als snelgroeiende scaleups. In onze case studies kunt u lezen over de concrete resultaten die we hebben behaald voor onze klanten.<br><br><a href='#services' class='btn btn-primary btn-sm mt-2'>Case studies bekijken</a>";
+                    } else if (message.includes('waar') && message.includes('gevestigd')) {
+                        response = "Virtunet is gevestigd in Oirschot, Nederland. We werken echter met klanten door heel Nederland en daarbuiten. Veel van onze diensten kunnen we ook op afstand leveren, waardoor fysieke locatie geen beperking vormt voor samenwerking.";
+                    }
+                    
+                    // Simulate a realistic response time (longer for more complex responses)
+                    return { 
+                        text: response, 
+                        delay: Math.min(responseDelay, 3000) // Cap delay at 3 seconds
+                    };
+                }
                 
                 // Show popup when chat button is clicked
                 chatButton.addEventListener('click', function() {
                     chatPopup.style.display = 'block';
-                    setTimeout(() => {
-                        document.querySelector('.chat-widget-button').classList.add('animate__animated', 'animate__bounceOut');
-                    }, 200);
+                    chatButton.style.display = 'none';
                 });
                 
                 // Hide popup when close button is clicked
                 closeBtn.addEventListener('click', function() {
                     chatPopup.style.display = 'none';
+                    chatButton.style.display = 'flex';
                 });
                 
                 // Handle form submission
@@ -911,48 +1142,41 @@
                         addMessage(message, 'user');
                         chatInput.value = '';
                         
-                        // Simulate response
+                        // Show typing indicator
+                        typingIndicator.style.display = 'block';
+                        
+                        // Generate enhanced response
+                        const response = generateResponse(message);
+                        
+                        // Simulate typing time
                         setTimeout(function() {
-                            let response;
-                            if (message.toLowerCase().includes('ai') || message.toLowerCase().includes('kunstmatige intelligentie')) {
-                                response = "Virtunet helpt organisaties met AI implementaties op maat. Van generatieve AI en LLMs tot computer vision en NLP. Wilt u een vrijblijvend gesprek inplannen over uw AI-behoeften?";
-                            } else if (message.toLowerCase().includes('cloud') || message.toLowerCase().includes('migratie')) {
-                                response = "Virtunet heeft expertise in cloud migraties, met 42% gemiddelde kostenbesparing en 3x snellere implementaties. Wilt u weten welke voordelen cloud kan bieden voor uw organisatie?";
-                            } else if (message.toLowerCase().includes('devops') || message.toLowerCase().includes('ci/cd') || message.toLowerCase().includes('pipeline')) {
-                                response = "Onze DevOps implementaties verkorten release-cycli van weken naar dagen en verminderen productiefouten met 80%. Kunnen we u helpen met uw DevOps strategie?";
-                            } else if (message.toLowerCase().includes('afspraak') || message.toLowerCase().includes('contact') || message.toLowerCase().includes('gesprek')) {
-                                response = "Graag! Laat uw contactgegevens achter via het contactformulier en we nemen binnen 24 uur contact met u op. Of vul hier uw telefoonnummer in voor een terugbelverzoek.";
-                            } else {
-                                response = "Bedankt voor uw bericht. Een van onze experts neemt zo snel mogelijk contact met u op. Kunt u aangeven waar we u specifiek mee kunnen helpen?";
-                            }
-                            addMessage(response, 'bot');
-                        }, 1000);
+                            typingIndicator.style.display = 'none';
+                            addMessage(response.text, 'bot');
+                        }, response.delay);
                     }
                 });
                 
-                // Handle option buttons
+                // Handle option buttons with enhanced interaction
                 optionBtns.forEach(btn => {
                     btn.addEventListener('click', function() {
                         const response = this.getAttribute('data-response');
                         addMessage(response, 'user');
                         
-                        // Simulate bot response
+                        // Show typing indicator
+                        typingIndicator.style.display = 'block';
+                        
+                        // Generate response based on the button's topic
+                        const botResponse = generateResponse(response);
+                        
+                        // Simulate typing time
                         setTimeout(function() {
-                            let botResponse;
-                            if (response.includes('AI oplossingen')) {
-                                botResponse = "Virtunet biedt custom AI-oplossingen, van generatieve AI en LLMs tot computer vision en NLP. We hebben 85% automatisering gerealiseerd in klantenservice en 94% nauwkeurigheid in productieomgevingen. Wilt u meer details over een specifieke AI-toepassing?";
-                            } else if (response.includes('cloud migratie')) {
-                                botResponse = "Onze cloud migraties leveren gemiddeld 42% kostenbesparing op. We helpen bij de overgang van legacy naar cloud-native systemen met minimale verstoring. Wilt u een vrijblijvende cloud readiness assessment?";
-                            } else if (response.includes('DevOps')) {
-                                botResponse = "DevOps & CI/CD versnelt softwareontwikkeling en verbetert kwaliteit. Onze implementaties verkorten release-cycli en verminderen fouten met 80%. Waar loopt u momenteel tegenaan in uw ontwikkelproces?";
-                            } else if (response.includes('afspraak')) {
-                                botResponse = "Graag! Vul hier uw contactgegevens in, dan plannen we een vrijblijvend adviesgesprek met een van onze experts:<br><a href='#contact' class='btn btn-primary btn-sm mt-2'>Naar contactformulier</a>";
-                            }
-                            addMessage(botResponse, 'bot');
-                        }, 1000);
+                            typingIndicator.style.display = 'none';
+                            addMessage(botResponse.text, 'bot');
+                        }, botResponse.delay);
                     });
                 });
                 
+                // Add message to chat
                 function addMessage(text, sender) {
                     const messageDiv = document.createElement('div');
                     messageDiv.className = `chat-message ${sender}`;
@@ -961,14 +1185,49 @@
                     chatBody.scrollTop = chatBody.scrollHeight;
                 }
                 
-                // Auto-trigger chat after 15 seconds
+                // Session tracking and auto-trigger
+                const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+                let hasTriggered = false;
+                
+                // Auto-trigger chat after 15 seconds if not already triggered
                 setTimeout(function() {
-                    if (chatPopup.style.display !== 'block') {
+                    if (!hasTriggered && chatPopup.style.display !== 'block') {
+                        hasTriggered = true;
                         chatButton.classList.add('animate__animated', 'animate__bounce');
+                        
+                        // Add subtle notification
+                        const notification = document.createElement('div');
+                        notification.style.cssText = `
+                            position: absolute;
+                            top: -10px;
+                            right: -5px;
+                            background-color: #ff4757;
+                            color: white;
+                            border-radius: 50%;
+                            width: 20px;
+                            height: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 12px;
+                            font-weight: bold;
+                            animation: pulse 2s infinite;
+                        `;
+                        notification.innerHTML = '1';
+                        chatButton.appendChild(notification);
                     }
                 }, 15000);
                 
-            }, 2000); // Show chat after 2 seconds
+                // Track user activity in chat
+                document.addEventListener('mousemove', function() {
+                    if (!hasTriggered && !sessionStorage.getItem('chatShown') && 
+                        Math.random() > 0.7 && conversationContext.questionsAsked === 0) {
+                        hasTriggered = true;
+                        sessionStorage.setItem('chatShown', 'true');
+                    }
+                });
+                
+            }, 2000); // Initialize after 2 seconds for optimal page loading
         });
     </script>
 
