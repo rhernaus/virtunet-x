@@ -63,22 +63,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const svgContainer = document.querySelector('.connections-svg');
     
     if (iconContainer && draggableIcons.length > 0) {
-        // Position icons in a static layout
+        // Let CSS handle the positioning through the provider-group and capability-group elements
         draggableIcons.forEach(icon => {
-            // Make sure icons are absolutely positioned for consistent layout
-            if (!icon.style.position || icon.style.position !== 'absolute') {
-                const rect = icon.getBoundingClientRect();
-                const containerRect = iconContainer.getBoundingClientRect();
-                
-                // Set position as absolute
-                const posX = rect.left - containerRect.left;
-                const posY = rect.top - containerRect.top;
-                
-                icon.style.position = 'absolute';
-                icon.style.left = posX + 'px';
-                icon.style.top = posY + 'px';
-                icon.style.transform = 'none';
-            }
+            // No need to set absolute positioning, as that's handled by the flexbox layout
+            // Just remove any inline styles that might interfere with the CSS layout
+            icon.style.position = '';
+            icon.style.left = '';
+            icon.style.top = '';
+            icon.style.transform = '';
+            
+            // Add a subtle float animation based on the icon type
+            const delay = Math.random() * 2;
+            const duration = 3 + Math.random() * 2;
+            icon.style.animation = `float-icon ${duration}s ease-in-out ${delay}s infinite`;
         });
         
         // Draw all connections statically
