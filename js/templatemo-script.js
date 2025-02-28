@@ -71,9 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.style.left = '';
             icon.style.top = '';
             
-            // Preserve the transform for the AI core icon
+            // Clear transform for all icons except AI core
             if (icon.classList.contains('ai-core')) {
-                // Keep the CSS transform for the AI core icon
+                // Explicitly set the scale for the AI core icon to ensure it remains large
+                icon.style.transform = 'scale(1.5)';
             } else {
                 icon.style.transform = '';
             }
