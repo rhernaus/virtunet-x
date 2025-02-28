@@ -102,8 +102,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // SIMPLIFIED DIRECT APPROACH FOR BUTTONS IN HERO SECTION
+    document.querySelector('a[href="#services"].btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        const servicesSection = document.getElementById('services');
+        if (servicesSection) {
+            const offsetTop = servicesSection.offsetTop - 100; // Adjust offset as needed
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+    
+    document.querySelector('a[href="#contact"].btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            const offsetTop = contactSection.offsetTop - 100; // Adjust offset as needed
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+    
+    // General smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]:not(.btn)').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             
@@ -112,15 +137,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 100; // Adjust offset as needed
                 window.scrollTo({
-                    top: targetElement.offsetTop - 70,
+                    top: offsetTop,
                     behavior: 'smooth'
                 });
                 
                 // Close mobile navbar if open
                 const navbarToggler = document.querySelector('.navbar-toggler');
                 const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse.classList.contains('show')) {
+                if (navbarCollapse && navbarCollapse.classList.contains('show') && navbarToggler) {
                     navbarToggler.click();
                 }
             }

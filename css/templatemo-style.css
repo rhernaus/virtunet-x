@@ -140,6 +140,17 @@ a:hover {
     padding: 100px 0;
 }
 
+/* Section spacing fix */
+#services, #about, #contact {
+    padding-top: 120px;
+    margin-top: -80px;
+}
+
+/* Section scrolling fix */
+section {
+    scroll-margin-top: 80px;
+}
+
 .hero-section::before {
     content: '';
     position: absolute;
