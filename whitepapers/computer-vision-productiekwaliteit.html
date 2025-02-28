@@ -8,6 +8,11 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <!-- Bootstrap 5 (CDN) -->
+    <style>
+        .spaced-list li {
+            margin-bottom: 1rem;
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -15,23 +20,11 @@
     <link rel="stylesheet" href="../css/templatemo-style.css">
     <style>
         .whitepaper-header {
-            background: linear-gradient(to right, rgba(23, 162, 184, 0.9), rgba(40, 167, 69, 0.9));
+            background: linear-gradient(135deg, rgba(23, 162, 184, 1), rgba(40, 167, 69, 0.95));
             padding: 6rem 0 3rem;
             position: relative;
             overflow: hidden;
-        }
-        
-        .whitepaper-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("../img/pattern-bg.jpg");
-            background-size: cover;
-            opacity: 0.1;
-            z-index: -1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         
         .whitepaper-section {
@@ -88,13 +81,7 @@
         }
         
         .quote-box::before {
-            content: '❝';
-            position: absolute;
-            top: -30px;
-            left: 20px;
-            font-size: 5rem;
-            color: var(--success-color);
-            opacity: 0.5;
+            content: '';
         }
         
         blockquote {
@@ -491,7 +478,7 @@
                             <div class="card mb-4 h-100">
                                 <div class="card-body">
                                     <h5 class="card-title text-success">Kwantitatieve Resultaten</h5>
-                                    <ul>
+                                    <ul class="spaced-list">
                                         <li><strong>94% nauwkeurigheid</strong> in defectdetectie, vergeleken met 82% bij handmatige inspectie</li>
                                         <li><strong>40% reductie</strong> in kwaliteitscontrolekosten</li>
                                         <li><strong>25% vermindering</strong> van defecte producten die klanten bereiken</li>
@@ -506,7 +493,7 @@
                             <div class="card mb-4 h-100">
                                 <div class="card-body">
                                     <h5 class="card-title text-success">Kwalitatieve Verbeteringen</h5>
-                                    <ul>
+                                    <ul class="spaced-list">
                                         <li><strong>Verhoogde consistentie</strong> in kwaliteitsbeoordeling ongeacht ploeg of tijdstip</li>
                                         <li><strong>Betere inzichten</strong> in defectoorzaken door verzamelde data</li>
                                         <li><strong>Strategische herplaatsing</strong> van kwaliteitspersoneel naar meer waarde-toevoegende activiteiten</li>
@@ -522,7 +509,7 @@
                     <div class="results-card mt-4">
                         <h5 class="text-dark mb-3">ROI Berekening</h5>
                         <p>De totale investering in het computer vision-systeem (hardware, software, implementatie en training) werd terugverdiend binnen 11 maanden door:</p>
-                        <ul>
+                        <ul class="spaced-list">
                             <li><strong>Directe kostenbesparingen</strong> in kwaliteitscontrole personeelsuren</li>
                             <li><strong>Lagere garantiekosten</strong> door minder defecte producten</li>
                             <li><strong>Verhoogde productieefficiëntie</strong> door minder herbewerking</li>
