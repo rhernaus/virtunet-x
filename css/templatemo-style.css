@@ -170,20 +170,181 @@ section {
     height: 100%;
 }
 
-/* 3D Cloud Scene Container */
-#cloud-scene-container {
+/* Tech Icons Container */
+#tech-icons-container {
     width: 100%;
     height: 400px;
     position: relative;
-    border-radius: 15px;
+    border-radius: 18px;
     overflow: hidden;
-    background-color: rgba(25, 28, 32, 0.5);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(8, 15, 30, 0.8), rgba(25, 35, 60, 0.7));
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(70, 130, 210, 0.15);
+    padding: 20px;
+}
+
+#tech-icons-container:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 123, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Technology Icons */
+.tech-icon {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: float-icon 6s infinite ease-in-out;
+}
+
+.tech-icon i {
+    font-size: 2rem;
+    color: white;
     transition: all 0.3s ease;
 }
 
-#cloud-scene-container:hover {
-    box-shadow: 0 15px 40px rgba(0, 123, 255, 0.4);
+.tech-icon:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px currentColor;
+}
+
+.tech-icon:hover i {
+    transform: scale(1.1);
+}
+
+/* Individual icon positioning and styling */
+.tech-icon.azure {
+    top: 25%;
+    left: 25%;
+    background: linear-gradient(135deg, #0078D4, #0050a1);
+    animation-delay: 0.1s;
+}
+
+.tech-icon.aws {
+    top: 15%;
+    right: 25%;
+    background: linear-gradient(135deg, #FF9900, #dd7a00);
+    animation-delay: 0.5s;
+}
+
+.tech-icon.gcp {
+    bottom: 20%;
+    left: 20%;
+    background: linear-gradient(135deg, #4285F4, #1a56cc);
+    animation-delay: 0.3s;
+}
+
+.tech-icon.kubernetes {
+    top: 50%;
+    right: 20%;
+    background: linear-gradient(135deg, #326CE5, #1e4ab5);
+    animation-delay: 0.7s;
+}
+
+.tech-icon.terraform {
+    bottom: 25%;
+    right: 30%;
+    background: linear-gradient(135deg, #623CE4, #4123a6);
+    animation-delay: 0.2s;
+}
+
+.tech-icon.devops {
+    top: 65%;
+    left: 50%;
+    background: linear-gradient(135deg, #00A4EF, #0078d7);
+    animation-delay: 0.6s;
+}
+
+.tech-icon.security {
+    top: 30%;
+    left: 55%;
+    background: linear-gradient(135deg, #28A745, #1b7e31);
+    animation-delay: 0.4s;
+}
+
+.tech-icon.serverless {
+    bottom: 45%;
+    left: 30%;
+    background: linear-gradient(135deg, #DC3545, #a81b29);
+    animation-delay: 0.8s;
+}
+
+/* Tooltip on hover */
+.tech-icon:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.tech-icon:hover:before {
+    opacity: 1;
+    bottom: -35px;
+}
+
+/* Connection lines */
+.connection-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-image: 
+        radial-gradient(circle at 25% 25%, transparent 15%, rgba(0, 123, 255, 0.05) 16%, rgba(0, 123, 255, 0.1) 20%, transparent 21%),
+        radial-gradient(circle at 75% 15%, transparent 15%, rgba(0, 123, 255, 0.05) 16%, rgba(0, 123, 255, 0.1) 20%, transparent 21%),
+        radial-gradient(circle at 20% 65%, transparent 15%, rgba(0, 123, 255, 0.05) 16%, rgba(0, 123, 255, 0.1) 20%, transparent 21%),
+        radial-gradient(circle at 70% 50%, transparent 15%, rgba(0, 123, 255, 0.05) 16%, rgba(0, 123, 255, 0.1) 20%, transparent 21%),
+        radial-gradient(circle at 30% 50%, transparent 15%, rgba(0, 123, 255, 0.05) 16%, rgba(0, 123, 255, 0.1) 20%, transparent 21%),
+        radial-gradient(circle at 65% 70%, transparent 15%, rgba(0, 123, 255, 0.05) 16%, rgba(0, 123, 255, 0.1) 20%, transparent 21%);
+    opacity: 0.7;
+}
+
+.connection-lines:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, rgba(0, 123, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(0, 123, 255, 0.03) 75%),
+        linear-gradient(-45deg, rgba(0, 123, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(0, 123, 255, 0.03) 75%);
+    background-size: 60px 60px;
+    animation: move-grid 20s linear infinite;
+}
+
+/* Animations */
+@keyframes float-icon {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes move-grid {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 60px 60px, 60px 60px; }
 }
 
 /* Service Cards */

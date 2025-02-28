@@ -57,9 +57,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize 3D Cloud Scene
-    if (document.getElementById('cloud-scene-container')) {
-        initCloudScene();
+    // Add interactivity to tech icons
+    const techIcons = document.querySelectorAll('.tech-icon');
+    if (techIcons.length > 0) {
+        techIcons.forEach(icon => {
+            // Random animation timing for more natural movement
+            const randomDelay = Math.random() * 2;
+            const randomDuration = 4 + Math.random() * 3;
+            
+            icon.style.animationDelay = `${randomDelay}s`;
+            icon.style.animationDuration = `${randomDuration}s`;
+            
+            // Interactive hover effect with subtle movement
+            icon.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.15) translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px currentColor';
+                
+                // Temporarily pause the float animation
+                this.style.animationPlayState = 'paused';
+            });
+            
+            icon.addEventListener('mouseout', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+                
+                // Resume the float animation
+                this.style.animationPlayState = 'running';
+            });
+        });
     }
     
     // Initialize Typed.js for text animation
@@ -284,216 +309,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Initialize the 3D Cloud Scene with Three.js
-function initCloudScene() {
-    // Scene setup
-    const container = document.getElementById('cloud-scene-container');
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    
-    // Create scene, camera, and renderer
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0x171920, 0.8);
-    container.appendChild(renderer.domElement);
-    
-    // Set up camera position
-    camera.position.z = 10;
-    camera.position.y = 1;
-    
-    // Add orbit controls for mouse interaction
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.rotateSpeed = 0.5;
-    controls.enableZoom = false;
-    
-    // Ambient light
-    const ambientLight = new THREE.AmbientLight(0x555555);
-    scene.add(ambientLight);
-    
-    // Directional light (like the sun)
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(5, 10, 7);
-    scene.add(directionalLight);
-    
-    // Blue point light for accent
-    const blueLight = new THREE.PointLight(0x0066ff, 1, 20);
-    blueLight.position.set(-5, 2, 5);
-    scene.add(blueLight);
-    
-    // Create cloud objects
-    const cloudGroup = new THREE.Group();
-    scene.add(cloudGroup);
-    
-    // Cloud material
-    const cloudMaterial = new THREE.MeshPhongMaterial({
-        color: 0xffffff,
-        emissive: 0x101820,
-        specular: 0x0088ff,
-        shininess: 5,
-        transparent: true,
-        opacity: 0.9
-    });
-    
-    // Create multiple cloud shapes
-    for (let i = 0; i < 12; i++) {
-        const cloudGeometry = new THREE.SphereGeometry(
-            Math.random() * 0.8 + 0.6, // Random size
-            6, 6
-        );
-        
-        // Randomly distort sphere vertices for cloud-like appearance
-        const vertices = cloudGeometry.attributes.position;
-        for (let j = 0; j < vertices.count; j++) {
-            const vertex = new THREE.Vector3();
-            vertex.fromBufferAttribute(vertices, j);
-            
-            vertex.x += (Math.random() - 0.5) * 0.3;
-            vertex.y += (Math.random() - 0.5) * 0.3;
-            vertex.z += (Math.random() - 0.5) * 0.3;
-            
-            vertices.setXYZ(j, vertex.x, vertex.y, vertex.z);
-        }
-        
-        const cloud = new THREE.Mesh(cloudGeometry, cloudMaterial);
-        
-        // Position clouds in a circular formation
-        const angle = (i / 12) * Math.PI * 2;
-        const radius = Math.random() * 2 + 3;
-        cloud.position.x = Math.cos(angle) * radius;
-        cloud.position.y = Math.sin(angle) * 0.5 + (Math.random() - 0.5) * 2;
-        cloud.position.z = Math.sin(angle) * radius;
-        
-        // Add rotation
-        cloud.rotation.x = Math.random() * Math.PI;
-        cloud.rotation.y = Math.random() * Math.PI;
-        
-        cloudGroup.add(cloud);
-    }
-    
-    // Add server rack in the center
-    const rackGroup = new THREE.Group();
-    scene.add(rackGroup);
-    
-    // Server rack
-    const rackGeometry = new THREE.BoxGeometry(1.5, 3, 1);
-    const rackMaterial = new THREE.MeshPhongMaterial({
-        color: 0x333333,
-        emissive: 0x101010,
-        specular: 0x777777,
-        shininess: 30
-    });
-    const rack = new THREE.Mesh(rackGeometry, rackMaterial);
-    rackGroup.add(rack);
-    
-    // Add server units inside the rack
-    for (let i = 0; i < 5; i++) {
-        const serverGeometry = new THREE.BoxGeometry(1.3, 0.4, 0.8);
-        const serverMaterial = new THREE.MeshPhongMaterial({
-            color: 0x222222,
-            emissive: 0x050505,
-            specular: 0x444444,
-            shininess: 20
-        });
-        const server = new THREE.Mesh(serverGeometry, serverMaterial);
-        server.position.y = -1.2 + i * 0.5;
-        rackGroup.add(server);
-        
-        // Add blinking LED lights
-        const ledGeometry = new THREE.BoxGeometry(0.05, 0.05, 0.05);
-        const ledMaterial = new THREE.MeshPhongMaterial({
-            color: 0x00ff00,
-            emissive: 0x00ff00,
-            specular: 0xffffff,
-            shininess: 100
-        });
-        
-        // Add multiple LEDs to each server
-        for (let j = 0; j < 3; j++) {
-            const led = new THREE.Mesh(ledGeometry, ledMaterial.clone());
-            led.position.set(0.6, server.position.y, 0.3 - j * 0.2);
-            led.userData = { 
-                blinkRate: 0.5 + Math.random() * 2,
-                initialIntensity: 0.3 + Math.random() * 0.7,
-                material: led.material
-            };
-            rackGroup.add(led);
-        }
-    }
-    
-    // Add connection lines between cloud objects and rack
-    const connectionMaterial = new THREE.LineBasicMaterial({ 
-        color: 0x00aaff,
-        transparent: true,
-        opacity: 0.4
-    });
-    
-    cloudGroup.children.forEach((cloud, index) => {
-        if (index % 2 === 0) { // Add lines to every other cloud
-            const lineGeometry = new THREE.BufferGeometry().setFromPoints([
-                new THREE.Vector3(0, 0, 0),
-                new THREE.Vector3(
-                    cloud.position.x, 
-                    cloud.position.y, 
-                    cloud.position.z
-                )
-            ]);
-            const line = new THREE.Line(lineGeometry, connectionMaterial);
-            rackGroup.add(line);
-        }
-    });
-    
-    // Animation loop
-    const clock = new THREE.Clock();
-    let elapsedTime = 0;
-    
-    function animate() {
-        requestAnimationFrame(animate);
-        
-        // Update elapsed time
-        elapsedTime = clock.getElapsedTime();
-        
-        // Rotate cloud group slowly
-        cloudGroup.rotation.y = elapsedTime * 0.1;
-        
-        // Make individual clouds float slightly
-        cloudGroup.children.forEach((cloud, index) => {
-            cloud.position.y += Math.sin(elapsedTime * 0.5 + index) * 0.002;
-        });
-        
-        // Blink LEDs
-        rackGroup.children.forEach(object => {
-            if (object.userData && object.userData.blinkRate) {
-                const intensity = object.userData.initialIntensity + 
-                    Math.sin(elapsedTime * object.userData.blinkRate) * 0.3;
-                
-                // Update the LED's emissive color
-                object.material.emissive.setRGB(0, intensity, 0);
-            }
-        });
-        
-        // Update controls
-        controls.update();
-        
-        // Render scene
-        renderer.render(scene, camera);
-    }
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-        
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-        renderer.setSize(width, height);
-    });
-    
-    // Start animation
-    animate();
-}
