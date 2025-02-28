@@ -1,6 +1,5 @@
 /*
-Virtunet - Cloud Engineering & Architecture
-Modern JavaScript functionality
+Virtunet B.V. - Cloud Engineering & Architectuur
 */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 800,
         easing: 'ease-in-out',
         once: true,
-        mirror: false
+        mirror: false,
+        disable: 'mobile' // Disable on mobile for better performance
     });
     
     // Initialize Particles.js
@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
             loop: false,
             showCursor: false,
             onComplete: function() {
-                // Add a class to trigger a subtle animation when typing is done
                 typedElement.classList.add('typed-complete');
             }
         });
@@ -87,79 +86,140 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Back to top button
     const backToTopButton = document.getElementById('back-to-top');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopButton.classList.add('active');
-        } else {
-            backToTopButton.classList.remove('active');
-        }
-    });
-    
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    // SIMPLIFIED DIRECT APPROACH FOR BUTTONS IN HERO SECTION
-    document.querySelector('a[href="#services"].btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        const servicesSection = document.getElementById('services');
-        if (servicesSection) {
-            const offsetTop = servicesSection.offsetTop - 100; // Adjust offset as needed
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-    
-    document.querySelector('a[href="#contact"].btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            const offsetTop = contactSection.offsetTop - 100; // Adjust offset as needed
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-    
-    // General smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]:not(.btn)').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 100; // Adjust offset as needed
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile navbar if open
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse && navbarCollapse.classList.contains('show') && navbarToggler) {
-                    navbarToggler.click();
-                }
+    if (backToTopButton) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
             }
         });
+        
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // Cross-browser compatible smooth scrolling
+    function scrollToSection(sectionId) {
+        console.log('Scrolling to section:', sectionId);
+        const section = document.getElementById(sectionId);
+        if (!section) {
+            console.error('Section not found:', sectionId);
+            return;
+        }
+        
+        // Get section position relative to the viewport
+        const sectionRect = section.getBoundingClientRect();
+        
+        // Get current scroll position
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Calculate target position with offset for navbar
+        const offset = 80;
+        const targetPosition = scrollTop + sectionRect.top - offset;
+        
+        // Fallback for browsers that don't support smooth scrolling
+        if (typeof window.scrollTo !== 'function' || !('behavior' in document.documentElement.style) ||
+            !('scrollBehavior' in document.documentElement.style)) {
+            // Use manual animation for older browsers
+            scrollToSmoothly(targetPosition);
+        } else {
+            // Modern browsers - use native smooth scrolling
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+    
+    // Fallback smooth scroll function
+    function scrollToSmoothly(position) {
+        const startPosition = window.pageYOffset;
+        const distance = position - startPosition;
+        const duration = 500; // ms
+        let start = null;
+        
+        function step(timestamp) {
+            if (!start) start = timestamp;
+            const progress = timestamp - start;
+            const percentage = Math.min(progress / duration, 1);
+            
+            // Easing function - easeInOutQuad
+            const easing = percentage < 0.5
+                ? 2 * percentage * percentage
+                : 1 - Math.pow(-2 * percentage + 2, 2) / 2;
+                
+            window.scrollTo(0, startPosition + distance * easing);
+            
+            if (progress < duration) {
+                window.requestAnimationFrame(step);
+            }
+        }
+        
+        window.requestAnimationFrame(step);
+    }
+    
+    // Apply the scrolling function to all navigation links and buttons
+    document.addEventListener('click', function(e) {
+        // Look for the link element (either the target or a parent)
+        let linkElement = e.target;
+        
+        // If the clicked element isn't an A tag, try to find a parent that is
+        while (linkElement && linkElement.tagName !== 'A' && linkElement !== document.body) {
+            linkElement = linkElement.parentElement;
+        }
+        
+        // If we found a link with a hash
+        if (linkElement && linkElement.tagName === 'A' && linkElement.hash) {
+            const targetId = linkElement.hash.substring(1); // Remove the # from the hash
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                e.preventDefault();
+                console.log('Processing click for target:', targetId);
+                scrollToSection(targetId);
+                
+                // Close mobile navbar if open
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    const navbarToggler = document.querySelector('.navbar-toggler');
+                    if (navbarToggler) {
+                        navbarToggler.click();
+                    }
+                }
+            }
+        }
     });
     
-    // Contact form submission (example, replace with actual implementation)
+    // Specific handling for the two main action buttons
+    const serviceButton = document.querySelector('a[href="#services"].btn');
+    if (serviceButton) {
+        serviceButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            scrollToSection('services');
+        }, true); // Use capturing to ensure this runs before the document listener
+    }
+    
+    const contactButton = document.querySelector('a[href="#contact"].btn');
+    if (contactButton) {
+        contactButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            scrollToSection('contact');
+        }, true); // Use capturing to ensure this runs before the document listener
+    }
+    
+    // Contact form submission
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Example form validation
+            // Form validation
             const formElements = this.elements;
             let isValid = true;
             
@@ -178,11 +238,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const originalText = submitButton.textContent;
                 
                 submitButton.disabled = true;
-                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verzenden...';
                 
                 setTimeout(() => {
                     this.reset();
-                    submitButton.innerHTML = '<i class="fas fa-check"></i> Sent Successfully';
+                    submitButton.innerHTML = '<i class="fas fa-check"></i> Verzonden';
                     
                     setTimeout(() => {
                         submitButton.disabled = false;
@@ -234,18 +294,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Update current year in footer
-    document.querySelector('.tm-current-year').textContent = new Date().getFullYear();
+    const yearElement = document.querySelector('.tm-current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+    
+    // Log to confirm script loaded
+    console.log('Virtunet script initialized');
 });
-
-// Service worker registration for PWA capabilities
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-            .catch(error => {
-                console.log('ServiceWorker registration failed: ', error);
-            });
-    });
-}
