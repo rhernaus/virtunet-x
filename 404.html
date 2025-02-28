@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Get the current path without the leading slash
+    var path = window.location.pathname.substr(1);
+    
+    // If path is empty, redirect to index.html
+    if (path === "" || path === "/") {
+      window.location.replace("/index.html");
+    } else {
+      // Otherwise, try adding .html to the path
+      window.location.replace("/" + path + ".html");
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
