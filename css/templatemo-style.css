@@ -206,7 +206,7 @@ section {
 /* Provider and Capability Groups */
 .provider-group {
     position: absolute;
-    top: 50px;
+    top: 60px;
     left: 0;
     width: 100%;
     display: flex;
@@ -216,7 +216,7 @@ section {
 
 .capability-group {
     position: absolute;
-    bottom: 40px;
+    top: 205px;
     left: 0;
     width: 100%;
     display: flex;
@@ -736,7 +736,7 @@ section {
     }
     
     .capability-group {
-        bottom: 20px;
+        top: 190px;
         max-width: 400px;
         gap: 30px 40px;
     }
@@ -760,7 +760,7 @@ section {
     }
     
     .capability-group {
-        bottom: 20px;
+        top: 170px;
         max-width: 320px;
         gap: 25px 30px;
     }
