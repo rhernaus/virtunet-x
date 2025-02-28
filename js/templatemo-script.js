@@ -5,13 +5,14 @@ Virtunet B.V. - Cloud Engineering & Architectuur
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
     
-    // Initialize AOS animations
+    // Initialize AOS animations with optimized settings
     AOS.init({
-        duration: 800,
+        duration: 600,
         easing: 'ease-in-out',
         once: true,
         mirror: false,
-        disable: 'mobile' // Disable on mobile for better performance
+        disable: 'mobile', // Disable on mobile for better performance
+        disableMutationObserver: false // Keep mutation observer for better performance
     });
     
     // Initialize Particles.js
@@ -106,12 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cross-browser compatible smooth scrolling
     function scrollToSection(sectionId) {
-        console.log('Scrolling to section:', sectionId);
         const section = document.getElementById(sectionId);
-        if (!section) {
-            console.error('Section not found:', sectionId);
-            return;
-        }
+        if (!section) return;
         
         // Get section position relative to the viewport
         const sectionRect = section.getBoundingClientRect();
@@ -181,7 +178,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (targetElement) {
                 e.preventDefault();
-                console.log('Processing click for target:', targetId);
                 scrollToSection(targetId);
                 
                 // Close mobile navbar if open
@@ -195,23 +191,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
-    // Specific handling for the two main action buttons
-    const serviceButton = document.querySelector('a[href="#services"].btn');
-    if (serviceButton) {
-        serviceButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            scrollToSection('services');
-        }, true); // Use capturing to ensure this runs before the document listener
-    }
-    
-    const contactButton = document.querySelector('a[href="#contact"].btn');
-    if (contactButton) {
-        contactButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            scrollToSection('contact');
-        }, true); // Use capturing to ensure this runs before the document listener
-    }
     
     // Contact form submission
     const contactForm = document.querySelector('.contact-form');
@@ -298,7 +277,4 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
-    
-    // Log to confirm script loaded
-    console.log('Virtunet script initialized');
 });
