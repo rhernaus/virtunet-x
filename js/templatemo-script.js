@@ -219,20 +219,118 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Contact form submission
     const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+    const newsletterForm = document.querySelector('.newsletter-form');
+    
+    // Function to set up form validation
+    const setupFormValidation = (form) => {
+        if (!form) return;
+        
+        // Disable the default browser validation to use our custom Dutch messages
+        form.setAttribute('novalidate', 'novalidate');
+        
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Form validation
             const formElements = this.elements;
             let isValid = true;
             
+            // Custom validation messages in Dutch
+            const validationMessages = {
+                required: 'Dit veld is verplicht',
+                email: 'Voer een geldig e-mailadres in',
+                tel: 'Voer een geldig telefoonnummer in',
+                select: 'Selecteer een optie',
+                checkbox: 'Dit veld is verplicht'
+            };
+            
             for (let i = 0; i < formElements.length; i++) {
-                if (formElements[i].hasAttribute('required') && !formElements[i].value.trim()) {
+                // Check for validation requirements
+                let isFieldValid = true;
+                let errorMessage = '';
+                
+                // Skip submit buttons and disabled fields
+                if (formElements[i].type === 'submit' || formElements[i].disabled) {
+                    continue;
+                }
+                
+                // Required field validation
+                if (formElements[i].hasAttribute('required')) {
+                    if (formElements[i].type === 'checkbox' && !formElements[i].checked) {
+                        isFieldValid = false;
+                        errorMessage = validationMessages.checkbox;
+                    } 
+                    else if (formElements[i].tagName === 'SELECT' && 
+                             (formElements[i].value === '' || formElements[i].value === 'Selecteer een optie')) {
+                        isFieldValid = false;
+                        errorMessage = validationMessages.select;
+                    }
+                    else if (!formElements[i].value.trim()) {
+                        isFieldValid = false;
+                        errorMessage = validationMessages.required;
+                    }
+                }
+                
+                // Email validation
+                if (isFieldValid && formElements[i].type === 'email' && formElements[i].value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(formElements[i].value.trim())) {
+                        isFieldValid = false;
+                        errorMessage = validationMessages.email;
+                    }
+                }
+                
+                // Phone validation
+                if (isFieldValid && formElements[i].type === 'tel' && formElements[i].value.trim()) {
+                    // More lenient phone validation for international formats
+                    const phoneRegex = /^[+]?[0-9\s\-()]{8,}$/;
+                    if (!phoneRegex.test(formElements[i].value.trim())) {
+                        isFieldValid = false;
+                        errorMessage = validationMessages.tel;
+                    }
+                }
+                
+                if (!isFieldValid) {
                     isValid = false;
                     formElements[i].classList.add('is-invalid');
+                    
+                    // Dutch validation message
+                    const invalidFeedback = document.createElement('div');
+                    invalidFeedback.className = 'invalid-feedback';
+                    invalidFeedback.textContent = errorMessage;
+                    
+                    // Special handling for checkboxes and radio buttons which are often wrapped in labels
+                    const isInputGroup = formElements[i].parentNode.classList.contains('input-group');
+                    const isFormCheck = formElements[i].parentNode.classList.contains('form-check');
+                    
+                    // Remove existing feedback if any
+                    let parent = formElements[i].parentNode;
+                    const existingFeedback = parent.querySelector('.invalid-feedback');
+                    if (existingFeedback) {
+                        existingFeedback.remove();
+                    }
+                    
+                    // For checkbox and radio in form-check, append to the parent (the label wrapper)
+                    if (isFormCheck) {
+                        parent.appendChild(invalidFeedback);
+                    } 
+                    // For input groups, append after the input group
+                    else if (isInputGroup) {
+                        parent.parentNode.insertBefore(invalidFeedback, parent.nextSibling);
+                    }
+                    // For normal inputs
+                    else {
+                        formElements[i].parentNode.insertBefore(invalidFeedback, formElements[i].nextSibling);
+                    }
                 } else {
                     formElements[i].classList.remove('is-invalid');
+                    
+                    // Remove feedback if exists
+                    const parent = formElements[i].parentNode;
+                    const existingFeedback = parent.querySelector('.invalid-feedback');
+                    if (existingFeedback) {
+                        existingFeedback.remove();
+                    }
                 }
             }
             
@@ -255,8 +353,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 1500);
             }
         });
+    };
+    
+    // Set up validation for forms
+    if (contactForm) {
+        setupFormValidation(contactForm);
     }
     
+    if (newsletterForm) {
+        setupFormValidation(newsletterForm);
+    }
     // Initialize counter animations for skills section
     const skillPercentages = document.querySelectorAll('.skill-percentage');
     
