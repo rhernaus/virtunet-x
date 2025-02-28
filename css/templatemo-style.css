@@ -389,9 +389,13 @@ section {
 }
 
 .service-card .card-text,
-.service-card .card-title,
 .service-card li {
     color: #ffffff;
+}
+
+.service-card .card-title {
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .service-card:hover {
