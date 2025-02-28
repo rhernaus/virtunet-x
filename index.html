@@ -1189,6 +1189,13 @@
                 const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
                 let hasTriggered = false;
                 
+                // Create notification sound element
+                const notificationSound = document.createElement('audio');
+                notificationSound.id = 'chat-notification-sound';
+                notificationSound.style.display = 'none';
+                notificationSound.src = "sounds/chat-notification.mp3";
+                document.body.appendChild(notificationSound);
+                
                 // Auto-trigger chat after 15 seconds if not already triggered
                 setTimeout(function() {
                     if (!hasTriggered && chatPopup.style.display !== 'block') {
@@ -1215,6 +1222,30 @@
                         `;
                         notification.innerHTML = '1';
                         chatButton.appendChild(notification);
+                        
+                        // Play notification sound
+                        try {
+                            // First check if notifications are not blocked by browser policy
+                            if (!sessionStorage.getItem('soundDisabled')) {
+                                const sound = document.getElementById('chat-notification-sound');
+                                if (sound) {
+                                    // Set volume to a lower level for subtlety
+                                    sound.volume = 0.3;
+                                    
+                                    // Use a promise to handle autoplay restrictions
+                                    const playPromise = sound.play();
+                                    
+                                    if (playPromise !== undefined) {
+                                        playPromise.catch(error => {
+                                            console.log('Autoplay was prevented. This is normal in some browsers.');
+                                            sessionStorage.setItem('soundDisabled', 'true');
+                                        });
+                                    }
+                                }
+                            }
+                        } catch (e) {
+                            console.log('Sound notification could not be played.');
+                        }
                     }
                 }, 15000);
                 
