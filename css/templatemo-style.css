@@ -206,12 +206,11 @@ section {
 /* Provider and Capability Groups */
 .provider-group {
     position: absolute;
-    top: 50px;
+    top: 80px;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 80px;
     z-index: 2;
 }
 
@@ -261,6 +260,11 @@ section {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px currentColor;
 }
 
+.tech-icon.ai-core:hover {
+    transform: scale(1.6);
+    box-shadow: 0 10px 30px rgba(156, 39, 176, 0.8), 0 0 20px rgba(156, 39, 176, 0.6);
+}
+
 .tech-icon:hover i {
     transform: scale(1.1);
 }
@@ -298,18 +302,42 @@ section {
     background: linear-gradient(135deg, #DC3545, #a81b29);
 }
 
-.tech-icon.ai {
+.tech-icon.ai-core {
     background: linear-gradient(135deg, #9C27B0, #673AB7);
     z-index: 5;
-    transform: scale(1.15);
-    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.5);
+    transform: scale(1.5);
+    box-shadow: 0 8px 30px rgba(156, 39, 176, 0.7);
+}
+
+.tech-icon.llms {
+    background: linear-gradient(135deg, #9C27B0, #673AB7);
+}
+
+.tech-icon.vision {
+    background: linear-gradient(135deg, #00BCD4, #03A9F4);
+}
+
+.tech-icon.nlp {
+    background: linear-gradient(135deg, #3F51B5, #2196F3);
+}
+
+.tech-icon.ml {
+    background: linear-gradient(135deg, #F44336, #E91E63);
 }
 
 .tech-icon.data {
     background: linear-gradient(135deg, #FF5722, #FF9800);
 }
 
-.tech-icon.hybrid {
+.tech-icon.enterprise {
+    background: linear-gradient(135deg, #795548, #9E9E9E);
+}
+
+.tech-icon.research {
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+}
+
+.tech-icon.cloud {
     background: linear-gradient(135deg, #607D8B, #455A64);
 }
 
