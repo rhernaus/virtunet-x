@@ -1,5 +1,5 @@
 /*
-Virtunet B.V. - Cloud Engineering & Architectuur
+Virtunet B.V. - Next-Gen AI Innovation
 */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
         particlesJS('particles-js', {
             particles: {
                 number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#007bff' },
+                color: { value: '#9C27B0' }, // Purple for AI
                 shape: { type: 'circle' },
                 opacity: { value: 0.5, random: true },
                 size: { value: 3, random: true },
                 line_linked: {
                     enable: true,
                     distance: 150,
-                    color: '#007bff',
+                    color: '#9C27B0', // Purple for AI
                     opacity: 0.4,
                     width: 1
                 },
@@ -57,99 +57,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Display tech icons with static connections
-    const iconContainer = document.getElementById('tech-icons-container');
-    const draggableIcons = document.querySelectorAll('.draggable');
-    const svgContainer = document.querySelector('.connections-svg');
-    
-    if (iconContainer && draggableIcons.length > 0) {
-        // Let CSS handle everything with no animations or resizing
+    // Hero image animation
+    const heroImage = document.querySelector('.hero-image img');
+    if (heroImage) {
+        // Add a subtle animation for the hero image
+        heroImage.style.transition = 'transform 3s ease-in-out';
         
-        // Draw all connections statically
-        updateAllConnections();
+        // Simple animation loop
+        const animateHero = () => {
+            setTimeout(() => {
+                heroImage.style.transform = 'scale(1.03)';
+                setTimeout(() => {
+                    heroImage.style.transform = 'scale(1)';
+                    animateHero();
+                }, 3000);
+            }, 3000);
+        };
         
-        // Function to update all connections
-        function updateAllConnections() {
-            // Clear existing connections
-            svgContainer.innerHTML = '';
-            
-            // Get all capability icons
-            const capabilities = document.querySelectorAll('.capability');
-            
-            // For each capability, create connections to providers
-            capabilities.forEach(capability => {
-                const connects = capability.dataset.connects.split(',');
-                const containerRect = iconContainer.getBoundingClientRect();
-                
-                // Calculate position from current DOM position
-                const capabilityRect = capability.getBoundingClientRect();
-                const capX = capabilityRect.left - containerRect.left + capabilityRect.width / 2;
-                const capY = capabilityRect.top - containerRect.top + capabilityRect.height / 2;
-                
-                // For each provider connection
-                connects.forEach(providerId => {
-                    const provider = document.querySelector(`.provider[data-id="${providerId}"]`);
-                    if (provider) {
-                        // Calculate position from current DOM position
-                        const providerRect = provider.getBoundingClientRect();
-                        const provX = providerRect.left - containerRect.left + providerRect.width / 2;
-                        const provY = providerRect.top - containerRect.top + providerRect.height / 2;
-                        
-                        // Create path
-                        createConnection(capX, capY, provX, provY, providerId, capability.dataset.id);
-                    }
-                });
-            });
+        // Start the animation when the image loads
+        if (heroImage.complete) {
+            animateHero();
+        } else {
+            heroImage.onload = animateHero;
         }
-        
-        // Function to create a curved connection between points
-        function createConnection(x1, y1, x2, y2, providerId, capabilityId) {
-            // Calculate control points for curved line
-            const controlX = (x1 + x2) / 2;
-            const controlY = (y1 + y2) / 2 - 30; // Adjust for curvature
-            
-            // Create path element
-            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            path.setAttribute('d', `M ${x1} ${y1} Q ${controlX} ${controlY}, ${x2} ${y2}`);
-            
-            // Style based on provider type
-            let strokeColor;
-            switch(providerId) {
-                case 'azure':
-                    strokeColor = 'rgba(0, 120, 212, 0.7)'; // Microsoft blue
-                    break;
-                case 'aws':
-                    strokeColor = 'rgba(255, 153, 0, 0.7)'; // AWS orange
-                    break;
-                case 'gcp':
-                    strokeColor = 'rgba(52, 168, 83, 0.7)'; // Google green (part of Google's color palette)
-                    break;
-                default:
-                    strokeColor = 'rgba(100, 150, 255, 0.7)';
-            }
-            
-            // Apply path styling
-            path.setAttribute('fill', 'none');
-            path.setAttribute('stroke', strokeColor);
-            path.setAttribute('stroke-width', '2');
-            path.setAttribute('stroke-linecap', 'round');
-            path.setAttribute('stroke-dasharray', '5,5');
-            path.setAttribute('class', `connection ${providerId}-${capabilityId}`);
-            
-            // Add animation
-            const animateElement = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
-            animateElement.setAttribute('attributeName', 'stroke-dashoffset');
-            animateElement.setAttribute('from', '10');
-            animateElement.setAttribute('to', '0');
-            animateElement.setAttribute('dur', '1s');
-            animateElement.setAttribute('repeatCount', 'indefinite');
-            
-            path.appendChild(animateElement);
-            svgContainer.appendChild(path);
-        }
-        
-        // Update connections on window resize
-        window.addEventListener('resize', updateAllConnections);
     }
     
     // Initialize Typed.js for text animation
@@ -373,4 +303,3 @@ document.addEventListener('DOMContentLoaded', function() {
         yearElement.textContent = new Date().getFullYear();
     }
 });
-

@@ -163,170 +163,25 @@ section {
     z-index: -1;
 }
 
-.hero-image-container {
+.hero-image {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    text-align: center;
 }
 
-/* Tech Icons Container */
-#tech-icons-container {
-    width: 100%;
-    height: 450px;
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    background: linear-gradient(135deg, rgba(8, 15, 30, 0.8), rgba(25, 35, 60, 0.7));
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgba(70, 130, 210, 0.15);
-    padding: 20px;
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 25px rgba(156, 39, 176, 0.5));
 }
 
-#tech-icons-container:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 123, 255, 0.2);
-    transform: translateY(-3px);
-}
-
-/* SVG Connections Layer */
-.connections-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Provider and Capability Groups */
-.provider-group {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    z-index: 2;
-}
-
-.capability-group {
-    position: absolute;
-    top: 205px;
-    left: 0;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px 50px; /* row-gap column-gap */
-    padding: 0 20px;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Technology Icons */
-.tech-icon {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: default;
-    z-index: 3;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
-    position: relative;
-}
-
-.tech-icon.ai-core {
-    width: 105px;
-    height: 105px;
-    z-index: 5;
-    box-shadow: 0 10px 30px rgba(156, 39, 176, 0.7);
-}
-
-.tech-icon i {
-    font-size: 2rem;
-    color: white;
-    pointer-events: none;
-}
-
-.tech-icon.ai-core i {
-    font-size: 3rem;
-}
-
-/* Individual icon styling */
-.tech-icon.azure {
-    background: linear-gradient(135deg, #0078D4, #0050a1);
-}
-
-.tech-icon.aws {
-    background: linear-gradient(135deg, #FF9900, #dd7a00);
-}
-
-.tech-icon.gcp {
-    background: linear-gradient(135deg, #34A853, #188038); /* Google green */
-}
-
-.tech-icon.kubernetes {
-    background: linear-gradient(135deg, #326CE5, #1e4ab5);
-}
-
-.tech-icon.terraform {
-    background: linear-gradient(135deg, #623CE4, #4123a6);
-}
-
-.tech-icon.devops {
-    background: linear-gradient(135deg, #00A4EF, #0078d7);
-}
-
-.tech-icon.security {
-    background: linear-gradient(135deg, #28A745, #1b7e31);
-}
-
-.tech-icon.serverless {
-    background: linear-gradient(135deg, #DC3545, #a81b29);
-}
-
-.tech-icon.ai-core {
-    background: linear-gradient(135deg, #9C27B0, #673AB7);
-}
-
-.tech-icon.llms {
-    background: linear-gradient(135deg, #9C27B0, #673AB7);
-}
-
-.tech-icon.vision {
-    background: linear-gradient(135deg, #00BCD4, #03A9F4);
-}
-
-.tech-icon.nlp {
-    background: linear-gradient(135deg, #3F51B5, #2196F3);
-}
-
-.tech-icon.ml {
-    background: linear-gradient(135deg, #F44336, #E91E63);
-}
-
-.tech-icon.data {
-    background: linear-gradient(135deg, #FF5722, #FF9800);
-}
-
-.tech-icon.enterprise {
-    background: linear-gradient(135deg, #795548, #9E9E9E);
-}
-
-.tech-icon.research {
-    background: linear-gradient(135deg, #4CAF50, #8BC34A);
-}
-
-.tech-icon.cloud {
-    background: linear-gradient(135deg, #607D8B, #455A64);
+/* AI Theme Colors */
+:root {
+    --ai-primary: #9C27B0;
+    --ai-secondary: #673AB7;
+    --ai-accent: #E040FB;
 }
 
 /* Tooltip on hover */
@@ -356,27 +211,6 @@ section {
     bottom: -35px;
 }
 
-/* Specific tooltip treatments for long text */
-.tech-icon[data-tooltip="Natural Language Processing"]:before,
-.tech-icon[data-tooltip="Enterprise AI Solutions"]:before,
-.tech-icon[data-tooltip="AI Research & Development"]:before,
-.tech-icon[data-tooltip="AI Cloud Infrastructure"]:before,
-.tech-icon[data-tooltip="Large Language Models"]:before {
-    font-size: 0.65rem;
-    padding: 5px 10px;
-}
-
-@media (max-width: 767.98px) {
-    .tech-icon:before {
-        font-size: 0.65rem;
-        padding: 4px 8px;
-        bottom: -30px;
-    }
-    
-    .tech-icon:hover:before {
-        bottom: -28px;
-    }
-}
 
 /* Connection lines */
 .connection-lines {
