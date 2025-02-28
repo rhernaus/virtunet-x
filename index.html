@@ -56,30 +56,43 @@
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="hero-image-container">
                         <div id="tech-icons-container">
-                            <div class="tech-icon azure" data-tooltip="Microsoft Azure">
-                                <i class="fab fa-microsoft"></i>
+                            <!-- Cloud Providers Group -->
+                            <div class="provider-group">
+                                <div class="tech-icon azure draggable provider" data-tooltip="Microsoft Azure" data-type="provider" data-id="azure">
+                                    <i class="fab fa-microsoft"></i>
+                                </div>
+                                <div class="tech-icon aws draggable provider" data-tooltip="Amazon Web Services" data-type="provider" data-id="aws">
+                                    <i class="fab fa-aws"></i>
+                                </div>
+                                <div class="tech-icon gcp draggable provider" data-tooltip="Google Cloud Platform" data-type="provider" data-id="gcp">
+                                    <i class="fab fa-google"></i>
+                                </div>
                             </div>
-                            <div class="tech-icon aws" data-tooltip="Amazon Web Services">
-                                <i class="fab fa-aws"></i>
+                            
+                            <!-- Cloud Capabilities Group -->
+                            <div class="capability-group">
+                                <div class="tech-icon kubernetes draggable capability" data-tooltip="Kubernetes" data-type="capability" data-id="kubernetes" data-connects="azure,aws,gcp">
+                                    <i class="fab fa-docker"></i>
+                                </div>
+                                <div class="tech-icon terraform draggable capability" data-tooltip="Terraform" data-type="capability" data-id="terraform" data-connects="azure,aws,gcp">
+                                    <i class="fas fa-cubes"></i>
+                                </div>
+                                <div class="tech-icon devops draggable capability" data-tooltip="DevOps" data-type="capability" data-id="devops" data-connects="azure,aws">
+                                    <i class="fas fa-code-branch"></i>
+                                </div>
+                                <div class="tech-icon security draggable capability" data-tooltip="Cloud Security" data-type="capability" data-id="security" data-connects="azure,aws,gcp">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="tech-icon serverless draggable capability" data-tooltip="Serverless" data-type="capability" data-id="serverless" data-connects="azure,aws,gcp">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
                             </div>
-                            <div class="tech-icon gcp" data-tooltip="Google Cloud Platform">
-                                <i class="fab fa-google"></i>
-                            </div>
-                            <div class="tech-icon kubernetes" data-tooltip="Kubernetes">
-                                <i class="fab fa-docker"></i>
-                            </div>
-                            <div class="tech-icon terraform" data-tooltip="Terraform">
-                                <i class="fas fa-cubes"></i>
-                            </div>
-                            <div class="tech-icon devops" data-tooltip="DevOps">
-                                <i class="fas fa-code-branch"></i>
-                            </div>
-                            <div class="tech-icon security" data-tooltip="Cloud Security">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="tech-icon serverless" data-tooltip="Serverless">
-                                <i class="fas fa-bolt"></i>
-                            </div>
+                            
+                            <!-- SVG for connections -->
+                            <svg class="connections-svg" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Connection paths will be added by JavaScript -->
+                            </svg>
+                            
                             <div class="connection-lines"></div>
                         </div>
                     </div>

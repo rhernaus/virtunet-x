@@ -57,34 +57,256 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Add interactivity to tech icons
-    const techIcons = document.querySelectorAll('.tech-icon');
-    if (techIcons.length > 0) {
-        techIcons.forEach(icon => {
-            // Random animation timing for more natural movement
-            const randomDelay = Math.random() * 2;
-            const randomDuration = 4 + Math.random() * 3;
+    // Add draggable functionality and connections to tech icons
+    const iconContainer = document.getElementById('tech-icons-container');
+    const draggableIcons = document.querySelectorAll('.draggable');
+    const svgContainer = document.querySelector('.connections-svg');
+    
+    if (iconContainer && draggableIcons.length > 0) {
+        // Initial positions for SVG connections
+        updateAllConnections();
+        
+        // Make icons draggable
+        draggableIcons.forEach(icon => {
+            let isDragging = false;
+            let offsetX, offsetY;
             
-            icon.style.animationDelay = `${randomDelay}s`;
-            icon.style.animationDuration = `${randomDuration}s`;
+            // Store original position for snapping back if needed
+            icon.dataset.originalX = icon.offsetLeft;
+            icon.dataset.originalY = icon.offsetTop;
             
-            // Interactive hover effect with subtle movement
-            icon.addEventListener('mouseover', function() {
-                this.style.transform = 'scale(1.15) translateY(-5px)';
-                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px currentColor';
+            // Mouse down event - start dragging
+            icon.addEventListener('mousedown', function(e) {
+                // Prevent already dragging another element
+                const alreadyDragging = document.querySelector('.dragging');
+                if (alreadyDragging) {
+                    return;
+                }
                 
-                // Temporarily pause the float animation
-                this.style.animationPlayState = 'paused';
+                isDragging = true;
+                this.classList.add('dragging');
+                
+                // Bring to front with higher z-index
+                this.style.zIndex = '100';
+                
+                // If first drag, set absolute position based on current layout position
+                if (!this.style.position || this.style.position !== 'absolute') {
+                    const rect = this.getBoundingClientRect();
+                    const containerRect = iconContainer.getBoundingClientRect();
+                    
+                    // Set original position as absolute coords
+                    const originalX = rect.left - containerRect.left;
+                    const originalY = rect.top - containerRect.top;
+                    
+                    this.style.position = 'absolute';
+                    this.style.left = originalX + 'px';
+                    this.style.top = originalY + 'px';
+                    this.style.transform = 'none';
+                    
+                    this.dataset.originalX = originalX;
+                    this.dataset.originalY = originalY;
+                }
+                
+                // Calculate the offset from mouse position to icon's top-left corner
+                const rect = this.getBoundingClientRect();
+                offsetX = e.clientX - rect.left;
+                offsetY = e.clientY - rect.top;
+                
+                // Prevent default behavior to avoid text selection during drag
+                e.preventDefault();
             });
             
-            icon.addEventListener('mouseout', function() {
-                this.style.transform = '';
-                this.style.boxShadow = '';
+            // Mouse move event - move the icon
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
                 
-                // Resume the float animation
-                this.style.animationPlayState = 'running';
+                // Calculate new position
+                const containerRect = iconContainer.getBoundingClientRect();
+                let newX = e.clientX - containerRect.left - offsetX;
+                let newY = e.clientY - containerRect.top - offsetY;
+                
+                // Boundary check to keep icons within container
+                const iconWidth = icon.offsetWidth;
+                const iconHeight = icon.offsetHeight;
+                
+                // Limit to container boundaries
+                newX = Math.max(0, Math.min(newX, containerRect.width - iconWidth));
+                newY = Math.max(0, Math.min(newY, containerRect.height - iconHeight));
+                
+                // Update position
+                icon.style.left = `${newX}px`;
+                icon.style.top = `${newY}px`;
+                
+                // Store current position for calculations
+                icon.dataset.currentX = newX;
+                icon.dataset.currentY = newY;
+                
+                // Throttle connection updates during drag for better performance
+                if (!icon.updateThrottle) {
+                    icon.updateThrottle = setTimeout(() => {
+                        updateAllConnections();
+                        icon.updateThrottle = null;
+                    }, 30);
+                }
+            });
+            
+            // Mouse up event - stop dragging
+            document.addEventListener('mouseup', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    icon.classList.remove('dragging');
+                    
+                    // Reset z-index to normal
+                    setTimeout(() => {
+                        icon.style.zIndex = '3';
+                    }, 10);
+                    
+                    // Use actual left/top values for future calculations
+                    if (icon.dataset.currentX && icon.dataset.currentY) {
+                        icon.style.transform = 'none';
+                        icon.style.left = icon.dataset.currentX + 'px';
+                        icon.style.top = icon.dataset.currentY + 'px';
+                    }
+                    
+                    // Clear throttle if any
+                    if (icon.updateThrottle) {
+                        clearTimeout(icon.updateThrottle);
+                        icon.updateThrottle = null;
+                    }
+                    
+                    // Final connection update after drag stops
+                    updateAllConnections();
+                }
+            });
+            
+            // Mouse out event - stop dragging if mouse leaves the container
+            iconContainer.addEventListener('mouseleave', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    icon.classList.remove('dragging');
+                    
+                    // Reset z-index to normal
+                    setTimeout(() => {
+                        icon.style.zIndex = '3';
+                    }, 10);
+                    
+                    // Use actual left/top values for future calculations
+                    if (icon.dataset.currentX && icon.dataset.currentY) {
+                        icon.style.transform = 'none';
+                        icon.style.left = icon.dataset.currentX + 'px';
+                        icon.style.top = icon.dataset.currentY + 'px';
+                    }
+                    
+                    // Clear throttle if any
+                    if (icon.updateThrottle) {
+                        clearTimeout(icon.updateThrottle);
+                        icon.updateThrottle = null;
+                    }
+                    
+                    // Final connection update after drag stops
+                    updateAllConnections();
+                }
             });
         });
+        
+        // Function to update all connections
+        function updateAllConnections() {
+            // Clear existing connections
+            svgContainer.innerHTML = '';
+            
+            // Get all capability icons
+            const capabilities = document.querySelectorAll('.capability');
+            
+            // For each capability, create connections to providers
+            capabilities.forEach(capability => {
+                const connects = capability.dataset.connects.split(',');
+                const containerRect = iconContainer.getBoundingClientRect();
+                
+                // Get accurate positions for capabilities including transforms
+                let capX, capY;
+                if (capability.dataset.currentX && capability.dataset.currentY) {
+                    // Use stored position from drag
+                    capX = parseInt(capability.dataset.currentX) + capability.offsetWidth / 2;
+                    capY = parseInt(capability.dataset.currentY) + capability.offsetHeight / 2;
+                } else {
+                    // Calculate from current position
+                    const capabilityRect = capability.getBoundingClientRect();
+                    capX = capabilityRect.left - containerRect.left + capabilityRect.width / 2;
+                    capY = capabilityRect.top - containerRect.top + capabilityRect.height / 2;
+                }
+                
+                // For each provider connection
+                connects.forEach(providerId => {
+                    const provider = document.querySelector(`.provider[data-id="${providerId}"]`);
+                    if (provider) {
+                        // Get accurate positions for providers including transforms
+                        let provX, provY;
+                        if (provider.dataset.currentX && provider.dataset.currentY) {
+                            // Use stored position from drag
+                            provX = parseInt(provider.dataset.currentX) + provider.offsetWidth / 2;
+                            provY = parseInt(provider.dataset.currentY) + provider.offsetHeight / 2;
+                        } else {
+                            // Calculate from current position
+                            const providerRect = provider.getBoundingClientRect();
+                            provX = providerRect.left - containerRect.left + providerRect.width / 2;
+                            provY = providerRect.top - containerRect.top + providerRect.height / 2;
+                        }
+                        
+                        // Create path
+                        createConnection(capX, capY, provX, provY, providerId, capability.dataset.id);
+                    }
+                });
+            });
+        }
+        
+        // Function to create a curved connection between points
+        function createConnection(x1, y1, x2, y2, providerId, capabilityId) {
+            // Calculate control points for curved line
+            const controlX = (x1 + x2) / 2;
+            const controlY = (y1 + y2) / 2 - 30; // Adjust for curvature
+            
+            // Create path element
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${x1} ${y1} Q ${controlX} ${controlY}, ${x2} ${y2}`);
+            
+            // Style based on provider type
+            let strokeColor;
+            switch(providerId) {
+                case 'azure':
+                    strokeColor = 'rgba(0, 120, 212, 0.7)'; // Microsoft blue
+                    break;
+                case 'aws':
+                    strokeColor = 'rgba(255, 153, 0, 0.7)'; // AWS orange
+                    break;
+                case 'gcp':
+                    strokeColor = 'rgba(52, 168, 83, 0.7)'; // Google green (part of Google's color palette)
+                    break;
+                default:
+                    strokeColor = 'rgba(100, 150, 255, 0.7)';
+            }
+            
+            // Apply path styling
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', strokeColor);
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-dasharray', '5,5');
+            path.setAttribute('class', `connection ${providerId}-${capabilityId}`);
+            
+            // Add animation
+            const animateElement = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+            animateElement.setAttribute('attributeName', 'stroke-dashoffset');
+            animateElement.setAttribute('from', '10');
+            animateElement.setAttribute('to', '0');
+            animateElement.setAttribute('dur', '1s');
+            animateElement.setAttribute('repeatCount', 'indefinite');
+            
+            path.appendChild(animateElement);
+            svgContainer.appendChild(path);
+        }
+        
+        // Update connections on window resize
+        window.addEventListener('resize', updateAllConnections);
     }
     
     // Initialize Typed.js for text animation
