@@ -639,3 +639,170 @@ section {
 .tm-current-year {
     display: inline-block;
 }
+
+/* Value Proposition Page Styles */
+.value-card {
+    background-color: rgba(33, 37, 41, 0.9);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.value-icon {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.value-highlight {
+    padding: 1.5rem;
+    border-radius: 12px;
+    background-color: rgba(39, 44, 51, 0.7);
+    height: 100%;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.value-highlight i {
+    font-size: 2.5rem;
+}
+
+.value-highlight:hover {
+    transform: translateY(-5px);
+    background-color: rgba(48, 54, 61, 0.9);
+}
+
+.value-detail-card {
+    background-color: rgba(33, 37, 41, 0.9);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.value-detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.value-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.value-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+.value-list li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.case-study {
+    background-color: rgba(0, 123, 255, 0.1);
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 1.5rem;
+}
+
+.industry-card {
+    background-color: rgba(33, 37, 41, 0.8);
+    border-radius: 12px;
+    padding: 2rem;
+    height: 100%;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--box-shadow);
+}
+
+.industry-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(48, 54, 61, 0.9);
+}
+
+.industry-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.industry-card:nth-child(2) .industry-icon {
+    color: var(--info-color);
+}
+
+.industry-card:nth-child(3) .industry-icon {
+    color: var(--warning-color);
+}
+
+.industry-card:nth-child(4) .industry-icon {
+    color: var(--danger-color);
+}
+
+.industry-card:nth-child(5) .industry-icon {
+    color: var(--success-color);
+}
+
+.industry-card:nth-child(6) .industry-icon {
+    color: var(--light-color);
+}
+
+.approach-card {
+    background-color: rgba(33, 37, 41, 0.7);
+    border-radius: 12px;
+    padding: 2rem;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.approach-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(48, 54, 61, 0.9);
+}
+
+.approach-step {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.approach-card:nth-child(2) .approach-step {
+    background-color: var(--info-color);
+    box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3);
+}
+
+.approach-card:nth-child(3) .approach-step {
+    background-color: var(--warning-color);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+}
+
+.approach-card:nth-child(4) .approach-step {
+    background-color: var(--success-color);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
