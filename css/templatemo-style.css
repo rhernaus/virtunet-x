@@ -78,6 +78,7 @@ a:hover {
     margin-left: 1.5rem;
     position: relative;
     padding: 0.5rem 0;
+    cursor: pointer;
 }
 
 .nav-link::after {

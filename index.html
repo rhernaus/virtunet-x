@@ -32,10 +32,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">Over Ons</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="var section = document.getElementById('home'); var headerOffset = 80; var position = section.getBoundingClientRect().top; var offsetPosition = position + window.pageYOffset - headerOffset; window.scrollTo({top: offsetPosition, behavior: 'smooth'}); document.querySelector('.navbar-collapse').classList.remove('show')">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="var section = document.getElementById('services'); var headerOffset = 80; var position = section.getBoundingClientRect().top; var offsetPosition = position + window.pageYOffset - headerOffset; window.scrollTo({top: offsetPosition, behavior: 'smooth'}); document.querySelector('.navbar-collapse').classList.remove('show')">Diensten</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="var section = document.getElementById('about'); var headerOffset = 80; var position = section.getBoundingClientRect().top; var offsetPosition = position + window.pageYOffset - headerOffset; window.scrollTo({top: offsetPosition, behavior: 'smooth'}); document.querySelector('.navbar-collapse').classList.remove('show')">Over Ons</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="var section = document.getElementById('contact'); var headerOffset = 80; var position = section.getBoundingClientRect().top; var offsetPosition = position + window.pageYOffset - headerOffset; window.scrollTo({top: offsetPosition, behavior: 'smooth'}); document.querySelector('.navbar-collapse').classList.remove('show')">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -49,8 +49,8 @@
                     <h1 class="display-3 fw-bold mb-4">Cloud Engineering Oplossingen</h1>
                     <p class="lead mb-4">Innovatieve cloud architectuur, DevOps practices en infrastructure as code voor moderne ondernemingen</p>
                     <div class="d-flex">
-                        <a href="#services" class="btn btn-primary me-3">Onze Diensten</a>
-                        <a href="#contact" class="btn btn-outline-light">Contact</a>
+                        <button onclick="var serviceSection = document.getElementById('services'); var headerOffset = 80; var servicePosition = serviceSection.getBoundingClientRect().top; var offsetPosition = servicePosition + window.pageYOffset - headerOffset; window.scrollTo({top: offsetPosition, behavior: 'smooth'});" class="btn btn-primary me-3">Onze Diensten</button>
+                        <button onclick="var contactSection = document.getElementById('contact'); var headerOffset = 80; var contactPosition = contactSection.getBoundingClientRect().top; var offsetPosition = contactPosition + window.pageYOffset - headerOffset; window.scrollTo({top: offsetPosition, behavior: 'smooth'});" class="btn btn-outline-light">Contact</button>
                     </div>
                 </div>
                 <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left">
