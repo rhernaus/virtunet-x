@@ -57,157 +57,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Add draggable functionality and connections to tech icons
+    // Display tech icons with static connections
     const iconContainer = document.getElementById('tech-icons-container');
     const draggableIcons = document.querySelectorAll('.draggable');
     const svgContainer = document.querySelector('.connections-svg');
     
     if (iconContainer && draggableIcons.length > 0) {
-        // Initial positions for SVG connections
-        updateAllConnections();
-        
-        // Make icons draggable
+        // Position icons in a static layout
         draggableIcons.forEach(icon => {
-            let isDragging = false;
-            let offsetX, offsetY;
-            
-            // Store original position for snapping back if needed
-            icon.dataset.originalX = icon.offsetLeft;
-            icon.dataset.originalY = icon.offsetTop;
-            
-            // Mouse down event - start dragging
-            icon.addEventListener('mousedown', function(e) {
-                // Prevent already dragging another element
-                const alreadyDragging = document.querySelector('.dragging');
-                if (alreadyDragging) {
-                    return;
-                }
-                
-                isDragging = true;
-                this.classList.add('dragging');
-                
-                // Bring to front with higher z-index
-                this.style.zIndex = '100';
-                
-                // If first drag, set absolute position based on current layout position
-                if (!this.style.position || this.style.position !== 'absolute') {
-                    const rect = this.getBoundingClientRect();
-                    const containerRect = iconContainer.getBoundingClientRect();
-                    
-                    // Set original position as absolute coords
-                    const originalX = rect.left - containerRect.left;
-                    const originalY = rect.top - containerRect.top;
-                    
-                    this.style.position = 'absolute';
-                    this.style.left = originalX + 'px';
-                    this.style.top = originalY + 'px';
-                    this.style.transform = 'none';
-                    
-                    this.dataset.originalX = originalX;
-                    this.dataset.originalY = originalY;
-                }
-                
-                // Calculate the offset from mouse position to icon's top-left corner
-                const rect = this.getBoundingClientRect();
-                offsetX = e.clientX - rect.left;
-                offsetY = e.clientY - rect.top;
-                
-                // Prevent default behavior to avoid text selection during drag
-                e.preventDefault();
-            });
-            
-            // Mouse move event - move the icon
-            document.addEventListener('mousemove', function(e) {
-                if (!isDragging) return;
-                
-                // Calculate new position
+            // Make sure icons are absolutely positioned for consistent layout
+            if (!icon.style.position || icon.style.position !== 'absolute') {
+                const rect = icon.getBoundingClientRect();
                 const containerRect = iconContainer.getBoundingClientRect();
-                let newX = e.clientX - containerRect.left - offsetX;
-                let newY = e.clientY - containerRect.top - offsetY;
                 
-                // Boundary check to keep icons within container
-                const iconWidth = icon.offsetWidth;
-                const iconHeight = icon.offsetHeight;
+                // Set position as absolute
+                const posX = rect.left - containerRect.left;
+                const posY = rect.top - containerRect.top;
                 
-                // Limit to container boundaries
-                newX = Math.max(0, Math.min(newX, containerRect.width - iconWidth));
-                newY = Math.max(0, Math.min(newY, containerRect.height - iconHeight));
-                
-                // Update position
-                icon.style.left = `${newX}px`;
-                icon.style.top = `${newY}px`;
-                
-                // Store current position for calculations
-                icon.dataset.currentX = newX;
-                icon.dataset.currentY = newY;
-                
-                // Throttle connection updates during drag for better performance
-                if (!icon.updateThrottle) {
-                    icon.updateThrottle = setTimeout(() => {
-                        updateAllConnections();
-                        icon.updateThrottle = null;
-                    }, 30);
-                }
-            });
-            
-            // Mouse up event - stop dragging
-            document.addEventListener('mouseup', function() {
-                if (isDragging) {
-                    isDragging = false;
-                    icon.classList.remove('dragging');
-                    
-                    // Reset z-index to normal
-                    setTimeout(() => {
-                        icon.style.zIndex = '3';
-                    }, 10);
-                    
-                    // Use actual left/top values for future calculations
-                    if (icon.dataset.currentX && icon.dataset.currentY) {
-                        icon.style.transform = 'none';
-                        icon.style.left = icon.dataset.currentX + 'px';
-                        icon.style.top = icon.dataset.currentY + 'px';
-                    }
-                    
-                    // Clear throttle if any
-                    if (icon.updateThrottle) {
-                        clearTimeout(icon.updateThrottle);
-                        icon.updateThrottle = null;
-                    }
-                    
-                    // Final connection update after drag stops
-                    updateAllConnections();
-                }
-            });
-            
-            // Mouse out event - stop dragging if mouse leaves the container
-            iconContainer.addEventListener('mouseleave', function() {
-                if (isDragging) {
-                    isDragging = false;
-                    icon.classList.remove('dragging');
-                    
-                    // Reset z-index to normal
-                    setTimeout(() => {
-                        icon.style.zIndex = '3';
-                    }, 10);
-                    
-                    // Use actual left/top values for future calculations
-                    if (icon.dataset.currentX && icon.dataset.currentY) {
-                        icon.style.transform = 'none';
-                        icon.style.left = icon.dataset.currentX + 'px';
-                        icon.style.top = icon.dataset.currentY + 'px';
-                    }
-                    
-                    // Clear throttle if any
-                    if (icon.updateThrottle) {
-                        clearTimeout(icon.updateThrottle);
-                        icon.updateThrottle = null;
-                    }
-                    
-                    // Final connection update after drag stops
-                    updateAllConnections();
-                }
-            });
+                icon.style.position = 'absolute';
+                icon.style.left = posX + 'px';
+                icon.style.top = posY + 'px';
+                icon.style.transform = 'none';
+            }
         });
+        
+        // Draw all connections statically
+        updateAllConnections();
         
         // Function to update all connections
         function updateAllConnections() {
@@ -222,35 +97,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 const connects = capability.dataset.connects.split(',');
                 const containerRect = iconContainer.getBoundingClientRect();
                 
-                // Get accurate positions for capabilities including transforms
-                let capX, capY;
-                if (capability.dataset.currentX && capability.dataset.currentY) {
-                    // Use stored position from drag
-                    capX = parseInt(capability.dataset.currentX) + capability.offsetWidth / 2;
-                    capY = parseInt(capability.dataset.currentY) + capability.offsetHeight / 2;
-                } else {
-                    // Calculate from current position
-                    const capabilityRect = capability.getBoundingClientRect();
-                    capX = capabilityRect.left - containerRect.left + capabilityRect.width / 2;
-                    capY = capabilityRect.top - containerRect.top + capabilityRect.height / 2;
-                }
+                // Calculate position from current DOM position
+                const capabilityRect = capability.getBoundingClientRect();
+                const capX = capabilityRect.left - containerRect.left + capabilityRect.width / 2;
+                const capY = capabilityRect.top - containerRect.top + capabilityRect.height / 2;
                 
                 // For each provider connection
                 connects.forEach(providerId => {
                     const provider = document.querySelector(`.provider[data-id="${providerId}"]`);
                     if (provider) {
-                        // Get accurate positions for providers including transforms
-                        let provX, provY;
-                        if (provider.dataset.currentX && provider.dataset.currentY) {
-                            // Use stored position from drag
-                            provX = parseInt(provider.dataset.currentX) + provider.offsetWidth / 2;
-                            provY = parseInt(provider.dataset.currentY) + provider.offsetHeight / 2;
-                        } else {
-                            // Calculate from current position
-                            const providerRect = provider.getBoundingClientRect();
-                            provX = providerRect.left - containerRect.left + providerRect.width / 2;
-                            provY = providerRect.top - containerRect.top + providerRect.height / 2;
-                        }
+                        // Calculate position from current DOM position
+                        const providerRect = provider.getBoundingClientRect();
+                        const provX = providerRect.left - containerRect.left + providerRect.width / 2;
+                        const provY = providerRect.top - containerRect.top + providerRect.height / 2;
                         
                         // Create path
                         createConnection(capX, capY, provX, provY, providerId, capability.dataset.id);
