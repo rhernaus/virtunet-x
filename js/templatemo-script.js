@@ -343,9 +343,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verzenden...';
 
                 const hasAction = formElement.hasAttribute('action') && formElement.getAttribute('action').trim() !== '';
-                const isContactForm = formElement.id === 'contact-form';
 
-                if (hasAction && isContactForm) {
+                if (hasAction) {
                     // Submit to Formspree via fetch to avoid page redirect
                     fetch(formElement.action, {
                         method: 'POST',
