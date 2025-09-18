@@ -5,58 +5,6 @@ Virtunet B.V. - Next-Gen AI Innovation
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
-    // Initialize AOS animations with optimized settings
-    AOS.init({
-        duration: 600,
-        easing: 'ease-in-out',
-        once: true,
-        mirror: false,
-        disable: 'mobile', // Disable on mobile for better performance
-        disableMutationObserver: false // Keep mutation observer for better performance
-    });
-
-    // Initialize Particles.js
-    if (document.getElementById('particles-js')) {
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#9C27B0' }, // Purple for AI
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#9C27B0', // Purple for AI
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'grab' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                },
-                modes: {
-                    grab: { distance: 140, line_linked: { opacity: 1 } },
-                    push: { particles_nb: 4 }
-                }
-            },
-            retina_detect: true
-        });
-    }
-
     // Hero image animation
     const heroImage = document.querySelector('.hero-image img');
     if (heroImage) {
@@ -80,24 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             heroImage.onload = animateHero;
         }
-    }
-
-    // Initialize Typed.js for text animation
-    if (document.querySelector('.hero-section h1')) {
-        const typedElement = document.querySelector('.hero-section h1');
-        const originalText = typedElement.textContent;
-        typedElement.textContent = '';
-
-        new Typed(typedElement, {
-            strings: [originalText],
-            typeSpeed: 60,
-            backSpeed: 0,
-            loop: false,
-            showCursor: false,
-            onComplete: function() {
-                typedElement.classList.add('typed-complete');
-            }
-        });
     }
 
     // Navbar scroll behavior
