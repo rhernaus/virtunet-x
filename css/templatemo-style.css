@@ -177,6 +177,54 @@ section {
     filter: drop-shadow(0 10px 25px rgba(156, 39, 176, 0.5));
 }
 
+.hero-checklist li {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+}
+
+.hero-checklist li:last-child {
+    margin-bottom: 0;
+}
+
+.hero-outcomes {
+    background: rgba(15, 23, 42, 0.7);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+}
+
+.hero-outcome-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    background: rgba(13, 110, 253, 0.18);
+    color: #0d6efd;
+}
+
+.hero-outcome-icon.success {
+    background: rgba(25, 135, 84, 0.18);
+    color: #198754;
+}
+
+.hero-outcome-icon.warning {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.hero-outcomes-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-outcomes-footer .btn {
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+}
+
 /* AI Theme Colors */
 :root {
     --ai-primary: #9C27B0;
@@ -619,7 +667,11 @@ section {
         text-align: center;
         padding: 150px 0 80px;
     }
-    
+
+    .hero-outcomes {
+        margin-top: 3rem;
+    }
+
     .navbar-collapse {
         background-color: rgba(23, 25, 28, 0.95);
         padding: 1rem;
@@ -678,6 +730,12 @@ section {
     
     .tech-icon.ai-core i {
         font-size: 2.5rem;
+    }
+
+    .hero-outcome-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
     }
 }
 
