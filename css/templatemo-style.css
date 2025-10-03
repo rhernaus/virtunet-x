@@ -80,6 +80,7 @@ a:hover {
     position: relative;
     padding: 0.5rem 0;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -397,6 +398,7 @@ section {
 /* Contact Section */
 .contact-section {
     background-color: var(--bg-dark);
+    padding-bottom: 6rem;
 }
 
 .contact-form .form-control {
@@ -416,18 +418,22 @@ section {
 }
 
 /* Placeholder styles for all browsers */
-.contact-form .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.9);
+.contact-form .form-control::placeholder,
+.newsletter-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.55);
 }
-.contact-form .form-control::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.9);
+.contact-form .form-control::-webkit-input-placeholder,
+.newsletter-form .form-control::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.55);
 }
-.contact-form .form-control::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.9);
+.contact-form .form-control::-moz-placeholder,
+.newsletter-form .form-control::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.55);
     opacity: 1;
 }
-.contact-form .form-control:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.9);
+.contact-form .form-control:-ms-input-placeholder,
+.newsletter-form .form-control:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .contact-form .btn {
