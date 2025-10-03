@@ -537,146 +537,90 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-lg-6" data-aos="fade-right">
+                <div class="col-lg-8 mx-auto" data-aos="fade-up">
                     <div class="service-card">
                         <div class="card-body p-4">
                             <div class="text-center mb-4">
                                 <h4 class="mb-3 text-primary">Contact per e-mail</h4>
-                                <p>Stuur uw vraagstuk per e-mail. We reageren binnen 24 uur met antwoorden of een voorstel voor een betaald intake-traject (<a href="#intake" class="link-light text-decoration-underline">zie intake</a>).</p>
+                                <p>Stuur uw vraagstuk per e-mail. We reageren binnen 24 uur met antwoorden of een voorstel voor een betaald intake-traject.</p>
                             </div>
 
                             <form id="contact-form" class="contact-form" action="https://formspree.io/f/mdkaqaga" method="POST">
-                                <h4 class="mb-3">Neem contact met ons op</h4>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Uw naam <span class="text-danger">*</span></label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Volledige naam" required>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">Uw naam <span class="text-danger">*</span></label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Volledige naam" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Uw e-mail <span class="text-danger">*</span></label>
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="naam@bedrijf.nl" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Uw telefoonnummer <span class="text-muted">(optioneel)</span></label>
+                                        <input type="tel" name="phone" id="phone" class="form-control" placeholder="+31 6 12345678">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="company" class="form-label">Bedrijfsnaam <span class="text-muted">(optioneel)</span></label>
+                                        <input type="text" name="company" id="company" class="form-control" placeholder="Uw bedrijf">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="interest" class="form-label">Ik ben geïnteresseerd in: <span class="text-danger">*</span></label>
+                                        <select name="interest" id="interest" class="form-control" required>
+                                            <option value="" disabled selected>Selecteer een optie</option>
+                                            <option value="AI Solutions">AI Oplossingen</option>
+                                            <option value="Cloud Migration">Cloud Migratie</option>
+                                            <option value="DevOps">DevOps & CI/CD</option>
+                                            <option value="Kubernetes">Container Orchestratie</option>
+                                            <option value="Cost Optimization">FinOps / Kostenoptimalisatie</option>
+                                            <option value="Other">Anders</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="message" class="form-label">Uw bericht <span class="text-danger">*</span></label>
+                                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="Beschrijf kort uw uitdaging of vraag" required></textarea>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Uw e-mail <span class="text-danger">*</span></label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="naam@bedrijf.nl" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Uw telefoonnummer <span class="text-muted">(optioneel)</span></label>
-                                    <input type="tel" name="phone" id="phone" class="form-control" placeholder="+31 6 12345678">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="company" class="form-label">Bedrijfsnaam <span class="text-muted">(optioneel)</span></label>
-                                    <input type="text" name="company" id="company" class="form-control" placeholder="Uw bedrijf">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="interest" class="form-label">Ik ben geïnteresseerd in: <span class="text-danger">*</span></label>
-                                    <select name="interest" id="interest" class="form-control" required>
-                                        <option value="" disabled selected>Selecteer een optie</option>
-                                        <option value="AI Solutions">AI Oplossingen</option>
-                                        <option value="Cloud Migration">Cloud Migratie</option>
-                                        <option value="DevOps">DevOps & CI/CD</option>
-                                        <option value="Kubernetes">Container Orchestratie</option>
-                                        <option value="Cost Optimization">FinOps / Kostenoptimalisatie</option>
-                                        <option value="Other">Anders</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Uw bericht <span class="text-danger">*</span></label>
-                                    <textarea name="message" id="message" class="form-control" rows="4" placeholder="Beschrijf kort uw uitdaging of vraag" required></textarea>
-                                </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="intakeCheck" name="intake">
-                                    <label class="form-check-label" for="intakeCheck">Stuur mij een voorstel voor een betaalde intake</label>
-                                </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="newsletterCheck" name="newsletter">
-                                    <label class="form-check-label" for="newsletterCheck">Houd mij op de hoogte van nieuws over AI & Cloud</label>
-                                </div>
-                                <p class="text-white small mb-3"><span class="text-danger">*</span> Verplichte velden</p>
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg">Verstuur Aanvraag</button>
-                                </div>
-                                <p class="small text-muted mt-2">We reageren binnen 24 uur op werkdagen per e-mail</p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="contact-info">
-                        <!-- Testimonials -->
-                        <div class="text-center mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Ron+Hernaus&background=007bff&color=fff&size=128" alt="Ron Hernaus" class="rounded-circle img-fluid mb-3" style="max-width: 120px; border: 3px solid rgba(255,255,255,0.2);">
-                            <h4>Ron Hernaus</h4>
-                            <p class="mb-0 text-primary">Oprichter & CEO</p>
-                            <p class="small mb-3">AI & Cloud Expert</p>
-                        </div>
-
-                        <div class="client-testimonial mb-4">
-                            <div class="testimonial-text">
-                                <p><i class="fas fa-quote-left me-2 text-muted"></i>Virtunet hielp ons nuchter te beoordelen waar AI ons klantteam kan ondersteunen. We kregen een duidelijk stappenplan, inclusief randvoorwaarden en realistische verwachtingen.<i class="fas fa-quote-right ms-2 text-muted"></i></p>
-                            </div>
-                            <div class="testimonial-author">
-                                <strong>Robin de Vries</strong> - CTO bij FinTech Nederland
-                            </div>
-                        </div>
-
-                        <!-- Contact details -->
-                        <div class="info-item mb-4">
-                            <div class="info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="info-text">
-                                <h5>Locatie</h5>
-                                <p>Oirschot, Nederland (wereldwijde dienstverlening)</p>
-                            </div>
-                        </div>
-
-                        <div class="info-item mb-4">
-                            <div class="info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="info-text">
-                                <h5>E-mail</h5>
-                                <p>info@virtunet.nl</p>
-                            </div>
-                        </div>
-
-                        <div class="info-item mb-4">
-                            <div class="info-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="info-text">
-                                <h5>Direct contact</h5>
-                                <p><a href="tel:+31642117210" class="text-white">+31 6 42117210</a><br><span class="small">Telefonische afspraken na akkoord op intakevoorstel</span></p>
-                            </div>
-                        </div>
-
-                        <!-- Newsletter Signup -->
-                        <div class="newsletter-signup mt-4 mb-4 p-4 rounded" style="background-color: rgba(0,123,255,0.1); border: 1px solid rgba(0,123,255,0.2);">
-                            <h5><i class="fas fa-envelope-open-text me-2"></i> AI & Cloud Updates</h5>
-                            <p class="small mb-3">Blijf op de hoogte van de nieuwste ontwikkelingen in AI en cloud technologie.</p>
-                            <form class="newsletter-form" action="https://formspree.io/f/mdkaqaga" method="POST">
-                                <div class="input-group mb-2">
-                                    <input type="email" class="form-control" name="email" placeholder="Uw e-mailadres" required>
-                                    <button class="btn btn-primary" type="submit">Aanmelden</button>
-                                </div>
-                                <input type="hidden" name="form_name" value="newsletter-subscription">
-                                <input type="hidden" name="_subject" value="Nieuwe nieuwsbrief aanmelding via virtunet.io">
-                                <div class="form-check small">
-                                    <input class="form-check-input" type="checkbox" id="privacyCheck" name="privacy" required>
-                                    <label class="form-check-label" for="privacyCheck">
-                                        Ik ga akkoord met het ontvangen van updates
-                                    </label>
+                                <div class="row g-3 mt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="intakeCheck" name="intake">
+                                            <label class="form-check-label" for="intakeCheck">Stuur mij een voorstel voor een betaalde intake</label>
+                                        </div>
+                                        <div class="form-check mt-2">
+                                            <input type="checkbox" class="form-check-input" id="newsletterCheck" name="newsletter">
+                                            <label class="form-check-label" for="newsletterCheck">Houd mij op de hoogte van nieuws over AI & Cloud</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="text-white small mb-2"><span class="text-danger">*</span> Verplichte velden</p>
+                                        <button type="submit" class="btn btn-primary w-100">Verstuur Aanvraag</button>
+                                        <p class="small text-muted mt-2 mb-0">We reageren binnen 24 uur op werkdagen per e-mail</p>
+                                    </div>
                                 </div>
                             </form>
-                        </div>
 
-                        <div class="social-icons mt-4">
-                            <a href="https://www.linkedin.com/company/virtunetbv" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://x.com/virtunetbv" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-                            <a href="https://github.com/VirtunetBV" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-github"></i></a>
+                            <div class="newsletter-signup mt-4 p-4 rounded" style="background-color: rgba(0,123,255,0.1); border: 1px solid rgba(0,123,255,0.2);">
+                                <h5><i class="fas fa-envelope-open-text me-2"></i> AI & Cloud Updates</h5>
+                                <p class="small mb-3">Blijf op de hoogte van de nieuwste ontwikkelingen in AI en cloud technologie.</p>
+                                <form class="newsletter-form" action="https://formspree.io/f/mdkaqaga" method="POST">
+                                    <div class="input-group mb-2">
+                                        <input type="email" class="form-control" name="email" placeholder="Uw e-mailadres" required>
+                                        <button class="btn btn-primary" type="submit">Aanmelden</button>
+                                    </div>
+                                    <input type="hidden" name="form_name" value="newsletter-subscription">
+                                    <input type="hidden" name="_subject" value="Nieuwe nieuwsbrief aanmelding via virtunet.io">
+                                    <div class="form-check small">
+                                        <input class="form-check-input" type="checkbox" id="privacyCheck" name="privacy" required>
+                                        <label class="form-check-label" for="privacyCheck">
+                                            Ik ga akkoord met het ontvangen van updates
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="py-4 footer">
