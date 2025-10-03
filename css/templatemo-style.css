@@ -83,6 +83,17 @@ a:hover {
     white-space: nowrap;
 }
 
+@media (min-width: 992px) {
+    .navbar-nav {
+        flex-wrap: nowrap;
+        gap: 1.25rem;
+    }
+
+    .navbar-nav .nav-link {
+        margin-left: 0;
+    }
+}
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -398,7 +409,7 @@ section {
 /* Contact Section */
 .contact-section {
     background-color: var(--bg-dark);
-    padding-bottom: 6rem;
+    padding-bottom: 8rem;
 }
 
 .contact-form .form-control {
@@ -415,6 +426,10 @@ section {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--primary-color);
     box-shadow: none;
+}
+
+.contact-section .service-card {
+    margin-bottom: 4rem;
 }
 
 /* Placeholder styles for all browsers */
