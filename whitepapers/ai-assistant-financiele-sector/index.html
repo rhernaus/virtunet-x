@@ -5,9 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AI-Assistent voor de Financiële Sector - Virtunet</title>
+    <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <!-- Bootstrap 5 (CDN) -->
+    <style>
+        .spaced-list li {
+            margin-bottom: 1rem;
+        }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Main CSS -->
     <link rel="stylesheet" href="../../css/templatemo-style.css">
     <style>
         .whitepaper-header {
@@ -17,17 +26,96 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
-
+        
         .whitepaper-section {
             padding: 4rem 0;
         }
-
-        .spaced-list li {
-            margin-bottom: 1rem;
+        
+        .whitepaper-section h2 {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .whitepaper-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .results-card {
+            background-color: rgba(0, 123, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 2rem;
+        }
+        
+        .whitepaper-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 123, 255, 0.1);
+            border-radius: 30px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+        
+        .quote-box {
+            padding: 2rem;
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 15px;
+            position: relative;
+            margin: 3rem 0;
+        }
+        
+        .quote-box::before {
+            content: '';
+        }
+        
+        blockquote {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin-left: 1rem;
+            font-style: italic;
+        }
+        
+        .step-block {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 2.5rem;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../">
@@ -49,53 +137,370 @@
         </div>
     </nav>
 
+    <!-- Header Section -->
     <header class="whitepaper-header">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-4 fw-bold text-white mb-4">Whitepaper op aanvraag: AI-assistent voor financiële dienstverlening</h1>
-                    <p class="lead text-white mb-4">Deze whitepaper beschrijft onze aanpak voor het ontwerpen, implementeren en borgen van een AI-assistent binnen gereguleerde financiële organisaties. Volledige klantresultaten delen we uitsluitend na NDA.</p>
-                    <div class="d-flex flex-wrap justify-content-center">
-                        <span class="badge bg-light text-dark me-2 mb-2 p-2"><i class="fas fa-lock me-1"></i>Gated content</span>
-                        <span class="badge bg-light text-dark me-2 mb-2 p-2">Generatieve AI</span>
-                        <span class="badge bg-light text-dark me-2 mb-2 p-2">Compliance &amp; Risk</span>
-                        <span class="badge bg-light text-dark mb-2 p-2">Klantcontact</span>
+                    <h1 class="display-4 fw-bold text-white mb-4">AI-Assistent voor de Financiële Dienstverlening</h1>
+                    <p class="lead text-white mb-4">Hoe Virtunet een financiële dienstverlener hielp met het implementeren van een AI-assistent die klanttevredenheid verhoogde en operationele efficiëntie verbeterde</p>
+                    <div class="d-flex justify-content-center">
+                        <span class="badge bg-light text-dark me-2 p-2">Generatieve AI</span>
+                        <span class="badge bg-light text-dark me-2 p-2">Klantenservice</span>
+                        <span class="badge bg-light text-dark me-2 p-2">LLM</span>
+                        <span class="badge bg-light text-dark p-2">Financial Services</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Executive Summary Section -->
     <section class="whitepaper-section bg-white">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h2 class="text-dark">Wat u ontvangt na aanvraag</h2>
-                    <p class="text-dark">De volledige whitepaper bevat geanonimiseerde klantartefacten en templates afkomstig uit recent geleverde projecten. U krijgt onder meer inzicht in:</p>
-                    <ul class="spaced-list text-dark">
-                        <li>Solution-architectuur en integratiepatronen voor een LLM-gedreven klantenservice-assistent.</li>
-                        <li>Compliance-checklists inclusief AVG, model governance en audit trails voor de financiële sector.</li>
-                        <li>Adoptieplan, trainingsmateriaal voor agents en KPI-frameworks die we in de praktijk inzetten.</li>
-                        <li>Lessons learned over change management, risicoafdekking en operationele borging.</li>
-                    </ul>
-                    <div class="alert alert-info mt-4" role="alert">
-                        Om de vertrouwelijkheid van klantprojecten te waarborgen, verstrekken we toegang tot deze whitepaper na een kort intakegesprek en het tekenen van een wederzijdse NDA.
-                    </div>
-                    <div class="d-grid d-sm-flex gap-3 mt-4">
-                        <a href="../../#contact" class="btn btn-primary btn-lg"><i class="fas fa-envelope-open-text me-2"></i>Vraag toegang aan</a>
-                        <a href="mailto:info@virtunet.nl?subject=Aanvraag%20whitepaper%20AI-assistent" class="btn btn-outline-secondary btn-lg"><i class="fas fa-calendar-alt me-2"></i>Plan een intakegesprek</a>
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="text-dark">Samenvatting</h2>
+                    <p class="lead text-dark">Een toonaangevende Nederlandse financiële dienstverlener kampte met uitdagingen in het efficiënt afhandelen van het groeiende volume aan klantvragen. Het bedrijf wilde de klanttevredenheid verhogen, medewerkers ontlasten van repetitieve taken, en tegelijkertijd voldoen aan strenge regelgeving in de financiële sector.</p>
+                    
+                    <div class="results-card mt-4">
+                        <h4 class="text-dark mb-3">Belangrijkste Resultaten</h4>
+                        <div class="row">
+                            <div class="col-md-4 text-center mb-3">
+                                <div class="h1 text-primary mb-2">85%</div>
+                                <p class="mb-0 text-dark">automatische afhandeling van veelvoorkomende klantvragen</p>
+                            </div>
+                            <div class="col-md-4 text-center mb-3">
+                                <div class="h1 text-primary mb-2">35%</div>
+                                <p class="mb-0 text-dark">snellere responstijden voor klanten</p>
+                            </div>
+                            <div class="col-md-4 text-center mb-3">
+                                <div class="h1 text-primary mb-2">28%</div>
+                                <p class="mb-0 text-dark">toename in klanttevredenheid (NPS-score)</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-5 text-center text-muted">
+    <!-- Challenge Section -->
+    <section class="whitepaper-section">
         <div class="container">
-            <p class="mb-0">Virtunet &mdash; Whitepaper beschikbaar op aanvraag voor gekwalificeerde organisaties.</p>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="text-light">De Uitdaging</h2>
+                    
+                    <p>De financiële dienstverlener kampte met meerdere uitdagingen die de klantervaring en operationele efficiëntie beïnvloedden:</p>
+                    
+                    <ul>
+                        <li class="mb-3"><strong>Hoog volume aan vergelijkbare vragen</strong> - Dagelijks werden duizenden vragen ontvangen over veelvoorkomende onderwerpen zoals rekeninginformatie, transacties, en productinformatie, wat leidde tot lange wachttijden.</li>
+                        
+                        <li class="mb-3"><strong>Klanten verwachten 24/7 service</strong> - Terwijl het contact center beperkte openingstijden had, verwachtten klanten steeds vaker onmiddellijke antwoorden, ongeacht het tijdstip.</li>
+                        
+                        <li class="mb-3"><strong>Inconsistente antwoorden</strong> - Verschillende medewerkers gaven soms verschillende antwoorden op dezelfde vraag, wat leidde tot verwarring en vervolgvragen.</li>
+                        
+                        <li class="mb-3"><strong>Complexe regelgeving</strong> - De financiële dienstverlener moest voldoen aan strenge compliance-eisen, wat betekende dat alle automatiseringen zorgvuldig moesten worden gedocumenteerd en gecontroleerd.</li>
+                        
+                        <li class="mb-3"><strong>Beperkte personalisatie</strong> - Het bestaande systeem kon niet gemakkelijk worden aangepast aan individuele klantbehoeften of -voorkeuren.</li>
+                    </ul>
+
+                    <div class="quote-box">
+                        <blockquote>
+                            "We zagen dat onze klantenservice-medewerkers tot 70% van hun tijd besteedden aan het beantwoorden van dezelfde soort vragen. Dit was niet alleen inefficiënt, maar leidde ook tot verminderde werktevredenheid omdat ze zich niet konden richten op complexere, meer waardevolle klantvragen."
+                        </blockquote>
+                        <p class="text-end mb-0">— Hoofd Klantenservice, Financiële Dienstverlener</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="whitepaper-section bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="text-light">De Oplossing</h2>
+                    
+                    <p>Virtunet ontwikkelde een geavanceerde AI-assistent op maat die naadloos integreerde met de bestaande klantenservice-infrastructuur. Het systeem werd gebouwd met een focus op veiligheid, nauwkeurigheid en personalisatie.</p>
+                    
+                    <div class="row mt-5">
+                        <div class="col-lg-6">
+                            <div class="step-block">
+                                <div class="step-number">1</div>
+                                <h4 class="text-light">Implementatie van Enterprise LLM</h4>
+                                <p>We ontwikkelden een oplossing op basis van state-of-the-art large language models die werd getraind op de specifieke kennis, producten en diensten van de financiële dienstverlener. Hierbij werd extra aandacht besteed aan security en data privacy.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="step-block">
+                                <div class="step-number">2</div>
+                                <h4 class="text-light">Kennisbank Integratie</h4>
+                                <p>De AI-assistent werd gekoppeld aan de interne kennisbank van de organisatie, waardoor deze toegang kreeg tot actuele informatie over producten, diensten, voorwaarden en procedures.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="step-block">
+                                <div class="step-number">3</div>
+                                <h4 class="text-light">Omnichannel Implementatie</h4>
+                                <p>De assistent werd geïmplementeerd via meerdere kanalen: website chat, mobiele app, WhatsApp, en e-mail, waardoor klanten via hun voorkeurskanaal hulp konden krijgen.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="step-block">
+                                <div class="step-number">4</div>
+                                <h4 class="text-light">Klantspecifieke Context</h4>
+                                <p>Met toestemming van de klant kon de AI-assistent beveiligde toegang krijgen tot klantspecifieke informatie, waardoor gepersonaliseerde antwoorden mogelijk werden over saldo's, recente transacties en productaanbevelingen.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="step-block">
+                                <div class="step-number">5</div>
+                                <h4 class="text-light">Intelligent Escalatie Systeem</h4>
+                                <p>Het systeem werd ontworpen om naadloos te escaleren naar menselijke medewerkers wanneer vragen te complex waren, gevoelige informatie vereisten, of wanneer de klant hierom vroeg, inclusief de relevante context van het gesprek.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="step-block">
+                                <div class="step-number">6</div>
+                                <h4 class="text-light">Compliance en Audit Trail</h4>
+                                <p>We implementeerden uitgebreide logging- en monitoringfunctionaliteit om te zorgen voor volledige transparantie, compliance-verificatie en continue verbetering van het systeem.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <h4 class="text-light mb-3">Gebruikte Technologieën</h4>
+                        <div>
+                            <span class="tech-tag">Azure OpenAI Service</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Vector Databases</span>
+                            <span class="tech-tag">RAG (Retrieval Augmented Generation)</span>
+                            <span class="tech-tag">Fine-tuning</span>
+                            <span class="tech-tag">Azure API Management</span>
+                            <span class="tech-tag">Application Insights</span>
+                            <span class="tech-tag">Azure Cognitive Search</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Section -->
+    <section class="whitepaper-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="text-light">Implementatie Strategie</h2>
+                    
+                    <p>De implementatie volgde een gefaseerde aanpak om risico's te minimaliseren en maximale acceptatie te bereiken:</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">Fase 1: Proof of Concept</h5>
+                            <p>We begonnen met een beperkte implementatie die zich richtte op de 20 meest voorkomende klantvragen. Dit stelde ons in staat om de technologie te valideren en vroege feedback te verzamelen.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">Fase 2: Kennisuitbreiding</h5>
+                            <p>De kennisbank van de AI werd uitgebreid met het volledige dienstenaanbod, productinformatie en interne procedures, met nadruk op nauwkeurigheid en compliance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">Fase 3: Beperkte Uitrol</h5>
+                            <p>De AI-assistent werd beschikbaar gemaakt voor een geselecteerde groep klanten via de website en mobiele app, met actieve monitoring en continue verbetering.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">Fase 4: Volledige Implementatie</h5>
+                            <p>Na het verfijnen van het systeem op basis van feedback werd de AI-assistent beschikbaar gemaakt voor alle klanten via alle kanalen, met uitgebreide training voor klantenservicemedewerkers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">Fase 5: Geavanceerde Personalisatie</h5>
+                            <p>Implementatie van klant-specifieke functionaliteit, waaronder authenticatie voor toegang tot persoonlijke financiële informatie en proactieve suggesties.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">Fase 6: Continue Verbetering</h5>
+                            <p>Opstellen van een feedback-loop systeem dat gebruikersinteracties analyseert om de AI voortdurend te verbeteren en te updaten met nieuwe informatie.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="whitepaper-section bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="text-dark">Resultaten en Impact</h2>
+                    
+                    <p class="lead text-dark">Na de volledige implementatie en een operationele periode van zes maanden, heeft de AI-assistent aanzienlijke verbeteringen gebracht voor zowel klanten als de financiële dienstverlener:</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-lg-6">
+                            <div class="card mb-4 h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">Kwantitatieve Resultaten</h5>
+                                    <ul class="text-dark spaced-list">
+                                        <li><strong>85% automatische afhandeling</strong> van veelvoorkomende klantvragen zonder menselijke tussenkomst</li>
+                                        <li><strong>35% snellere responstijden</strong> op klantverzoeken</li>
+                                        <li><strong>28% stijging in klanttevredenheid</strong> (NPS-score)</li>
+                                        <li><strong>64% reductie</strong> in wachttijden voor klantenservice</li>
+                                        <li><strong>41% kostenbesparing</strong> in klantenservice-operaties</li>
+                                        <li><strong>24/7 beschikbaarheid</strong> verhoogde service niveaus buiten kantooruren</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card mb-4 h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">Kwalitatieve Verbeteringen</h5>
+                                    <ul class="text-dark spaced-list">
+                                        <li><strong>Verbeterde medewerkerstevredenheid</strong> door reductie van repetitieve taken en focus op complexere klantvragen</li>
+                                        <li><strong>Consistentere klantervaring</strong> met standaard antwoorden op veelgestelde vragen</li>
+                                        <li><strong>Grotere schaalbaarbeid</strong> tijdens piekperiodes zonder extra personeel</li>
+                                        <li><strong>Waardevolle data-inzichten</strong> uit klantinteracties voor product- en dienstverbetering</li>
+                                        <li><strong>Verhoogde klantentrouw</strong> door verbeterde en persoonlijke service</li>
+                                        <li><strong>Betere compliance</strong> door consistente, gedocumenteerde antwoorden</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-box mt-5">
+                        <blockquote>
+                            "De AI-assistent heeft onze klantenservice fundamenteel getransformeerd. Onze medewerkers zijn nu bevrijd van het beantwoorden van eenvoudige, repetitieve vragen en kunnen zich richten op complexere klantsituaties waar hun expertise echt waarde toevoegt. Bovendien geeft de 24/7 beschikbaarheid onze klanten de flexibiliteit die ze in de huidige digitale wereld verwachten."
+                        </blockquote>
+                        <p class="text-end mb-0">— COO, Financiële Dienstverlener</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section class="whitepaper-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="text-light">Lessen & Best Practices</h2>
+                    
+                    <p>Tijdens dit project hebben we verschillende waardevolle inzichten opgedaan die nuttig kunnen zijn voor vergelijkbare implementaties:</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">1. Start met een duidelijke scope</h5>
+                            <p>Begin met een beperkte maar duidelijke set use cases waarin de AI directe waarde kan toevoegen, en breid van daaruit uit. Dit zorgt voor snellere implementatie en vroege successen.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">2. Menselijke supervisie blijft cruciaal</h5>
+                            <p>De meest effectieve AI-assistenten werken in samenwerking met menselijke medewerkers. Een goed ontwikkeld escalatieprotocol is essentieel voor situaties waarin AI niet het juiste antwoord kan geven.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">3. Investeer in content kwaliteit</h5>
+                            <p>De kwaliteit van de kennisbank is direct gerelateerd aan de kwaliteit van de AI-antwoorden. Investeren in goed gestructureerde, actuele content is essentieel voor succes.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">4. Privacy-by-design</h5>
+                            <p>Vooral in de financiële sector is het cruciaal om privacy en security vanaf het begin in het ontwerp te integreren, niet als een laag die later wordt toegevoegd.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">5. Betrek medewerkers vroeg in het proces</h5>
+                            <p>Klantenservicemedewerkers zijn een onmisbare bron van kennis en hun vroege betrokkenheid en feedback zijn cruciaal voor de ontwikkeling van een effectieve AI-assistent.</p>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h5 class="text-primary">6. Continue verbetering is essentieel</h5>
+                            <p>AI-assistenten zijn geen "set and forget" oplossingen. Continue monitoring, evaluatie en verfijning zijn nodig om optimale prestaties te garanderen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="whitepaper-section bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="text-light">Conclusie</h2>
+                    
+                    <p>De implementatie van de AI-assistent heeft aangetoond dat goed ontworpen AI-oplossingen aanzienlijke waarde kunnen toevoegen aan financiële dienstverleners:</p>
+                    
+                    <ul>
+                        <li class="mb-2">Door repetitieve taken over te nemen van menselijke medewerkers, bevrijdt AI menselijk talent voor meer complexe, waarde-toevoegende activiteiten</li>
+                        <li class="mb-2">24/7 beschikbaarheid verbetert de klantervaring in een tijd waarin consumenten onmiddellijke service verwachten</li>
+                        <li class="mb-2">Gepersonaliseerde, consistente interacties verhogen de klanttevredenheid en klantenbinding</li>
+                        <li class="mb-2">De schaalbaarheid van AI-oplossingen stelt financiële instellingen in staat om efficiënter te groeien</li>
+                        <li class="mb-2">Data-inzichten uit AI-interacties kunnen worden gebruikt om diensten en producten te verbeteren</li>
+                    </ul>
+                    
+                    <p class="mt-4">Bij Virtunet geloven we dat AI niet gaat over het vervangen van menselijke interactie, maar over het verrijken ervan door technologie te gebruiken om zowel klanten als medewerkers beter te ondersteunen. Deze case study toont aan dat een zorgvuldig geïmplementeerde AI-assistent significant kan bijdragen aan betere klantervaring, operationele efficiëntie en bedrijfsgroei in de financiële sector.</p>
+                    
+                    <div class="text-center mt-5">
+                        <a href="../../#contact" class="btn btn-light btn-lg">Neem contact op voor meer informatie</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 footer">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                        <div class="tm-site-logo footer-logo"></div>
+                        <span class="ms-2 h5 mb-0">Virtunet</span>
+                    </div>
+                    <p class="mt-2 mb-0">Next-Gen AI Innovation & Enterprise Cloud</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Copyright &copy; <span class="tm-current-year">2024</span> Virtunet</p>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Modern JS Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script>
+        // Update current year
+        document.querySelector('.tm-current-year').textContent = new Date().getFullYear();
+        
+        // Navbar scroll behavior
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').classList.add('scrolled');
+            } else {
+                document.querySelector('.navbar').classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
