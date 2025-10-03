@@ -4,146 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Computer Vision voor Productiekwaliteit - Virtunet</title>
-    <!-- Fonts -->
+    <title>Documentanalyse PoC met n8n | Virtunet</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <!-- Bootstrap 5 (CDN) -->
-    <style>
-        .spaced-list li {
-            margin-bottom: 1rem;
-        }
-    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Main CSS -->
     <link rel="stylesheet" href="../../css/templatemo-style.css">
     <style>
-        .whitepaper-header {
-            background: linear-gradient(135deg, rgba(23, 162, 184, 1), rgba(40, 167, 69, 0.95));
-            padding: 6rem 0 3rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .whitepaper-section {
-            padding: 4rem 0;
-        }
-        
-        .whitepaper-section h2 {
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        .whitepaper-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--success-color);
-        }
-        
-        .results-card {
-            background-color: rgba(40, 167, 69, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            border-left: 5px solid var(--success-color);
-            margin-bottom: 2rem;
-        }
-        
-        .whitepaper-img {
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .tech-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: rgba(40, 167, 69, 0.1);
-            border-radius: 30px;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--success-color);
-        }
-        
-        .quote-box {
-            padding: 2rem;
-            background-color: rgba(33, 37, 41, 0.8);
-            border-radius: 15px;
-            position: relative;
-            margin: 3rem 0;
-        }
-        
-        .quote-box::before {
-            content: '';
-        }
-        
-        blockquote {
-            border-left: 3px solid var(--success-color);
-            padding-left: 1.5rem;
-            margin-left: 1rem;
-            font-style: italic;
-        }
-        
-        .step-block {
-            position: relative;
-            padding-left: 80px;
-            margin-bottom: 2.5rem;
-        }
-        
-        .step-number {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 60px;
-            height: 60px;
-            background-color: var(--success-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--success-color);
-            margin-bottom: 1rem;
-        }
-        
-        .timeline-item {
-            padding-left: 2rem;
-            position: relative;
-            padding-bottom: 2rem;
-            border-left: 2px solid var(--success-color);
-        }
-        
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 0;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background-color: var(--success-color);
-        }
-        
-        .timeline-item:last-child {
-            border-left: 2px solid transparent;
-        }
+        .whitepaper-header { background: linear-gradient(135deg, rgba(111,66,193,.9), rgba(13,110,253,.9)); padding: 6rem 0 4rem; color: #fff; }
+        .whitepaper-section { padding: 4rem 0; }
+        .whitepaper-section h2 { margin-bottom: 2rem; position: relative; padding-bottom: 1rem; }
+        .whitepaper-section h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background-color: var(--primary-color); }
+        .card-outline { border-radius: 16px; border: 1px solid rgba(111,66,193,.14); box-shadow: 0 10px 24px rgba(0,0,0,.08); height: 100%; }
+        .badge-sub { background: rgba(111,66,193,.15); color: #6f42c1; border-radius: 12px; padding: .25rem .75rem; font-size: .8rem; }
+        .list-spaced li { margin-bottom: .75rem; }
+        .step-block { border-left: 4px solid rgba(111,66,193,.5); padding-left: 1.5rem; margin-bottom: 2rem; }
+        .step-title { font-weight: 600; color: #6f42c1; }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../">
@@ -158,362 +36,60 @@
                     <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../value-proposition/">Toegevoegde Waarde</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#about">Technologieën</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../#projects">Projecten</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../">Whitepapers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../#intake">Intake</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <header class="whitepaper-header">
+    <header class="whitepaper-header text-center">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-4 fw-bold text-white mb-4">Computer Vision voor Productiekwaliteitscontrole</h1>
-                    <p class="lead text-white mb-4">Hoe Virtunet een productiebedrijf hielp met het implementeren van een AI-gedreven kwaliteitscontrole systeem om defecten te detecteren en productiekosten te verlagen</p>
-                    <div class="d-flex justify-content-center">
-                        <span class="badge bg-light text-dark me-2 p-2">Computer Vision</span>
-                        <span class="badge bg-light text-dark me-2 p-2">AI-kwaliteitscontrole</span>
-                        <span class="badge bg-light text-dark me-2 p-2">Industrie 4.0</span>
-                        <span class="badge bg-light text-dark p-2">Manufacturing</span>
-                    </div>
-                </div>
+            <h1 class="display-4 fw-bold mb-3">Proof of Concept: Automatische controle van prestatieverklaringen</h1>
+            <p class="lead mb-4">Hoe Virtunet een zakelijke klant hielp om prestatieverklaringen automatisch te analyseren met n8n-workflows, document AI en duidelijke audit trails.</p>
+            <div class="d-flex justify-content-center flex-wrap gap-2">
+                <span class="badge bg-light text-dark">Document AI</span>
+                <span class="badge bg-light text-dark">n8n workflows</span>
+                <span class="badge bg-light text-dark">Audit & compliance</span>
+                <span class="badge bg-light text-dark">Proof of Concept</span>
             </div>
         </div>
     </header>
 
-    <!-- Executive Summary Section -->
     <section class="whitepaper-section bg-white">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Samenvatting</h2>
-                    <p class="lead text-dark">Een toonaangevende Nederlandse producent van precisiecomponenten worstelde met uitdagingen in het consistente detecteren van productiedefecten in hun assemblageproces. Het bedrijf wilde de kwaliteitscontrole verbeteren, de operationele kosten verlagen en het aantal defecte producten dat klanten bereikte minimaliseren.</p>
-                    
-                    <div class="results-card mt-4">
-                        <h4 class="text-dark mb-3">Belangrijkste Resultaten</h4>
-                        <div class="row">
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-success mb-2">94%</div>
-                                <p class="mb-0 text-dark">nauwkeurigheid in het detecteren van productiefouten</p>
-                            </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-success mb-2">40%</div>
-                                <p class="mb-0 text-dark">reductie in kwaliteitscontrolekosten</p>
-                            </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-success mb-2">25%</div>
-                                <p class="mb-0 text-dark">reductie in defecte producten bij klanten</p>
-                            </div>
-                        </div>
+            <h2 class="text-dark">Context & doelstelling</h2>
+            <p class="lead text-dark">Onze klant ontvangt wekelijks tientallen prestatieverklaringen en toestemmingsformulieren voor bouwprojecten. Elke verklaring moet gecontroleerd worden op verplichte onderdelen: datum, handtekeningen, projectgegevens en akkoord van bevoegde personen. Het handmatig proces was foutgevoelig en kostte per document 8-12 minuten.</p>
+            <div class="row g-4 mt-2">
+                <div class="col-lg-4">
+                    <div class="card-outline p-4">
+                        <span class="badge-sub">Uitgangspunten</span>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Snel een PoC leveren zonder zware platforminvestering.</li>
+                            <li>Volledige traceability van beslissingen (goed/afgekeurd).</li>
+                            <li>Integratie met bestaande DMS en meldingsproces.</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Challenge Section -->
-    <section class="whitepaper-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">De Uitdaging</h2>
-                    
-                    <p>De producent van precisiecomponenten kampte met verschillende uitdagingen in hun kwaliteitscontroleproces:</p>
-                    
-                    <ul>
-                        <li class="mb-3"><strong>Menselijke beperkingen</strong> - Traditionele visuele inspecties door medewerkers waren vermoeiend, tijdrovend en niet altijd consistent, vooral bij hoge productievolumes.</li>
-                        
-                        <li class="mb-3"><strong>Complexe defecten</strong> - Sommige defecten waren moeilijk te detecteren met het blote oog, met name haarscheurtjes, kleine deukjes en kleurafwijkingen in complexe componenten.</li>
-                        
-                        <li class="mb-3"><strong>Kostbare handmatige inspecties</strong> - Het bedrijf besteedde ongeveer 12% van de operationele kosten aan kwaliteitscontrole, met een grote personele bezetting.</li>
-                        
-                        <li class="mb-3"><strong>Snel productievolume</strong> - De productielijn produceerde tot 500 componenten per uur, wat een grote uitdaging vormde voor nauwkeurige handmatige inspectie.</li>
-                        
-                        <li class="mb-3"><strong>Klantenklachten</strong> - Ondanks strenge kwaliteitscontroles bereikte toch 3% van de defecte producten de klanten, wat leidde tot klantenklachten, garantieclaims en reputatieschade.</li>
-                    </ul>
-
-                    <div class="quote-box">
-                        <blockquote>
-                            "We hadden een betrouwbaar team van kwaliteitscontroleurs, maar de menselijke factor bleef een uitdaging. Vermoeidheid, inconsistentie en de snelheid van onze productielijnen maakten het praktisch onmogelijk om 100% van de defecten te vinden. We zochten naar een oplossing die onze controlesystemen zou kunnen versterken zonder onze productie te vertragen."
-                        </blockquote>
-                        <p class="text-end mb-0">— Directeur Operaties, Productiebedrijf</p>
+                <div class="col-lg-4">
+                    <div class="card-outline p-4">
+                        <span class="badge-sub">Klantvraag</span>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Automatisch signaleren of documenten compleet zijn.</li>
+                            <li>Medewerkers hoeven alleen uitzonderingen te beoordelen.</li>
+                            <li>Audit trail en export voor compliance en rapportage.</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section class="whitepaper-section bg-gradient">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">De Oplossing</h2>
-                    
-                    <p>Virtunet ontwikkelde een geavanceerd computer vision-systeem dat naadloos integreerde in de bestaande productielijn, waardoor realtime kwaliteitscontrole mogelijk werd zonder de productie te vertragen.</p>
-                    
-                    <div class="row mt-5">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">1</div>
-                                <h4 class="text-light">Multi-Angle Imaging System</h4>
-                                <p>We installeerden een set van high-definition camera's op strategische punten in de productielijn, die meerdere hoeken en aspecten van elk component vastlegden. Dit inclusief speciale belichting voor het versterken van subtiele defecten.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">2</div>
-                                <h4 class="text-light">Deep Learning Algoritmen</h4>
-                                <p>We ontwikkelden en trainden aangepaste convolutional neural networks (CNN's) op een uitgebreide dataset van zowel defecte als goede componenten, met focus op de specifieke productiefouten die relevant waren voor het bedrijf.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">3</div>
-                                <h4 class="text-light">Edge Computing Implementatie</h4>
-                                <p>We implementeerden de verwerkingscapaciteit direct op de productievloer met behulp van edge computing apparaten, wat zorgde voor realtime analyse zonder vertraging in de productielijn.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">4</div>
-                                <h4 class="text-light">Automatisch Sorteersysteem</h4>
-                                <p>Detectie van defecten triggerde een automatisch sorteersysteem dat problematische componenten direct uit de productielijn verwijderde en categoriseerde op basis van defecttype.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">5</div>
-                                <h4 class="text-light">Real-time Analyse Dashboard</h4>
-                                <p>We ontwikkelden een gebruiksvriendelijk dashboard dat real-time inzicht gaf in kwaliteitsstatistieken, defecttypes en -frequenties, en alarmering voor ongewone patronen in productiefouten.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">6</div>
-                                <h4 class="text-light">Continuous Learning System</h4>
-                                <p>Het systeem werd ontworpen om doorlopend te leren van nieuwe defecten en feedback van kwaliteitscontroleurs, waardoor de nauwkeurigheid mettertijd bleef verbeteren.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-5">
-                        <h4 class="text-light mb-3">Gebruikte Technologieën</h4>
-                        <div>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">NVIDIA Jetson</span>
-                            <span class="tech-tag">Industrial IoT</span>
-                            <span class="tech-tag">Azure IoT Edge</span>
-                            <span class="tech-tag">Computer Vision API</span>
-                            <span class="tech-tag">Industrial Cameras</span>
-                            <span class="tech-tag">Time Series Insights</span>
-                            <span class="tech-tag">Power BI</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Implementation Section -->
-    <section class="whitepaper-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">Technische Implementatie</h2>
-                    
-                    <p>De implementatie van het computer vision-systeem omvatte verschillende technische componenten die gezamenlijk een end-to-end oplossing vormden:</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-lg-6 mb-4">
-                            <div class="text-center mb-3">
-                                <i class="fas fa-camera feature-icon"></i>
-                            </div>
-                            <h5 class="text-success text-center">Beeldacquisitie</h5>
-                            <ul>
-                                <li>Industriële camera's (4K-resolutie) strategisch geplaatst in productieproces</li>
-                                <li>Gespecialiseerde LED-belichting die contrasten versterkt</li>
-                                <li>Automatische kalibratie voor consistente beeldkwaliteit</li>
-                                <li>Geoptimaliseerde frame-rate voor lopende band snelheid</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <div class="text-center mb-3">
-                                <i class="fas fa-network-wired feature-icon"></i>
-                            </div>
-                            <h5 class="text-success text-center">Edge Computing Architectuur</h5>
-                            <ul>
-                                <li>NVIDIA Jetson edge computing devices bij elke inspectiestation</li>
-                                <li>Gedistribueerde verwerking van beelddata</li>
-                                <li>Real-time inferentie (<100ms responsetijd)</li>
-                                <li>Lokale caching bij connectiviteitsproblemen</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <div class="text-center mb-3">
-                                <i class="fas fa-brain feature-icon"></i>
-                            </div>
-                            <h5 class="text-success text-center">AI-model Architectuur</h5>
-                            <ul>
-                                <li>Ensemble van CNN's (ResNet50 en custom architectuur)</li>
-                                <li>Getraind op dataset van 500.000+ gelabelde afbeeldingen</li>
-                                <li>Feature extraction specifiek voor relevante defecttypen</li>
-                                <li>Regelmatige retraining met nieuwe productiegegevens</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <div class="text-center mb-3">
-                                <i class="fas fa-tachometer-alt feature-icon"></i>
-                            </div>
-                            <h5 class="text-success text-center">Monitoring & Analytics</h5>
-                            <ul>
-                                <li>Real-time dashboards voor productievloer en management</li>
-                                <li>Trend-analyse van defectpatronen over tijd</li>
-                                <li>Voorspellende analyses voor preventief onderhoud</li>
-                                <li>Integratie met bestaande MES en ERP-systemen</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <div class="text-center mb-3">
-                                <i class="fas fa-shield-alt feature-icon"></i>
-                            </div>
-                            <h5 class="text-success text-center">Failsafe Mechanismen</h5>
-                            <ul>
-                                <li>Redundante inspectie voor kritieke componenten</li>
-                                <li>Automatische alarmering bij ongewone defectpatronen</li>
-                                <li>Handmatige second-opinion mogelijkheid bij twijfelgevallen</li>
-                                <li>Regelmatige systeemkalibratie en validatie</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <div class="text-center mb-3">
-                                <i class="fas fa-sync feature-icon"></i>
-                            </div>
-                            <h5 class="text-success text-center">Continuous Improvement System</h5>
-                            <ul>
-                                <li>Feedbackmechanisme voor inspecteurs</li>
-                                <li>Active learning voor zeldzame defecten</li>
-                                <li>Incrementele modelverbeteringen zonder productie-onderbreking</li>
-                                <li>A/B testing van modelverbeteringen</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Implementation Timeline Section -->
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Implementatie Tijdlijn</h2>
-                    
-                    <p class="text-dark">De implementatie volgde een gefaseerde aanpak die zorgt voor minimale verstoring van de productie en geleidelijke adoptie door het team:</p>
-                    
-                    <div class="timeline-container mt-5">
-                        <div class="timeline-item">
-                            <h5 class="text-success">Fase 1: Assessment & Planning (4 weken)</h5>
-                            <p class="text-dark">Diepgaande analyse van het productieproces, identificatie van kritieke inspectiepunten, en verzameling van datasets met voorbeelden van defecten en goede componenten.</p>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <h5 class="text-success">Fase 2: Prototype & Proof of Concept (6 weken)</h5>
-                            <p class="text-dark">Installatie van een enkel inspectiestation op de productielijnen om de technologie te valideren en initiële modellen te trainen in een echte productieomgeving.</p>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <h5 class="text-success">Fase 3: Full Model Training (8 weken)</h5>
-                            <p class="text-dark">Training en verfijning van de computer vision modellen met de verzamelde data, iteratieve verbetering op basis van feedback van kwaliteitsexperts.</p>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <h5 class="text-success">Fase 4: Volledige Uitrol (6 weken)</h5>
-                            <p class="text-dark">Installatie en configuratie van het complete systeem op alle productielijnen, integratie met bestaande systemen en training van operators.</p>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <h5 class="text-success">Fase 5: Optimalisatie (Doorlopend)</h5>
-                            <p class="text-dark">Continue monitoring, modelverbetering, en optimalisatie van het systeem op basis van prestatiemetrieken en feedback van gebruikers.</p>
-                        </div>
-                    </div>
-
-                    <div class="quote-box mt-5">
-                        <blockquote>
-                            "De gefaseerde implementatie was cruciaal voor ons succes. We konden het systeem testen en verfijnen zonder onze dagelijkse productie te verstoren. Het gaf onze teams ook de tijd om vertrouwd te raken met de technologie en te zien hoe het hun werk verbeterde in plaats van verving."
-                        </blockquote>
-                        <p class="text-end mb-0">— Projectleider, Productiebedrijf</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Results Section -->
-    <section class="whitepaper-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">Resultaten en Impact</h2>
-                    
-                    <p class="lead text-light">Na volledige implementatie en een operationele periode van negen maanden, heeft het computer vision-systeem aanzienlijke verbeteringen gebracht voor het productiebedrijf:</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-lg-6">
-                            <div class="card mb-4 h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title text-success">Kwantitatieve Resultaten</h5>
-                                    <ul class="spaced-list">
-                                        <li><strong>94% nauwkeurigheid</strong> in defectdetectie, vergeleken met 82% bij handmatige inspectie</li>
-                                        <li><strong>40% reductie</strong> in kwaliteitscontrolekosten</li>
-                                        <li><strong>25% vermindering</strong> van defecte producten die klanten bereiken</li>
-                                        <li><strong>300% snellere</strong> inspectieprocessen</li>
-                                        <li><strong>57% afname</strong> in garantieclaims gerelateerd aan defecten</li>
-                                        <li><strong>15% verbetering</strong> in overall equipment effectiveness (OEE)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card mb-4 h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title text-success">Kwalitatieve Verbeteringen</h5>
-                                    <ul class="spaced-list">
-                                        <li><strong>Verhoogde consistentie</strong> in kwaliteitsbeoordeling ongeacht ploeg of tijdstip</li>
-                                        <li><strong>Betere inzichten</strong> in defectoorzaken door verzamelde data</li>
-                                        <li><strong>Strategische herplaatsing</strong> van kwaliteitspersoneel naar meer waarde-toevoegende activiteiten</li>
-                                        <li><strong>Verbeterde traceerbaarheid</strong> van kwaliteitsissues in de supply chain</li>
-                                        <li><strong>Positieve feedback</strong> van klanten over productconsistentie</li>
-                                        <li><strong>Concurrentievoordeel</strong> door verbeterd kwaliteitsborgingssysteem</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="results-card mt-4">
-                        <h5 class="text-dark mb-3">ROI Berekening</h5>
-                        <p class="text-dark">De totale investering in het computer vision-systeem (hardware, software, implementatie en training) werd terugverdiend binnen 11 maanden door:</p>
-                        <ul class="spaced-list">
-                            <li><strong>Directe kostenbesparingen</strong> in kwaliteitscontrole personeelsuren</li>
-                            <li><strong>Lagere garantiekosten</strong> door minder defecte producten</li>
-                            <li><strong>Verhoogde productieefficiëntie</strong> door minder herbewerking</li>
-                            <li><strong>Verhoogde winstmarges</strong> door minder afgeschreven producten</li>
+                <div class="col-lg-4">
+                    <div class="card-outline p-4">
+                        <span class="badge-sub">Scope PoC</span>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Verwerking van PDF's uit mailbox en DMS.</li>
+                            <li>Detectie van verplichte velden (namen, data, handtekeningen).</li>
+                            <li>n8n workflow voor validatie, logging en notificaties.</li>
                         </ul>
                     </div>
                 </div>
@@ -521,87 +97,145 @@
         </div>
     </section>
 
-    <!-- Lessons Learned Section -->
-    <section class="whitepaper-section bg-gradient">
+    <section class="whitepaper-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">Lessen & Best Practices</h2>
-                    
-                    <p>Tijdens dit project hebben we verschillende waardevolle inzichten opgedaan die nuttig kunnen zijn voor vergelijkbare implementaties:</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">1. Betrek domeinexperts</h5>
-                            <p>Samenwerking met ervaren kwaliteitscontroleurs was essentieel voor het identificeren van subtiele defecten die het AI-model moest leren herkennen.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">2. Dataverzameling is cruciaal</h5>
-                            <p>Investeren in uitgebreide, goed gelabelde datasets van zowel goede als defecte producten was een sleutelfactor in de nauwkeurigheid van het systeem.</p>
-                        </div>
+            <h2>Aanpak</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="step-block">
+                        <div class="step-title">1. Intake & documentanalyse</div>
+                        <p class="text-muted mb-0">We maakten een lijst van verplichte elementen (project ID, opdrachtgever, datum, handtekeningen, toestemming) en definieerden acceptatiecriteria per documenttype.</p>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">3. Ontwerp voor omgevingsvariabelen</h5>
-                            <p>Productievloeren kunnen uitdagende omgevingen zijn. Factoren zoals belichting, trillingen en stof moesten worden meegenomen in het systeemontwerp.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">4. Begin klein, schaal geleidelijk</h5>
-                            <p>De gefaseerde uitrol stelde ons in staat om het systeem te verfijnen en vertrouwen op te bouwen voordat we de volledige productie afhankelijk maakten van het systeem.</p>
-                        </div>
+                    <div class="step-block">
+                        <div class="step-title">2. n8n workflow ontwerp</div>
+                        <p class="text-muted mb-0">We gebruikten n8n om documenten uit mailbox en DMS op te halen, OCR/AI-analyse uit te voeren en resultaten te verrijken met metadata.</p>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">5. Menselijke factor blijft belangrijk</h5>
-                            <p>Het systeem werkt het beste als augmentatie van menselijke expertise, niet als volledige vervanging. Mensen zijn nog steeds cruciaal voor edge cases en interpretatie.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">6. Bewaak evolutie van defecten</h5>
-                            <p>Wanneer productieprocessen evolueren, kunnen nieuwe typen defecten ontstaan. Continue training en monitoring zijn nodig om het systeem effectief te houden.</p>
-                        </div>
+                    <div class="step-block">
+                        <div class="step-title">3. Validatie & business rules</div>
+                        <p class="text-muted mb-0">Custom nodes controleerden of datumformaten klopten, handtekeningen aanwezig waren en toestemming door bevoegden gegeven was. Bij twijfel werd een taak in het bestaande systeem aangemaakt.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="step-block">
+                        <div class="step-title">4. Audit & rapportage</div>
+                        <p class="text-muted mb-0">Elke run schreef resultaten weg in een audit log (JSON + dashboard). Export naar CSV/PDF was beschikbaar voor compliance.</p>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-title">5. Pilot & feedback</div>
+                        <p class="text-muted mb-0">Gedurende 4 weken draaide de oplossing naast het bestaande proces. Uitzonderingen werden vergeleken met menselijke controles om precisie en recall te bepalen.</p>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-title">6. Roadmap</div>
+                        <p class="text-muted mb-0">Samen stelden we een roadmap op voor productiegereedheid: integratie met archief, extra validatieregels en training van medewerkers.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Conclusion Section -->
     <section class="whitepaper-section bg-white">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Conclusie</h2>
-                    
-                    <p class="text-dark">De implementatie van het computer vision-systeem voor kwaliteitscontrole heeft aangetoond dat AI-technologie aanzienlijke voordelen kan bieden voor productiebedrijven:</p>
-                    
-                    <ul class="text-dark spaced-list">
-                        <li>Hogere consistentie in kwaliteitsborging, onafhankelijk van menselijke factoren zoals vermoeidheid of subjectiviteit</li>
-                        <li>Significante kostenbesparingen door efficiëntere inzet van personeel en vermindering van garantieclaims</li>
-                        <li>Verbeterde klanttevredenheid door consistentere productkwaliteit</li>
-                        <li>Waardevolle data-inzichten die proactieve procesverbeteringen mogelijk maken</li>
-                        <li>Mogelijkheid tot schaalbare kwaliteitscontrole die groeit met de productiecapaciteit</li>
-                    </ul>
-                    
-                    <p class="mt-4 text-dark">Bij Virtunet zien we computer vision niet alleen als een detectietool, maar als een complete kwaliteitsverbeteringsstrategie. Door een goed ontworpen AI-implementatie kunnen productiebedrijven niet alleen defecten effectiever vinden, maar ook de onderliggende oorzaken beter begrijpen en aanpakken. Het resultaat is een continu verbeterend productieproces dat resulteert in hogere kwaliteit, lagere kosten en tevreden klanten.</p>
-                    
-                    <div class="quote-box">
-                        <blockquote>
-                            "We verwachtten een beter kwaliteitscontrole systeem, maar wat we kregen was een transformatie van ons hele kwaliteitsdenken. De data en inzichten die het systeem genereert, stellen ons in staat om proactief problemen aan te pakken voordat ze ontstaan. Dit is geen automatisering; het is een kwaliteitsrevolutie."
-                        </blockquote>
-                        <p class="text-end mb-0">— CEO, Productiebedrijf</p>
+            <h2>Technische componenten</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5>Workflow orchestration (n8n)</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Triggers: IMAP voor inkomende mail, webhook vanuit DMS.</li>
+                            <li>Document analyse: OCR/LLM nodes voor tekstextractie en entiteitsherkenning.</li>
+                            <li>Validatie: custom functies voor datum- en handtekeningcontroles.</li>
+                            <li>Routing: Slack/Teams notificaties bij afwijkingen.</li>
+                        </ul>
                     </div>
-                    
-                    <div class="text-center mt-5">
-                        <a href="../../#contact" class="btn btn-success btn-lg">Neem contact op voor meer informatie</a>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5>Audit & beheer</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Resultaten in PostgreSQL + dashboard (Metabase).</li>
+                            <li>JSON-logs met bewijs (thumbnail/signature detectie).</li>
+                            <li>Versleutelde opslag van documenten tijdens verwerking.</li>
+                            <li>Self-service export en uitzonderingenlijst voor QA.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section class="whitepaper-section">
+        <div class="container">
+            <h2>Resultaten van de PoC</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card-outline p-4 h-100">
+                        <h5 class="mb-3">Operationeel</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>80% van de documenten werd automatisch goedgekeurd of afgewezen.</li>
+                            <li>Doorlooptijd per document daalde van 10 minuten naar &lt;1 minuut.</li>
+                            <li>Auditors hebben één overzicht met status, bewijs en correcties.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card-outline p-4 h-100">
+                        <h5 class="mb-3">Medewerkerimpact</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Team focust op uitzonderingen en communicatie met leveranciers.</li>
+                            <li>n8n interface maakt het eenvoudig om regels aan te passen.</li>
+                            <li>Training: 1 dag onboarding voor procesbeheerders.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card-outline p-4 h-100">
+                        <h5 class="mb-3">Vervolg</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Opschalen naar extra documenttypes (bijlagen, certificaten).</li>
+                            <li>Koppeling met archief en e-signing platformen.</li>
+                            <li>Monitoring van modeldrift en regelmatige hertraining.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="whitepaper-section bg-white">
+        <div class="container">
+            <h2>Wat wij leveren</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5>Projectinhoud</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Workshop(s) voor eisen, validatieregels en classificatie.</li>
+                            <li>n8n workflow inclusief custom nodes en document AI integratie.</li>
+                            <li>Dashboarding, logging en secure opslag tijdens verwerking.</li>
+                            <li>Runbook + kennisoverdracht voor beheer.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5>Governance</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Privacy by design: data blijft binnen afgesproken regio's.</li>
+                            <li>Audit trail conform compliance-eisen (tijdstempel, beslissingen, bewijs).</li>
+                            <li>Rollback/uitvalscenario's en monitoring van workflows.</li>
+                            <li>Roadmap naar productie (HA, secrets, infra-as-code).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-outline p-4 mt-4">
+                <h5 class="mb-3">Interesse in documentanalyse?</h5>
+                <p class="text-muted mb-3">We helpen u graag bij het opzetten van een vergelijkbare PoC of volledige productiefase. Stuur ons een bericht voor een intakevoorstel.</p>
+                <a href="../../#contact" class="btn btn-primary">Neem contact op</a>
+            </div>
+        </div>
+    </section>
+
     <footer class="py-4 footer">
         <div class="container">
             <div class="row g-4 align-items-center">
@@ -610,31 +244,15 @@
                         <div class="tm-site-logo footer-logo"></div>
                         <span class="ms-2 h5 mb-0">Virtunet</span>
                     </div>
-                    <p class="mt-2 mb-0">Next-Gen AI Innovation & Enterprise Cloud</p>
+                    <p class="mt-2 mb-0">Nuchtere AI-oplossingen met audit en governance</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Copyright &copy; <span class="tm-current-year">2024</span> Virtunet</p>
+                    <a href="../../#contact" class="btn btn-outline-light">Stuur ons een bericht</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modern JS Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
-    <script>
-        // Update current year
-        document.querySelector('.tm-current-year').textContent = new Date().getFullYear();
-        
-        // Navbar scroll behavior
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                document.querySelector('.navbar').classList.add('scrolled');
-            } else {
-                document.querySelector('.navbar').classList.remove('scrolled');
-            }
-        });
-    </script>
 </body>
 </html>

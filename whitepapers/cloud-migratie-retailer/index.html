@@ -4,187 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cloud Migratie & Modernisatie voor Retail - Virtunet</title>
-    <!-- Fonts -->
+    <title>Cloud Migratie & Modernisatie | Virtunet</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <!-- Bootstrap 5 (CDN) -->
-    <style>
-        .spaced-list li {
-            margin-bottom: 1rem;
-        }
-    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Main CSS -->
     <link rel="stylesheet" href="../../css/templatemo-style.css">
     <style>
-        .whitepaper-header {
-            background: linear-gradient(135deg, rgba(0, 123, 255, 1), rgba(23, 162, 184, 0.95));
-            padding: 6rem 0 3rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .whitepaper-section {
-            padding: 4rem 0;
-        }
-        
-        .whitepaper-section h2 {
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        .whitepaper-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--info-color);
-        }
-        
-        .results-card {
-            background-color: rgba(23, 162, 184, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            border-left: 5px solid var(--info-color);
-            margin-bottom: 2rem;
-        }
-        
-        .whitepaper-img {
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .tech-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: rgba(23, 162, 184, 0.1);
-            border-radius: 30px;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--info-color);
-        }
-        
-        .quote-box {
-            padding: 2rem;
-            background-color: rgba(33, 37, 41, 0.8);
-            border-radius: 15px;
-            position: relative;
-            margin: 3rem 0;
-        }
-        
-        .quote-box::before {
-            content: '';
-        }
-        
-        blockquote {
-            border-left: 3px solid var(--info-color);
-            padding-left: 1.5rem;
-            margin-left: 1rem;
-            font-style: italic;
-        }
-        
-        .step-block {
-            position: relative;
-            padding-left: 80px;
-            margin-bottom: 2.5rem;
-        }
-        
-        .step-number {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 60px;
-            height: 60px;
-            background-color: var(--info-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--info-color);
-            margin-bottom: 1rem;
-        }
-        
-        .architecture-diagram {
-            background-color: rgba(33, 37, 41, 0.8);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-        
-        .architecture-layer {
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            background-color: rgba(23, 162, 184, 0.1);
-            border-left: 4px solid var(--info-color);
-        }
-        
-        .architecture-component {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #212529;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .architecture-arrow {
-            text-align: center;
-            color: var(--info-color);
-            font-size: 1.5rem;
-            margin: 0.5rem 0;
-        }
-        
-        .milestone-item {
-            padding-left: 3rem;
-            position: relative;
-            padding-bottom: 2rem;
-        }
-        
-        .milestone-item:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            background-color: var(--info-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: bold;
-        }
-        
-        .milestone-icon {
-            position: absolute;
-            left: 0.5rem;
-            top: 0.5rem;
-            color: white;
-            font-size: 1rem;
-        }
+        .whitepaper-header { background: linear-gradient(135deg, rgba(13,110,253,.95), rgba(32,201,151,.9)); padding: 6rem 0 4rem; color: #fff; }
+        .whitepaper-section { padding: 4rem 0; }
+        .whitepaper-section h2 { margin-bottom: 2rem; position: relative; padding-bottom: 1rem; }
+        .whitepaper-section h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background-color: var(--primary-color); }
+        .card-outline { border-radius: 16px; border: 1px solid rgba(13,110,253,.15); box-shadow: 0 10px 24px rgba(0,0,0,.08); height: 100%; }
+        .badge-sub { background: rgba(13,110,253,.12); color: #0d6efd; border-radius: 12px; padding: .25rem .75rem; font-size: .8rem; }
+        .list-spaced li { margin-bottom: .75rem; }
+        .step-block { border-left: 4px solid rgba(13,110,253,.4); padding-left: 1.5rem; margin-bottom: 2rem; }
+        .step-title { font-weight: 600; color: var(--primary-color); }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../">
@@ -199,525 +36,193 @@
                     <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../value-proposition/">Toegevoegde Waarde</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#about">Technologieën</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../#projects">Projecten</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../">Whitepapers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../#intake">Intake</a></li>
                     <li class="nav-item"><a class="nav-link" href="../../#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <header class="whitepaper-header">
+    <header class="whitepaper-header text-center">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-4 fw-bold text-white mb-4">Cloud Migratie & Modernisatie voor Retail</h1>
-                    <p class="lead text-white mb-4">Hoe Virtunet een middelgrote retailer hielp met het migreren van een legacy systeem naar een microservices architectuur in de cloud</p>
-                    <div class="d-flex justify-content-center">
-                        <span class="badge bg-light text-dark me-2 p-2">Cloud Migratie</span>
-                        <span class="badge bg-light text-dark me-2 p-2">Microservices</span>
-                        <span class="badge bg-light text-dark me-2 p-2">Kostenbesparing</span>
-                        <span class="badge bg-light text-dark p-2">Retail</span>
-                    </div>
-                </div>
+            <h1 class="display-4 fw-bold mb-3">Cloud Migratie & Modernisatie</h1>
+            <p class="lead mb-4">Onze aanpak voor lift-and-shift, replatforming, containertransities en hybride OpenShift omgevingen met data-gedreven workload plaatsing.</p>
+            <div class="d-flex justify-content-center flex-wrap gap-2">
+                <span class="badge bg-light text-dark">Lift-and-shift</span>
+                <span class="badge bg-light text-dark">Managed Webapps</span>
+                <span class="badge bg-light text-dark">Containers & Kubernetes</span>
+                <span class="badge bg-light text-dark">OpenShift Hybrid</span>
+                <span class="badge bg-light text-dark">Data-classificatie</span>
             </div>
         </div>
     </header>
 
-    <!-- Executive Summary Section -->
     <section class="whitepaper-section bg-white">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Samenvatting</h2>
-                    <p class="lead text-dark">Een middelgrote Nederlandse retailer worstelde met een verouderd, monolithisch e-commerce en ERP-systeem dat niet kon voldoen aan de groeiende eisen van digitale verkoop, seizoenspieken en nieuwe functionaliteiten. Het bedrijf wilde de infrastructuurkosten verlagen, de schaalbaarheid verbeteren, en de time-to-market van nieuwe functionaliteiten verkorten.</p>
-                    
-                    <div class="results-card mt-4">
-                        <h4 class="text-dark mb-3">Belangrijkste Resultaten</h4>
-                        <div class="row">
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-info mb-2">42%</div>
-                                <p class="mb-0 text-dark">kostenbesparing in IT-infrastructuur</p>
-                            </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-info mb-2">99.99%</div>
-                                <p class="mb-0 text-dark">uptime, zelfs tijdens piekperiodes</p>
-                            </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-info mb-2">3x</div>
-                                <p class="mb-0 text-dark">snellere implementatie van nieuwe functionaliteiten</p>
-                            </div>
-                        </div>
+            <h2 class="text-dark">Samenvatting</h2>
+            <p class="lead text-dark">Virtunet helpt organisaties wereldwijd bij cloudmigraties die verder gaan dan alleen VM's verplaatsen. We combineren snelle lift-and-shift trajecten met modernisatie naar PaaS, containers en hybride platformen. Data-classificatie en governance bepalen waar workloads landen – in de cloud, on-premises of tijdelijk hybride.</p>
+            <div class="row g-4 mt-2">
+                <div class="col-lg-4">
+                    <div class="card-outline p-4">
+                        <span class="badge-sub">Scenario's</span>
+                        <h5 class="mt-3">Wat we doen</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Lift-and-shift van VMware / Hyper-V naar Azure, AWS of GCP.</li>
+                            <li>Replatforming naar managed webapps, databases en messaging.</li>
+                            <li>Containerisatie van bestaande workloads, inclusief GitOps pipelines.</li>
+                            <li>OpenShift als hybride control plane met cloud burst-capaciteit (bijv. GPU's).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card-outline p-4">
+                        <span class="badge-sub">Uitdagingen</span>
+                        <h5 class="mt-3">Wat we vaak tegenkomen</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Gecombineerde workloads (legacy VM's, containers, SaaS) en integraties.</li>
+                            <li>Compliance en data residency eisen die workload placement sturen.</li>
+                            <li>Teams die moeten schakelen naar DevOps, IaC en FinOps.</li>
+                            <li>Noodzaak om kosten, security en snelheid in balans te houden.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card-outline p-4">
+                        <span class="badge-sub">Deliverables</span>
+                        <h5 class="mt-3">Wat u ontvangt</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Landing zone ontwerp met security en policy-as-code.</li>
+                            <li>Roadmap per workload inclusief quick wins.</li>
+                            <li>Geïntegreerde CI/CD, observability en FinOps tooling.</li>
+                            <li>Runbooks en overdracht voor beheer en innovatie.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Challenge Section -->
     <section class="whitepaper-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">De Uitdaging</h2>
-                    
-                    <p>De retailer had te maken met diverse uitdagingen gerelateerd aan hun legacy IT-infrastructuur:</p>
-                    
-                    <ul>
-                        <li class="mb-3"><strong>Monolithische architectuur</strong> - Het verouderde ERP- en e-commerce platform was gebouwd als één grote applicatie, waardoor wijzigingen complex en risicovol waren en het systeem moeilijk te schalen was tijdens piekperiodes.</li>
-                        
-                        <li class="mb-3"><strong>Overprovisioning van resources</strong> - Om seizoenspieken op te vangen had het bedrijf permanente infrastructuur die het grootste deel van het jaar onderbezet was, maar alsnog dure licenties vereiste.</li>
-                        
-                        <li class="mb-3"><strong>Lange ontwikkelcycli</strong> - Nieuwe features namen gemiddeld 3-4 maanden in beslag om te ontwikkelen en uit te rollen, wat de time-to-market vertraagde en het bedrijf minder competitief maakte.</li>
-                        
-                        <li class="mb-3"><strong>Technische schuld</strong> - Het legacy-systeem was in de loop van 12 jaar organisch gegroeid, met minimale refactoring en toenemende complexiteit, wat het onderhoud steeds kostbaarder maakte.</li>
-                        
-                        <li class="mb-3"><strong>Databeperkingen</strong> - De bestaande database-architectuur stelde beperkingen aan de analyse-mogelijkheden, waardoor het moeilijk was om klantgegevens optimaal te benutten voor personalisatie en marketing.</li>
-                    </ul>
-
-                    <div class="quote-box">
-                        <blockquote>
-                            "Ons verouderde systeem was een anker geworden dat onze groei tegenhield. Elke nieuwe functionaliteit vereiste uitgebreide testing vanwege de verwevenheid van componenten. En tijdens Black Friday en de kerstperiode moesten we aparte teams inschakelen om het systeem draaiende te houden, terwijl we de rest van het jaar voor capaciteit betaalden die we niet volledig gebruikten."
-                        </blockquote>
-                        <p class="text-end mb-0">— CIO, Retailbedrijf</p>
+            <h2>Onze aanpak</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="step-block">
+                        <div class="step-title">1. Discover & classificeer</div>
+                        <p class="text-muted mb-0">Assessment van applicaties, data en integraties. Samen bepalen we welke workloads waar mogen landen, welke veiligheidsmaatregelen nodig zijn en waar de quick wins zitten.</p>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-title">2. Foundation & landing zones</div>
+                        <p class="text-muted mb-0">We richten cloud landing zones in met identity, netwerk, logging, security en policy. On-prem en cloud krijgen een consistente governance laag.</p>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-title">3. Lift-and-shift + optimalisatie</div>
+                        <p class="text-muted mb-0">VM's migreren we snel naar IaaS, waarna we rightsizing, automation, back-up en FinOps-rapportages activeren. Dit creëert een stabiele basis voor verdere modernisatie.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="step-block">
+                        <div class="step-title">4. Replatform & containerisatie</div>
+                        <p class="text-muted mb-0">Geschikte workloads verplaatsen we naar managed platforms (webapps, databases, messaging) of containerplatformen met GitOps en service mesh. OpenShift biedt hybride controle met cloud burst-opties.</p>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-title">5. Data & compliance</div>
+                        <p class="text-muted mb-0">Policies leggen vast welke data en workloads in de cloud mogen draaien, welke encryptie en keys nodig zijn en hoe audit logging verloopt. Classificatie stuurt automatische placement.</p>
+                    </div>
+                    <div class="step-block">
+                        <div class="step-title">6. Operate & optimise</div>
+                        <p class="text-muted mb-0">We leveren observability, runbooks en FinOps dashboards. Automatisering (IaC, pipelines, schedules) houdt de operatie beheersbaar en kosten in toom. Teams krijgen kennisoverdracht.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solution Section -->
-    <section class="whitepaper-section bg-gradient">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">De Oplossing</h2>
-                    
-                    <p>Virtunet ontwikkelde een uitgebreide cloud migratie en modernisatie strategie die het monolithische systeem transformeerde naar een moderne, schaalbare microservices architectuur in de cloud.</p>
-                    
-                    <div class="row mt-5">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">1</div>
-                                <h4 class="text-light">Grondige Assessment</h4>
-                                <p>We voerden een diepgaande analyse uit van de bestaande applicatie, decompositie-mogelijkheden, datastromen, en prestatiepatronen om een optimale migratiestrategie te bepalen.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">2</div>
-                                <h4 class="text-light">Microservices Decompositie</h4>
-                                <p>Het monolithische systeem werd opgedeeld in onafhankelijke, domein-gebaseerde microservices volgens het Domain-Driven Design principe, met focus op bedrijfsfunctionaliteiten zoals productcatalogus, orderverwerking, en klantenservice.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">3</div>
-                                <h4 class="text-light">Containerisatie & Orchestratie</h4>
-                                <p>We containeriseerden alle microservices met Docker en implementeerden Kubernetes voor orchestratie, wat consistente deployment en auto-scaling mogelijk maakte op basis van de actuele vraag.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">4</div>
-                                <h4 class="text-light">Database Modernisatie</h4>
-                                <p>We migreerden van één centrale relationele database naar een polyglot persistentie strategie, met gespecialiseerde databases voor verschillende doeleinden (relationeel, document-based, en caching) om de prestaties en schaalbaarheid te optimaliseren.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">5</div>
-                                <h4 class="text-light">CI/CD Pipeline Implementatie</h4>
-                                <p>We implementeerden een volledig geautomatiseerde CI/CD pipeline met Azure DevOps, waardoor continue integratie, testing en deployment mogelijk werd, met feature toggles voor veilige releases.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">6</div>
-                                <h4 class="text-light">Monitoring & Observability</h4>
-                                <p>We implementeerden uitgebreide monitoring en observability tooling via Azure Monitor en Application Insights voor real-time inzicht in de gezondheid, prestaties en gebruikspatronen van alle componenten.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-5">
-                        <h4 class="text-light mb-3">Gebruikte Technologieën</h4>
-                        <div>
-                            <span class="tech-tag">Azure Cloud</span>
-                            <span class="tech-tag">Kubernetes (AKS)</span>
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">Azure DevOps</span>
-                            <span class="tech-tag">Azure SQL</span>
-                            <span class="tech-tag">Cosmos DB</span>
-                            <span class="tech-tag">Redis Cache</span>
-                            <span class="tech-tag">Azure API Management</span>
-                            <span class="tech-tag">Application Insights</span>
-                            <span class="tech-tag">Azure CDN</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Architecture Section -->
-    <section class="whitepaper-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">Architectuur Ontwerp</h2>
-                    
-                    <p>De nieuwe cloud-native architectuur werd ontworpen rond bedrijfsdomeinen en voorzag in hoge beschikbaarheid, schaalbaarheid en flexibiliteit:</p>
-                    
-                    <div class="architecture-diagram">
-                        <div class="row">
-                            <div class="col-12">
-                                <h5 class="text-light mb-3">Vergelijking Architecturen</h5>
-                                <div class="row mb-4">
-                                    <div class="col-md-6">
-                                        <h6 class="text-center text-light">Legacy Monoliet</h6>
-                                        <div class="p-3 bg-dark rounded">
-                                            <div class="architecture-component">Webapplicatie & Business Logic</div>
-                                            <div class="architecture-arrow"><i class="fas fa-arrow-down"></i></div>
-                                            <div class="architecture-component">Centrale Oracle Database</div>
-                                            <p class="text-light text-center mt-2 small">Verticale scaling • Moeilijke CI/CD • Totale downtime bij updates</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="text-center text-light">Nieuwe Microservices Architectuur</h6>
-                                        <div class="p-3 bg-dark rounded">
-                                            <style>
-                                                .architecture-component {
-                                                    min-height: 60px;
-                                                    display: flex;
-                                                    align-items: center;
-                                                    justify-content: center;
-                                                    text-align: center;
-                                                    padding: 8px;
-                                                    font-size: 0.9rem;
-                                                    word-break: break-word;
-                                                    hyphens: auto;
-                                                }
-                                            </style>
-                                            <div class="row">
-                                                <div class="col-6 col-sm-4 mb-2">
-                                                    <div class="architecture-component">Product­catalogus</div>
-                                                </div>
-                                                <div class="col-6 col-sm-4 mb-2">
-                                                    <div class="architecture-component">Order­beheer</div>
-                                                </div>
-                                                <div class="col-6 col-sm-4 mb-2">
-                                                    <div class="architecture-component">Gebruikers­account</div>
-                                                </div>
-                                                <div class="col-6 col-sm-4 mb-2">
-                                                    <div class="architecture-component">Voorraad</div>
-                                                </div>
-                                                <div class="col-6 col-sm-4 mb-2">
-                                                    <div class="architecture-component">Betaal­opties</div>
-                                                </div>
-                                                <div class="col-6 col-sm-4 mb-2">
-                                                    <div class="architecture-component">Analytics</div>
-                                                </div>
-                                            </div>
-                                            <div class="architecture-arrow"><i class="fas fa-arrows-up-down"></i></div>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <div class="architecture-component">SQL DB</div>
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="architecture-component">Cosmos DB</div>
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="architecture-component">Redis Cache</div>
-                                                </div>
-                                            </div>
-                                            <p class="text-light text-center mt-2 small">Horizontale scaling • Onafhankelijke deployments • Poly-datastore strategie</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="architecture-layer">
-                            <h6 class="text-light mb-3">API Gateway</h6>
-                            <p>Azure API Management zorgt voor gecentraliseerde API-toegang met uitgebreide routing, authenticatie, rate limiting, en monitoring.</p>
-                        </div>
-                        
-                        <div class="architecture-layer">
-                            <h6 class="text-light mb-3">Microservices Laag</h6>
-                            <p>Domein-specifieke services draaien in Azure Kubernetes Service (AKS) met auto-scaling op basis van CPU-gebruik, memory, en request-aantallen.</p>
-                        </div>
-                        
-                        <div class="architecture-layer">
-                            <h6 class="text-light mb-3">Dataopslag Strategie</h6>
-                            <p>Combinatie van Azure SQL voor transactionele data, Cosmos DB voor productcatalogus en gebruikersgegevens, en Redis Cache voor sessies en snelle product-lookups.</p>
-                        </div>
-                        
-                        <div class="architecture-layer">
-                            <h6 class="text-light mb-3">Frontend Layer</h6>
-                            <p>Statische assets zoals HTML, CSS en JavaScript worden via Azure CDN beschikbaar gesteld, met client-side rendering voor een snelle gebruikerservaring.</p>
-                        </div>
-                    </div>
-                    
-                    <p>Deze architectuur bood verschillende voordelen ten opzichte van de legacy-oplossing:</p>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul>
-                                <li><strong>Onafhankelijke schaalbaarheid</strong> van individuele componenten op basis van werkelijke belasting</li>
-                                <li><strong>Verbeterde beschikbaarheid</strong> door geïsoleerde deployments en zelf-herstellende infrastructuur</li>
-                                <li><strong>Verlaagde operationele kosten</strong> door pay-as-you-go pricing en optimaal resourcegebruik</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul>
-                                <li><strong>Verhoogde ontwikkelsnelheid</strong> door kleinere, beheerbare codebases per team</li>
-                                <li><strong>Verbeterde resilience</strong> door gedistribueerde architectuur zonder single points of failure</li>
-                                <li><strong>Technologische flexibiliteit</strong> door het gebruik van de juiste tool voor elke specifieke taak</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Implementation Approach Section -->
     <section class="whitepaper-section bg-white">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Implementatie Aanpak</h2>
-                    
-                    <p class="text-dark">De migratie volgde een 'strangler pattern' aanpak, waarbij we geleidelijk functionaliteit uit de monoliet haalden en vervingen door microservices, zonder de business operations te verstoren:</p>
-                    
-                    <div class="row mt-5">
-                        <div class="col-lg-12">
-                            <div class="milestone-item">
-                                <i class="fas fa-search milestone-icon"></i>
-                                <h5 class="text-dark">Fase 1: Assessment & Strategie (8 weken)</h5>
-                                <ul class="text-dark spaced-list">
-                                    <li>Grondige analyse van de bestaande applicatie, databaseschema's en integratiepunten</li>
-                                    <li>Analyse van prestatie-knelpunten en schaalproblemen</li>
-                                    <li>Bepalen van de optimale decompositiestrategie met business stakeholders</li>
-                                    <li>Cloud architectuur ontwerp en migratieplan met ROI-berekening</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="milestone-item">
-                                <i class="fas fa-vial milestone-icon"></i>
-                                <h5 class="text-dark">Fase 2: Proof of Concept (6 weken)</h5>
-                                <ul class="text-dark spaced-list">
-                                    <li>Extractie van een niet-kritieke module (productcatalogus) als eerste microservice</li>
-                                    <li>Implementatie van het API gateway pattern voor routing tussen legacy en nieuwe systemen</li>
-                                    <li>Opzetten van de initiële cloud-infrastructuur en CI/CD pipelines</li>
-                                    <li>Performance testing en validatie van het concept</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="milestone-item">
-                                <i class="fas fa-code-branch milestone-icon"></i>
-                                <h5 class="text-dark">Fase 3: Incrementele Migratie (16 weken)</h5>
-                                <ul class="text-dark spaced-list">
-                                    <li>Stapsgewijze migratie van modules naar microservices volgens prioriteit en afhankelijkheden</li>
-                                    <li>Implementatie van database-migratie met bidiretionele data synchronisatie tijdens overgangsperiode</li>
-                                    <li>Geleidelijke verschuiving van verkeersstromen naar de nieuwe architectuur</li>
-                                    <li>Continue monitoring en optimalisatie tijdens de transitieperiode</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="milestone-item">
-                                <i class="fas fa-check-circle milestone-icon"></i>
-                                <h5 class="text-dark">Fase 4: Volledige Cutover & Optimalisatie (4 weken)</h5>
-                                <ul class="text-dark spaced-list">
-                                    <li>Definitieve migratie van alle resterende functionaliteiten</li>
-                                    <li>Uitfaseren van de legacy-systemen na succesvolle cutover</li>
-                                    <li>Fine-tuning van microservices voor optimale prestaties en kostenefficiëntie</li>
-                                    <li>Overdracht van kennis en training voor interne teams</li>
-                                </ul>
-                            </div>
-                        </div>
+            <h2>Referentie-architecturen</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5>Lift-and-shift foundation</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Landing zone met hub/spoke netwerk, identity en policy-as-code.</li>
+                            <li>IaaS migratie tooling (Azure Migrate, CloudEndure, Velostrata).</li>
+                            <li>Automatische tagging, patching, backups en cost policies.</li>
+                        </ul>
                     </div>
-
-                    <div class="quote-box mt-5">
-                        <blockquote>
-                            "De incrementele aanpak was een game-changer voor ons. In plaats van een complete 'big bang' migratie met bijbehorende risico's, konden we geleidelijk overschakelen en direct de voordelen zien van de nieuwe architectuur. Zo hadden we tijdens Black Friday al een deel van onze belangrijkste functionaliteiten draaien op de nieuwe infrastructuur, wat probleemloos schaalde tijdens onze drukste periode ooit."
-                        </blockquote>
-                        <p class="text-end mb-0">— Head of Digital, Retailbedrijf</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5>Managed app platform</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Webapps, serverless functies en managed databases.</li>
+                            <li>CI/CD met staged deployments, feature toggles en blue/green.</li>
+                            <li>Integratie met identity providers en API gateways.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5>Container & OpenShift</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Kubernetes of OpenShift met GitOps (ArgoCD/Fleet), service mesh en policy agents.</li>
+                            <li>Hybride clusters: on-prem voor gevoelige workloads, cloud voor burst (GPU, specifieke regio's).</li>
+                            <li>Observability (Prometheus/Grafana/ELK) en security (Falco, Kyverno, Gatekeeper).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5>FinOps & governance</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Tagging, budgets, alerts en reports voor teams en management.</li>
+                            <li>Automation voor schedules, spot instances en rightsizing.</li>
+                            <li>Policy-as-code voor compliance (bijv. data residency, encryptie).</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Results Section -->
     <section class="whitepaper-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">Resultaten en Impact</h2>
-                    
-                    <p class="lead text-light">De cloud migratie en modernisatie heeft aanzienlijke verbeteringen gebracht voor de retailer, zowel op technisch als business-niveau:</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-lg-6">
-                            <div class="card mb-4 h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title text-info">Technische Verbeteringen</h5>
-                                    <ul class="spaced-list">
-                                        <li><strong>42% kostenbesparing</strong> in totale infrastructuurkosten door optimaal resourcegebruik</li>
-                                        <li><strong>99.99% uptime</strong>, zelfs tijdens piekperiodes zoals Black Friday</li>
-                                        <li><strong>10x verbeterde schaalbaarheid</strong> tijdens verkooppieken zonder handmatige ingrepen</li>
-                                        <li><strong>70% reductie</strong> in deployment-gerelateerde incidenten</li>
-                                        <li><strong>68% kleinere codebases</strong> per team, wat de onderhoudbaarheid verbeterde</li>
-                                        <li><strong>85% geautomatiseerde test coverage</strong> door verbeterde CI/CD processen</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card mb-4 h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title text-info">Business Impact</h5>
-                                    <ul class="spaced-list">
-                                        <li><strong>3x snellere implementatie</strong> van nieuwe functionaliteiten en updates</li>
-                                        <li><strong>56% toename</strong> in mobiele conversieratio door verbeterde prestaties</li>
-                                        <li><strong>27% groei in online omzet</strong> dankzij betere gebruikerservaring en uptime</li>
-                                        <li><strong>Personalisatie op schaal</strong> door verbeterde data-toegankelijkheid</li>
-                                        <li><strong>Cloud-native innovaties</strong> zoals AI-gedreven productaanbevelingen</li>
-                                        <li><strong>Verbeterde competitieve positie</strong> door snellere marktrespons</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="results-card mt-4">
-                        <h5 class="text-dark mb-3">Performance Metrics</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p><strong>Laadtijd Productpagina's:</strong></p>
-                                <ul class="spaced-list">
-                                    <li>Vóór migratie: 3.2 seconden gemiddeld</li>
-                                    <li>Na migratie: 0.9 seconden gemiddeld (72% verbetering)</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <p><strong>API Response Times:</strong></p>
-                                <ul class="spaced-list">
-                                    <li>Vóór migratie: 850ms gemiddeld</li>
-                                    <li>Na migratie: 180ms gemiddeld (79% verbetering)</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <p><strong>Maximale Gelijktijdige Gebruikers:</strong></p>
-                                <ul class="spaced-list">
-                                    <li>Vóór migratie: ~5,000 gebruikers</li>
-                                    <li>Na migratie: 50,000+ gebruikers (10x verbetering)</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <p><strong>Ontwikkelcyclus Nieuwe Features:</strong></p>
-                                <ul class="spaced-list">
-                                    <li>Vóór migratie: 14-16 weken</li>
-                                    <li>Na migratie: 4-5 weken (70% sneller)</li>
-                                </ul>
-                            </div>
-                        </div>
+            <h2>Lessons learned</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5 class="mb-3">Wat werkt goed</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Start klein (pilot) maar leg governance direct vast voor grotere uitrol.</li>
+                            <li>Automatiseer vanaf dag één (IaC, pipelines, observability).</li>
+                            <li>Betrek security, compliance en finance vroeg voor gedragen beslissingen.</li>
+                            <li>Stel duidelijke exit-criteria op voor legacy: voorkom dubbele runkosten.</li>
+                        </ul>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="card-outline p-4 h-100">
+                        <h5 class="mb-3">Let hier op</h5>
+                        <ul class="list-spaced text-muted mb-0">
+                            <li>Reken op aanvullende skills (platform, FinOps, SRE) en plan training.</li>
+                            <li>Houd rekening met integraties (fileshares, queues) die modernisatie vertragen.</li>
+                            <li>Data-classificatie moet actueel zijn; zonder dit blijft workload placement grijs.</li>
+                            <li>Meet voortgang niet alleen technisch, maar ook qua businesswaarde.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-outline p-4 mt-4">
+                <h5 class="mb-3">Volgende stap</h5>
+                <p class="text-muted mb-3">Curieus hoe deze aanpak op uw organisatie toepasbaar is? Plan een betaalde intake waarin we workload-classificatie, routekaart en quick wins concreet maken.</p>
+                <a href="../../#intake" class="btn btn-primary">Bekijk intake informatie</a>
             </div>
         </div>
     </section>
 
-    <!-- Lessons Learned Section -->
-    <section class="whitepaper-section bg-gradient">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">Lessen & Best Practices</h2>
-                    
-                    <p class="text-light">Tijdens dit project hebben we verschillende waardevolle inzichten opgedaan die nuttig kunnen zijn voor vergelijkbare migraties:</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">1. Incrementele Benadering Werkt</h5>
-                            <p class="text-light">De strangler pattern aanpak bleek essentieel voor het beperken van risico's en het geleidelijk realiseren van voordelen, in plaats van een risicovolle 'big bang' migratie.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">2. Database Migratie is Kritiek</h5>
-                            <p class="text-light">De database-migratie was het meest complexe onderdeel. Dual-write patronen en zorgvuldige coördinatie waren essentieel om data-integriteit te waarborgen tijdens de transitie.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">3. Domain-Driven Design Biedt Structuur</h5>
-                            <p class="text-light">DDD-principes hielpen bij het bepalen van de juiste microservice-grenzen gebaseerd op bedrijfsprocessen, wat leidde tot coherente, losjes gekoppelde services.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">4. Automatisering is Onmisbaar</h5>
-                            <p class="text-light">Uitgebreide CI/CD automatisering en Infrastructure-as-Code waren cruciaal voor het beheren van de toegenomen complexiteit van vele onafhankelijke services.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">5. Observability vanaf Dag Één</h5>
-                            <p class="text-light">Monitoring, logging en tracing werden vanaf het begin geïmplementeerd, wat essentieel bleek voor het oplossen van problemen in de gedistribueerde omgeving.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">6. Teams Structureren rond Services</h5>
-                            <p class="text-light">De reorganisatie van ontwikkelteams rond microservices-domeinen verbeterde eigenaarschap en verminderde coördinatie-overhead.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Conclusion Section -->
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Conclusie</h2>
-                    
-                    <p class="text-dark">De cloud migratie en modernisatie voor deze retailer laat zien dat een strategische, incrementele benadering van legacy-modernisatie aanzienlijke voordelen kan opleveren:</p>
-                    
-                    <ul class="text-dark spaced-list">
-                        <li>De transitie van een monolithische naar microservices-architectuur heeft geleid tot verbeterde schaalbaarheid, veerkracht, en een drastische kostenverlaging</li>
-                        <li>De retailer kan nu snel reageren op marktveranderingen, nieuwe functionaliteiten introduceren in een fractie van de tijd, en dynamisch schalen op basis van seizoensvraag</li>
-                        <li>Door de migratie naar de cloud heeft het bedrijf toegang gekregen tot geavanceerde cloud-native services zoals AI en machine learning, wat nieuwe innovatiemogelijkheden biedt</li>
-                        <li>De verbeterde prestaties en betrouwbaarheid van het platform hebben direct geleid tot een betere klantervaring en hogere omzet</li>
-                    </ul>
-                    
-                    <p class="mt-4 text-dark">Bij Virtunet geloven we dat cloud migratie niet alleen een technologische transformatie is, maar een strategische business-enabler. Door legacy-systemen te moderniseren kunnen retailers zich beter aanpassen aan de uitdagingen van de moderne digitale markt, hun operationele efficiëntie verhogen, en een betere klantenervaring bieden.</p>
-                    
-                    <div class="quote-box">
-                        <blockquote>
-                            "Deze migratie heeft ons bedrijf getransformeerd van een traditionele retailer met een online aanwezigheid naar een echt digitaal bedrijf dat kan concurreren met pure e-commerce spelers. De schaalbaarheid, flexibiliteit en snelheid die we nu hebben stellen ons in staat om te innoveren op een manier die voorheen onmogelijk was."
-                        </blockquote>
-                        <p class="text-end mb-0">— CEO, Retailbedrijf</p>
-                    </div>
-                    
-                    <div class="text-center mt-5">
-                        <a href="../../#contact" class="btn btn-info btn-lg">Neem contact op voor meer informatie</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="py-4 footer">
         <div class="container">
             <div class="row g-4 align-items-center">
@@ -726,31 +231,15 @@
                         <div class="tm-site-logo footer-logo"></div>
                         <span class="ms-2 h5 mb-0">Virtunet</span>
                     </div>
-                    <p class="mt-2 mb-0">Next-Gen AI Innovation & Enterprise Cloud</p>
+                    <p class="mt-2 mb-0">Cloud trajecten met nuchtere governance</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Copyright &copy; <span class="tm-current-year">2024</span> Virtunet</p>
+                    <a href="../../#contact" class="btn btn-outline-light">Stuur ons een bericht</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modern JS Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
-    <script>
-        // Update current year
-        document.querySelector('.tm-current-year').textContent = new Date().getFullYear();
-        
-        // Navbar scroll behavior
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                document.querySelector('.navbar').classList.add('scrolled');
-            } else {
-                document.querySelector('.navbar').classList.remove('scrolled');
-            }
-        });
-    </script>
 </body>
 </html>
