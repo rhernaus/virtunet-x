@@ -20,28 +20,53 @@
     <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
                 <div class="flex-shrink-0">
                     <a href="../" class="flex items-center gap-3 group">
-                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center">
-                            <i class="fas fa-network-wired text-white text-xs"></i>
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">
+                            V
                         </div>
                         <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
                     </a>
                 </div>
+
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-8">
                     <a href="../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
                     <a href="../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
                     <a href="../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
-                    <a href="#" class="text-sm font-medium text-primary-600 dark:text-white transition-colors">Insights</a>
+                    <a href="../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
 
                     <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
-                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
                             <i class="fas fa-sun hidden dark:block"></i>
                             <i class="fas fa-moon block dark:hidden"></i>
                         </button>
                         <a href="../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5">Contact</a>
                     </div>
                 </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-sun hidden dark:block"></i>
+                        <i class="fas fa-moon block dark:hidden"></i>
+                    </button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Expertise</a>
+                <a href="../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Projecten</a>
+                <a href="../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Aanpak</a>
+                <a href="../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Insights</a>
+                <a href="../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
             </div>
         </div>
     </nav>
@@ -50,10 +75,10 @@
     <header class="pt-32 pb-16 relative overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
         <div class="absolute top-0 right-1/2 translate-x-1/2 w-[800px] h-[500px] bg-primary-500/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
         <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
-            <h1 class="text-4xl md:text-5xl font-display font-bold mb-6 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-6 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent">
                 Whitepapers & Insights
             </h1>
-            <p class="text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <p class="text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                 Deep-dives in onze technische oplossingen. Van architectuurkeuzes tot code-level implementaties.
             </p>
         </div>
@@ -165,7 +190,7 @@
 
     <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="container mx-auto px-4 text-center">
-            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
+            <p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p>
         </div>
     </footer>
 
