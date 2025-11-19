@@ -1,254 +1,189 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Phaeton – Slim EV-laden op Victron Venus OS | Virtunet</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151e2e', 900: '#0f172a', 950: '#020617' },
+                        primary: { DEFAULT: '#10b981', hover: '#059669' }, // Emerald for Energy
+                        ai: '#8b5cf6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../../css/templatemo-style.css">
+
     <style>
-        .whitepaper-header {
-            background: linear-gradient(135deg, rgba(25, 135, 84, 0.95), rgba(255, 193, 7, 0.9));
-            padding: 6rem 0 3rem;
-            color: #fff;
-        }
-        .whitepaper-section {
-            padding: 4rem 0;
-            color: #212529;
-        }
-        .whitepaper-section h2 {
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        .whitepaper-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--primary-color);
-        }
-        .highlight-card {
-            background-color: rgba(25, 135, 84, 0.08);
-            border-radius: 15px;
-            padding: 2rem;
-            border-left: 5px solid rgba(25, 135, 84, 1);
-            height: 100%;
-            color: #212529;
-        }
-        .feature-list li {
-            margin-bottom: 0.75rem;
-        }
-        .badge-stack span {
-            margin: 0.25rem;
-        }
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../../">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../value-proposition/">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="../">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#intake">Intake</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#contact">Contact</a></li>
-                </ul>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform"></div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">Home</a>
+                    <a href="../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">Insights</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../../#contact" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <header class="whitepaper-header">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-9 mx-auto text-center">
-                    <h1 class="display-4 fw-bold mb-3">Phaeton – EV Charger Driver voor Victron Venus OS</h1>
-                    <p class="lead mb-4">Slim laden op basis van PV-overschot en prijsprikkels, volledig lokaal gestuurd op Victron Venus OS.</p>
-                    <div class="badge-stack">
-                        <span class="badge bg-light text-dark">PV-aware</span>
-                        <span class="badge bg-light text-dark">Prijsgeoptimaliseerd</span>
-                        <span class="badge bg-light text-dark">Local-first</span>
-                        <span class="badge bg-light text-dark">Rust 2024</span>
-                    </div>
-                    <p class="mt-3 mb-0">In productie bij klanten • Koppelt Alfen laadpaal en Victron EMS via Modbus TCP & D-Bus</p>
-                </div>
+    <!-- Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 border-b border-slate-800">
+        <div class="absolute inset-0 bg-grid-white/[0.02] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-6 text-xs font-bold uppercase tracking-wider">
+                Energy IoT
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
+                Phaeton – Slim Laden
+            </h1>
+            <p class="text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto">
+                Slim EV-laden op basis van PV-overschot en prijsprikkels, volledig lokaal gestuurd op Victron Venus OS.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">PV-Aware</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Dynamic Tariffs</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Local First</span>
             </div>
         </div>
     </header>
 
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-6">
-                    <h2>Waarom Phaeton?</h2>
-                    <p class="lead">Veel EV-laders negeren zonne-energie en dynamische prijzen. Phaeton brengt energie- en prijsdata samen, zodat laden slimmer en betaalbaarder wordt zonder cloud-afhankelijkheid.</p>
-                    <ul class="feature-list list-unstyled">
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>PV-aware</strong>: stemt laadvermogen af op actuele zonne-opbrengst.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Prijsbewust</strong>: integreert Tibber dagprijzen of vaste schema's.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Victron-native</strong>: publiceert status en besturing via D-Bus.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Local-first</strong>: draait op Venus OS (bijv. Cerbo GX) zonder externe afhankelijkheden.</li>
+    <!-- Content -->
+    <section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 max-w-5xl">
+
+            <!-- Intro Grid -->
+            <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white">Waarom Phaeton?</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-6">
+                        Veel EV-laders negeren zonne-energie en dynamische prijzen. Phaeton brengt energie- en prijsdata samen, zodat laden slimmer en betaalbaarder wordt zonder cloud-afhankelijkheid.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>PV-aware:</strong> Laadvermogen volgt de zon.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Prijsbewust:</strong> Integreert Tibber dagprijzen.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Victron Native:</strong> Volledige D-Bus integratie.</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="col-lg-6">
-                    <div class="highlight-card">
-                        <h4 class="fw-bold">De uitdaging</h4>
-                        <p>Huiseigenaren en bedrijven willen laden wanneer stroom goedkoop of overvloedig is, maar standaard laders missen de koppeling met PV en prijsdata. Phaeton vervangt handmatig schakelen door een deterministische control loop.</p>
-                        <h5 class="mt-4 fw-bold">Kernbelofte</h5>
-                        <p class="mb-0">Betrouwbaar EV-laden dat meebeweegt met het energiesysteem en inzicht geeft in elke sessie.</p>
+                <div class="bg-slate-50 dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg dark:shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl text-emerald-500"><i class="fas fa-bolt"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white relative z-10">De Uitdaging</h3>
+                    <p class="text-slate-600 dark:text-slate-400 relative z-10 leading-relaxed">
+                        "Huiseigenaren willen laden wanneer stroom goedkoop of overvloedig is. Phaeton vervangt handmatig schakelen door een deterministische control loop op de Victron Cerbo."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">Functionaliteit</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">Control Loop</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Berekent veilige setpoints op basis van grid limits en PV excess.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">D-Bus API</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Exposeert status voor Victron dashboards en remote console.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">Rust Core</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Veilige, snelle binary zonder runtime overhead.</p>
                     </div>
                 </div>
             </div>
+
+            <!-- Architecture Box -->
+            <div class="mb-20 bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800">
+                <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white text-center">Systeem Architectuur</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-4">Modules</h5>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Driver:</span> Modbus TCP naar Alfen lader.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Tibber:</span> Prijzen ophalen voor planning.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Web:</span> Lokale Axum interface voor config.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-4">Deployment</h5>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Target:</span> Linux ARMv7 (Cerbo GX / Raspberry Pi).</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Updates:</span> Self-updating binary.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Config:</span> YAML-based setup.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-2xl p-12 border border-emerald-500/20">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Aan de slag met Phaeton</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+                    Phaeton is vandaag inzetbaar voor Victron + Alfen omgevingen. Neem contact op voor installatie of partnerprogramma's.
+                </p>
+                <a href="../../#contact" class="inline-block px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition-colors shadow-lg shadow-emerald-500/25">
+                    Neem contact op
+                </a>
+            </div>
+
         </div>
     </section>
 
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Functionaliteit op een rij</h2>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="highlight-card h-100">
-                        <h5 class="fw-bold">Control loop</h5>
-                        <p class="mb-0">Leest Modbus-telemetrie, berekent veilige setpoints en stuurt de Alfen EVSE aan op basis van PV-excess en tijdschema's.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="highlight-card h-100">
-                        <h5 class="fw-bold">D-Bus integratie</h5>
-                        <p class="mb-0">Exposeert een typed snapshot zodat Victron dashboards, automation en logging direct over de laadstatus beschikken.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="highlight-card h-100">
-                        <h5 class="fw-bold">Web UI & API</h5>
-                        <p class="mb-0">Axum-webinterface voor dashboards, planning, logging en configuratie. Optioneel OpenAPI voor integraties.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Architectuuroverzicht</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Modules & dataflow</h5>
-                    <ul class="feature-list list-unstyled">
-                        <li><strong>driver</strong>: hoofdloop, Modbus connectie, fase- en vermogenslogica.</li>
-                        <li><strong>dbus</strong>: export van states naar Venus OS voor zichtbaarheid en automatisering.</li>
-                        <li><strong>web</strong>: status, geschiedenis, configuratie en log streaming.</li>
-                        <li><strong>tibber</strong>: dagprijzen en historische data voor kostengeoriënteerde planning.</li>
-                        <li><strong>session</strong>: beheer en attributie van laadbeurten inclusief analytics.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Techniek & kwaliteit</h5>
-                    <ul class="feature-list list-unstyled">
-                        <li>Rust 2024 met tokio; geen <code>unsafe</code>; strikte lints en cognitive complexity limieten.</li>
-                        <li>Scenarietests voor web, Tibber, sessies, Modbus error handling; coverage via <code>cargo llvm-cov</code>.</li>
-                        <li>CI enforced: clippy pedantic/nursery, audit, deny, git hooks.</li>
-                        <li>Open-source (MIT/Apache-2.0) met feature flags voor DBus, Tibber, OpenAPI.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Inzet & beheer</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="highlight-card">
-                        <h5 class="fw-bold">Operationeel</h5>
-                        <p class="mb-0">Phaeton draait op Venus OS met configuratie via <code>phaeton_config.yaml</code>. Ondersteunt self-update, lokale authenticatie (Argon2) en structuur logging die via de UI live te volgen is.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="highlight-card">
-                        <h5 class="fw-bold">Integraties</h5>
-                        <p class="mb-0">Modbus TCP (Alfen NG9xx) voor laadpaalbesturing, Tibber voor prijzen, voertuig-SOC opties via uitbreidbare ports en clean interfaces.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Roadmap & uitbreidingen</h2>
-            <div class="row g-4">
-                <div class="col-lg-7">
-                    <ul class="feature-list list-unstyled">
-                        <li><strong>Korte termijn</strong>: extra EVSE profielen, verbeterde PV-forecasting, multi-vehicle scheduling.</li>
-                        <li><strong>Middellange termijn</strong>: integratie met thuisbatterijen, V2G voorbereiding, API hooks voor energiemonitoring.</li>
-                        <li><strong>Langere termijn</strong>: partnerprogramma voor installateurs en energy service providers.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-5">
-                    <div class="highlight-card">
-                        <h5 class="fw-bold">Use cases</h5>
-                        <p class="mb-0">Bedrijven met PV-installaties, huishoudens met dynamische tarieven, installateurs die Victron en Alfen combineren en energiecoöperaties die lokaal willen balanceren.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Werk samen met Virtunet</h2>
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-7">
-                    <ul class="feature-list list-unstyled">
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Diepe Victron ervaring</strong> gecombineerd met moderne Rust software engineering.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Nuchtere implementatie</strong>: intake, proefopstelling en overdracht met documentatie.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Uitbreidbaar</strong>: feature-gated integraties voor nieuwe EVSE's, prijsondersteuning en voertuigen.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-5">
-                    <div class="highlight-card">
-                        <h5 class="fw-bold">Interesse?</h5>
-                        <p class="mb-0">Phaeton is vandaag inzetbaar voor Victron + Alfen omgevingen. Neem contact op voor configuratie, maatwerk of partnerprogramma's.</p>
-                        <a href="../../#contact" class="btn btn-primary mt-3">Stuur een bericht</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">Slimme energie software met bewezen governance</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="../../#contact" class="btn btn-outline-light">Stuur ons een bericht</a>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="py-8 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

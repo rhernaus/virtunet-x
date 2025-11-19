@@ -1,290 +1,212 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ScanViper – Continu inzicht in web- en cloudrisico's | Virtunet</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151e2e', 900: '#0f172a', 950: '#020617' },
+                        primary: { DEFAULT: '#3b82f6', hover: '#2563eb' },
+                        ai: '#8b5cf6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../../css/templatemo-style.css">
+
     <style>
-        .whitepaper-header {
-            background: linear-gradient(135deg, rgba(255, 97, 56, 0.92), rgba(33, 37, 41, 0.92));
-            padding: 6rem 0 3rem;
-            color: #fff;
-        }
-        .whitepaper-section {
-            padding: 4rem 0;
-        }
-        .whitepaper-section h2 {
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        .whitepaper-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--primary-color);
-        }
-        .surface-card {
-            background-color: rgba(13, 202, 240, 0.08);
-            border-radius: 15px;
-            padding: 1.5rem;
-            height: 100%;
-        }
-        .stats-card {
-            background-color: rgba(33, 37, 41, 0.85);
-            color: #fff;
-            border-radius: 15px;
-            padding: 2rem;
-            height: 100%;
-        }
-        .feature-list li {
-            margin-bottom: 0.75rem;
-        }
-        .badge-stack span {
-            margin: 0.25rem;
-        }
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../../">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../value-proposition/">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="../">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#intake">Intake</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#contact">Contact</a></li>
-                </ul>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-ai shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform"></div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Home</a>
+                    <a href="../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../../#contact" class="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <header class="whitepaper-header">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-9 mx-auto text-center">
-                    <h1 class="display-4 fw-bold mb-3">ScanViper – Bite Into Risk Before It Bites Back</h1>
-                    <p class="lead mb-4">Een Rust-first platform dat publiek toegankelijke domeinen continu scant over HTTP, TLS, DNS, SEO en cloud objecten om risico's sneller en verantwoord te signaleren.</p>
-                    <div class="badge-stack">
-                        <span class="badge bg-light text-dark">Multi-surface telemetry</span>
-                        <span class="badge bg-light text-dark">Actionable findings</span>
-                        <span class="badge bg-light text-dark">Responsible disclosure</span>
-                        <span class="badge bg-light text-dark">Rust performance</span>
-                    </div>
-                    <p class="mt-3 mb-0">Publieke lancering gepland in 2025 • Opt-in pilots beschikbaar</p>
-                </div>
+    <!-- Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 border-b border-slate-800">
+        <div class="absolute inset-0 bg-grid-white/[0.02] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-6 text-xs font-bold uppercase tracking-wider">
+                Security Platform
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
+                ScanViper – Bite Into Risk
+            </h1>
+            <p class="text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto">
+                Een Rust-first platform dat publiek toegankelijke domeinen continu scant over HTTP, TLS, DNS, SEO en cloud objecten.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Multi-surface telemetry</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Responsible Disclosure</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Rust Performance</span>
             </div>
         </div>
     </header>
 
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-6">
-                    <h2>Wat lost ScanViper op?</h2>
-                    <p class="lead">Digitale teams zien vaak maar een deel van hun publieke oppervlak. Certificaten verlopen, DNS-records raken inconsistent en cloud buckets blijven open staan. ScanViper maakt risico's zichtbaar voordat ze impact hebben.</p>
-                    <ul class="feature-list list-unstyled">
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Continu zicht</strong> op HTTP, TLS, DNS/email authenticatie, SEO en cloud objecten.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Actiegericht</strong>: elke finding bevat bewijs, impact en prioriteit.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Verantwoord</strong>: respecteert robots, security.txt en opt-outs.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Global vantage</strong>: checks vanuit meerdere regio's voor realistische clientervaringen.</li>
+    <!-- Content -->
+    <section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 max-w-5xl">
+
+            <!-- Intro Grid -->
+            <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white">Wat lost ScanViper op?</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-6">
+                        Digitale teams zien vaak maar een deel van hun publieke oppervlak. Certificaten verlopen, DNS-records raken inconsistent en cloud buckets blijven open staan.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Continu zicht:</strong> HTTP, TLS, DNS, Cloud.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Actiegericht:</strong> Bewijs, impact en prioriteit.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Verantwoord:</strong> Respecteert robots.txt en security.txt.</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="col-lg-6">
-                    <div class="stats-card">
-                        <h4 class="fw-bold">Kernstatistieken (target 6 maanden)</h4>
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-3"><strong>10.000+</strong> domeinen per week in &ge;3 regio's.</li>
-                            <li class="mb-3"><strong>&lt;0,1%</strong> klachten dankzij opt-out en disclosure workflows.</li>
-                            <li class="mb-3"><strong>30%</strong> van kritieke issues opgelost binnen 30 dagen na notificatie.</li>
-                            <li><strong>50%</strong> wekelijkse actieve gebruikers onder opt-in tenants.</li>
+                <div class="bg-slate-50 dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg dark:shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl text-amber-500"><i class="fas fa-shield-cat"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white relative z-10">Kernstatistieken</h3>
+                    <ul class="space-y-3 relative z-10 text-slate-600 dark:text-slate-400">
+                        <li class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+                            <span>Domeinen / week</span>
+                            <span class="font-mono font-bold text-amber-600 dark:text-amber-500">10.000+</span>
+                        </li>
+                        <li class="flex justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+                            <span>Klachten</span>
+                            <span class="font-mono font-bold text-green-600 dark:text-green-500">&lt;0.1%</span>
+                        </li>
+                        <li class="flex justify-between pb-2">
+                            <span>Fix rate (30d)</span>
+                            <span class="font-mono font-bold text-blue-600 dark:text-blue-500">30%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scanning Capabilities -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">Wat scant ScanViper?</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">HTTP & Web</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Headers, redirects, mixed content en performance hints.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">TLS & Certs</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Handshake, chain validatie, OCSP en expiratie-alerts.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">DNS & Email</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">SPF, DKIM, DMARC, MTA-STS en regio-checks.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">SEO & Vitals</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Structured data, meta tags en Core Web Vitals.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">Cloud Objects</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Detectie van publieke S3/GCS/Azure buckets.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">Availability</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Uptime signalen en alerts bij uitval.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Architecture -->
+            <div class="mb-20 bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800">
+                <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white text-center">Architectuur & Stack</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-4">Platform</h5>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Console:</span> Next.js/React UI voor rapportage.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">API Gateway:</span> Axum REST (Rust) met OpenAPI.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Scheduler:</span> NATS JetStream voor scan queues.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-4">Security & Trust</h5>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Governance:</span> SBOMs, cargo audit, least-privilege.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Ethiek:</span> Opt-out registry en disclosure workflows.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Observability:</span> OpenTelemetry traces.</li>
                         </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- CTA -->
+            <div class="text-center bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-2xl p-12 border border-amber-500/20">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Word Pilotklant</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+                    Interesse in vroegtijdige toegang? Stuur ons een bericht en ontvang een intakevoorstel met scope, timing en voorwaarden.
+                </p>
+                <a href="../../#contact" class="inline-block px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition-colors shadow-lg shadow-amber-500/25">
+                    Vraag Pilot Aan
+                </a>
+            </div>
+
         </div>
     </section>
 
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Wat scant ScanViper?</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">HTTP & Web</h5>
-                        <p>Headers, redirectketens, mixed content, robots/sitemaps en performance hints.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">TLS & certificaten</h5>
-                        <p>Handshake, chain validatie, OCSP, CAA en certificate health inclusief expiratie-alerts.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">DNS & e-mail</h5>
-                        <p>SPF, DKIM, DMARC, MTA-STS, TLS-RPT en misconfiguraties per regio of ASN.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">SEO & Core Web Vitals</h5>
-                        <p>Structured data, meta tags, PageSpeed Insights en Core Web Vitals voor marketing teams.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">Cloud objecten</h5>
-                        <p>Detectie van publiek toegankelijke S3, GCS en Azure storage patterns met responsible disclosure.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">Beschikbaarheid & alerts</h5>
-                        <p>Uptime-signalen, certificaatverloop en weekly digests met duidelijke opvolging.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Architectuur & Technologie</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Platformcomponenten</h5>
-                    <ul class="feature-list list-unstyled">
-                        <li><strong>Console</strong>: Next.js/React UI voor inzicht, rapportage en workflow.</li>
-                        <li><strong>API Gateway</strong>: axum REST met OpenAPI export; tonic gRPC voor interne orchestration.</li>
-                        <li><strong>Scheduler & quotas</strong>: NATS JetStream/Redis streams sturen scans, respecteren limieten.</li>
-                        <li><strong>Agents & analyzers</strong>: Rust executors en crates voor HTTP/TLS/DNS/SEO/cloud.</li>
-                        <li><strong>Opslag</strong>: PostgreSQL voor state; S3/MinIO voor bewijs en rapportages.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Security & vertrouwen</h5>
-                    <ul class="feature-list list-unstyled">
-                        <li>Least-privilege secrets, SBOMs en cargo audit gates.</li>
-                        <li>Opt-out registry, robots- en security.txt-respect, transparante user-agent.</li>
-                        <li>Disclosure workflows voor beleefd rapporteren.</li>
-                        <li>Rate limiting via distributed token buckets.</li>
-                        <li>Volledige observability met OpenTelemetry en Prometheus.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Roadmap richting GA</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Fases</h5>
-                    <ol class="ps-3">
-                        <li><strong>M1 Foundations</strong>: API, scheduler, analyzers v1, scoring, weekly reports, console MVP.</li>
-                        <li><strong>M2 Global & Insights</strong>: Multi-region agents, dashboards, RBAC, alerts, PSI hints.</li>
-                        <li><strong>M3 Depth & Scale</strong>: Passive vuln signals, dependency advisories, sharding, SSO, optioneel ClickHouse.</li>
-                    </ol>
-                </div>
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Governance & kwaliteit</h5>
-                    <ul class="feature-list list-unstyled">
-                        <li>CI gateways voor linting, tests, audits en contract checks.</li>
-                        <li>Testcontainers en end-to-end suites met Docker/Helm & Playwright.</li>
-                        <li>Contract stabiliteit via gedeelde crates en OpenAPI artifacts.</li>
-                        <li>Helm/GitOps voor consistente uitrol, provider-agnostisch.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Wie profiteert van ScanViper?</h2>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">Security & IT teams</h5>
-                        <p>Volledige zichtbaarheid over certificaten, DNS en blootstelling met helder bewijs en prioritering.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">Marketing & SEO</h5>
-                        <p>Concrete verbeterpunten voor Core Web Vitals en technische SEO zonder ontwikkelaars te overbelasten.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="surface-card">
-                        <h5 class="fw-bold">Ops & SRE</h5>
-                        <p>Realistische availability checks en alerts die aansluiten op bestaande SLO's.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Werk samen met Virtunet</h2>
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-7">
-                    <ul class="feature-list list-unstyled">
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Rust- en cloudexpertise</strong> voor schaalbare scanning pipelines.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Nuchtere aanpak</strong>: duidelijke intake, roadmap en rapportage.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Co-creatie mogelijk</strong>: sluit aan als pilotklant of integratiepartner.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-5">
-                    <div class="stats-card">
-                        <h5 class="fw-bold mb-3">Word pilotklant</h5>
-                        <p>Interesse in vroegtijdige toegang? Stuur ons een bericht en ontvang een intakevoorstel met scope, timing en voorwaarden.</p>
-                        <a href="../../#contact" class="btn btn-light mt-2">Stuur een bericht</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">Security & Performance doorlopend inzichtelijk</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="../../#contact" class="btn btn-outline-light">Stuur ons een bericht</a>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="py-8 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,197 +1,181 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Whitepapers & Use Cases | Virtunet</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Whitepapers & Insights | Virtunet</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../css/templatemo-style.css">
-    <style>
-        .hero {
-            background: linear-gradient(135deg, rgba(13, 110, 253, 0.95), rgba(56, 193, 114, 0.9));
-            padding: 6rem 0 4rem;
-            color: #fff;
-        }
-        .paper-card {
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            background: rgba(255,255,255,0.95);
-            height: 100%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-        .paper-card h3 {
-            font-size: 1.4rem;
-        }
-        .meta-badge {
-            font-size: 0.8rem;
-            background: rgba(13,110,253,0.1);
-            color: #0d6efd;
-            border-radius: 12px;
-            padding: 0.25rem 0.75rem;
-        }
-    </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../value-proposition/">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#intake">Intake</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#contact">Contact</a></li>
-                </ul>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../" class="flex items-center gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center">
+                            <i class="fas fa-network-wired text-white text-xs"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="#" class="text-sm font-medium text-primary-600 dark:text-white transition-colors">Insights</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <section class="hero text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-3">Whitepapers & Use Cases</h1>
-            <p class="lead mb-4">Verdiep u in onze projecten en producten. Ontdek hoe we AI, cloud en softwareoplossingen gericht en verantwoord realiseren voor klanten in binnen- en buitenland.</p>
-            <a href="../#contact" class="btn btn-light btn-lg">Stuur een bericht</a>
+    <!-- Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <div class="absolute top-0 right-1/2 translate-x-1/2 w-[800px] h-[500px] bg-primary-500/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-6 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent" data-aos="fade-up">
+                Whitepapers & Insights
+            </h1>
+            <p class="text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                Deep-dives in onze technische oplossingen. Van architectuurkeuzes tot code-level implementaties.
+            </p>
+        </div>
+    </header>
+
+    <section class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Tyrum -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 transition-colors group flex flex-col h-full shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 mb-4">Product</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Tyrum Assistant</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">De persoonlijke assistent zonder to-do lijsten. Autonomie met strikte guardrails en audit logging.</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                        <li class="flex gap-2"><i class="fas fa-check text-purple-500 mt-1"></i> Chat/Voice Native</li>
+                        <li class="flex gap-2"><i class="fas fa-check text-purple-500 mt-1"></i> Policy-first design</li>
+                    </ul>
+                    <a href="tyrum/" class="text-purple-600 dark:text-purple-400 text-sm font-bold hover:underline transition-colors inline-flex items-center mt-auto">
+                        Lees whitepaper <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- ScanViper -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 hover:border-yellow-500/50 transition-colors group flex flex-col h-full shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 mb-4">Security</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">ScanViper</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">High-speed risk scanning voor infrastructuur. Van HTTP headers tot cloud exposure.</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                        <li class="flex gap-2"><i class="fas fa-check text-yellow-500 mt-1"></i> Rust performance</li>
+                        <li class="flex gap-2"><i class="fas fa-check text-yellow-500 mt-1"></i> Multi-surface telemetry</li>
+                    </ul>
+                    <a href="scanviper/" class="text-yellow-600 dark:text-yellow-500 text-sm font-bold hover:underline transition-colors inline-flex items-center mt-auto">
+                        Lees whitepaper <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Phaeton -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 hover:border-green-500/50 transition-colors group flex flex-col h-full shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 mb-4">Energy IoT</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Phaeton Driver</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Slimme koppeling tussen Alfen laadpalen en Victron Venus OS voor PV-gestuurd laden.</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                        <li class="flex gap-2"><i class="fas fa-check text-green-500 mt-1"></i> Lokaal energy management</li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-500 mt-1"></i> Open Source</li>
+                    </ul>
+                    <a href="phaeton/" class="text-green-600 dark:text-green-500 text-sm font-bold hover:underline transition-colors inline-flex items-center mt-auto">
+                        Lees whitepaper <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Cloud Migratie -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-colors group flex flex-col h-full shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 mb-4">Cloud</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Migratie & Modernisatie</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Strategie voor cloudtransities: van lift-and-shift tot containerisatie en PaaS.</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-500 mt-1"></i> FinOps integratie</li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-500 mt-1"></i> Landing zones</li>
+                    </ul>
+                    <a href="cloud-migratie-retailer/" class="text-blue-600 dark:text-blue-400 text-sm font-bold hover:underline transition-colors inline-flex items-center mt-auto">
+                        Lees whitepaper <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- DevOps -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition-colors group flex flex-col h-full shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 mb-4">DevOps</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">CI/CD Transformatie</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Van handmatige releases naar een volledig geautomatiseerde straat met governance.</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                        <li class="flex gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> Pipeline design</li>
+                        <li class="flex gap-2"><i class="fas fa-check text-emerald-500 mt-1"></i> Change management</li>
+                    </ul>
+                    <a href="ci-cd-software-ontwikkeling/" class="text-emerald-600 dark:text-emerald-400 text-sm font-bold hover:underline transition-colors inline-flex items-center mt-auto">
+                        Lees whitepaper <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Document AI -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-colors group flex flex-col h-full shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary-100 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 mb-4">AI Ops</span>
+                        <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Document Validatie</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Geautomatiseerde controle van prestatieverklaringen met n8n en Vision AI.</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 flex-grow">
+                        <li class="flex gap-2"><i class="fas fa-check text-primary-600 dark:text-primary-500 mt-1"></i> Audit trail</li>
+                        <li class="flex gap-2"><i class="fas fa-check text-primary-600 dark:text-primary-500 mt-1"></i> Procesorkestratie</li>
+                    </ul>
+                    <a href="computer-vision-productiekwaliteit/" class="text-primary-600 dark:text-primary-400 text-sm font-bold hover:underline transition-colors inline-flex items-center mt-auto">
+                        Lees whitepaper <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <section class="py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="paper-card p-4 h-100">
-                        <span class="meta-badge mb-3 d-inline-block">Productontwikkeling</span>
-                        <h3 class="fw-bold">Tyrum – De persoonlijke assistent zonder to-do lijsten</h3>
-                        <p class="text-muted">Intentie-in, resultaat-uit. Leer hoe Tyrum autonomie koppelt aan veiligheid, audit en explainability voor moderne knowledge workers.</p>
-                        <ul class="small text-muted ps-3">
-                            <li>Chat/voice-native autonomie</li>
-                            <li>Policy-first guardrails</li>
-                            <li>Roadmap M0–M6</li>
-                        </ul>
-                        <a href="tyrum/" class="btn btn-outline-primary btn-sm">Lees de whitepaper</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="paper-card p-4 h-100">
-                        <span class="meta-badge mb-3 d-inline-block">Cloud & Security</span>
-                        <h3 class="fw-bold">ScanViper – Continu inzicht in web- en cloudrisico's</h3>
-                        <p class="text-muted">Van HTTP tot cloud object exposure. ScanViper laat zien hoe je publieke oppervlakken verantwoord monitort met Rust performance.</p>
-                        <ul class="small text-muted ps-3">
-                            <li>Multi-surface telemetry</li>
-                            <li>Responsible disclosure framework</li>
-                            <li>Roadmap naar GA</li>
-                        </ul>
-                        <a href="scanviper/" class="btn btn-outline-primary btn-sm">Lees de whitepaper</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="paper-card p-4 h-100">
-                        <span class="meta-badge mb-3 d-inline-block">Energie & IoT</span>
-                        <h3 class="fw-bold">Phaeton – EV Charger Driver voor Victron</h3>
-                        <p class="text-muted">Hoe Phaeton PV- en prijsdata samenbrengt op Venus OS zodat EV-laden lokaal, betrouwbaar en kostenbewust verloopt.</p>
-                        <ul class="small text-muted ps-3">
-                            <li>PV- en prijsgeoriënteerd laden</li>
-                            <li>Rust 2024, Modbus, D-Bus</li>
-                            <li>Open-source governance</li>
-                        </ul>
-                        <a href="phaeton/" class="btn btn-outline-primary btn-sm">Lees de whitepaper</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="paper-card p-4 h-100">
-                        <span class="meta-badge mb-3 d-inline-block">Cloud migratie</span>
-                        <h3 class="fw-bold">Cloud migratie & modernisatie</h3>
-                        <p class="text-muted">Hoe we lift-and-shift, PaaS, containers en hybride OpenShift combineren met data-classificatie en FinOps.</p>
-                        <ul class="small text-muted ps-3">
-                            <li>Workload-classificatie & landing zones</li>
-                            <li>Replatforming en container trajecten</li>
-                            <li>Hybride OpenShift en FinOps</li>
-                        </ul>
-                        <a href="cloud-migratie-retailer/" class="btn btn-outline-primary btn-sm">Lees de whitepaper</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="paper-card p-4 h-100">
-                        <span class="meta-badge mb-3 d-inline-block">DevOps & CI/CD</span>
-                        <h3 class="fw-bold">CI/CD-transformatie voor een Europese SaaS-leverancier</h3>
-                        <p class="text-muted">Hoe voorspelbare releases, testautomatisering en governance samenkomen in een pragmatische DevOps-roadmap.</p>
-                        <ul class="small text-muted ps-3">
-                            <li>Pipeline-ontwerp en tooling</li>
-                            <li>Change management</li>
-                            <li>Meetbare resultaten</li>
-                        </ul>
-                        <a href="ci-cd-software-ontwikkeling/" class="btn btn-outline-primary btn-sm">Lees de whitepaper</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="paper-card p-4 h-100">
-                        <span class="meta-badge mb-3 d-inline-block">Document AI</span>
-                        <h3 class="fw-bold">Prestatieverklaringen automatisch toetsen</h3>
-                        <p class="text-muted">Proof of concept met n8n-workflows die prestatieverklaringen controleert op volledigheid, handtekeningen en toestemming.</p>
-                        <ul class="small text-muted ps-3">
-                            <li>n8n orkestratie</li>
-                            <li>Document AI & validatieregels</li>
-                            <li>Audit trail voor compliance</li>
-                        </ul>
-                        <a href="computer-vision-productiekwaliteit/" class="btn btn-outline-primary btn-sm">Lees de whitepaper</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="paper-card p-4 h-100">
-                        <span class="meta-badge mb-3 d-inline-block">Autonome assistenten</span>
-                        <h3 class="fw-bold">Tyrum – Auditbare persoonlijke AI</h3>
-                        <p class="text-muted">Ontdek hoe Tyrum intenties omzet in acties met explainability, policy guardrails en multichannel executie.</p>
-                        <ul class="small text-muted ps-3">
-                            <li>Memory-gedreven autonomie</li>
-                            <li>Beleid, audit en compliance</li>
-                            <li>Roadmap naar GA</li>
-                        </ul>
-                        <a href="tyrum/" class="btn btn-outline-primary btn-sm">Lees de whitepaper</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-5">
-                <p class="mb-3">Meer weten of een eigen use case bespreken?</p>
-                <a href="../#contact" class="btn btn-primary">Stuur ons een bericht</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">AI & Cloud oplossingen met aantoonbare waarde</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="../#contact" class="btn btn-outline-light">Stuur ons een bericht</a>
-                </div>
-            </div>
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+    </script>
 </body>
 </html>

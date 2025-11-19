@@ -1,239 +1,187 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tyrum – De persoonlijke assistent zonder to-do lijsten | Virtunet</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151e2e', 900: '#0f172a', 950: '#020617' },
+                        primary: { DEFAULT: '#3b82f6', hover: '#2563eb' },
+                        ai: '#8b5cf6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../../css/templatemo-style.css">
+
     <style>
-        .whitepaper-header {
-            background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(13, 110, 253, 0.95));
-            padding: 6rem 0 3rem;
-            position: relative;
-        }
-        .whitepaper-section {
-            padding: 4rem 0;
-        }
-        .whitepaper-section h2 {
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        .whitepaper-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--primary-color);
-        }
-        .highlight-card {
-            background-color: rgba(13, 110, 253, 0.08);
-            border-radius: 15px;
-            padding: 2rem;
-            border-left: 5px solid rgba(13, 110, 253, 1);
-            margin-bottom: 2rem;
-        }
-        .badge-stack span {
-            margin: 0.25rem;
-        }
-        .feature-list li {
-            margin-bottom: 0.75rem;
-        }
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../../">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../value-proposition/">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="../">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#intake">Intake</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#contact">Contact</a></li>
-                </ul>
+<body class="bg-slate-900 text-slate-50 font-sans antialiased selection:bg-primary selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-ai shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform"></div>
+                        <span class="font-display font-bold text-xl tracking-tight">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="../../" class="text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition-colors">Home</a>
+                        <a href="../" class="text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition-colors">Insights</a>
+                        <a href="../../#contact" class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 transform hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <header class="whitepaper-header text-white">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-9 mx-auto text-center">
-                    <h1 class="display-4 fw-bold mb-3">Tyrum – The end of to-do</h1>
-                    <p class="lead mb-4">Van intentie naar resultaat zonder lijsten, zonder app-switching en met volledige controle. Tyrum levert een nieuwe standaard voor persoonlijke productiviteit met auditbare autonomie.</p>
-                    <div class="badge-stack">
-                        <span class="badge bg-light text-dark">Chat & voice native</span>
-                        <span class="badge bg-light text-dark">Autonomie met waarborgen</span>
-                        <span class="badge bg-light text-dark">Audit & compliance ready</span>
-                        <span class="badge bg-light text-dark">Multichannel execution</span>
-                    </div>
-                    <p class="mt-3 mb-0">Publieke lancering gepland in 2026 • Telegram eerste kanaal • Proof-of-value binnen 5 minuten</p>
-                </div>
+    <!-- Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 border-b border-slate-800">
+        <div class="absolute inset-0 bg-grid-white/[0.02] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-ai/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-6 text-xs font-bold uppercase tracking-wider">
+                Product Vision
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
+                Tyrum – The end of to-do
+            </h1>
+            <p class="text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto">
+                Van intentie naar resultaat zonder lijsten. Tyrum levert een nieuwe standaard voor persoonlijke productiviteit met auditbare autonomie.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Chat & Voice Native</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Audit Ready</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Multichannel</span>
             </div>
         </div>
     </header>
 
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-6">
-                    <h2>Waarom Tyrum?</h2>
-                    <p class="lead">Agenda's, taken en losse automatisaties beloven tijdwinst, maar leveren vooral extra beheer op. Tyrum pakt het fundament aan: intentie in, aantoonbaar resultaat eruit.</p>
-                    <ul class="feature-list list-unstyled">
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Volledige context</strong>: leert van interacties en voorkeuren i.p.v. vaste skills.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Autonoom, maar begrensd</strong>: externe policy gate bewaakt kosten, privacy en legal.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Transparant</strong>: elke actie krijgt een reproduceerbaar auditspoor.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Proactief</strong>: watchers monitoren inbox, leveringen, kalender en nudgen binnen grenzen.</li>
+    <!-- Content -->
+    <section class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4 max-w-5xl">
+
+            <!-- Intro Grid -->
+            <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-white">Waarom Tyrum?</h2>
+                    <p class="text-slate-400 text-lg mb-6">
+                        Agenda's en takenlijsten beloven tijdwinst maar leveren beheerlast. Tyrum pakt het fundament aan: intentie in, resultaat uit.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-300"><strong>Volledige context:</strong> Leert van interacties en voorkeuren.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-300"><strong>Autonoom & Begrensd:</strong> Externe policy gate bewaakt budget en privacy.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-300"><strong>Auditbaar:</strong> Elke actie is traceerbaar en uitlegbaar.</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="col-lg-6">
-                    <div class="highlight-card">
-                        <h4 class="fw-bold">De uitdaging</h4>
-                        <p>Organisaties zien productiviteit versnipperen over apps, tabbladen en vergeten taken. Veilige automatisering vereist governance, logging en begrijpelijke uitleg. Tyrum levert die combinatie in één container-native platform.</p>
-                        <h5 class="mt-4 fw-bold">Tyrum in één zin</h5>
-                        <p class="mb-0">Een persoonlijke assistent die generieke executors inzet, beleid afdwingt en voor iedere actie uitlegt wat er is gebeurd en waarom.</p>
+                <div class="bg-slate-850 p-8 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl text-ai"><i class="fas fa-quote-right"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-white relative z-10">De Tyrum Belofte</h3>
+                    <p class="text-slate-400 relative z-10 italic leading-relaxed">
+                        "Een persoonlijke assistent die generieke executors inzet, beleid afdwingt en voor iedere actie uitlegt wat er is gebeurd en waarom."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Architecture -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 text-center text-white">Architectuur in Vogelvlucht</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-850 p-8 rounded-xl border border-slate-800">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 mb-4"><i class="fas fa-cogs"></i></div>
+                        <h4 class="text-lg font-bold mb-4 text-white">Execution Layer</h4>
+                        <ul class="space-y-3 text-sm text-slate-400">
+                            <li><strong class="text-slate-200">Ingress:</strong> Chat (Telegram), Voice, Webhooks.</li>
+                            <li><strong class="text-slate-200">Orchestrator:</strong> Coördineert Research, Decide, Execute primitives.</li>
+                            <li><strong class="text-slate-200">Tool Directory:</strong> Ontdekt en kiest de juiste APIs (MCP/OpenAPI).</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-850 p-8 rounded-xl border border-slate-800">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 mb-4"><i class="fas fa-shield-alt"></i></div>
+                        <h4 class="text-lg font-bold mb-4 text-white">Governance Layer</h4>
+                        <ul class="space-y-3 text-sm text-slate-400">
+                            <li><strong class="text-slate-200">Policy Gate:</strong> Checkt budget, PII en legal constraints.</li>
+                            <li><strong class="text-slate-200">Memory:</strong> Feiten, episodisch en vector memory gescheiden.</li>
+                            <li><strong class="text-slate-200">Audit:</strong> Event-sourced logging en OpenTelemetry.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Roadmap -->
+            <div class="bg-slate-850 rounded-2xl p-10 border border-slate-800 mb-20">
+                <h2 class="text-2xl font-bold mb-8 text-white">Roadmap & Mijlpalen</h2>
+                <div class="space-y-8 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-700">
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 top-1 w-10 h-10 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center text-sm font-bold text-slate-300">M0</div>
+                        <h4 class="text-lg font-bold text-white mb-1">Foundations & Guardrails</h4>
+                        <p class="text-slate-400 text-sm">Beleid, audit logging, generieke executors en memory architectuur.</p>
+                    </div>
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 top-1 w-10 h-10 rounded-full bg-ai/20 border border-ai text-ai flex items-center justify-center text-sm font-bold">M1</div>
+                        <h4 class="text-lg font-bold text-white mb-1">Telegram MVP</h4>
+                        <p class="text-slate-400 text-sm">End-to-end planner, watchers en audit console. (Huidige status)</p>
+                    </div>
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 top-1 w-10 h-10 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center text-sm font-bold text-slate-500">M5</div>
+                        <h4 class="text-lg font-bold text-slate-300 mb-1">General Availability</h4>
+                        <p class="text-slate-500 text-sm">Admin portal, self-serve onboarding en multichannel support.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center bg-gradient-to-r from-primary/10 to-ai/10 rounded-2xl p-12 border border-primary/20">
+                <h3 class="text-2xl font-bold text-white mb-4">Maak kennis met Tyrum</h3>
+                <p class="text-slate-400 mb-8 max-w-2xl mx-auto">
+                    Interesse in pilots of co-creatie? Wij zoeken innovatieve partners voor de beta-fase.
+                </p>
+                <a href="../../#contact" class="inline-block px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-colors shadow-lg shadow-primary/25">
+                    Neem contact op
+                </a>
+            </div>
+
         </div>
     </section>
 
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Architectuur in Vogelvlucht</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Van intentie naar uitvoering</h5>
-                    <ul class="feature-list list-unstyled">
-                        <li><strong>Kanalen</strong>: chat (Telegram start), voice en webhooks landen in de Ingress laag.</li>
-                        <li><strong>Planner/Orchestrator</strong>: coördineert neutral action primitives zoals Research, Decide, Execute.</li>
-                        <li><strong>Tool Directory</strong>: ontdekt affordances (MCP/OpenAPI/GraphQL) en kiest de beste uitvoerroute.</li>
-                        <li><strong>Policy Gate</strong>: controleert elke stap op budget, PII, legal en explainability eisen.</li>
-                        <li><strong>Executors</strong>: generieke web-, Android-, CLI- en HTTP-drivers voeren acties uit; voorkeur voor gestructureerde APIs waar beschikbaar.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Governance & innovatie</h5>
-                    <ul class="feature-list list-unstyled">
-                        <li><strong>Memory lagen</strong>: feiten, episodic, vector, capability en Policy/Autonomy Model (PAM) worden gescheiden bewaard.</li>
-                        <li><strong>Persona & Voice Profile</strong>: zorgt voor consistente toon en respons.</li>
-                        <li><strong>Event watchers</strong>: monitoren mailbox, agenda, leveringen en triggeren proactieve acties binnen afgesproken kaders.</li>
-                        <li><strong>Audit & observability</strong>: event-sourced logboek, OpenTelemetry traces, reproduceerbare scripts.</li>
-                        <li><strong>Beveiliging</strong>: vault-managed secrets, signed webhooks, RLS in Postgres en self-serve export/delete.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Roadmap & KPI's</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Belangrijke mijlpalen</h5>
-                    <ol class="ps-3">
-                        <li><strong>M0 Foundations & Guardrails</strong>: beleid, audit, generieke executors en memory.</li>
-                        <li><strong>M1 Telegram MVP</strong>: end-to-end planner, wallet, watchers en auditconsole.</li>
-                        <li><strong>M2-M4</strong>: reliability, capability memory, persona & voice, gestructureerde integraties.</li>
-                        <li><strong>M5-M6</strong>: portal/admin, multichannel en GA.</li>
-                    </ol>
-                </div>
-                <div class="col-lg-6">
-                    <h5 class="fw-bold">Succesindicatoren</h5>
-                    <ul class="feature-list list-unstyled">
-                        <li>Time-to-first-value &lt; 5 minuten per nieuwe gebruiker.</li>
-                        <li>Postcondition pass rate &gt; 97% per actie.</li>
-                        <li>Dalende bevestigingsratio door lerend gedrag.</li>
-                        <li>Proactieve “saves” per gebruiker zichtbaar in audit log.</li>
-                        <li>Uitgaven binnen ingestelde card caps.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Voor wie bouwen we Tyrum?</h2>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="highlight-card">
-                        <h5 class="fw-bold mb-3">Executives & knowledge workers</h5>
-                        <p>Van ad-hoc verzoek tot bevestigde follow-up: Tyrum regelt rebookings, betalingen, leveringen en dagelijks overzicht binnen afgesproken grenzen.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="highlight-card">
-                        <h5 class="fw-bold mb-3">Huishoudens en life admins</h5>
-                        <p>Eenvoudig beheer van abonnementen, boodschappen, herinneringen en facturen met bewezen audit trail en privacybescherming.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="highlight-card">
-                        <h5 class="fw-bold mb-3">Partners & integrators</h5>
-                        <p>Klaar voor uitbreiding via MCP/OpenAPI-discovery en feature-gated executors, zodat ecosystemen Tyrum kunnen inzetten zonder custom skills.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Waarom Virtunet?</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <ul class="feature-list list-unstyled">
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Ervaring in autonome agents</strong> met bewezen guardrails, audit en policy frameworks.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Cloud- en infrastructuurexpertise</strong> voor schaalbare, container-native levering.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i><strong>Nuchtere aanpak</strong>: haalbaarheidstoets, roadmap en governance staan centraal.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <div class="highlight-card">
-                        <h5 class="fw-bold">Maak kennis met Tyrum</h5>
-                        <p class="mb-0">Interesse in pilots of co-creatie? Stuur ons een bericht en ontvang een intakevoorstel met scope, planning en voorwaarden.</p>
-                        <a href="../../#contact" class="btn btn-primary mt-3">Stuur een bericht</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">AI & Cloud oplossingen met heldere governance</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="../../#contact" class="btn btn-outline-light">Stuur ons een bericht</a>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-950 border-t border-slate-800">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

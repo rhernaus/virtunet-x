@@ -1,503 +1,250 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Virtunet helpt organisaties wereldwijd om kansen van AI en cloud pragmatisch te verkennen en stap voor stap te realiseren. Neem contact op per e-mail voor meer informatie over onze trajecten.">
-    <meta name="keywords" content="AI consulting, cloud migratie, DevOps implementatie, generatieve AI, LLM, kubernetes, cloud architectuur, FinOps">
-    <title>Virtunet - AI & Cloud Consultancy | Expert in AI-oplossingen</title>
+    <meta name="description" content="Virtunet helpt organisaties wereldwijd om kansen van AI en cloud pragmatisch te verkennen en stap voor stap te realiseren.">
+    <title>Virtunet | Enterprise AI & Cloud Consultancy</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <!-- Bootstrap 5 (CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- AOS Animations -->
+
+    <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
 </head>
-<body>
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="value-proposition/">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">Technologieën</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="whitepapers/">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-                <a href="#contact" class="btn btn-primary ms-lg-3 d-none d-lg-inline-block">Stuur een bericht</a>
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center">
+                            <i class="fas fa-network-wired text-white text-xs"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-sun hidden dark:block"></i>
+                        <i class="fas fa-moon block dark:hidden"></i>
+                    </button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Expertise</a>
+                <a href="#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Projecten</a>
+                <a href="value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Aanpak</a>
+                <a href="whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Insights</a>
+                <a href="#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="container">
-            <div class="row align-items-center justify-content-center text-center min-vh-100">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <h1 class="display-3 fw-bold mb-2">Pragmatische AI- en cloudtrajecten</h1>
-                    <p class="lead mb-3">Van eerste idee tot productie helpen we teams haalbare stappen zetten, met governance, adoptie en meetbare waarde.</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#contact" class="btn btn-primary btn-lg me-2">Stuur ons een bericht</a>
-                        <a href="#services" class="btn btn-outline-light">Bekijk onze diensten</a>
-                    </div>
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-normal dark:bg-primary-500/20 animate-blob"></div>
+            <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-normal dark:bg-purple-500/20 animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 mb-8 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-xs font-medium text-slate-600 dark:text-slate-300">Beschikbaar voor nieuwe projecten</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-display font-bold tracking-tight mb-8 text-slate-900 dark:text-white">
+                    Future-Proof Your Business <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-600 dark:from-primary-400 dark:to-purple-400">with AI & Cloud</span>
+                </h1>
+
+                <p class="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Wij vertalen complexe technologie naar bedrijfswaarde. Van AI-strategie tot cloud-native architectuur.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-medium transition-all shadow-xl shadow-primary-500/20 hover:-translate-y-1">
+                        Neem contact op
+                    </a>
+                    <a href="#services" class="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 rounded-xl font-medium transition-all hover:-translate-y-1">
+                        Ontdek onze diensten
+                    </a>
+                </div>
+
+                <div class="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800/50 flex justify-center gap-8 md:gap-16 text-slate-400 dark:text-slate-600">
+                    <i class="fab fa-aws text-4xl hover:text-[#FF9900] transition-colors cursor-pointer hover:scale-110 duration-300"></i>
+                    <i class="fab fa-microsoft text-4xl hover:text-[#00A4EF] transition-colors cursor-pointer hover:scale-110 duration-300"></i>
+                    <i class="fab fa-google text-4xl hover:text-[#4285F4] transition-colors cursor-pointer hover:scale-110 duration-300"></i>
+                    <i class="fab fa-docker text-4xl hover:text-[#2496ED] transition-colors cursor-pointer hover:scale-110 duration-300"></i>
+                    <i class="fab fa-rust text-4xl hover:text-orange-500 dark:hover:text-white transition-colors cursor-pointer hover:scale-110 duration-300"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Onze AI & Cloud Expertise</h2>
-                <p class="lead">Praktische ondersteuning bij AI-trajecten en cloudarchitectuur</p>
+    <!-- Expertise Section -->
+    <section id="services" class="py-24 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4 text-slate-900 dark:text-white">Onze Expertise</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">Concrete oplossingen voor complexe uitdagingen.</p>
             </div>
 
-            <div class="row g-4">
-                <!-- AI Solutions -->
-                <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card service-card h-100">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-4">
-                                <i class="fa-solid fa-brain"></i>
-                            </div>
-                            <h3 class="card-title">Artificial Intelligence</h3>
-                            <p class="card-text">We ontwerpen en bouwen AI-oplossingen zoals generatieve AI, LLMs, computer vision en NLP. Altijd afgestemd op bestaande processen en met oog voor beheer en adoptie.</p>
-                            <ul class="list-unstyled mt-3">
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Generatieve AI & LLMs</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Computer Vision & NLP</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Custom AI-ontwikkeling</li>
-                            </ul>
-                            <a href="value-proposition/#ai-value" class="btn btn-outline-primary mt-3">Meer over onze AI-waarde <i class="fas fa-arrow-right ms-2"></i></a>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- AI Card -->
+                <div class="group relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-primary-500 rounded-3xl blur opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-500"></div>
+                    <div class="relative h-full bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-500/10 flex items-center justify-center mb-6 text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-brain text-2xl"></i>
                         </div>
-                    </div>
-                </div>
-
-                <!-- DevOps & CI/CD -->
-                <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card service-card h-100">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-4">
-                                <i class="fa-solid fa-code-branch"></i>
-                            </div>
-                            <h3 class="card-title">DevOps & CI/CD</h3>
-                            <p class="card-text">We richten CI/CD-pijplijnen in met tools als Azure DevOps, GitLab en GitHub. Teams krijgen begeleiding bij het automatiseren van builds, tests en releases zonder de controle te verliezen.</p>
-                            <ul class="list-unstyled mt-3">
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Continue Integratie</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Continue Levering</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Geautomatiseerd Testen</li>
-                            </ul>
-                            <a href="value-proposition/#cloud-value" class="btn btn-outline-primary mt-3">Meer over DevOps voordelen <i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Containers & Orchestration -->
-                <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card service-card h-100">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-4">
-                                <i class="fa-brands fa-docker"></i>
-                            </div>
-                            <h3 class="card-title">Container Orchestratie</h3>
-                            <p class="card-text">We helpen bij het opzetten en beheren van Kubernetes-omgevingen. Denk aan clusterontwerp, monitoring en lifecycle management over meerdere omgevingen of cloudproviders.</p>
-                            <ul class="list-unstyled mt-3">
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Container Orchestratie</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Auto-scaling & Load Balancing</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Zelfherstellende Infrastructuur</li>
-                            </ul>
-                            <a href="value-proposition/#tech-value" class="btn btn-outline-primary mt-3">Meer over containers <i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Infrastructure as Code -->
-                <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card service-card h-100">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-4">
-                                <i class="fa-solid fa-code"></i>
-                            </div>
-                            <h3 class="card-title">Infrastructure as Code</h3>
-                            <p class="card-text">We borgen infrastructuur als code met Terraform, CloudFormation of Pulumi zodat omgevingen reproduceerbaar zijn en wijzigingen gecontroleerd verlopen.</p>
-                            <ul class="list-unstyled mt-3">
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Reproduceerbare infrastructuur</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Multi-cloud implementaties</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Versiebeheer & automatisering</li>
-                            </ul>
-                            <a href="value-proposition/#tech-value" class="btn btn-outline-primary mt-3">Meer over IaC-waarde <i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Software Development -->
-                <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="card service-card h-100">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-4">
-                                <i class="fa-solid fa-laptop-code"></i>
-                            </div>
-                            <h3 class="card-title">Softwareontwikkeling & Integraties</h3>
-                            <p class="card-text">We bouwen maatwerkintegraties en producten, van industriële koppelingen tot eigen platformen. We leveren werkbare MVP's en begeleiden het vervolg naar productie.</p>
-                            <ul class="list-unstyled mt-3">
-                                <li><i class="fas fa-check-circle text-success me-2"></i>IoT- en energie-integraties</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>SaaS- en platformontwikkeling</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Rust, TypeScript en cloud-native stacks</li>
-                            </ul>
-                            <a href="#projects" class="btn btn-outline-primary mt-3">Bekijk voorbeelden <i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cloud Architecture Section -->
-    <section id="architecture" class="py-5 bg-gradient">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Cloud Architectuur</h2>
-                <p class="lead">Expert cloud architectuur ontwerp voor optimale prestaties en schaalbaarheid</p>
-                <a href="value-proposition/#cloud-value" class="btn btn-outline-light mt-3">Ontdek onze volledige cloud-waardepropositie <i class="fas fa-arrow-right ms-2"></i></a>
-            </div>
-
-            <div class="row g-4">
-                <!-- Cloud Architect -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-diagram-project"></i>
-                        </div>
-                        <h3>Oplossingsarchitectuur</h3>
-                        <p>Het ontwerpen van uitgebreide cloudoplossingen op maat van bedrijfsbehoeften, met focus op schaalbaarheid, veiligheid en prestaties. Inclusief Digital Twin implementaties voor geavanceerde simulaties.</p>
-                        <a href="value-proposition/#cloud-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-
-                <!-- Migration Strategy -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-arrows-up-down"></i>
-                        </div>
-                        <h3>Migratiestrategie</h3>
-                        <p>Het plannen en uitvoeren van naadloze migraties van on-premises naar cloud of tussen cloudproviders met minimale verstoring.</p>
-                        <a href="value-proposition/#cloud-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-
-                <!-- Multi-cloud Architecture -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-cloud"></i>
-                        </div>
-                        <h3>Multi-cloud Ontwerp</h3>
-                        <p>Het creëren van veerkrachtige multi-cloud architecturen om vendor lock-in te voorkomen en het gebruik van resources over providers te optimaliseren.</p>
-                        <a href="value-proposition/#cloud-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-
-                <!-- Security Architecture -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                        <h3>Security Architectuur</h3>
-                        <p>Het implementeren van robuuste beveiligingsmaatregelen en compliance frameworks om cloud-infrastructuur en data te beschermen.</p>
-                        <a href="value-proposition/#tech-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-
-                <!-- Serverless Architecture -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <h3>Serverless Architectuur</h3>
-                        <p>Het ontwerpen van event-driven serverless oplossingen voor kostenoptimalisatie en automatische schaling op basis van vraag.</p>
-                        <a href="value-proposition/#tech-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-
-                <!-- Cost Optimization -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <h3>Kostenoptimalisatie</h3>
-                        <p>Het analyseren en optimaliseren van clouduitgaven met FinOps-praktijken en aanbevelingen voor resource right-sizing.</p>
-                        <a href="value-proposition/#tech-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-
-                <!-- Software Development -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-robot"></i>
-                        </div>
-                        <h3>AI Implementatie</h3>
-                        <p>Enterprise AI-implementatie met naadloze integratie in bestaande workflows en systemen. Specialist in het operationaliseren van AI-modellen voor zakelijke toepassingen.</p>
-                        <a href="value-proposition/#ai-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-
-                <!-- Digital Twins -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="800">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-cubes"></i>
-                        </div>
-                        <h3>Digital Twins</h3>
-                        <p>Creatie van virtuele representaties van fysieke objecten en systemen voor realtime monitoring, simulatie en optimalisatie in diverse industrieën.</p>
-                        <a href="value-proposition/#tech-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-
-                <!-- Cloud Security -->
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="900">
-                    <div class="architecture-card">
-                        <div class="architecture-icon">
-                            <i class="fa-solid fa-lock"></i>
-                        </div>
-                        <h3>Cloud Security</h3>
-                        <p>Implementatie van best practices voor cloudbeveiliging, zoals Zero Trust architectuur, IAM, encryptie en continuous compliance monitoring voor optimale bescherming van bedrijfskritische data.</p>
-                        <a href="value-proposition/#tech-value" class="btn btn-sm btn-outline-primary mt-3">Meer details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technologies Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Cloud Technologieën</h2>
-                <p class="lead">Technologieën waar we dagelijks mee werken</p>
-                <a href="value-proposition/#tech-value" class="btn btn-outline-primary mt-3">Lees meer over onze werkwijze <i class="fas fa-arrow-right ms-2"></i></a>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="tech-card">
-                        <h3>Cloudplatformen</h3>
-                        <ul class="mb-0 ps-3 small">
-                            <li>Azure, AWS, GCP & OpenShift</li>
-                            <li>Landing zones, netwerk & identity</li>
-                            <li>Policy-as-code voor compliance</li>
+                        <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">Artificial Intelligence</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">AI die werkt. Wij integreren LLM's en computer vision direct in uw bedrijfsprocessen voor meetbaar resultaat.</p>
+                        <ul class="space-y-3 mb-8 text-sm text-slate-600 dark:text-slate-300">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-purple-500"></i> Generatieve AI & LLMs</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-purple-500"></i> Computer Vision</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-purple-500"></i> Data Governance</li>
                         </ul>
+                        <a href="value-proposition/#ai-value" class="inline-flex items-center text-sm font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+                            Meer over AI <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="tech-card">
-                        <h3>Automation & IaC</h3>
-                        <ul class="mb-0 ps-3 small">
-                            <li>Terraform/Bicep provisioning</li>
-                            <li>GitOps & CI/CD (GitHub, GitLab, Azure DevOps)</li>
-                            <li>Release-automatisering & test pipelines</li>
+                <!-- Cloud Card -->
+                <div class="group relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-full bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-cloud text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">Cloud Architecture</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">Schaalbaar en veilig. Expert in Azure, AWS en hybride omgevingen met focus op kostenbeheersing.</p>
+                        <ul class="space-y-3 mb-8 text-sm text-slate-600 dark:text-slate-300">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> Migratie Strategie</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> Kubernetes Ops</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> FinOps & Control</li>
                         </ul>
+                        <a href="value-proposition/#cloud-value" class="inline-flex items-center text-sm font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                            Bekijk Cloud Diensten <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="tech-card">
-                        <h3>Security & Governance</h3>
-                        <ul class="mb-0 ps-3 small">
-                            <li>Data-classificatie & privacybeleid</li>
-                            <li>Secretsbeheer, RBAC en audit</li>
-                            <li>FinOps dashboards & cost guardrails</li>
+                <!-- DevOps Card -->
+                <div class="group relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-full bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center mb-6 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-code-branch text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">DevOps & Engineering</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">Snellere releases. Geautomatiseerde CI/CD en Infrastructure as Code voor betrouwbare software delivery.</p>
+                        <ul class="space-y-3 mb-8 text-sm text-slate-600 dark:text-slate-300">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-500"></i> CI/CD Pipelines</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-500"></i> Infra as Code</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-500"></i> SRE Practices</li>
                         </ul>
+                        <a href="value-proposition/#cloud-value" class="inline-flex items-center text-sm font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+                            DevOps Aanpak <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="tech-card">
-                        <h3>Data & AI</h3>
-                        <ul class="mb-0 ps-3 small">
-                            <li>LLMs & documentanalyse</li>
-                            <li>Data pipelines & MLOps</li>
-                            <li>Observability (OpenTelemetry, Prometheus)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-5" data-aos="fade-up">
-                <a href="value-proposition/#industry-value" class="btn btn-primary">Bekijk onze branchespecifieke oplossingen <i class="fas fa-arrow-right ms-2"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section class="py-5 bg-gradient">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Projectcases</h2>
-                <p class="lead">Werk dat we recent opleverden voor klanten in verschillende sectoren</p>
-            </div>
+    <!-- Technical Deep Dive Grid -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-850 border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16 items-end">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-slate-900 dark:text-white">Technische Diepgang</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-8">Robuuste fundamenten. Onze engineers bouwen architecturen die schaalbaar en veilig zijn vanaf dag één.</p>
 
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card h-100">
-                        <div class="card-header bg-success text-white">
-                            <span class="badge bg-light text-dark">Document AI</span>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
+                            <i class="fa-solid fa-shield-halved text-2xl text-slate-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-4 transition-colors"></i>
+                            <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Zero Trust</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Security-by-design in elke architectuurlaag.</p>
                         </div>
-                        <div class="card-body text-center d-flex flex-column">
-                            <div class="mb-3">
-                                <i class="fas fa-file-signature fa-3x text-success"></i>
-                            </div>
-                            <h5 class="card-title">Documentanalyse voor prestatieverklaringen</h5>
-                            <p class="card-text">n8n-workflows en document AI controleren prestatieverklaringen automatisch op verplichte gegevens, handtekeningen en toestemmingen. Medewerkers handelen enkel uitzonderingen af.</p>
-                            <div class="d-grid mt-3 mt-auto">
-                                <a href="whitepapers/computer-vision-productiekwaliteit/" class="btn btn-outline-success">Lees de case <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
+                            <i class="fa-solid fa-server text-2xl text-slate-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-4 transition-colors"></i>
+                            <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Serverless First</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Minimale beheerlast, maximale schaalbaarheid.</p>
                         </div>
-                        <div class="card-footer text-center">
-                            <a href="#contact" class="btn btn-link text-success">Bespreek uw vraagstuk</a>
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
+                            <i class="fa-solid fa-diagram-project text-2xl text-slate-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-4 transition-colors"></i>
+                            <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Digital Twins</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Real-time simulaties van fysieke assets.</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
+                            <i class="fa-solid fa-rotate text-2xl text-slate-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-4 transition-colors"></i>
+                            <h4 class="font-bold mb-2 text-slate-900 dark:text-white">GitOps</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Single source of truth voor infra en apps.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card h-100">
-                        <div class="card-header bg-info text-white">
-                            <span class="badge bg-light text-dark">Cloud migratie</span>
+                <div class="relative hidden lg:block" data-aos="fade-left">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary-500/20 to-transparent rounded-3xl blur-2xl"></div>
+                    <div class="relative bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+                        <div class="flex items-center gap-2 mb-6">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
                         </div>
-                        <div class="card-body text-center d-flex flex-column">
-                            <div class="mb-3">
-                                <i class="fas fa-cloud fa-3x text-info"></i>
-                            </div>
-                            <h5 class="card-title">Cloud migratie & modernisatie</h5>
-                            <p class="card-text">Lift-and-shift, replatforming naar webapps en containertransities gecombineerd met hybride OpenShift op basis van data-classificatie en FinOps.</p>
-                            <div class="d-grid mt-3 mt-auto">
-                                <a href="whitepapers/cloud-migratie-retailer/" class="btn btn-outline-info">Lees de case <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="#contact" class="btn btn-link text-info">Bespreek uw vraagstuk</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card h-100">
-                        <div class="card-header bg-danger text-white">
-                            <span class="badge bg-light text-dark">Software ontwikkeling</span>
-                        </div>
-                        <div class="card-body text-center d-flex flex-column">
-                            <div class="mb-3">
-                                <i class="fas fa-code-branch fa-3x text-danger"></i>
-                            </div>
-                            <h5 class="card-title">DevOps-traject voor softwareteams</h5>
-                            <p class="card-text">We laten zien hoe een softwareteam stapsgewijs naar een geautomatiseerde CI/CD-pijplijn groeit, inclusief governance, testautomatisering en releaseproces.</p>
-                            <div class="d-grid mt-3 mt-auto">
-                                <a href="whitepapers/ci-cd-software-ontwikkeling/" class="btn btn-outline-danger">Lees de case <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="#contact" class="btn btn-link text-danger">Bespreek uw vraagstuk</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-5">
-                <a href="#contact" class="btn btn-primary btn-lg">Stuur ons een bericht</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects & Products -->
-    <section id="projects" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Projecten & Producten</h2>
-                <p class="lead">Voorbeelden van oplossingen die wij bouwen en onderhouden</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card h-100">
-                        <div class="card-header bg-primary text-white">
-                            <span class="badge bg-light text-dark">In gebruik</span>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Alfen ↔ Victron integratie</h5>
-                            <p class="card-text">Een maatwerkintegratie waarmee een Alfen EV-laadpaal via het Victron Energy Management System wordt aangestuurd. Ondersteunt dynamische energietarieven en opladen op zonne-energie.</p>
-                            <ul class="small mb-2">
-                                <li>Realtime koppeling tussen laadpaal en Victron EMS</li>
-                                <li>Optimalisatie op basis van dagprijzen en PV-opbrengst</li>
-                                <li>Actief in productie bij een zakelijke klant</li>
-                            </ul>
-                            <div class="mt-auto pt-3">
-                                <a href="whitepapers/phaeton/" class="btn btn-outline-primary btn-sm">Lees de whitepaper</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card h-100">
-                        <div class="card-header bg-dark text-white">
-                            <span class="badge bg-light text-dark">In ontwikkeling</span>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">ScanViper</h5>
-                            <p class="card-text">Rust-first platform (scanviper.com) dat domeinen scant op HTTP-, TLS-, DNS- en cloudrisico’s. Richt zich op securityteams die misconfiguraties vroeg willen signaleren.</p>
-                            <ul class="small mb-2">
-                                <li>Automatische probes op infrastructuur- en SEO-signalen</li>
-                                <li>Focus op rapportage voor security en compliance</li>
-                                <li>Publieke lancering gepland in 2025</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 mt-auto pt-3">
-                                <a href="https://scanviper.com" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener">scanviper.com</a>
-                                <a href="whitepapers/scanviper/" class="btn btn-outline-primary btn-sm">Bekijk whitepaper</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card h-100">
-                        <div class="card-header bg-secondary text-white">
-                            <span class="badge bg-light text-dark">In ontwikkeling</span>
-                        </div>
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Tyrum</h5>
-                            <p class="card-text">Persoonlijke AI-assistent (tyrum.com) voor chat en voice die opdrachten uitvoert over web, mobiel, CLI en API’s. Ontworpen om complexe workflows af te handelen.</p>
-                            <ul class="small mb-2">
-                                <li>End-to-end uitvoering met onzichtbare backend</li>
-                                <li>Integraties met web- en mobiele taken in ontwikkeling</li>
-                                <li>Publieke lancering voorzien in 2026</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 mt-auto pt-3">
-                                <a href="https://tyrum.com" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener">tyrum.com</a>
-                                <a href="whitepapers/tyrum/" class="btn btn-outline-primary btn-sm">Bekijk whitepaper</a>
-                            </div>
+                        <div class="font-mono text-sm text-slate-300 space-y-2">
+                            <p class="text-slate-500"># Infrastructure as Code Example</p>
+                            <p><span class="text-purple-400">resource</span> <span class="text-green-400">"azurerm_kubernetes_cluster"</span> <span class="text-blue-400">"virtunet_k8s"</span> {</p>
+                            <p class="pl-4">name <span class="text-cyan-400">=</span> <span class="text-yellow-300">"aks-prod-eu-west"</span></p>
+                            <p class="pl-4">location <span class="text-cyan-400">=</span> var.location</p>
+                            <p class="pl-4">dns_prefix <span class="text-cyan-400">=</span> <span class="text-yellow-300">"virtunet-aks"</span></p>
+                            <br>
+                            <p class="pl-4"><span class="text-slate-500">// Auto-scaling enabled</span></p>
+                            <p class="pl-4">default_node_pool {</p>
+                            <p class="pl-8">name <span class="text-cyan-400">=</span> <span class="text-yellow-300">"default"</span></p>
+                            <p class="pl-8">node_count <span class="text-cyan-400">=</span> 3</p>
+                            <p class="pl-8">enable_auto_scaling <span class="text-cyan-400">=</span> <span class="text-red-400">true</span></p>
+                            <p class="pl-4">}</p>
+                            <p>}</p>
+                            <div class="h-4 w-2 bg-slate-500 animate-pulse inline-block"></div>
                         </div>
                     </div>
                 </div>
@@ -505,39 +252,57 @@
         </div>
     </section>
 
-    <!-- Skills Progress Bars -->
-    <section id="expertise" class="py-5 skills-section">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Onze Expertise</h2>
-                <p class="lead">Waar we organisaties dagelijks mee helpen</p>
-                <a href="value-proposition/#approach-value" class="btn btn-outline-light mt-3">Ontdek onze werkwijze <i class="fas fa-arrow-right ms-2"></i></a>
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4 text-slate-900 dark:text-white">Track Record</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">Onze recente projecten en producten.</p>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="service-card h-100">
-                        <div class="card-body p-4">
-                            <h4>AI & Data</h4>
-                            <ul class="list-unstyled mb-0">
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Generatieve AI en LLMs van idee tot proof of concept</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Computer vision en NLP in bestaande processen integreren</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>MLOps, modelmonitoring en beheer in productie</li>
-                            </ul>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all group" data-aos="fade-up">
+                    <div class="p-8 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">In Productie</span>
+                            <i class="fas fa-charging-station text-primary-600 dark:text-primary-400 text-3xl"></i>
                         </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Smart Energy Grid</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">Integratie tussen Alfen laadpalen en Victron Energy Management Systems. Slim laden op zonne-energie.</p>
+                        <a href="whitepapers/phaeton/" class="text-primary-600 dark:text-primary-400 text-sm font-bold hover:underline transition-colors inline-flex items-center">
+                            Lees Whitepaper <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="service-card h-100">
-                        <div class="card-body p-4">
-                            <h4>Cloud & Platform</h4>
-                            <ul class="list-unstyled mb-0">
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Architectuur en migratie naar Azure, AWS of Google Cloud</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Kubernetes-platformen en containerbeheer opzetten</li>
-                                <li><i class="fas fa-check-circle text-success me-2"></i>Infrastructure as Code en DevOps-processen implementeren</li>
-                            </ul>
+                <!-- Project 2 -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="bg-amber-100 dark:bg-amber-500/10 text-amber-600 dark:text-amber-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Bèta</span>
+                            <i class="fas fa-radar text-amber-500 text-3xl"></i>
                         </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">ScanViper</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">Continu inzicht in uw online aanvalsoppervlak. ScanViper scant automatisch domeinen en cloud-omgevingen op kwetsbaarheden en configuratiefouten.</p>
+                        <a href="https://scanviper.com" target="_blank" class="text-primary-600 dark:text-primary-400 text-sm font-bold hover:underline transition-colors inline-flex items-center">
+                            Bezoek Website <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-8 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="bg-slate-200 dark:bg-slate-700/30 text-slate-600 dark:text-slate-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">In Ontwikkeling</span>
+                            <i class="fas fa-robot text-purple-500 text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Tyrum AI Assistant</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">Geavanceerde persoonlijke AI-assistent die complexe workflows automatiseert over web en mobiel.</p>
+                        <a href="whitepapers/tyrum/" class="text-primary-600 dark:text-primary-400 text-sm font-bold hover:underline transition-colors inline-flex items-center">
+                            Preview Bekijken <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -545,751 +310,119 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-5 contact-section">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Contact</h2>
-                <p class="lead">Neem contact op met onze AI & cloud experts</p>
-            </div>
+    <section id="contact" class="py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-slate-900 dark:text-white">Klaar om te starten?</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-8">Direct contact met engineers. Geen sales pitch, maar inhoudelijk advies over uw uitdaging.</p>
 
-            <div class="row g-4">
-                <div class="col-lg-8 mx-auto" data-aos="fade-up">
-                    <div class="service-card">
-                        <div class="card-body p-4">
-                            <div class="text-center mb-4">
-                                <h4 class="mb-3 text-primary">Contact per e-mail</h4>
-                                <p>Stuur uw vraagstuk per e-mail. We reageren binnen 24 uur met antwoorden of een voorstel voor een betaald intake-traject.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-500/10 flex items-center justify-center text-primary-600 dark:text-primary-500">
+                                <i class="fas fa-phone text-xl"></i>
                             </div>
-
-                            <form id="contact-form" class="contact-form" action="https://formspree.io/f/mdkaqaga" method="POST">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="name" class="form-label">Uw naam <span class="text-danger">*</span></label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Volledige naam" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label">Uw e-mail <span class="text-danger">*</span></label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="naam@bedrijf.nl" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="phone" class="form-label">Uw telefoonnummer <span class="text-white-50">(optioneel)</span></label>
-                                        <input type="tel" name="phone" id="phone" class="form-control" placeholder="+31 6 12345678">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="company" class="form-label">Bedrijfsnaam <span class="text-white-50">(optioneel)</span></label>
-                                        <input type="text" name="company" id="company" class="form-control" placeholder="Uw bedrijf">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="interest" class="form-label">Ik ben geïnteresseerd in: <span class="text-danger">*</span></label>
-                                        <select name="interest" id="interest" class="form-control" required>
-                                            <option value="" disabled selected>Selecteer een optie</option>
-                                            <option value="AI Solutions">AI Oplossingen</option>
-                                            <option value="Cloud Migration">Cloud Migratie</option>
-                                            <option value="DevOps">DevOps & CI/CD</option>
-                                            <option value="Kubernetes">Container Orchestratie</option>
-                                            <option value="Cost Optimization">FinOps / Kostenoptimalisatie</option>
-                                            <option value="Other">Anders</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="message" class="form-label">Uw bericht <span class="text-danger">*</span></label>
-                                        <textarea name="message" id="message" class="form-control" rows="4" placeholder="Beschrijf kort uw uitdaging of vraag" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mt-3">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-column flex-md-row align-items-md-center gap-3">
-                                            <p class="text-white small mb-0"><span class="text-danger">*</span> Verplichte velden</p>
-                                            <div class="ms-md-auto text-md-end">
-                                                <div class="d-grid d-md-inline-block">
-                                                    <button type="submit" class="btn btn-primary">Verstuur Aanvraag</button>
-                                                </div>
-                                                <p class="small text-white-50 mt-2 mb-0">We reageren binnen 24 uur op werkdagen per e-mail</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-
-                            <div class="newsletter-signup mt-4 p-4 rounded" style="background-color: rgba(0,123,255,0.1); border: 1px solid rgba(0,123,255,0.2);">
-                                <h5><i class="fas fa-envelope-open-text me-2"></i> AI & Cloud Updates</h5>
-                                <p class="small mb-3">Blijf op de hoogte van de nieuwste ontwikkelingen in AI en cloud technologie.</p>
-                                <form class="newsletter-form" action="https://formspree.io/f/mdkaqaga" method="POST">
-                                    <div class="input-group mb-2">
-                                        <input type="email" class="form-control" name="email" placeholder="Uw e-mailadres" required>
-                                        <button class="btn btn-primary" type="submit">Aanmelden</button>
-                                    </div>
-                                    <input type="hidden" name="form_name" value="newsletter-subscription">
-                                    <input type="hidden" name="_subject" value="Nieuwe nieuwsbrief aanmelding via virtunet.io">
-                                    <div class="form-check small">
-                                        <input class="form-check-input" type="checkbox" id="privacyCheck" name="privacy" required>
-                                        <label class="form-check-label" for="privacyCheck">
-                                            Ik ga akkoord met het ontvangen van updates
-                                        </label>
-                                    </div>
-                                </form>
+                            <div>
+                                <h6 class="font-bold text-slate-900 dark:text-white">Bel ons</h6>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">+31 6 42117210</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-    <!-- Footer -->
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">Next-Gen AI Innovation & Enterprise Cloud</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Copyright &copy; <span class="tm-current-year">2024</span> Virtunet B.V.</p>
+                <div data-aos="fade-left">
+                    <form id="contact-form" action="https://formspree.io/f/mdkaqaga" method="POST" class="bg-white dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl dark:shadow-2xl">
+                        <!-- Spam protection (Honeypot) -->
+                        <input type="text" name="_gotcha" style="display:none" />
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Naam</label>
+                                <input type="text" id="name" name="name" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors" placeholder="Uw naam">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors" placeholder="naam@bedrijf.nl">
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Bericht</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors" placeholder="Vertel ons over uw project..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg shadow-primary-500/20">
+                            Verzenden
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p>
+        </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="btn btn-primary back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <style>
-    /* Fix overlap between back-to-top and chat buttons */
-    @media (max-width: 767px) {
-        .back-to-top {
-            bottom: 110px !important;
-        }
-    }
-    @media (min-width: 768px) {
-        .back-to-top {
-            bottom: 110px !important;
-            right: 30px !important;
-        }
-    }
-
-    /* Match styling between back-to-top and chat buttons */
-    .back-to-top {
-        width: 60px !important;
-        height: 60px !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4) !important;
-        background-color: #007bff !important;
-        border-color: #007bff !important;
-        padding: 0 !important;
-        font-size: 20px !important;
-        transition: all 0.3s ease !important;
-    }
-
-    .back-to-top:hover {
-        transform: scale(1.1) !important;
-        background-color: #0069d9 !important;
-        border-color: #0069d9 !important;
-    }
-    </style>
-
-    <!-- Modern JS Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="js/templatemo-script.js"></script>
-
-    <!-- AI Chatbot Integration -->
-    <script type="text/javascript">
-        // Wait for page to load
-        window.addEventListener('load', function() {
-            // Delayed initialization for optimal performance
-            setTimeout(function() {
-                // Create chat widget container
-                const chatWidget = document.createElement('div');
-                chatWidget.className = 'chat-widget';
-                chatWidget.innerHTML = `
-                    <div class="chat-widget-button">
-                        <i class="fas fa-comment-dots"></i>
-                    </div>
-                    <div class="chat-widget-popup">
-                        <div class="chat-widget-header">
-                            <h5><i class="fas fa-robot me-2"></i>Virtunet AI Assistant</h5>
-                            <button class="chat-close-btn">&times;</button>
-                        </div>
-                        <div class="chat-widget-body">
-                            <div class="chat-message bot">
-                                <p>👋 Hallo! Ik ben de AI assistent van Virtunet. Ik ben getraind op alle diensten en expertise van Virtunet. Waarmee kan ik u helpen?</p>
-                                <p>U kunt typen of een optie kiezen:</p>
-                            </div>
-                            <div class="chat-buttons">
-                                <button class="chat-option-btn" data-response="Vertel me meer over AI oplossingen">AI Oplossingen</button>
-                                <button class="chat-option-btn" data-response="Wat zijn de voordelen van cloud migratie?">Cloud Migratie</button>
-                                <button class="chat-option-btn" data-response="Hoe kan DevOps ons helpen?">DevOps & CI/CD</button>
-                                <button class="chat-option-btn" data-response="Ik wil graag contact opnemen">Contact</button>
-                            </div>
-                        </div>
-                        <div class="chat-widget-body-footer">
-                            <div id="typing-indicator" class="typing-indicator">
-                                <span></span><span></span><span></span>
-                            </div>
-                        </div>
-                        <div class="chat-widget-footer">
-                            <form id="chat-form">
-                                <input type="text" placeholder="Typ uw vraag hier..." id="chat-input">
-                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(chatWidget);
-
-                // Add enhanced styles
-                const style = document.createElement('style');
-                style.textContent = `
-                    .chat-widget {
-                        position: fixed;
-                        bottom: 30px;
-                        right: 30px;
-                        z-index: 1000;
-                        font-family: 'Poppins', sans-serif;
-                    }
-                    .chat-widget-button {
-                        width: 60px;
-                        height: 60px;
-                        background-color: #007bff;
-                        color: white;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
-                        font-size: 24px;
-                        transition: all 0.3s ease;
-                    }
-                    .chat-widget-button:hover {
-                        transform: scale(1.1);
-                    }
-                    .chat-widget-popup {
-                        position: absolute;
-                        bottom: 80px;
-                        right: 0;
-                        width: 350px;
-                        background-color: #fff;
-                        border-radius: 12px;
-                        overflow: hidden;
-                        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-                        display: none;
-                    }
-                    .chat-widget-header {
-                        background-color: #007bff;
-                        color: white;
-                        padding: 15px;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                    }
-                    .chat-widget-header h5 {
-                        margin: 0;
-                    }
-                    .chat-close-btn {
-                        background: none;
-                        border: none;
-                        color: white;
-                        font-size: 20px;
-                        cursor: pointer;
-                    }
-                    .chat-widget-body {
-                        height: 300px;
-                        overflow-y: auto;
-                        padding: 15px;
-                        background-color: #f8f9fa;
-                        scrollbar-width: thin;
-                        scrollbar-color: #ccc #f8f9fa;
-                        position: relative;
-                    }
-                    .chat-widget-body::-webkit-scrollbar {
-                        width: 6px;
-                    }
-                    .chat-widget-body::-webkit-scrollbar-track {
-                        background: #f8f9fa;
-                    }
-                    .chat-widget-body::-webkit-scrollbar-thumb {
-                        background-color: #ccc;
-                        border-radius: 6px;
-                    }
-                    .chat-widget-body-footer {
-                        position: relative;
-                        padding: 0 15px;
-                        background-color: #f8f9fa;
-                    }
-                    .chat-widget-footer {
-                        padding: 10px;
-                        border-top: 1px solid #eee;
-                        position: relative;
-                    }
-                    #chat-form {
-                        display: flex;
-                    }
-                    #chat-input {
-                        flex: 1;
-                        padding: 10px 15px;
-                        border: 1px solid #ddd;
-                        border-radius: 20px;
-                        outline: none;
-                        font-size: 14px;
-                        transition: border-color 0.3s;
-                    }
-                    #chat-input:focus {
-                        border-color: #007bff;
-                        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-                    }
-                    #chat-form button {
-                        background-color: #007bff;
-                        color: white;
-                        border: none;
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 50%;
-                        margin-left: 10px;
-                        cursor: pointer;
-                        transition: background-color 0.3s;
-                    }
-                    #chat-form button:hover {
-                        background-color: #0069d9;
-                    }
-                    .chat-message {
-                        margin-bottom: 15px;
-                        max-width: 80%;
-                        animation: fadeIn 0.3s ease-in-out;
-                    }
-                    @keyframes fadeIn {
-                        from { opacity: 0; transform: translateY(10px); }
-                        to { opacity: 1; transform: translateY(0); }
-                    }
-                    .chat-message p {
-                        margin: 5px 0;
-                        padding: 10px 15px;
-                        border-radius: 15px;
-                        color: #333;
-                        line-height: 1.5;
-                    }
-                    .chat-message.bot p {
-                        background-color: #e9ecef;
-                        border-top-left-radius: 5px;
-                        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-                    }
-                    .chat-message.user {
-                        margin-left: auto;
-                    }
-                    .chat-message.user p {
-                        background-color: #007bff;
-                        color: white;
-                        border-top-right-radius: 5px;
-                        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-                    }
-                    .chat-buttons {
-                        display: flex;
-                        flex-wrap: wrap;
-                        gap: 10px;
-                        margin-bottom: 15px;
-                    }
-                    .chat-option-btn {
-                        background-color: #e9ecef;
-                        border: none;
-                        padding: 8px 12px;
-                        border-radius: 15px;
-                        cursor: pointer;
-                        transition: all 0.2s;
-                        font-size: 0.9rem;
-                        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-                    }
-                    .chat-option-btn:hover {
-                        background-color: #007bff;
-                        color: white;
-                        transform: translateY(-2px);
-                    }
-                    .chat-message a {
-                        color: inherit;
-                        text-decoration: underline;
-                    }
-                    .typing-indicator {
-                        display: none;
-                        position: relative;
-                        margin: 0px 0 5px 0;
-                        background: rgba(0,0,0,0.1);
-                        padding: 6px 12px;
-                        border-radius: 15px;
-                        width: fit-content;
-                    }
-                    .typing-indicator span {
-                        height: 8px;
-                        width: 8px;
-                        background: #777;
-                        display: inline-block;
-                        border-radius: 50%;
-                        margin-right: 3px;
-                        animation: typing 1.3s infinite;
-                    }
-                    .typing-indicator span:nth-child(2) {
-                        animation-delay: 0.2s;
-                    }
-                    .typing-indicator span:nth-child(3) {
-                        animation-delay: 0.4s;
-                        margin-right: 0;
-                    }
-                    @keyframes typing {
-                        0%, 100% { transform: translateY(0); }
-                        50% { transform: translateY(-5px); }
-                    }
-                `;
-                document.head.appendChild(style);
-
-                // Initialize variables
-                const chatButton = document.querySelector('.chat-widget-button');
-                const chatPopup = document.querySelector('.chat-widget-popup');
-                const closeBtn = document.querySelector('.chat-close-btn');
-                const chatForm = document.getElementById('chat-form');
-                const chatInput = document.getElementById('chat-input');
-                const chatBody = document.querySelector('.chat-widget-body');
-                const optionBtns = document.querySelectorAll('.chat-option-btn');
-                const typingIndicator = document.getElementById('typing-indicator');
-
-                // Conversation context tracker
-                let conversationContext = {
-                    lastTopic: null,
-                    mentions: {
-                        ai: 0,
-                        cloud: 0,
-                        devops: 0,
-                        contact: 0
-                    },
-                    questionsAsked: 0,
-                    sessionStartTime: new Date(),
-                    interactions: []
-                };
-
-                // Knowledge base for more dynamic responses
-                const knowledgeBase = {
-                    ai: [
-                        "Virtunet helpt organisaties pragmatisch te bepalen waar AI waarde toevoegt en hoe we dat verantwoord implementeren.",
-                        "We werken met generatieve AI, LLMs, computer vision en NLP, altijd afgestemd op bestaande processen en governance.",
-                        "Tijdens verkenningen bespreken we data, privacy, adoptie door medewerkers en beheer van modellen in productie.",
-                        "Voorbeelden zijn het ondersteunen van klantteams, documentanalyse en kennisontsluiting. De uiteindelijke opbrengst hangt af van uw situatie.",
-                        "Stuur ons gerust een bericht; we reageren per e-mail en kunnen indien gewenst een betaalde intake voorstellen."
-                    ],
-                    cloud: [
-                        "We begeleiden migraties naar Azure, AWS of Google Cloud met aandacht voor architectuur, beveiliging en kostenbeheersing.",
-                        "Elke roadmap begint met inzicht in uw huidige landschap, afhankelijkheden en businesscase.",
-                        "In scenario's voor onder meer retail en overheid laten we zien hoe een gefaseerde migratie eruit kan zien.",
-                        "Multi-cloud en hybride omgevingen zijn mogelijk, mits governance, monitoring en teams daarop ingericht zijn.",
-                        "Neem contact op per e-mail als u een vervolgstap wilt bespreken; intakegesprekken plannen we op offertebasis."
-                    ],
-                    devops: [
-                        "DevOps draait om teams helpen om voorspelbaar en veilig te releasen met CI/CD, testautomatisering en IaC.",
-                        "We starten vaak met een assessment van het huidige proces en bepalen daarna een groeipad in beheersbare stappen.",
-                        "Onze scenario's tonen hoe teams van handmatige releases doorgroeien naar automatisering met duidelijke kwaliteitsmaatstaven.",
-                        "Cultuur en samenwerking zijn net zo belangrijk als tooling; we begeleiden beide aspecten.",
-                        "Neem contact op als u wilt sparren over de volgende stap voor uw team." 
-                    ],
-                    contact: [
-                        "Stuur uw bericht naar info@virtunet.nl of gebruik het formulier; we antwoorden binnen één werkdag per e-mail.",
-                        "Telefonische of videogesprekken plannen we na akkoord op een intakevoorstel.",
-                        "Virtunet is gevestigd in Oirschot, Nederland, en werkt voor organisaties in binnen- en buitenland.",
-                        "U kunt aangeven of u een intakevoorstel wilt ontvangen; we lichten de werkwijze en tarieven dan toe.",
-                        "Voor bestaande klanten blijven de bekende kanalen beschikbaar voor directe ondersteuning."
-                    ],
-                    general: [
-                        "Virtunet combineert AI-kennis met cloud-ervaring zodat we end-to-end trajecten kunnen begeleiden.",
-                        "We werken sectoroverstijgend en passen onze aanpak aan op de context van de organisatie.",
-                        "Onze aanpak bestaat uit vier stappen: ontdekken, ontwerpen, realiseren en optimaliseren.",
-                        "Transparantie staat centraal: we delen aannames, risico's en de moeite die nodig is voor een duurzaam resultaat.",
-                        "Meer weten? Bekijk de voorbeeldscenario's of stuur ons een bericht via het contactformulier."
-                    ]
-                };
-
-                // Enhanced response generator
-                function generateResponse(userMessage) {
-                    const message = userMessage.toLowerCase();
-                    conversationContext.questionsAsked++;
-                    conversationContext.interactions.push({
-                        user: userMessage,
-                        timestamp: new Date()
-                    });
-
-                    // Increment topic counters based on user message
-                    if (message.includes('ai') || message.includes('kunstmatige') || message.includes('intelligentie') ||
-                        message.includes('machine learning') || message.includes('robot') || message.includes('automatiseren')) {
-                        conversationContext.mentions.ai++;
-                        conversationContext.lastTopic = 'ai';
-                    }
-
-                    if (message.includes('cloud') || message.includes('migratie') || message.includes('aws') ||
-                        message.includes('azure') || message.includes('google cloud') || message.includes('infrastructuur')) {
-                        conversationContext.mentions.cloud++;
-                        conversationContext.lastTopic = 'cloud';
-                    }
-
-                    if (message.includes('devops') || message.includes('ci/cd') || message.includes('pipeline') ||
-                        message.includes('integratie') || message.includes('deployment') || message.includes('automatisering')) {
-                        conversationContext.mentions.devops++;
-                        conversationContext.lastTopic = 'devops';
-                    }
-
-                    if (message.includes('contact') || message.includes('afspraak') || message.includes('gesprek') ||
-                        message.includes('bellen') || message.includes('mail') || message.includes('email')) {
-                        conversationContext.mentions.contact++;
-                        conversationContext.lastTopic = 'contact';
-                    }
-
-                    // Select response based on context and message content
-                    let response = '';
-                    let responseDelay = 1000 + Math.random() * 1500; // Realistic typing delay
-
-                    if (conversationContext.questionsAsked > 3 && Math.random() > 0.6) {
-                        // Occasionally suggest moving to direct contact after a few exchanges
-                        response = "Ik merk dat u specifieke vragen heeft over onze diensten. Wilt u dat we per e-mail een intakevoorstel toesturen? <br><br><a href='#contact' class='btn btn-primary btn-sm mt-2'>Stuur een bericht</a>";
-                    } else {
-                        // Find most relevant topic based on message content or continue with the last topic
-                        let topicCounts = Object.entries(conversationContext.mentions).sort((a, b) => b[1] - a[1]);
-                        let dominantTopic = topicCounts[0][1] > 0 ? topicCounts[0][0] : 'general';
-
-                        // If the message clearly indicates a specific topic, override the dominant topic
-                        if (message.includes('ai') || message.includes('intelligentie')) {
-                            dominantTopic = 'ai';
-                        } else if (message.includes('cloud') || message.includes('migratie')) {
-                            dominantTopic = 'cloud';
-                        } else if (message.includes('devops') || message.includes('ci/cd')) {
-                            dominantTopic = 'devops';
-                        } else if (message.includes('contact') || message.includes('afspraak')) {
-                            dominantTopic = 'contact';
-                        } else if (conversationContext.lastTopic) {
-                            // Continue with the last topic if the message doesn't clearly indicate a new topic
-                            dominantTopic = conversationContext.lastTopic;
-                        }
-
-                        // Select a response from the knowledge base
-                        const topicResponses = knowledgeBase[dominantTopic];
-                        let selectedResponse = topicResponses[Math.floor(Math.random() * topicResponses.length)];
-
-                        // For longer responses, add a delay proportional to the length
-                        responseDelay += selectedResponse.length * 10;
-
-                        // Add follow-up question based on the dominant topic
-                        let followUp = '';
-                        if (dominantTopic === 'ai') {
-                            followUp = "<br><br>Heeft u een specifiek AI-gebruik in gedachten voor uw organisatie?";
-                        } else if (dominantTopic === 'cloud') {
-                            followUp = "<br><br>Gebruikt u momenteel al cloud-diensten of bent u geïnteresseerd in een eerste migratie?";
-                        } else if (dominantTopic === 'devops') {
-                            followUp = "<br><br>Wat zijn de grootste uitdagingen in uw huidige ontwikkelingsproces?";
-                        } else if (dominantTopic === 'contact') {
-                            followUp = "<br><br>Wilt u een intakevoorstel ontvangen of eerst aanvullende informatie per e-mail?";
-                        } else {
-                            followUp = "<br><br>Waar bent u het meest in geïnteresseerd: AI-implementatie, cloud-migratie of DevOps-transformatie?";
-                        }
-
-                        response = selectedResponse + followUp;
-                    }
-
-                    // For special queries, provide custom responses
-                    if (message.includes('prijs') || message.includes('kosten') || message.includes('tarief')) {
-                        response = "De investering hangt af van scope, teaminzet en gewenste doorlooptijd. Deel uw vraag per e-mail; we sturen vervolgens een intakevoorstel met aanpak en tarieven.<br><br><a href='#contact' class='btn btn-primary btn-sm mt-2'>Stuur een bericht</a>";
-                    } else if (message.includes('ervaring') || message.includes('expertise') || message.includes('klanten')) {
-                        response = "Virtunet werkt voor organisaties in onder meer financiële dienstverlening, retail, productie en overheid. Onze voorbeeldscenario's geven inzicht in hoe trajecten eruit kunnen zien en welke keuzes daarbij spelen.<br><br><a href='#services' class='btn btn-primary btn-sm mt-2'>Voorbeelden bekijken</a>";
-                    } else if (message.includes('waar') && message.includes('gevestigd')) {
-                        response = "Virtunet is gevestigd in Oirschot, Nederland. We werken met klanten in binnen- en buitenland en leveren de meeste trajecten remote, dus locatie vormt geen beperking.";
-                    }
-
-                    // Simulate a realistic response time (longer for more complex responses)
-                    return {
-                        text: response,
-                        delay: Math.min(responseDelay, 3000) // Cap delay at 3 seconds
-                    };
-                }
-
-                // Show popup when chat button is clicked
-                chatButton.addEventListener('click', function() {
-                    chatPopup.style.display = 'block';
-                    chatButton.style.display = 'none';
-                });
-
-                // Hide popup when close button is clicked
-                closeBtn.addEventListener('click', function() {
-                    chatPopup.style.display = 'none';
-                    chatButton.style.display = 'flex';
-                });
-
-                // Handle form submission
-                chatForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const message = chatInput.value.trim();
-                    if (message) {
-                        addMessage(message, 'user');
-                        chatInput.value = '';
-
-                        // Show typing indicator
-                        typingIndicator.style.display = 'block';
-
-                        // Generate enhanced response
-                        const response = generateResponse(message);
-
-                        // Simulate typing time
-                        setTimeout(function() {
-                            typingIndicator.style.display = 'none';
-                            addMessage(response.text, 'bot');
-                        }, response.delay);
-                    }
-                });
-
-                // Handle option buttons with enhanced interaction
-                optionBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const response = this.getAttribute('data-response');
-                        addMessage(response, 'user');
-
-                        // Show typing indicator
-                        typingIndicator.style.display = 'block';
-
-                        // Generate response based on the button's topic
-                        const botResponse = generateResponse(response);
-
-                        // Simulate typing time
-                        setTimeout(function() {
-                            typingIndicator.style.display = 'none';
-                            addMessage(botResponse.text, 'bot');
-                        }, botResponse.delay);
-                    });
-                });
-
-                // Add message to chat
-                function addMessage(text, sender) {
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = `chat-message ${sender}`;
-                    messageDiv.innerHTML = `<p>${text}</p>`;
-                    chatBody.appendChild(messageDiv);
-                    chatBody.scrollTop = chatBody.scrollHeight;
-                }
-
-                // Session tracking and auto-trigger
-                const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
-                let hasTriggered = false;
-
-                // Create notification sound element
-                const notificationSound = document.createElement('audio');
-                notificationSound.id = 'chat-notification-sound';
-                notificationSound.style.display = 'none';
-                notificationSound.src = "sounds/chat-notification.mp3";
-                document.body.appendChild(notificationSound);
-
-                // Auto-trigger chat after 15 seconds if not already triggered
-                setTimeout(function() {
-                    if (!hasTriggered && chatPopup.style.display !== 'block') {
-                        hasTriggered = true;
-                        chatButton.classList.add('animate__animated', 'animate__bounce');
-
-                        // Add subtle notification
-                        const notification = document.createElement('div');
-                        notification.style.cssText = `
-                            position: absolute;
-                            top: -10px;
-                            right: -5px;
-                            background-color: #ff4757;
-                            color: white;
-                            border-radius: 50%;
-                            width: 20px;
-                            height: 20px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 12px;
-                            font-weight: bold;
-                            animation: pulse 2s infinite;
-                        `;
-                        notification.innerHTML = '1';
-                        chatButton.appendChild(notification);
-
-                        // Play notification sound
-                        try {
-                            // First check if notifications are not blocked by browser policy
-                            if (!sessionStorage.getItem('soundDisabled')) {
-                                const sound = document.getElementById('chat-notification-sound');
-                                if (sound) {
-                                    // Set volume to a lower level for subtlety
-                                    sound.volume = 0.3;
-
-                                    // Use a promise to handle autoplay restrictions
-                                    const playPromise = sound.play();
-
-                                    if (playPromise !== undefined) {
-                                        playPromise.catch(error => {
-                                            console.log('Autoplay was prevented. This is normal in some browsers.');
-                                            sessionStorage.setItem('soundDisabled', 'true');
-                                        });
-                                    }
-                                }
-                            }
-                        } catch (e) {
-                            console.log('Sound notification could not be played.');
-                        }
-                    }
-                }, 15000);
-
-                // Track user activity in chat
-                document.addEventListener('mousemove', function() {
-                    if (!hasTriggered && !sessionStorage.getItem('chatShown') &&
-                        Math.random() > 0.7 && conversationContext.questionsAsked === 0) {
-                        hasTriggered = true;
-                        sessionStorage.setItem('chatShown', 'true');
-                    }
-                });
-
-            }, 2000); // Initialize after 2 seconds for optimal page loading
+    <script>
+        // Init AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
         });
-    </script>
 
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Virtunet B.V.",
-      "image": "https://virtunet.io/img/logo.png",
-      "url": "https://virtunet.io",
-      "description": "Virtunet helpt organisaties wereldwijd om kansen van AI en cloud pragmatisch te verkennen en verantwoord te realiseren.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Oirschot",
-        "addressRegion": "Noord-Brabant",
-        "addressCountry": "NL"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 51.5031,
-        "longitude": 5.3086
-      },
-      "telephone": "+31642117210",
-      "email": "info@virtunet.nl",
-      "vatID": "NL867290122B01",
-      "priceRange": "€€€",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "17:00"
-        }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/company/virtunetbv",
-        "https://x.com/virtunetbv",
-        "https://github.com/VirtunetBV"
-      ]
-    }
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Form Handling
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Verzenden...';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    submitBtn.innerText = 'Verzonden!';
+                    submitBtn.classList.remove('bg-primary-600', 'hover:bg-primary-700');
+                    submitBtn.classList.add('bg-green-600');
+                    form.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                submitBtn.innerText = 'Fout bij verzenden';
+                submitBtn.classList.remove('bg-primary-600', 'hover:bg-primary-700');
+                submitBtn.classList.add('bg-red-600');
+            } finally {
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalText;
+                    submitBtn.classList.remove('bg-green-600', 'bg-red-600');
+                    submitBtn.classList.add('bg-primary-600');
+                    submitBtn.classList.add('hover:bg-primary-700');
+                }, 3000);
+            }
+        });
     </script>
 </body>
 </html>

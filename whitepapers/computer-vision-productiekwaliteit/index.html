@@ -1,258 +1,203 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Documentanalyse PoC met n8n | Virtunet</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151e2e', 900: '#0f172a', 950: '#020617' },
+                        primary: { DEFAULT: '#8b5cf6', hover: '#7c3aed' }, // Violet for AI
+                        ai: '#8b5cf6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../../css/templatemo-style.css">
+
     <style>
-        .whitepaper-header { background: linear-gradient(135deg, rgba(111,66,193,.9), rgba(13,110,253,.9)); padding: 6rem 0 4rem; color: #fff; }
-        .whitepaper-section { padding: 4rem 0; }
-        .whitepaper-section h2 { margin-bottom: 2rem; position: relative; padding-bottom: 1rem; }
-        .whitepaper-section h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background-color: var(--primary-color); }
-        .card-outline { border-radius: 16px; border: 1px solid rgba(111,66,193,.14); box-shadow: 0 10px 24px rgba(0,0,0,.08); height: 100%; }
-        .badge-sub { background: rgba(111,66,193,.15); color: #6f42c1; border-radius: 12px; padding: .25rem .75rem; font-size: .8rem; }
-        .list-spaced li { margin-bottom: .75rem; }
-        .step-block { border-left: 4px solid rgba(111,66,193,.5); padding-left: 1.5rem; margin-bottom: 2rem; }
-        .step-title { font-weight: 600; color: #6f42c1; }
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../../">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../value-proposition/">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="../">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#intake">Intake</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#contact">Contact</a></li>
-                </ul>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform"></div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">Home</a>
+                    <a href="../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">Insights</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../../#contact" class="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <header class="whitepaper-header text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-3">Proof of Concept: Automatische controle van prestatieverklaringen</h1>
-            <p class="lead mb-4">Hoe Virtunet een zakelijke klant hielp om prestatieverklaringen automatisch te analyseren met n8n-workflows, document AI en duidelijke audit trails.</p>
-            <div class="d-flex justify-content-center flex-wrap gap-2">
-                <span class="badge bg-light text-dark">Document AI</span>
-                <span class="badge bg-light text-dark">n8n workflows</span>
-                <span class="badge bg-light text-dark">Audit & compliance</span>
-                <span class="badge bg-light text-dark">Proof of Concept</span>
+    <!-- Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 border-b border-slate-800">
+        <div class="absolute inset-0 bg-grid-white/[0.02] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 mb-6 text-xs font-bold uppercase tracking-wider">
+                Proof of Concept
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
+                Documentanalyse met AI
+            </h1>
+            <p class="text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto">
+                Automatische controle van prestatieverklaringen met n8n-workflows en audit trails voor een grote bouwonderneming.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Document AI</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">n8n Workflow</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Compliance</span>
             </div>
         </div>
     </header>
 
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2 class="text-dark">Context & doelstelling</h2>
-            <p class="lead text-dark">Onze klant ontvangt wekelijks tientallen prestatieverklaringen en toestemmingsformulieren voor bouwprojecten. Elke verklaring moet gecontroleerd worden op verplichte onderdelen: datum, handtekeningen, projectgegevens en akkoord van bevoegde personen. Het handmatig proces was foutgevoelig en kostte per document 8-12 minuten.</p>
-            <div class="row g-4 mt-2">
-                <div class="col-lg-4">
-                    <div class="card-outline p-4">
-                        <span class="badge-sub">Uitgangspunten</span>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Snel een PoC leveren zonder zware platforminvestering.</li>
-                            <li>Volledige traceability van beslissingen (goed/afgekeurd).</li>
-                            <li>Integratie met bestaande DMS en meldingsproces.</li>
-                        </ul>
+    <!-- Content -->
+    <section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 max-w-5xl">
+
+            <!-- Intro Grid -->
+            <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white">De Uitdaging</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-6">
+                        Wekelijks tientallen documenten handmatig controleren op handtekeningen, datums en projectgegevens. Een foutgevoelig proces dat 10 minuten per document kostte.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-clock text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Tijdsintensief:</strong> Medewerkers waren puur administratief bezig.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-search text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Consistentie:</strong> Menselijke interpretatie verschilde per controleur.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-file-contract text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Auditbaarheid:</strong> Lastig achteraf te bewijzen waarom iets was goedgekeurd.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg dark:shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl text-primary"><i class="fas fa-robot"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white relative z-10">Resultaat PoC</h3>
+                    <div class="grid grid-cols-2 gap-6 relative z-10">
+                        <div>
+                            <div class="text-3xl font-bold text-primary mb-1">80%</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Auto-processed</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-primary mb-1">&lt;1 min</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Doorlooptijd</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-3xl font-bold text-primary mb-1">100%</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Audit Trail Beschikbaar</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card-outline p-4">
-                        <span class="badge-sub">Klantvraag</span>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Automatisch signaleren of documenten compleet zijn.</li>
-                            <li>Medewerkers hoeven alleen uitzonderingen te beoordelen.</li>
-                            <li>Audit trail en export voor compliance en rapportage.</li>
-                        </ul>
+            </div>
+
+            <!-- Approach Diagram -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">Onze Aanpak</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4 font-bold">1</div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">Ingest & OCR</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">n8n haalt PDF's uit mail/DMS. OCR en LLM extraheren gestructureerde data.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4 font-bold">2</div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">Logic & Validate</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Business rules checken datums, handtekeningen en bevoegdheden.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4 font-bold">3</div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">Route & Audit</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Goedgekeurd document gaat naar archief. Afwijking gaat naar medewerker met context.</p>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card-outline p-4">
-                        <span class="badge-sub">Scope PoC</span>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Verwerking van PDF's uit mailbox en DMS.</li>
-                            <li>Detectie van verplichte velden (namen, data, handtekeningen).</li>
-                            <li>n8n workflow voor validatie, logging en notificaties.</li>
+            </div>
+
+            <!-- Tech Stack Box -->
+            <div class="mb-20 bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800">
+                <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white text-center">Technische Componenten</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-4">Workflow</h5>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Orchestration:</span> n8n (self-hosted).</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">AI/OCR:</span> Document AI nodes voor extractie.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Triggers:</span> Webhooks & IMAP watchers.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-4">Governance</h5>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Storage:</span> Tijdelijke, versleutelde opslag.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Audit:</span> PostgreSQL log van elke beslissing.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Human-in-the-loop:</span> Interface voor uitzonderingen.</li>
                         </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- CTA -->
+            <div class="text-center bg-gradient-to-r from-primary/10 to-indigo-500/10 rounded-2xl p-12 border border-primary/20">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Uw proces automatiseren?</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+                    Documentverwerking is vaak laaghangend fruit voor AI. Wij bouwen snel een PoC om de waarde te bewijzen.
+                </p>
+                <a href="../../#contact" class="inline-block px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-colors shadow-lg shadow-primary/25">
+                    Start een PoC
+                </a>
+            </div>
+
         </div>
     </section>
 
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Aanpak</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="step-block">
-                        <div class="step-title">1. Intake & documentanalyse</div>
-                        <p class="text-muted mb-0">We maakten een lijst van verplichte elementen (project ID, opdrachtgever, datum, handtekeningen, toestemming) en definieerden acceptatiecriteria per documenttype.</p>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">2. n8n workflow ontwerp</div>
-                        <p class="text-muted mb-0">We gebruikten n8n om documenten uit mailbox en DMS op te halen, OCR/AI-analyse uit te voeren en resultaten te verrijken met metadata.</p>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">3. Validatie & business rules</div>
-                        <p class="text-muted mb-0">Custom nodes controleerden of datumformaten klopten, handtekeningen aanwezig waren en toestemming door bevoegden gegeven was. Bij twijfel werd een taak in het bestaande systeem aangemaakt.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="step-block">
-                        <div class="step-title">4. Audit & rapportage</div>
-                        <p class="text-muted mb-0">Elke run schreef resultaten weg in een audit log (JSON + dashboard). Export naar CSV/PDF was beschikbaar voor compliance.</p>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">5. Pilot & feedback</div>
-                        <p class="text-muted mb-0">Gedurende 4 weken draaide de oplossing naast het bestaande proces. Uitzonderingen werden vergeleken met menselijke controles om precisie en recall te bepalen.</p>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">6. Roadmap</div>
-                        <p class="text-muted mb-0">Samen stelden we een roadmap op voor productiegereedheid: integratie met archief, extra validatieregels en training van medewerkers.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Technische componenten</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5>Workflow orchestration (n8n)</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Triggers: IMAP voor inkomende mail, webhook vanuit DMS.</li>
-                            <li>Document analyse: OCR/LLM nodes voor tekstextractie en entiteitsherkenning.</li>
-                            <li>Validatie: custom functies voor datum- en handtekeningcontroles.</li>
-                            <li>Routing: Slack/Teams notificaties bij afwijkingen.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5>Audit & beheer</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Resultaten in PostgreSQL + dashboard (Metabase).</li>
-                            <li>JSON-logs met bewijs (thumbnail/signature detectie).</li>
-                            <li>Versleutelde opslag van documenten tijdens verwerking.</li>
-                            <li>Self-service export en uitzonderingenlijst voor QA.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Resultaten van de PoC</h2>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="card-outline p-4 h-100">
-                        <h5 class="mb-3">Operationeel</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>80% van de documenten werd automatisch goedgekeurd of afgewezen.</li>
-                            <li>Doorlooptijd per document daalde van 10 minuten naar &lt;1 minuut.</li>
-                            <li>Auditors hebben één overzicht met status, bewijs en correcties.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card-outline p-4 h-100">
-                        <h5 class="mb-3">Medewerkerimpact</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Team focust op uitzonderingen en communicatie met leveranciers.</li>
-                            <li>n8n interface maakt het eenvoudig om regels aan te passen.</li>
-                            <li>Training: 1 dag onboarding voor procesbeheerders.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card-outline p-4 h-100">
-                        <h5 class="mb-3">Vervolg</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Opschalen naar extra documenttypes (bijlagen, certificaten).</li>
-                            <li>Koppeling met archief en e-signing platformen.</li>
-                            <li>Monitoring van modeldrift en regelmatige hertraining.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Wat wij leveren</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5>Projectinhoud</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Workshop(s) voor eisen, validatieregels en classificatie.</li>
-                            <li>n8n workflow inclusief custom nodes en document AI integratie.</li>
-                            <li>Dashboarding, logging en secure opslag tijdens verwerking.</li>
-                            <li>Runbook + kennisoverdracht voor beheer.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5>Governance</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Privacy by design: data blijft binnen afgesproken regio's.</li>
-                            <li>Audit trail conform compliance-eisen (tijdstempel, beslissingen, bewijs).</li>
-                            <li>Rollback/uitvalscenario's en monitoring van workflows.</li>
-                            <li>Roadmap naar productie (HA, secrets, infra-as-code).</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="card-outline p-4 mt-4">
-                <h5 class="mb-3">Interesse in documentanalyse?</h5>
-                <p class="text-muted mb-3">We helpen u graag bij het opzetten van een vergelijkbare PoC of volledige productiefase. Stuur ons een bericht voor een intakevoorstel.</p>
-                <a href="../../#contact" class="btn btn-primary">Neem contact op</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">Nuchtere AI-oplossingen met audit en governance</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="../../#contact" class="btn btn-outline-light">Stuur ons een bericht</a>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="py-8 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

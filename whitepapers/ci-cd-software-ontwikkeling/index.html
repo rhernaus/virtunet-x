@@ -1,844 +1,207 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DevOps & CI/CD voor Software Ontwikkeling - Virtunet</title>
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <!-- Bootstrap 5 (CDN) -->
-    <style>
-        .spaced-list li {
-            margin-bottom: 1rem;
-        }
-    </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="../../css/templatemo-style.css">
-    <style>
-        .whitepaper-header {
-            background: linear-gradient(135deg, rgba(220, 53, 69, 1), rgba(255, 193, 7, 0.95));
-            padding: 6rem 0 3rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .whitepaper-section {
-            padding: 4rem 0;
-        }
-        
-        .whitepaper-section h2 {
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        .whitepaper-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--danger-color);
-        }
-        
-        .results-card {
-            background-color: rgba(220, 53, 69, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            border-left: 5px solid var(--danger-color);
-            margin-bottom: 2rem;
-        }
-        
-        .whitepaper-img {
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .tech-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: rgba(220, 53, 69, 0.1);
-            border-radius: 30px;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--danger-color);
-        }
-        
-        .quote-box {
-            padding: 2rem;
-            background-color: rgba(33, 37, 41, 0.8);
-            border-radius: 15px;
-            position: relative;
-            margin: 3rem 0;
-        }
-        
-        .quote-box::before {
-            content: '';
-        }
-        
-        blockquote {
-            border-left: 3px solid var(--danger-color);
-            padding-left: 1.5rem;
-            margin-left: 1rem;
-            font-style: italic;
-        }
-        
-        .step-block {
-            position: relative;
-            padding-left: 80px;
-            margin-bottom: 2.5rem;
-        }
-        
-        .step-number {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 60px;
-            height: 60px;
-            background-color: var(--danger-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--danger-color);
-            margin-bottom: 1rem;
-        }
-        
-        .pipeline-diagram {
-            background-color: rgba(33, 37, 41, 0.8);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-        
-        .pipeline-stage {
-            padding: 1.2rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            background-color: rgba(220, 53, 69, 0.1);
-            border-left: 4px solid var(--danger-color);
-            transition: all 0.3s ease;
-        }
-        
-        .pipeline-stage:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .pipeline-arrow {
-            text-align: center;
-            color: var(--danger-color);
-            font-size: 1.5rem;
-            margin: 0.5rem 0;
-        }
-        
-        .before-after {
-            background-color: rgba(33, 37, 41, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .before-after h5 {
-            border-bottom: 2px solid var(--danger-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .comparison-arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--danger-color);
-            padding: 1rem 0;
-        }
-        
-        @media (max-width: 767.98px) {
-            .comparison-arrow {
-                transform: rotate(90deg);
-                padding: 2rem 0;
+    <title>DevOps & CI/CD Transformatie | Virtunet</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151e2e', 900: '#0f172a', 950: '#020617' },
+                        primary: { DEFAULT: '#f43f5e', hover: '#e11d48' }, // Rose for DevOps/Code
+                        ai: '#8b5cf6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    }
+                }
             }
         }
-        
-        .maturity-stage {
-            background-color: rgba(33, 37, 41, 0.7);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            border-left: 4px solid;
-            transition: all 0.3s ease;
-        }
-        
-        .maturity-stage:hover {
-            transform: translateY(-5px);
-        }
-        
-        .maturity-stage.stage-1 {
-            border-color: #ffc107;
-        }
-        
-        .maturity-stage.stage-2 {
-            border-color: #fd7e14;
-        }
-        
-        .maturity-stage.stage-3 {
-            border-color: #dc3545;
-        }
-        
-        .maturity-stage.stage-4 {
-            border-color: #6f42c1;
-        }
-        
-        .maturity-stage.stage-5 {
-            border-color: #28a745;
-        }
-        
-        .maturity-number {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 40px;
-            height: 40px;
-            background-color: #212529;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.25rem;
-            border: 2px solid;
-        }
-        
-        .maturity-stage.stage-1 .maturity-number {
-            border-color: #ffc107;
-        }
-        
-        .maturity-stage.stage-2 .maturity-number {
-            border-color: #fd7e14;
-        }
-        
-        .maturity-stage.stage-3 .maturity-number {
-            border-color: #dc3545;
-        }
-        
-        .maturity-stage.stage-4 .maturity-number {
-            border-color: #6f42c1;
-        }
-        
-        .maturity-stage.stage-5 .maturity-number {
-            border-color: #28a745;
-        }
+    </script>
+    <script src="../../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../../">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../value-proposition/">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#about">Technologieën</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#intake">Intake</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#contact">Contact</a></li>
-                </ul>
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-red-600 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform"></div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">Home</a>
+                    <a href="../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">Insights</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../../#contact" class="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <header class="whitepaper-header">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-4 fw-bold text-white mb-4">DevOps & CI/CD Pipeline Implementatie</h1>
-                    <p class="lead text-white mb-4">Hoe Virtunet een softwareontwikkelingsbedrijf hielp met het implementeren van een volledige CI/CD pipeline die de release cyclus drastisch verkortte</p>
-                    <div class="d-flex justify-content-center">
-                        <span class="badge bg-light text-dark me-2 p-2">DevOps</span>
-                        <span class="badge bg-light text-dark me-2 p-2">CI/CD</span>
-                        <span class="badge bg-light text-dark me-2 p-2">Automatisering</span>
-                        <span class="badge bg-light text-dark p-2">Software Engineering</span>
-                    </div>
-                </div>
+    <!-- Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 border-b border-slate-800">
+        <div class="absolute inset-0 bg-grid-white/[0.02] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 mb-6 text-xs font-bold uppercase tracking-wider">
+                Case Study
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
+                DevOps & CI/CD Transformatie
+            </h1>
+            <p class="text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto">
+                Hoe we een SaaS-team hielpen van handmatige, stressvolle releases naar geautomatiseerde dagelijkse deployments.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Azure DevOps</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Terraform</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Test Automation</span>
             </div>
         </div>
     </header>
 
-    <!-- Executive Summary Section -->
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Samenvatting</h2>
-                    <p class="lead text-dark">Een toonaangevende Europese softwareontwikkelaar die SaaS-oplossingen bouwt, kampte met uitdagingen rond hun software delivery processen. Lange release cycli, frequente productiefouten en groeiende technische schuld maakten het steeds moeilijker om competitief te blijven in een snel evoluerende markt.</p>
-                    
-                    <div class="results-card mt-4">
-                        <h4 class="text-dark mb-3">Belangrijkste Resultaten</h4>
-                        <div class="row">
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-danger mb-2">75%</div>
-                                <p class="mb-0 text-dark">minder handmatige interventies in het release proces</p>
-                            </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-danger mb-2">80%</div>
-                                <p class="mb-0 text-dark">reductie in productiefouten na deployments</p>
-                            </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="h1 text-danger mb-2 fw-bolder">weken → dagen</div>
-                                <p class="mb-0 text-dark">verkorting van de release cyclus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Content -->
+    <section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 max-w-5xl">
 
-    <!-- Challenge Section -->
-    <section class="whitepaper-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">De Uitdaging</h2>
-                    
-                    <p>Het softwareontwikkelingsbedrijf kampte met verschillende uitdagingen in hun softwaredelivery processen:</p>
-                    
-                    <ul>
-                        <li class="mb-3"><strong>Handmatige deployment processen</strong> - Releases waren afhankelijk van complexe handleidingen en scripts die door senior engineers werden uitgevoerd, wat leidde tot hoge kosten en risico's bij elke deployment.</li>
-                        
-                        <li class="mb-3"><strong>Lange feedbackcycli</strong> - Het duurde gemiddeld 3-4 weken vanaf ontwikkeling tot productie, waardoor ontwikkelaars moeilijk konden leren van productiegebruik en marktfeedback.</li>
-                        
-                        <li class="mb-3"><strong>Inconsistente omgevingen</strong> - Verschillen tussen ontwikkel-, test- en productieomgevingen leidden regelmatig tot het bekende "werkt op mijn machine" probleem, waardoor bugs pas laat in het proces werden ontdekt.</li>
-                        
-                        <li class="mb-3"><strong>Beperkte testdekking</strong> - Door tijdsdruk en handmatige processen was de testdekking onvolledig en inconsistent, waardoor regelmatig regressies in productie terechtkwamen.</li>
-                        
-                        <li class="mb-3"><strong>Schaalbaarheidsuitdagingen</strong> - Met een uitdijend ontwikkelteam (van 15 naar 40+ ontwikkelaars in 18 maanden) werd het steeds moeilijker om code-integratie te beheren en release-coördinatie te verzorgen.</li>
+            <!-- Intro Grid -->
+            <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white">De Uitdaging</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-6">
+                        Een snelgroeiend softwarebedrijf liep vast. Releases duurden weken, waren foutgevoelig en afhankelijk van specifieke personen. Dit remde de innovatie.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-times text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Traag:</strong> 3-4 weken per release cyclus.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-times text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Risicovol:</strong> Handmatige scripts en config drift.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-times text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Stressvol:</strong> Deployments buiten kantooruren.</span>
+                        </li>
                     </ul>
-
-                    <div class="before-after">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <h5 class="text-dark">Voor Implementatie</h5>
-                                <ul>
-                                    <li>2-4 weken tussen code commit en productie</li>
-                                    <li>Release managers werkten vaak buiten kantooruren</li>
-                                    <li>Hoge druk en stress tijdens deployments</li>
-                                    <li>Regelmatige rollbacks bij problemen</li>
-                                    <li>Lange incidentresponstijden</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="comparison-arrow">
-                                    <i class="fas fa-long-arrow-alt-right"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <h5 class="text-dark">Doel Situatie</h5>
-                                <ul>
-                                    <li>Continue delivery met dagelijkse releases</li>
-                                    <li>Volledig geautomatiseerd deployment proces</li>
-                                    <li>Consistent hoge testdekking</li>
-                                    <li>Self-service infrastructuur voor ontwikkelaars</li>
-                                    <li>Stabiele en voorspelbare releases</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="quote-box">
-                        <blockquote>
-                            "Onze releases waren een bron van angst en frustratie geworden. Planning, voorbereiding en uitvoering van een release kostte ons bijna een volledige week elke maand, en dan nog hadden we geen garantie dat alles soepel zou verlopen. Als snelgroeiend bedrijf was dit model simpelweg niet schaalbaar, en het belemmerde onze innovatiesnelheid."
-                        </blockquote>
-                        <p class="text-end mb-0">— CTO, Softwareontwikkelingsbedrijf</p>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section class="whitepaper-section bg-gradient">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">De Oplossing</h2>
-                    
-                    <p>Virtunet implementeerde een complete DevOps-transformatie met focus op zowel technische als culturele aspecten, met als kern een volledig geautomatiseerde CI/CD pipeline:</p>
-                    
-                    <div class="row mt-5">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">1</div>
-                                <h4 class="text-light">CI/CD Infrastructure Setup</h4>
-                                <p>We implementeerden een robuuste CI/CD infrastructure met Azure DevOps, inclusief build agents, artifact repositories, en environments configuration, met Infrastructure-as-Code praktijken.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">2</div>
-                                <h4 class="text-light">Geautomatiseerde Build Processen</h4>
-                                <p>We ontwikkelden gestandaardiseerde build definities met multi-stage pipelines, gecentraliseerde configuratie, en artifact-management voor consistente en reproduceerbare builds.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">3</div>
-                                <h4 class="text-light">Uitgebreide Test Automatisering</h4>
-                                <p>We implementeerden geautomatiseerde unit, integratie en end-to-end tests, met quality gates in de pipeline, code coverage rapportage, en security scanning tools.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">4</div>
-                                <h4 class="text-light">Deployment Automatisering</h4>
-                                <p>We bouwden deployment pipelines met environment promotion flows, configuratie management, blauwe/groene deployment strategieën, en rollback mogelijkheden.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">5</div>
-                                <h4 class="text-light">Feature Flag Implementatie</h4>
-                                <p>We integreerden een feature flag systeem dat het mogelijk maakte om features incrementeel uit te rollen, A/B tests uit te voeren, en risico's van releases te minimaliseren.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="step-block">
-                                <div class="step-number">6</div>
-                                <h4 class="text-light">Monitoring & Feedback Loops</h4>
-                                <p>We implementeerden uitgebreide monitoring, logging en alerting voor zowel applicatie als infrastructuur, met dashboards voor ontwikkelaars, operations, en management.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-5">
-                        <h4 class="text-light mb-3">Gebruikte Technologieën</h4>
+                <div class="bg-slate-50 dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg dark:shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl text-primary"><i class="fas fa-rocket"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white relative z-10">Impact na 6 maanden</h3>
+                    <div class="grid grid-cols-2 gap-6 relative z-10">
                         <div>
-                            <span class="tech-tag">Azure DevOps</span>
-                            <span class="tech-tag">Terraform</span>
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">Kubernetes</span>
-                            <span class="tech-tag">SonarQube</span>
-                            <span class="tech-tag">Selenium</span>
-                            <span class="tech-tag">Jest</span>
-                            <span class="tech-tag">Cypress</span>
-                            <span class="tech-tag">LaunchDarkly</span>
-                            <span class="tech-tag">Application Insights</span>
+                            <div class="text-3xl font-bold text-primary mb-1">75%</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Minder handwerk</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-primary mb-1">80%</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Minder incidenten</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-3xl font-bold text-primary mb-1">Weken &rarr; Dagen</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Release cyclus</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Pipeline Architecture Section -->
-    <section class="whitepaper-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">CI/CD Pipeline Architectuur</h2>
-                    
-                    <p>De geïmplementeerde CI/CD pipeline was ontworpen rond het principe van "build once, deploy many", met een focus op snelle feedback en geautomatiseerde gates:</p>
-                    
-                    <div class="pipeline-diagram">
-                        <div class="pipeline-stage">
-                            <h5 class="text-light"><i class="fas fa-code me-2"></i> Continuous Integration Stage</h5>
-                            <p>Automatisch getriggerd bij elke code commit naar een feature branch of main branch:</p>
-                            <ul>
-                                <li>Code checkout en dependency installatie</li>
-                                <li>Statische code analyse en linting</li>
-                                <li>Unit tests en code coverage meting</li>
-                                <li>Security scanning voor vulnerabilities</li>
-                                <li>Build en artifact creatie</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="pipeline-arrow">
-                            <i class="fas fa-arrow-down"></i>
-                        </div>
-                        
-                        <div class="pipeline-stage">
-                            <h5 class="text-light"><i class="fas fa-vial me-2"></i> Test Environment Deployment</h5>
-                            <p>Automatisch getriggerd na succesvolle CI stage voor elke feature branch:</p>
-                            <ul>
-                                <li>Dynamische test-omgeving provisioning via Terraform</li>
-                                <li>Deployment van gebouwde artifacts naar test-omgeving</li>
-                                <li>Configuratie van applicatie voor test-context</li>
-                                <li>Smoke tests om basiswerking te verifiëren</li>
-                                <li>Notificatie naar ontwikkelaar dat omgeving ready is</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="pipeline-arrow">
-                            <i class="fas fa-arrow-down"></i>
-                        </div>
-                        
-                        <div class="pipeline-stage">
-                            <h5 class="text-light"><i class="fas fa-check-circle me-2"></i> Acceptance Testing & Validation</h5>
-                            <p>Automatisch getriggerd na merge naar main branch:</p>
-                            <ul>
-                                <li>Deployment naar vaste acceptance omgeving</li>
-                                <li>Uitgebreide integratie tests</li>
-                                <li>End-to-end UI tests met Cypress</li>
-                                <li>Performance testing voor kritieke paden</li>
-                                <li>Quality gate validatie voor release criteria</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="pipeline-arrow">
-                            <i class="fas fa-arrow-down"></i>
-                        </div>
-                        
-                        <div class="pipeline-stage">
-                            <h5 class="text-light"><i class="fas fa-rocket me-2"></i> Production Deployment</h5>
-                            <p>Automatisch of handmatig getriggerd na approval van de acceptance fase:</p>
-                            <ul>
-                                <li>Blue/Green deployment strategie</li>
-                                <li>Canary release via feature flags voor grote wijzigingen</li>
-                                <li>Geautomatiseerde health checks en rollback mechanismes</li>
-                                <li>Post-deployment validatie tests</li>
-                                <li>Release notificaties naar stakeholders</li>
-                            </ul>
-                        </div>
+            <!-- Pipeline Diagram -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">De Oplossing: Geautomatiseerde Pipeline</h2>
+                <div class="relative">
+                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800"></div>
+
+                    <div class="relative pl-20 mb-8">
+                        <div class="absolute left-4 top-1 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-primary flex items-center justify-center text-primary"><i class="fas fa-code"></i></div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Continuous Integration</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">Elke commit triggerde een build, unit tests en security scan. Feedback binnen minuten, niet dagen.</p>
                     </div>
-                    
-                    <p class="mt-4">Deze pipeline-architectuur bood verschillende voordelen:</p>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul>
-                                <li><strong>Vroege feedback</strong> voor ontwikkelaars bij elke commit</li>
-                                <li><strong>Consistente omgevingen</strong> door infrastructure-as-code</li>
-                                <li><strong>Aanzienlijk minder handmatig werk</strong> in het release proces</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul>
-                                <li><strong>Herleidbaarheid</strong> van elke build naar specifieke code commits</li>
-                                <li><strong>Risicovermindering</strong> door geautomatiseerde tests en validaties</li>
-                                <li><strong>Snellere time-to-market</strong> door parallelle stromen en automatisering</li>
-                            </ul>
-                        </div>
+
+                    <div class="relative pl-20 mb-8">
+                        <div class="absolute left-4 top-1 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-primary flex items-center justify-center text-primary"><i class="fas fa-vial"></i></div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Automated Testing</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">Dynamische testomgevingen (via Terraform) voor integratie- en end-to-end tests per feature branch.</p>
+                    </div>
+
+                    <div class="relative pl-20">
+                        <div class="absolute left-4 top-1 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-primary flex items-center justify-center text-primary"><i class="fas fa-rocket"></i></div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Safe Deployment</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">Blue/Green deployments naar productie met automatische rollback bij fouten. Feature flags voor gecontroleerde uitrol.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Implementation Approach Section -->
-    <section class="whitepaper-section bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Implementatie & Organisatorische Verandering</h2>
-                    
-                    <p>De implementatie volgde een gefaseerde aanpak die zowel technische als culturele aspecten adresseerde:</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-lg-12">
-                            <div class="maturity-stage stage-1">
-                                <div class="maturity-number">1</div>
-                                <h5 class="text-warning">Assessment & Baseline</h5>
-                                <p>We begonnen met een grondige assessment van de bestaande processen, bottlenecks, en automatiseringsgraad. Dit omvatte:</p>
-                                <ul>
-                                    <li>Value Stream Mapping van het volledige software delivery proces</li>
-                                    <li>Identificatie van handmatige stappen en pijnpunten</li>
-                                    <li>Analyse van de codebase en testdekking</li>
-                                    <li>Meting van key metrics zoals lead time, deployment frequentie, en faalpercentage</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="maturity-stage stage-2">
-                                <div class="maturity-number">2</div>
-                                <h5 class="text-warning">CI Foundations</h5>
-                                <p>We legden de basis voor continuous integration met focus op automatisering van build en test processen:</p>
-                                <ul>
-                                    <li>Setup van gestandaardiseerde build processen voor alle projecten</li>
-                                    <li>Implementatie van unit testing frameworks en code coverage rapportage</li>
-                                    <li>Integratie van statische code analyse en security scanning</li>
-                                    <li>Training van ontwikkelteams in CI best practices</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="maturity-stage stage-3">
-                                <div class="maturity-number">3</div>
-                                <h5 class="text-danger">CD for Test & Acceptance</h5>
-                                <p>We automatiseerden deployments naar non-productie omgevingen om de feedbacklus te verkorten:</p>
-                                <ul>
-                                    <li>Infrastructure-as-Code implementatie voor consistente omgevingen</li>
-                                    <li>Automatische deployments naar test- en acceptatie-omgevingen</li>
-                                    <li>Integratie- en end-to-end test automatisering</li>
-                                    <li>Feature branch omgevingen voor parallel development</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="maturity-stage stage-4">
-                                <div class="maturity-number">4</div>
-                                <h5 class="text-purple">Production Automation & Safety</h5>
-                                <p>We automatiseerden productie-deployments met focus op veiligheid en betrouwbaarheid:</p>
-                                <ul>
-                                    <li>Blue/Green deployment strategie implementatie</li>
-                                    <li>Feature flag systeem voor veilige feature releases</li>
-                                    <li>Automatische rollback mechanismen</li>
-                                    <li>Post-deployment validatie en monitoring</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="maturity-stage stage-5">
-                                <div class="maturity-number">5</div>
-                                <h5 class="text-success">Optimization & Cultural Embedding</h5>
-                                <p>We optimaliseerden het systeem en garandeerden duurzame adoptie:</p>
-                                <ul>
-                                    <li>Pipeline performance optimalisatie voor snellere feedback</li>
-                                    <li>Uitgebreide dashboards en metrics voor alle belanghebbenden</li>
-                                    <li>DevOps cultuurprogramma met workshops en kennisdeling</li>
-                                    <li>Overdracht en training voor zelfstandig beheer</li>
-                                </ul>
-                            </div>
-                        </div>
+            <!-- Lessons Learned -->
+            <div class="mb-20 bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800">
+                <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white text-center">Lessen uit de praktijk</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-3">1. Start met Value Stream Mapping</h5>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Door het proces visueel te maken, vonden we direct de grootste bottlenecks. Techniek volgt proces.</p>
                     </div>
-
-                    <div class="quote-box mt-5">
-                        <blockquote>
-                            "De gefaseerde implementatie was essentieel voor ons succes. In plaats van een big-bang benadering konden we incrementeel verbeteren, early wins behalen, en het team meenemen in de transformatie. De focus op zowel technische als culturele aspecten zorgde voor brede adoptie en enthousiasme in de organisatie."
-                        </blockquote>
-                        <p class="text-end mb-0">— VP of Engineering, Softwareontwikkelingsbedrijf</p>
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-3">2. Cultuur > Tools</h5>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Tools zijn makkelijk. Teams leren om verantwoordelijkheid te nemen voor 'hun' code in productie is de echte winst.</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-3">3. Feature Flags</h5>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Ontkoppelen van deployment (technisch) en release (business) gaf het team enorm veel rust en controle.</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-3">4. Meetbare voortgang</h5>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">DORA metrics (lead time, failure rate) hielpen om management en team aligned te houden.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Results Section -->
-    <section class="whitepaper-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">Resultaten en Impact</h2>
-                    
-                    <p class="lead">De DevOps en CI/CD transformatie bracht aanzienlijke verbeteringen op zowel technisch als business niveau:</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-lg-6">
-                            <div class="card mb-4 h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title text-danger">Operationele Verbeteringen</h5>
-                                    <ul>
-                                        <li><strong>75% reductie</strong> in handmatige interventies tijdens deployments</li>
-                                        <li><strong>80% afname</strong> in productie-incidenten gerelateerd aan deployments</li>
-                                        <li><strong>3x toename</strong> in deployment frequentie (van maandelijks naar meerdere keren per week)</li>
-                                        <li><strong>90% reductie</strong> in tijd om een hotfix in productie te krijgen (van dagen naar uren)</li>
-                                        <li><strong>40% tijdsbesparing</strong> voor QA teams door testautomatisering</li>
-                                        <li><strong>95% toename</strong> in code coverage door unit en integratie tests</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card mb-4 h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title text-danger">Business Impact</h5>
-                                    <ul>
-                                        <li><strong>Verkorte time-to-market</strong> van weken naar dagen voor nieuwe features</li>
-                                        <li><strong>Verhoogde betrouwbaarheid</strong> van de software en klanttevredenheid</li>
-                                        <li><strong>Verbeterde developer experience</strong> met minder context-switching en frustatie</li>
-                                        <li><strong>Verhoogde innovatiesnelheid</strong> door snellere experimentatie en feedback</li>
-                                        <li><strong>Betere samenwerking</strong> tussen development, operations en business teams</li>
-                                        <li><strong>Schaalbare processen</strong> die groei van het ontwikkelteam faciliteren</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="results-card mt-4">
-                        <h5 class="text-dark mb-3">DORA Metrics Verbetering</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p><strong>Deployment Frequency:</strong></p>
-                                <ul class="spaced-list">
-                                    <li>Vóór: Eén keer per 3-4 weken</li>
-                                    <li>Na: Meerdere keren per week (25x verbetering)</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <p><strong>Lead Time for Changes:</strong></p>
-                                <ul class="spaced-list">
-                                    <li>Vóór: 2-4 weken</li>
-                                    <li>Na: <2 dagen (85% reductie)</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <p><strong>Change Failure Rate:</strong></p>
-                                <ul class="spaced-list">
-                                    <li>Vóór: 35-40%</li>
-                                    <li>Na: <8% (>80% reductie)</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <p><strong>Time to Restore Service:</strong></p>
-                                <ul class="spaced-list">
-                                    <li>Vóór: 4-8 uur gemiddeld</li>
-                                    <li>Na: <30 minuten (>85% reductie)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- CTA -->
+            <div class="text-center bg-gradient-to-r from-primary/10 to-rose-500/10 rounded-2xl p-12 border border-primary/20">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Zelf versnellen?</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+                    Wilt u ook van maandelijkse stress naar dagelijkse routine? Laten we uw delivery proces eens doorlichten.
+                </p>
+                <a href="../../#contact" class="inline-block px-8 py-4 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg transition-colors shadow-lg shadow-primary/25">
+                    Bespreek uw case
+                </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Lessons Learned Section -->
-    <section class="whitepaper-section bg-gradient">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-light">Lessen & Best Practices</h2>
-                    
-                    <p>Tijdens dit project hebben we verschillende waardevolle inzichten opgedaan die nuttig kunnen zijn voor vergelijkbare transformaties:</p>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">1. Start met een value stream analyse</h5>
-                            <p>Door het volledige software delivery proces in kaart te brengen konden we de grootste bottlenecks identificeren en daar prioriteit aan geven, wat leidde tot de grootste early wins.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">2. Test automatisering is cruciaal</h5>
-                            <p>De investering in uitgebreide test automatisering was de kritieke factor in het succesvol verhogen van de deployment frequentie zonder kwaliteitscompromissen.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">3. Feature flags verminderen risico</h5>
-                            <p>De implementatie van feature flags maakte een duidelijke scheiding mogelijk tussen code deployment en feature release, wat CI/CD veel veiliger en beter beheersbaar maakte.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">4. DevOps is een cultuurverandering</h5>
-                            <p>De technische implementatie was maar de helft van de uitdaging; evenveel aandacht besteden aan cultuur, training, en organisatorische verandering was essentieel voor duurzaam succes.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">5. Metrics ondersteunen verbetering</h5>
-                            <p>Het consistent meten en visualiseren van key metrics zoals lead time en deployment frequentie hielp bij het aantonen van vooruitgang en het creëren van momentum voor verdere verbeteringen.</p>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <h5 class="text-light">6. Begin klein, schaal geleidelijk</h5>
-                            <p>De gefaseerde aanpak, te beginnen met één team en geleidelijk uitbreidend, maakte het mogelijk om te leren en aan te passen zonder grootschalige verstoring van de business.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Conclusion Section -->
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="text-dark">Conclusie</h2>
-                    
-                    <p class="text-dark">De implementatie van een volwaardige CI/CD pipeline en DevOps transformatie heeft voor het softwareontwikkelingsbedrijf een fundamentele verandering teweeggebracht in hoe zij software ontwikkelen en leveren:</p>
-                    
-                    <ul class="text-dark spaced-list">
-                        <li>De verkorte cyclustijd van weken naar dagen stelt het bedrijf in staat om sneller te innoveren en te reageren op klantbehoeften en marktveranderingen</li>
-                        <li>De drastische reductie in productiefouten en de verbeterde hersteltijden hebben geleid tot een betrouwbaardere dienstverlening en hogere klanttevredenheid</li>
-                        <li>De geautomatiseerde processen hebben schaalbaarheid mogelijk gemaakt voor een groeiend ontwikkelteam zonder evenredige toename in overhead of complexiteit</li>
-                        <li>De verbeterde ontwikkelaarservaring heeft geleid tot hogere productiviteit, betere samenwerking, en lagere personeelsverloop</li>
-                    </ul>
-                    
-                    <p class="mt-4 text-dark">Bij Virtunet zien we DevOps en CI/CD niet alleen als technologieën of processen, maar als een transformatieve reis die organisaties in staat stelt om met meer snelheid, kwaliteit en betrouwbaarheid waarde te leveren aan hun klanten. Deze casus toont aan dat een weloverwogen implementatie met aandacht voor zowel technische als culturele aspecten aanzienlijke voordelen kan opleveren op zowel korte als lange termijn.</p>
-                    
-                    <div class="quote-box">
-                        <blockquote>
-                            "Deze transformatie heeft niet alleen onze technische prestaties verbeterd, maar ook onze gehele bedrijfscultuur. Onze teams voelen zich nu empowered om snel te innoveren, te experimenteren, en direct te leren van feedback. We konden hierdoor sneller reageren op veranderende marktbehoeften en hebben een significante voorsprong op onze concurrenten kunnen opbouwen."
-                        </blockquote>
-                        <p class="text-end mb-0">— CEO, Softwareontwikkelingsbedrijf</p>
-                    </div>
-                    
-                    <div class="text-center mt-5">
-                        <a href="../../#contact" class="btn btn-danger btn-lg">Neem contact op voor meer informatie</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">Next-Gen AI Innovation & Enterprise Cloud</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Copyright &copy; <span class="tm-current-year">2024</span> Virtunet</p>
-                </div>
-            </div>
+    <footer class="py-8 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
         </div>
     </footer>
 
-    <!-- Modern JS Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
-    <script>
-        // Update current year
-        document.querySelector('.tm-current-year').textContent = new Date().getFullYear();
-        
-        // Navbar scroll behavior
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                document.querySelector('.navbar').classList.add('scrolled');
-            } else {
-                document.querySelector('.navbar').classList.remove('scrolled');
-            }
-        });
-    </script>
 </body>
 </html>

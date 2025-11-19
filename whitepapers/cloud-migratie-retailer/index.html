@@ -1,245 +1,192 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cloud Migratie & Modernisatie | Virtunet</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151e2e', 900: '#0f172a', 950: '#020617' },
+                        primary: { DEFAULT: '#3b82f6', hover: '#2563eb' }, // Blue for Cloud
+                        ai: '#8b5cf6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../../css/templatemo-style.css">
+
     <style>
-        .whitepaper-header { background: linear-gradient(135deg, rgba(13,110,253,.95), rgba(32,201,151,.9)); padding: 6rem 0 4rem; color: #fff; }
-        .whitepaper-section { padding: 4rem 0; }
-        .whitepaper-section h2 { margin-bottom: 2rem; position: relative; padding-bottom: 1rem; }
-        .whitepaper-section h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background-color: var(--primary-color); }
-        .card-outline { border-radius: 16px; border: 1px solid rgba(13,110,253,.15); box-shadow: 0 10px 24px rgba(0,0,0,.08); height: 100%; }
-        .badge-sub { background: rgba(13,110,253,.12); color: #0d6efd; border-radius: 12px; padding: .25rem .75rem; font-size: .8rem; }
-        .list-spaced li { margin-bottom: .75rem; }
-        .step-block { border-left: 4px solid rgba(13,110,253,.4); padding-left: 1.5rem; margin-bottom: 2rem; }
-        .step-title { font-weight: 600; color: var(--primary-color); }
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../../">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../../">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../value-proposition/">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="../">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#intake">Intake</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../#contact">Contact</a></li>
-                </ul>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-blue-600 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform"></div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">Home</a>
+                    <a href="../" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">Insights</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../../#contact" class="bg-primary hover:bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <header class="whitepaper-header text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-3">Cloud Migratie & Modernisatie</h1>
-            <p class="lead mb-4">Onze aanpak voor lift-and-shift, replatforming, containertransities en hybride OpenShift omgevingen met data-gedreven workload plaatsing.</p>
-            <div class="d-flex justify-content-center flex-wrap gap-2">
-                <span class="badge bg-light text-dark">Lift-and-shift</span>
-                <span class="badge bg-light text-dark">Managed Webapps</span>
-                <span class="badge bg-light text-dark">Containers & Kubernetes</span>
-                <span class="badge bg-light text-dark">OpenShift Hybrid</span>
-                <span class="badge bg-light text-dark">Data-classificatie</span>
+    <!-- Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden bg-gradient-to-b from-slate-800 to-slate-900 border-b border-slate-800">
+        <div class="absolute inset-0 bg-grid-white/[0.02] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 mb-6 text-xs font-bold uppercase tracking-wider">
+                Cloud Strategy
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 text-white">
+                Cloud Migratie & Modernisatie
+            </h1>
+            <p class="text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto">
+                Van lift-and-shift naar cloud-native. Een data-gedreven aanpak voor workload plaatsing, kostenbeheersing en innovatie.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Replatforming</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">FinOps</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Hybride Cloud</span>
             </div>
         </div>
     </header>
 
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2 class="text-dark">Samenvatting</h2>
-            <p class="lead text-dark">Virtunet helpt organisaties wereldwijd bij cloudmigraties die verder gaan dan alleen VM's verplaatsen. We combineren snelle lift-and-shift trajecten met modernisatie naar PaaS, containers en hybride platformen. Data-classificatie en governance bepalen waar workloads landen – in de cloud, on-premises of tijdelijk hybride.</p>
-            <div class="row g-4 mt-2">
-                <div class="col-lg-4">
-                    <div class="card-outline p-4">
-                        <span class="badge-sub">Scenario's</span>
-                        <h5 class="mt-3">Wat we doen</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Lift-and-shift van VMware / Hyper-V naar Azure, AWS of GCP.</li>
-                            <li>Replatforming naar managed webapps, databases en messaging.</li>
-                            <li>Containerisatie van bestaande workloads, inclusief GitOps pipelines.</li>
-                            <li>OpenShift als hybride control plane met cloud burst-capaciteit (bijv. GPU's).</li>
-                        </ul>
+    <!-- Content -->
+    <section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 max-w-5xl">
+
+            <!-- Intro Grid -->
+            <div class="grid md:grid-cols-2 gap-12 mb-20 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white">Meer dan VM's verplaatsen</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-6">
+                        Cloudmigratie is geen doel op zich, maar een middel voor wendbaarheid. Wij combineren snelle migraties met gerichte modernisatie naar PaaS en containers.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Smart Placement:</strong> Data-classificatie bepaalt de landing zone.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Moderniseer:</strong> Containers en managed services waar mogelijk.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-primary mt-1"><i class="fas fa-check text-xs"></i></div>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Beheersbaar:</strong> FinOps en Automation vanaf dag één.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg dark:shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl text-primary"><i class="fas fa-server"></i></div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white relative z-10">Onze Filosofie</h3>
+                    <p class="text-slate-600 dark:text-slate-400 relative z-10 leading-relaxed italic">
+                        "Stop met het kopiëren van on-prem problemen naar de cloud. Gebruik migratie als hefboom om technische schuld af te lossen en operations te automatiseren."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step Plan -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">Onze Aanpak</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm relative group hover:-translate-y-1 transition-transform">
+                        <div class="absolute -top-4 left-6 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold shadow-lg">1</div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mt-2 mb-2">Discover & Classify</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Assessment van apps en data. Welke workloads zijn cloud-ready? Welke eisen gelden er?</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm relative group hover:-translate-y-1 transition-transform">
+                        <div class="absolute -top-4 left-6 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold shadow-lg">2</div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mt-2 mb-2">Foundation</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Bouw van Landing Zones met identity, netwerk en policy-as-code fundamenten.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm relative group hover:-translate-y-1 transition-transform">
+                        <div class="absolute -top-4 left-6 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold shadow-lg">3</div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mt-2 mb-2">Migrate & Improve</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Gefaseerde migratie (IaaS/PaaS) met directe activatie van backups en monitoring.</p>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card-outline p-4">
-                        <span class="badge-sub">Uitdagingen</span>
-                        <h5 class="mt-3">Wat we vaak tegenkomen</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Gecombineerde workloads (legacy VM's, containers, SaaS) en integraties.</li>
-                            <li>Compliance en data residency eisen die workload placement sturen.</li>
-                            <li>Teams die moeten schakelen naar DevOps, IaC en FinOps.</li>
-                            <li>Noodzaak om kosten, security en snelheid in balans te houden.</li>
+            </div>
+
+            <!-- Deliverables Box -->
+            <div class="mb-20 bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800">
+                <h2 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white text-center">Wat u ontvangt</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"><i class="fas fa-file-code text-primary"></i> Techniek</h5>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li>Landing Zone ontwerp (Terraform/Bicep).</li>
+                            <li>CI/CD pipelines voor infra en apps.</li>
+                            <li>Geconfigureerde monitoring en alerting.</li>
                         </ul>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card-outline p-4">
-                        <span class="badge-sub">Deliverables</span>
-                        <h5 class="mt-3">Wat u ontvangt</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Landing zone ontwerp met security en policy-as-code.</li>
-                            <li>Roadmap per workload inclusief quick wins.</li>
-                            <li>Geïntegreerde CI/CD, observability en FinOps tooling.</li>
-                            <li>Runbooks en overdracht voor beheer en innovatie.</li>
+                    <div>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"><i class="fas fa-book text-primary"></i> Organisatie</h5>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li>Roadmap en migratieplanning.</li>
+                            <li>Runbooks voor beheer en incidenten.</li>
+                            <li>FinOps dashboard voor kosteninzicht.</li>
                         </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- CTA -->
+            <div class="text-center bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-2xl p-12 border border-blue-500/20">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Start uw migratie</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+                    Benieuwd naar de impact op uw organisatie? Plan een intake om uw case concreet te maken.
+                </p>
+                <a href="../../#contact" class="inline-block px-8 py-4 bg-primary hover:bg-blue-600 text-white font-bold rounded-lg transition-colors shadow-lg shadow-primary/25">
+                    Vraag Intake Aan
+                </a>
+            </div>
+
         </div>
     </section>
 
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Onze aanpak</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="step-block">
-                        <div class="step-title">1. Discover & classificeer</div>
-                        <p class="text-muted mb-0">Assessment van applicaties, data en integraties. Samen bepalen we welke workloads waar mogen landen, welke veiligheidsmaatregelen nodig zijn en waar de quick wins zitten.</p>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">2. Foundation & landing zones</div>
-                        <p class="text-muted mb-0">We richten cloud landing zones in met identity, netwerk, logging, security en policy. On-prem en cloud krijgen een consistente governance laag.</p>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">3. Lift-and-shift + optimalisatie</div>
-                        <p class="text-muted mb-0">VM's migreren we snel naar IaaS, waarna we rightsizing, automation, back-up en FinOps-rapportages activeren. Dit creëert een stabiele basis voor verdere modernisatie.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="step-block">
-                        <div class="step-title">4. Replatform & containerisatie</div>
-                        <p class="text-muted mb-0">Geschikte workloads verplaatsen we naar managed platforms (webapps, databases, messaging) of containerplatformen met GitOps en service mesh. OpenShift biedt hybride controle met cloud burst-opties.</p>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">5. Data & compliance</div>
-                        <p class="text-muted mb-0">Policies leggen vast welke data en workloads in de cloud mogen draaien, welke encryptie en keys nodig zijn en hoe audit logging verloopt. Classificatie stuurt automatische placement.</p>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">6. Operate & optimise</div>
-                        <p class="text-muted mb-0">We leveren observability, runbooks en FinOps dashboards. Automatisering (IaC, pipelines, schedules) houdt de operatie beheersbaar en kosten in toom. Teams krijgen kennisoverdracht.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section bg-white">
-        <div class="container">
-            <h2>Referentie-architecturen</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5>Lift-and-shift foundation</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Landing zone met hub/spoke netwerk, identity en policy-as-code.</li>
-                            <li>IaaS migratie tooling (Azure Migrate, CloudEndure, Velostrata).</li>
-                            <li>Automatische tagging, patching, backups en cost policies.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5>Managed app platform</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Webapps, serverless functies en managed databases.</li>
-                            <li>CI/CD met staged deployments, feature toggles en blue/green.</li>
-                            <li>Integratie met identity providers en API gateways.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5>Container & OpenShift</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Kubernetes of OpenShift met GitOps (ArgoCD/Fleet), service mesh en policy agents.</li>
-                            <li>Hybride clusters: on-prem voor gevoelige workloads, cloud voor burst (GPU, specifieke regio's).</li>
-                            <li>Observability (Prometheus/Grafana/ELK) en security (Falco, Kyverno, Gatekeeper).</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5>FinOps & governance</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Tagging, budgets, alerts en reports voor teams en management.</li>
-                            <li>Automation voor schedules, spot instances en rightsizing.</li>
-                            <li>Policy-as-code voor compliance (bijv. data residency, encryptie).</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="whitepaper-section">
-        <div class="container">
-            <h2>Lessons learned</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5 class="mb-3">Wat werkt goed</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Start klein (pilot) maar leg governance direct vast voor grotere uitrol.</li>
-                            <li>Automatiseer vanaf dag één (IaC, pipelines, observability).</li>
-                            <li>Betrek security, compliance en finance vroeg voor gedragen beslissingen.</li>
-                            <li>Stel duidelijke exit-criteria op voor legacy: voorkom dubbele runkosten.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card-outline p-4 h-100">
-                        <h5 class="mb-3">Let hier op</h5>
-                        <ul class="list-spaced text-muted mb-0">
-                            <li>Reken op aanvullende skills (platform, FinOps, SRE) en plan training.</li>
-                            <li>Houd rekening met integraties (fileshares, queues) die modernisatie vertragen.</li>
-                            <li>Data-classificatie moet actueel zijn; zonder dit blijft workload placement grijs.</li>
-                            <li>Meet voortgang niet alleen technisch, maar ook qua businesswaarde.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="card-outline p-4 mt-4">
-                <h5 class="mb-3">Volgende stap</h5>
-                <p class="text-muted mb-3">Curieus hoe deze aanpak op uw organisatie toepasbaar is? Plan een betaalde intake waarin we workload-classificatie, routekaart en quick wins concreet maken.</p>
-                <a href="../../#intake" class="btn btn-primary">Bekijk intake informatie</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">Cloud trajecten met duidelijke governance</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="../../#contact" class="btn btn-outline-light">Stuur ons een bericht</a>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="py-8 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

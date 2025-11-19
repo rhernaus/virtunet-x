@@ -1,645 +1,234 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Virtunet brengt kansen voor AI en cloud in kaart en helpt organisaties pragmatisch naar haalbare vervolgstappen. Bekijk hoe wij trajecten aanpakken voor verschillende sectoren.">
-    <meta name="keywords" content="AI consultancy, cloud migratie, DevOps implementatie, Digital Twins, FinOps, generatieve AI">
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="AI & Cloud Toegevoegde Waarde | Virtunet">
-    <meta property="og:description" content="Ontdek hoe wij organisaties begeleiden bij het verkennen en realiseren van AI- en cloudmogelijkheden.">
-    <meta property="og:url" content="https://virtunet.io/value-proposition/">
-    <meta property="og:type" content="website">
-    
-    <title>AI & Cloud Toegevoegde Waarde Voor Uw Bedrijf | Virtunet</title>
-    
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <!-- Bootstrap 5 (CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    <title>Waardepropositie | Virtunet</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- AOS Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="../css/templatemo-style.css">
 </head>
-<body>
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../">
-                <div class="tm-site-logo"></div>
-                <span class="ms-2">Virtunet</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Toegevoegde Waarde</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#services">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#about">Technologieën</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#projects">Projecten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../whitepapers/">Whitepapers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#intake">Intake</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#contact">Contact</a></li>
-                </ul>
-                <a href="../#contact" class="btn btn-primary ms-lg-3 d-none d-lg-inline-block">Stuur een bericht</a>
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">V</div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="#" class="text-sm font-medium text-primary-600 dark:text-white transition-colors">Aanpak</a>
+                    <a href="../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center justify-content-center text-center min-vh-50">
-                <div class="col-lg-10" data-aos="fade-up">
-                    <h1 class="display-3 fw-bold mb-2">AI & Cloud kansen in kaart brengen</h1>
-                    <p class="lead mb-3">We onderzoeken welke verbeteringen haalbaar zijn en maken inzichtelijk wat daarvoor nodig is</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="../#contact" class="btn btn-primary btn-lg me-2">Stuur een bericht</a>
-                        <a href="#industry-value" class="btn btn-outline-light">Voorbeeldscenario's</a>
-                    </div>
+    <!-- Header -->
+    <header class="pt-32 pb-20 relative overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary-500/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 text-slate-900 dark:text-white" data-aos="fade-up">
+                Van Verkenning naar <span class="text-primary-600 dark:text-primary-400">Realisatie</span>
+            </h1>
+            <p class="text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                Pragmatische strategie voor AI & Cloud. Wij identificeren waar technologie echt waarde toevoegt en begeleiden de volledige implementatie.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="#ai-value" class="px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg font-medium transition-colors border border-slate-200 dark:border-slate-700 shadow-sm">AI Oplossingen</a>
+                <a href="#cloud-value" class="px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg font-medium transition-colors border border-slate-200 dark:border-slate-700 shadow-sm">Cloud Trajecten</a>
+                <a href="#industry-value" class="px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg font-medium transition-colors border border-slate-200 dark:border-slate-700 shadow-sm">Sectoren</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Value Cards Section -->
+    <section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                <div class="bg-slate-50 dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-yellow-500/50 transition-colors group shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up" data-aos-delay="0">
+                    <i class="fas fa-lightbulb text-4xl text-yellow-500 mb-6 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Innovatiekansen</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Wij vinden de sweet spot waar AI uw bedrijf écht vooruit helpt.</p>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-green-500/50 transition-colors group shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-chart-line text-4xl text-green-500 mb-6 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Efficiëntie</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Procesanalyse die aantoont welke automatisering rendeert.</p>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-850 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-colors group shadow-sm hover:shadow-md dark:shadow-none" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-shield-alt text-4xl text-primary-600 dark:text-primary-500 mb-6 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Risicobeheersing</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Architectuur- en security-toetsing voor verantwoorde groei.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Value Proposition Overview -->
-    <section id="overview" class="py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-12" data-aos="fade-up">
-                    <div class="value-card mb-4">
-                        <div class="text-center mb-4">
-                            <div class="value-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h2 class="display-6 fw-bold">Waarom Kiezen voor Virtunet?</h2>
-                        </div>
-                        <p class="lead">We combineren ervaring in AI en cloud om samen met uw team realistische vervolgstappen te bepalen. Verwacht een transparante analyse, een plan op maat en begeleiding bij de uitvoering.</p>
-                        
-                        <div class="row g-4 mt-2">
-                            <div class="col-md-4 text-center">
-                                <div class="value-highlight">
-                                    <i class="fas fa-lightbulb text-warning mb-3"></i>
-                                    <h4>Innovatiekansen</h4>
-                                    <p>We brengen in kaart waar AI waarde kan toevoegen en bepalen samen een haalbare aanpak.</p>
-                                    <div class="mt-3">
-                                        <a href="../#contact" class="btn btn-sm btn-warning text-dark">Stuur een bericht</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <div class="value-highlight">
-                                    <i class="fas fa-chart-line text-success mb-3"></i>
-                                    <h4>Efficiënter werken</h4>
-                                    <p>We analyseren processen en tonen welke automatisering realistisch is in uw omgeving.</p>
-                                    <div class="mt-3">
-                                        <a href="../#contact" class="btn btn-sm btn-success">Vraag informatie aan</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <div class="value-highlight">
-                                    <i class="fas fa-shield-alt text-primary mb-3"></i>
-                                    <h4>Risico's beperken</h4>
-                                    <p>We toetsen architectuur, beveiliging en beheer en adviseren hoe u de volgende stap verantwoord zet.</p>
-                                    <div class="mt-3">
-                                        <a href="../#contact" class="btn btn-sm btn-primary">Bespreek de mogelijkheden</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
+    <!-- Detailed Sections -->
+    <section id="ai-value" class="py-24 bg-slate-50 dark:bg-slate-850 relative overflow-hidden transition-colors duration-300">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex items-center gap-4 mb-12">
+                <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 text-2xl">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-900 dark:text-white">AI Innovatie</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Card 1 -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg dark:hover:shadow-none transition-all" data-aos="fade-right">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3 text-slate-900 dark:text-white">
+                        <i class="fas fa-robot text-purple-500"></i> Autonome Assistenten
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">We ontwikkelen persoonlijke assistenten en operationele agents zoals Tyrum: intent in, resultaat uit, mét governance.</p>
+                    <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+                        <li class="flex gap-3"><i class="fas fa-check text-purple-500 mt-1"></i> <span><strong>Intent-to-outcome</strong>: Generatieve AI voor uitvoering.</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-purple-500 mt-1"></i> <span><strong>Policy</strong>: Guardrails voor uitgaven en privacy.</span></li>
+                    </ul>
+                    <a href="../whitepapers/tyrum/" class="text-purple-600 dark:text-purple-400 text-sm font-bold hover:underline transition-colors inline-flex items-center">
+                        Bekijk Tyrum Case <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg dark:hover:shadow-none transition-all" data-aos="fade-left">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3 text-slate-900 dark:text-white">
+                        <i class="fas fa-file-contract text-purple-500"></i> Document AI
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Met n8n-workflows en vision models analyseren we contracten en rapportages automatisch inclusief audit logging.</p>
+                    <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+                        <li class="flex gap-3"><i class="fas fa-check text-purple-500 mt-1"></i> <span><strong>Structuurdetectie</strong>: Validatie van verplichte velden.</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-purple-500 mt-1"></i> <span><strong>Human-in-the-loop</strong>: Alleen uitzonderingen naar staff.</span></li>
+                    </ul>
+                    <a href="../whitepapers/computer-vision-productiekwaliteit/" class="text-purple-600 dark:text-purple-400 text-sm font-bold hover:underline transition-colors inline-flex items-center">
+                        Lees Document AI Case <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Services Value Section -->
-    <section id="ai-value" class="py-5 bg-gradient">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">AI-innovatie Voor Uw Bedrijf</h2>
-                <p class="lead">We zoeken naar toepassingen die passen bij uw organisatie en leveren begeleiding van idee tot implementatie</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-brain text-primary me-2"></i> Autonome assistenten & workflow automation</h3>
-                        <p>We ontwikkelen persoonlijke assistenten en operationele agents zoals Tyrum: intent in, resultaat uit, mét governance en audittrail.</p>
-                        <ul class="value-list">
-                            <li><strong>Intent-to-outcome</strong> – Generatieve AI voor research, besluitvorming en uitvoering over web, mobile, CLI en API’s.</li>
-                            <li><strong>Policy & explainability</strong> – Guardrails voor uitgaven, privacy en juridische kaders, aangevuld met reproduceerbare logs.</li>
-                            <li><strong>Proactieve watchers</strong> – Event-triggers op inbox, agenda of leveringen die gebruikers binnen limieten ontzorgen.</li>
-                            <li><strong>Adoptie & beheer</strong> – Persona, memory en operations worden ingericht zodat teams eigenaarschap houden.</li>
-                        </ul>
-                        <div class="case-study">
-                            <h5>Case</h5>
-                            <p>Lees hoe Tyrum autonomie combineert met policy guardrails, audit logging en multichannel executie.</p>
-                            <div class="text-end mt-2">
-                                <a href="../whitepapers/tyrum/" class="btn btn-sm btn-outline-primary">Bekijk de Tyrum whitepaper <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
+    <section id="cloud-value" class="py-24 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex items-center gap-4 mb-12 justify-end">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-right text-slate-900 dark:text-white">Cloud & DevOps</h2>
+                <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 text-2xl">
+                    <i class="fas fa-cloud"></i>
                 </div>
-                
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-file-alt text-success me-2"></i> Document- & kennisautomatisering</h3>
-                        <p>Met n8n-workflows en document AI analyseren we prestatieverklaringen, contracten en rapportages automatisch inclusief auditproof logging.</p>
-                        <ul class="value-list">
-                            <li><strong>Structuurdetectie</strong> – Controleren op verplichte velden, handtekeningen, datums en bevoegdheden.</li>
-                            <li><strong>Uitzonderingenroutering</strong> – Alleen afwijkingen gaan naar medewerkers, met context en voorstel voor opvolging.</li>
-                            <li><strong>Audit & rapportage</strong> – JSON-logboeken, dashboards en exports voor compliance en kwaliteitscontrole.</li>
-                            <li><strong>Integraties</strong> – Koppelingen met DMS, e-mail, Slack/Teams en externe validaties (bijv. Tibber, CRM).</li>
-                        </ul>
-                        <div class="case-study">
-                            <h5>Case</h5>
-                            <p>Onze PoC voor prestatieverklaringen laat zien hoe n8n workflows documenten automatisch toetsen en uitzonderingen inzichtelijk maken.</p>
-                            <div class="text-end mt-2">
-                                <a href="../whitepapers/computer-vision-productiekwaliteit/" class="btn btn-sm btn-outline-primary">Lees de case <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Card 1 -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg dark:hover:shadow-none transition-all" data-aos="fade-right">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3 text-slate-900 dark:text-white">
+                        <i class="fas fa-server text-blue-500"></i> Migratie & Modernisatie
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Van lift-and-shift tot cloud-native replatforming. We kijken naar techniek, organisatie en businesscase.</p>
+                    <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+                        <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> <span><strong>Architectuur</strong>: Monoliet vs microservices keuzes.</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> <span><strong>FinOps</strong>: Kostenbeheersing en forecasting.</span></li>
+                    </ul>
+                    <a href="../whitepapers/cloud-migratie-retailer/" class="text-blue-600 dark:text-blue-400 text-sm font-bold hover:underline transition-colors inline-flex items-center">
+                        Lees Migratie Case <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
 
-                <div class="col-lg-6" data-aos="fade-up">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-laptop-code text-warning me-2"></i> Softwareontwikkeling & Productbouw</h3>
-                        <p>We bouwen producten en integraties met een focus op beheerbaarheid en duidelijke roadmaps. Recente voorbeelden:</p>
-                        <ul class="value-list">
-                            <li><strong>Alfen ↔ Victron integratie</strong> – In productie; dynamisch laden aangestuurd door Victron EMS</li>
-                            <li><strong>ScanViper</strong> – Rust-first platform voor risicoscans, publieke lancering gepland in 2025</li>
-                            <li><strong>Tyrum</strong> – AI-assistent voor chat en voice, lancering voorzien in 2026</li>
-                        </ul>
-                        <p class="mb-0">Per product bepalen we samen de MVP, governance en hoe we feedback cyclisch verwerken.</p>
-                    </div>
+                <!-- Card 2 -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg dark:hover:shadow-none transition-all" data-aos="fade-left">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3 text-slate-900 dark:text-white">
+                        <i class="fas fa-code-branch text-emerald-500"></i> CI/CD & Engineering
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">We richten pipelines in vanuit de context van uw team: voorspelbaar, veilig en geautomatiseerd.</p>
+                    <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-8">
+                        <li class="flex gap-3"><i class="fas fa-check text-emerald-500 mt-1"></i> <span><strong>Pipeline design</strong>: Build, test, release automation.</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-emerald-500 mt-1"></i> <span><strong>Governance</strong>: Releasebeleid en quality gates.</span></li>
+                    </ul>
+                    <a href="../whitepapers/ci-cd-software-ontwikkeling/" class="text-emerald-600 dark:text-emerald-400 text-sm font-bold hover:underline transition-colors inline-flex items-center">
+                        Lees DevOps Case <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Cloud Architecture Value Section -->
-    <section id="cloud-value" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Cloud trajecten</h2>
-                <p class="lead">Samen bepalen we de volgende stap voor uw platform en teams</p>
+    <!-- Industry Section -->
+    <section id="industry-value" class="py-24 bg-slate-50 dark:bg-slate-850 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4 text-slate-900 dark:text-white">Branchespecifiek</h2>
+                <p class="text-slate-600 dark:text-slate-400">Thema's die we regelmatig onderzoeken binnen diverse sectoren</p>
             </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-server text-info me-2"></i> Cloud Migratie & Modernisatie</h3>
-                        <p>Bij migratie en modernisatie kijken we naar techniek, organisatie en businesscase. Veelbesproken onderwerpen:</p>
-                        <ul class="value-list">
-                            <li><strong>Architectuurkeuzes</strong> – Monoliet behouden of opknippen, en welke cloudservices daarbij passen</li>
-                            <li><strong>Teamimpact</strong> – Rollen, vaardigheden en ondersteuning die nodig zijn voor beheer en ontwikkeling</li>
-                            <li><strong>Beveiliging en compliance</strong> – Borging van identiteit, data en wettelijke eisen</li>
-                            <li><strong>Financiële onderbouwing</strong> – Scenario's voor kosten, investering en verwachte opbrengsten</li>
-                        </ul>
-                        <div class="case-study">
-                            <h5>Case</h5>
-                            <p>Lees hoe we lift-and-shift, PaaS, containers en hybride OpenShift combineren in één migratietraject, gestuurd door data-classificatie en FinOps.</p>
-                            <div class="text-end mt-2">
-                                <a href="../whitepapers/cloud-migratie-retailer/" class="btn btn-sm btn-outline-primary">Lees de case <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-code-branch text-danger me-2"></i> DevOps & CI/CD</h3>
-                        <p>We richten DevOps en CI/CD in vanuit de context van uw team. Daarbij behandelen we onder meer:</p>
-                        <ul class="value-list">
-                            <li><strong>Pipeline-ontwerp</strong> – Automatisering van builds, tests en releases in beheersbare stappen</li>
-                            <li><strong>Governance</strong> – Releasebeleid, kwaliteitscriteria en audittrail</li>
-                            <li><strong>Teambegeleiding</strong> – Rollen, developer experience en kennisopbouw</li>
-                            <li><strong>Toolingkeuze</strong> – Gebruik van Azure DevOps, GitLab, GitHub of bestaande tooling</li>
-                        </ul>
-                        <div class="case-study">
-                            <h5>Case</h5>
-                            <p>Onze DevOps-case beschrijft hoe een SaaS-team van handmatige releases naar geautomatiseerde CI/CD en governance groeide.</p>
-                            <div class="text-end mt-2">
-                                <a href="../whitepapers/ci-cd-software-ontwikkeling/" class="btn btn-sm btn-outline-primary">Lees de case <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Advanced Technologies Value -->
-    <section id="tech-value" class="py-5 bg-gradient">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Geavanceerde Technologieën</h2>
-                <p class="lead">Technologieën en disciplines die we inzetten wanneer dat meerwaarde heeft</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-cloud text-primary me-2"></i> Cloudplatformen</h3>
-                        <p>Azure, AWS, GCP en OpenShift met landing zones, networking, identity en policy-as-code afgestemd op compliance-eisen.</p>
-                    </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                    <i class="fas fa-building text-2xl text-slate-400 dark:text-slate-500 mb-4"></i>
+                    <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Financiële Dienstverlening</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Fraudedetectie, compliance checks en intelligente documentverwerking.</p>
                 </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-gears text-info me-2"></i> Automation & IaC</h3>
-                        <p>Terraform/Bicep, GitOps en CI/CD zorgen voor reproduceerbare infrastructuur, snelle releases en gecontroleerde wijzigingen.</p>
-                    </div>
+                <div class="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                    <i class="fas fa-hospital text-2xl text-slate-400 dark:text-slate-500 mb-4"></i>
+                    <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Gezondheidszorg</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Medische beeldanalyse, beveiligde data-uitwisseling en IoT monitoring.</p>
                 </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-shield-halved text-success me-2"></i> Security & Governance</h3>
-                        <p>Policy-as-code, FinOps dashboards, data-classificatie en compliance frameworks vertalen beleid naar effectieve controls.</p>
-                    </div>
+                <div class="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                    <i class="fas fa-industry text-2xl text-slate-400 dark:text-slate-500 mb-4"></i>
+                    <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Industrie</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Predictief onderhoud, computer vision voor kwaliteit en digital twins.</p>
                 </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-signal text-warning me-2"></i> Observability & Reliability</h3>
-                        <p>OpenTelemetry, Prometheus, dashboards en runbooks geven teams realtime inzicht en verkorten MTTR.</p>
-                    </div>
+                <div class="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                    <i class="fas fa-shopping-cart text-2xl text-slate-400 dark:text-slate-500 mb-4"></i>
+                    <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Retail</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Vraagvoorspelling, voorraadoptimalisatie en klantbeleving.</p>
                 </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="value-detail-card">
-                        <h3><i class="fas fa-brain text-secondary me-2"></i> Data & AI</h3>
-                        <p>Documentanalyse, generatieve AI, digital twins en IoT – altijd met explainability, privacy en audit in het ontwerp.</p>
-                    </div>
+                <div class="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                    <i class="fas fa-university text-2xl text-slate-400 dark:text-slate-500 mb-4"></i>
+                    <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Overheid</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">BIO-compliant cloud, veilige documentstromen en datagedreven beleid.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Industry Solutions -->
-    <section id="industry-value" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Branchespecifieke voorbeelden</h2>
-                <p class="lead">Thema's die we regelmatig onderzoeken binnen deze sectoren</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="industry-card">
-                        <div class="industry-icon mb-3">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <h3>Financiële Dienstverlening</h3>
-                        <ul class="value-list">
-                            <li>AI-gedreven fraudedetectie</li>
-                            <li>Geautomatiseerde compliance checks</li>
-                            <li>Intelligente documentverwerking</li>
-                            <li>Predictieve klantanalyse</li>
-                        </ul>
-                    </div>
+                <div class="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                    <i class="fas fa-bolt text-2xl text-slate-400 dark:text-slate-500 mb-4"></i>
+                    <h4 class="font-bold mb-2 text-slate-900 dark:text-white">Energie</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Smart grids, load balancing en optimalisatie van renewables.</p>
                 </div>
-                
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="industry-card">
-                        <div class="industry-icon mb-3">
-                            <i class="fas fa-hospital"></i>
-                        </div>
-                        <h3>Gezondheidszorg</h3>
-                        <ul class="value-list">
-                            <li>Medische beeldanalyse met AI</li>
-                            <li>Beveiligde patiëntgegevens in de cloud</li>
-                            <li>Voorspellende zorgmodellen</li>
-                            <li>IoT integratie voor patiëntmonitoring</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="industry-card">
-                        <div class="industry-icon mb-3">
-                            <i class="fas fa-industry"></i>
-                        </div>
-                        <h3>Productie & Industrie</h3>
-                        <ul class="value-list">
-                            <li>Predictief onderhoud met IoT</li>
-                            <li>Computer vision voor kwaliteitscontrole</li>
-                            <li>Supply chain optimalisatie met AI</li>
-                            <li>Digital Twins voor procesinzicht</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="industry-card">
-                        <div class="industry-icon mb-3">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h3>Retail & E-commerce</h3>
-                        <ul class="value-list">
-                            <li>Gepersonaliseerde klantbeleving</li>
-                            <li>Vraagvoorspelling met machine learning</li>
-                            <li>Intelligente voorraadbeheer</li>
-                            <li>Schaalbare e-commerce platformen</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="industry-card">
-                        <div class="industry-icon mb-3">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <h3>Overheid & Publieke Sector</h3>
-                        <ul class="value-list">
-                            <li>BIO-compliant cloud-architecturen</li>
-                            <li>Beveiligde documentverwerking</li>
-                            <li>Datagedreven beleidsbeslissingen</li>
-                            <li>Efficiënte dienstverlening met AI</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="industry-card">
-                        <div class="industry-icon mb-3">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3>Onderwijs & Onderzoek</h3>
-                        <ul class="value-list">
-                            <li>AI-ondersteund gepersonaliseerd leren</li>
-                            <li>Schaalbare onderzoeksinfrastructuur</li>
-                            <li>Veilige data-uitwisseling</li>
-                            <li>High-performance computing in de cloud</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Approach -->
-    <section id="approach-value" class="py-5 bg-gradient">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold">Onze Aanpak</h2>
-                <p class="lead">Een resultaatgerichte methodologie voor gegarandeerd succes</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="approach-card">
-                        <div class="approach-step">1</div>
-                        <h3>Ontdekken</h3>
-                        <p>We beginnen met een grondige analyse van uw huidige situatie, uitdagingen en doelstellingen om een volledig begrip te krijgen van uw behoeften.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="approach-card">
-                        <div class="approach-step">2</div>
-                        <h3>Ontwerpen</h3>
-                        <p>We ontwerpen een op maat gemaakte oplossing die aansluit bij uw specifieke behoeften, rekening houdend met uw bestaande systemen en toekomstige groei.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="approach-card">
-                        <div class="approach-step">3</div>
-                        <h3>Implementeren</h3>
-                        <p>We zetten de oplossing op met een gefaseerde aanpak, beperken verstoring en houden alle stakeholders aangehaakt.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="approach-card">
-                        <div class="approach-step">4</div>
-                        <h3>Optimaliseren</h3>
-                        <p>We blijven de oplossing monitoren en verfijnen zodat prestaties op peil blijven en aansluiten bij veranderende behoeften.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section id="cta" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-10 mx-auto" data-aos="fade-up">
-                    <div class="card border-0 bg-dark p-4">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <h2 class="display-5 fw-bold mb-3 text-white">Volgende stap</h2>
-                                <p class="mb-4 text-white">Stuur uw vraagstuk per e-mail. We reageren binnen 24 uur met antwoorden of een voorstel voor een intake op offertebasis.</p>
-                                <ul class="mb-4 custom-checklist">
-                                    <li class="text-white"><i class="fas fa-check-circle text-success me-2"></i>Eerste reactie per e-mail met aanvullende vragen indien nodig</li>
-                                    <li class="text-white"><i class="fas fa-check-circle text-success me-2"></i>Intakevoorstel met scope, betrokken rollen en planning</li>
-                                    <li class="text-white"><i class="fas fa-check-circle text-success me-2"></i>Transparante inschatting van investering en oplevermomenten</li>
-                                </ul>
-                                <div class="d-flex gap-3 mb-4 mb-lg-0">
-                                    <a href="../#contact" class="btn btn-primary btn-lg">Stuur een bericht</a>
-                                    <a href="../#services" class="btn btn-outline-light">Bekijk onze diensten</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="card bg-dark border-light mt-4 mt-lg-0">
-                                    <div class="card-header bg-primary text-white">
-                                        <h5 class="mb-0"><i class="fas fa-route me-2"></i> Wat u kunt verwachten</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <ul class="mb-0 text-white-50 list-unstyled">
-                                            <li class="mb-3"><strong class="d-block text-white">1. Oriëntatie</strong>Inventarisatie van doelen, data en stakeholders</li>
-                                            <li class="mb-3"><strong class="d-block text-white">2. Bewijsfase</strong>Proof of concept of pilot met duidelijke evaluatiecriteria</li>
-                                            <li><strong class="d-block text-white">3. Opschaling</strong>Implementatie inclusief beheer, monitoring en kennisoverdracht</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Client Logos Section -->
-    <section class="py-5 bg-gradient-subtle">
-        <div class="container">
-            <div class="text-center mb-4" data-aos="fade-up">
-                <h2 class="mb-3 text-white">Vertrouwd door innovatieve organisaties</h2>
-                <p class="text-white-50">Ontdek waarom toonaangevende bedrijven voor Virtunet kiezen</p>
-            </div>
-            
-            <div class="row justify-content-center align-items-center g-4" data-aos="fade-up">
-                <div class="col-lg-10">
-                    <div class="client-testimonial my-4">
-                            <div class="testimonial-text">
-                                <p><i class="fas fa-quote-left me-2 text-white-50"></i>Virtunet hielp ons realistisch kijken naar de inzet van AI in onze klantenservice. We kregen een duidelijke roadmap en wisten precies welke randvoorwaarden geregeld moesten worden.<i class="fas fa-quote-right ms-2 text-white-50"></i></p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Robin de Vries</strong> - CTO bij FinTech Nederland
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-4">
-                <a href="../#contact" class="btn btn-outline-light">Word ook een succesverhaal</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-4 footer">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                        <div class="tm-site-logo footer-logo"></div>
-                        <span class="ms-2 h5 mb-0">Virtunet</span>
-                    </div>
-                    <p class="mt-2 mb-0">Next-Gen AI Innovation & Enterprise Cloud</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Copyright &copy; <span class="tm-current-year">2025</span> Virtunet B.V.</p>
-                </div>
-            </div>
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 Virtunet B.V.</p>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="btn btn-primary back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Modern JS Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="../js/templatemo-script.js"></script>
-    
-    <!-- Custom JS for Circular Progress -->
     <script>
-        // Add custom CSS for progress circles and checklist
-        const customStyles = document.createElement('style');
-        customStyles.textContent = `
-            .progress-circular {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                background: conic-gradient(#007bff 0% var(--progress), rgba(255, 255, 255, 0.1) var(--progress) 100%);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-            }
-            
-            .progress-circular::before {
-                content: '';
-                position: absolute;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background-color: #343a40;
-            }
-            
-            .progress-circular span {
-                position: relative;
-                z-index: 1;
-                font-size: 16px;
-                font-weight: bold;
-                color: white;
-            }
-            
-            .custom-checklist {
-                list-style: none;
-                padding-left: 0;
-            }
-            
-            .custom-checklist li {
-                margin-bottom: 10px;
-                display: flex;
-                align-items: flex-start;
-            }
-            
-            .bg-gradient-subtle {
-                background: linear-gradient(to bottom, rgba(33, 37, 41, 0.8), rgba(33, 37, 41, 0.95));
-            }
-            
-            .pulse-btn {
-                position: relative;
-                animation: pulse 2s infinite;
-            }
-            
-            @keyframes pulse {
-                0% {
-                    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
-                }
-                70% {
-                    box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
-                }
-                100% {
-                    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
-                }
-            }
-        `;
-        document.head.appendChild(customStyles);
-        
-        // Set progress values for circular indicators
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set progress for each circular indicator
-            const progressCircles = document.querySelectorAll('.progress-circular');
-            progressCircles.forEach(circle => {
-                const text = circle.querySelector('span').textContent;
-                let progressValue = 0;
-                
-                if (text.includes('%')) {
-                    progressValue = parseInt(text) || 0;
-                } else if (text.includes('x')) {
-                    progressValue = 75; // Default for multipliers
-                }
-                
-                circle.style.setProperty('--progress', `${progressValue}%`);
-            });
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
         });
-    </script>
-    
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Virtunet B.V. - AI & Cloud Solutions",
-      "url": "https://virtunet.io/value-proposition/",
-      "description": "Ontdek hoe Virtunet uw organisatie vooruit helpt met AI-innovatie en cloud-expertise voor meetbare kostenbesparing en efficiëntie.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Oirschot",
-        "addressRegion": "Noord-Brabant",
-        "addressCountry": "NL"
-      },
-      "telephone": "+31642117210",
-      "email": "info@virtunet.nl",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "17:00"
-        }
-      ]
-    }
     </script>
 </body>
 </html>
