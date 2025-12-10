@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wat is Retrieval-Augmented Generation (RAG)? Leer hoe RAG LLMs verbindt met externe kennisbronnen voor accurate, up-to-date antwoorden.">
+    <title>What is Retrieval-Augmented Generation (RAG)? | Virtunet Knowledge Base</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>.prose h2 { scroll-margin-top: 100px; }</style>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">V</div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="../../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="../../kb/" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Knowledge Base</a>
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors"><i class="fas fa-sun hidden dark:block"></i><i class="fas fa-moon block dark:hidden"></i></button>
+                        <a href="../../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors"><i class="fas fa-sun hidden dark:block"></i><i class="fas fa-moon block dark:hidden"></i></button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300" id="mobile-menu-btn"><i class="fas fa-bars text-xl"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Expertise</a>
+                <a href="../../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Projecten</a>
+                <a href="../../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Aanpak</a>
+                <a href="../../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Insights</a>
+                <a href="../../kb/" class="block px-3 py-3 rounded-md text-base font-medium text-primary-600 dark:text-primary-400">Knowledge Base</a>
+                <a href="../../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-12 relative overflow-hidden bg-gradient-to-b from-emerald-600 to-teal-700">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
+            <nav class="flex items-center gap-2 text-sm text-emerald-200 mb-6">
+                <a href="../../kb/" class="hover:text-white transition-colors">Knowledge Base</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-white">RAG & Data</span>
+            </nav>
+
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">RAG & Data</span>
+                <span class="text-emerald-200 text-sm"><i class="far fa-clock mr-1"></i> 8 min read</span>
+                <span class="text-emerald-200 text-sm"><i class="far fa-calendar mr-1"></i> December 2024</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                What is Retrieval-Augmented Generation (RAG)?
+            </h1>
+            <p class="text-xl text-emerald-100 leading-relaxed max-w-3xl">
+                Hoe RAG LLMs verbindt met externe kennisbronnen voor accurate, up-to-date antwoorden zonder hallucinaties.
+            </p>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Table of Contents -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-12">
+                    <h2 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-list text-primary-500"></i> In dit artikel
+                    </h2>
+                    <nav class="space-y-2">
+                        <a href="#het-probleem" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">1. Het Probleem met LLMs</a>
+                        <a href="#wat-is-rag" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">2. Wat is RAG?</a>
+                        <a href="#hoe-werkt-rag" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">3. Hoe werkt RAG?</a>
+                        <a href="#componenten" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">4. RAG Componenten</a>
+                        <a href="#voordelen" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">5. Voordelen van RAG</a>
+                        <a href="#use-cases" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">6. Praktische Use Cases</a>
+                        <a href="#best-practices" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">7. Best Practices</a>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="prose prose-lg dark:prose-invert max-w-none">
+
+                    <!-- Section 1 -->
+                    <h2 id="het-probleem" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-12 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-lg font-bold">1</span>
+                        Het Probleem met LLMs
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Large Language Models zoals GPT-4 en Claude zijn indrukwekkend, maar hebben fundamentele beperkingen:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-8">
+                        <div class="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fas fa-calendar-xmark text-red-500 text-xl"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Knowledge Cutoff</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Training data heeft een einddatum. Het model weet niets van recente gebeurtenissen.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fas fa-ghost text-red-500 text-xl"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Hallucinaties</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">LLMs genereren soms overtuigende maar feitelijk onjuiste informatie.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fas fa-lock text-red-500 text-xl"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Geen Private Data</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Het model kent uw interne documenten, databases of bedrijfskennis niet.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fas fa-question-circle text-red-500 text-xl"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Geen Bronvermelding</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Antwoorden zijn niet verifieerbaar — waar komt de informatie vandaan?</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <h2 id="wat-is-rag" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-lg font-bold">2</span>
+                        Wat is RAG?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Retrieval-Augmented Generation (RAG)</strong> is een techniek die een LLM combineert met een externe kennisbron. In plaats van alleen te vertrouwen op wat het model "weet", haalt RAG eerst relevante informatie op en gebruikt die als context voor het antwoord.
+                    </p>
+
+                    <div class="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">In één zin</h4>
+                                <p class="text-slate-600 dark:text-slate-400">
+                                    RAG = <strong>Zoeken</strong> in je eigen data + <strong>Genereren</strong> met een LLM. Het model krijgt de juiste context mee om accurate antwoorden te geven.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <h2 id="hoe-werkt-rag" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-lg font-bold">3</span>
+                        Hoe werkt RAG?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        RAG werkt in drie stappen:
+                    </p>
+
+                    <!-- RAG Flow Diagram -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                            <!-- Step 1 -->
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mx-auto mb-3">
+                                    <i class="fas fa-question text-2xl"></i>
+                                </div>
+                                <div class="font-bold text-slate-900 dark:text-white mb-1">1. Query</div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Gebruiker stelt vraag</p>
+                            </div>
+
+                            <i class="fas fa-arrow-right text-2xl text-slate-300 dark:text-slate-600 hidden md:block"></i>
+                            <i class="fas fa-arrow-down text-2xl text-slate-300 dark:text-slate-600 md:hidden"></i>
+
+                            <!-- Step 2 -->
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mx-auto mb-3">
+                                    <i class="fas fa-search text-2xl"></i>
+                                </div>
+                                <div class="font-bold text-slate-900 dark:text-white mb-1">2. Retrieve</div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Zoek relevante documenten</p>
+                            </div>
+
+                            <i class="fas fa-arrow-right text-2xl text-slate-300 dark:text-slate-600 hidden md:block"></i>
+                            <i class="fas fa-arrow-down text-2xl text-slate-300 dark:text-slate-600 md:hidden"></i>
+
+                            <!-- Step 3 -->
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-500/10 flex items-center justify-center text-purple-600 dark:text-purple-400 mx-auto mb-3">
+                                    <i class="fas fa-plus text-2xl"></i>
+                                </div>
+                                <div class="font-bold text-slate-900 dark:text-white mb-1">3. Augment</div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Voeg context toe aan prompt</p>
+                            </div>
+
+                            <i class="fas fa-arrow-right text-2xl text-slate-300 dark:text-slate-600 hidden md:block"></i>
+                            <i class="fas fa-arrow-down text-2xl text-slate-300 dark:text-slate-600 md:hidden"></i>
+
+                            <!-- Step 4 -->
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 mx-auto mb-3">
+                                    <i class="fas fa-wand-magic-sparkles text-2xl"></i>
+                                </div>
+                                <div class="font-bold text-slate-900 dark:text-white mb-1">4. Generate</div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">LLM genereert antwoord</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <h2 id="componenten" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-lg font-bold">4</span>
+                        RAG Componenten
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
+                                <i class="fas fa-file-alt text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Document Store</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">De bron van kennis: PDFs, websites, databases, APIs. Documenten worden opgesplitst in chunks.</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
+                                <i class="fas fa-cube text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Embedding Model</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Zet tekst om naar vectors (getallen) die de semantische betekenis representeren.</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-500/10 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                                <i class="fas fa-database text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Vector Database</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Slaat embeddings op en maakt snelle similarity search mogelijk. Pinecone, Weaviate, Chroma, pgvector.</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="w-12 h-12 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 mb-4">
+                                <i class="fas fa-brain text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">LLM</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Genereert het uiteindelijke antwoord op basis van de vraag + opgehaalde context.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <h2 id="voordelen" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-lg font-bold">5</span>
+                        Voordelen van RAG
+                    </h2>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex gap-4 text-slate-600 dark:text-slate-400">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mt-0.5">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <strong class="text-slate-900 dark:text-white">Up-to-date informatie</strong>
+                                <p class="text-sm">Geen knowledge cutoff — update je documenten en de antwoorden veranderen direct.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 text-slate-600 dark:text-slate-400">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mt-0.5">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <strong class="text-slate-900 dark:text-white">Minder hallucinaties</strong>
+                                <p class="text-sm">Het model baseert antwoorden op feitelijke bronnen, niet op "herinnering".</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 text-slate-600 dark:text-slate-400">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mt-0.5">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <strong class="text-slate-900 dark:text-white">Bronvermelding</strong>
+                                <p class="text-sm">Antwoorden kunnen verwijzen naar specifieke documenten voor verificatie.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 text-slate-600 dark:text-slate-400">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mt-0.5">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <strong class="text-slate-900 dark:text-white">Private data toegankelijk</strong>
+                                <p class="text-sm">Interne documenten, handleidingen, policies — zonder het model te hertrainen.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 text-slate-600 dark:text-slate-400">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mt-0.5">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <strong class="text-slate-900 dark:text-white">Kostenefficiënt</strong>
+                                <p class="text-sm">Goedkoper dan fine-tuning en makkelijker te onderhouden.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Section 6 -->
+                    <h2 id="use-cases" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-lg font-bold">6</span>
+                        Praktische Use Cases
+                    </h2>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex gap-4 p-4 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-blue-500 flex items-center justify-center text-white">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Customer Support</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Chatbot die antwoordt op basis van FAQ, handleidingen en ticket history.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-purple-500 flex items-center justify-center text-white">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Legal & Compliance</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Zoeken in contracten, policies en regelgeving met natuurlijke taal.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Developer Documentation</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Code-assistenten die interne codebases en documentatie kennen.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-amber-500 flex items-center justify-center text-white">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Enterprise Search</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Semantisch zoeken over Confluence, SharePoint, Notion, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 7 -->
+                    <h2 id="best-practices" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-lg font-bold">7</span>
+                        Best Practices
+                    </h2>
+
+                    <div class="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-6 mb-8">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <i class="fas fa-lightbulb text-amber-500"></i> Tips voor een goede RAG implementatie
+                        </h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Chunk size:</strong> Experimenteer met 256-1024 tokens. Te groot = ruis, te klein = context verlies.</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Overlap:</strong> Gebruik 10-20% overlap tussen chunks voor context continuïteit.</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Hybrid search:</strong> Combineer vector search met keyword search voor betere results.</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Reranking:</strong> Gebruik een reranker om de beste chunks te selecteren na initial retrieval.</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Metadata:</strong> Voeg metadata toe aan chunks (bron, datum, auteur) voor filtering en citatie.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Related Articles -->
+                <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-6">Gerelateerde artikelen</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <a href="../ai-agents/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What are AI Agents?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Autonome AI-systemen die RAG kunnen gebruiken.</p>
+                            </div>
+                        </a>
+                        <a href="../mcp-vs-api/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white">
+                                <i class="fas fa-plug text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">MCP vs API vs RAG</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Verschillende manieren om AI te verbinden met data.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-16 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-2xl p-8 border border-emerald-500/20 text-center">
+                    <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-4">RAG implementeren?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                        Wij bouwen RAG-systemen die uw bedrijfsdata ontsluiten via natuurlijke taal — veilig, schaalbaar en met bronvermelding.
+                    </p>
+                    <a href="../../#contact" class="inline-block px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-emerald-500/25 hover:-translate-y-0.5">
+                        Neem contact op
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center"><p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p></div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); }
+    </script>
+</body>
+</html>

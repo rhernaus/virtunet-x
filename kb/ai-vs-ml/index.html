@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wat is het verschil tussen AI en Machine Learning? Een heldere uitleg over de relatie tussen kunstmatige intelligentie en ML.">
+    <title>AI vs Machine Learning: Wat is het verschil? | Virtunet Knowledge Base</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        .prose h2 { scroll-margin-top: 100px; }
+        .prose h3 { scroll-margin-top: 100px; }
+    </style>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">
+                            V
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="../../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="../../kb/" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Knowledge Base</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-sun hidden dark:block"></i>
+                        <i class="fas fa-moon block dark:hidden"></i>
+                    </button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Expertise</a>
+                <a href="../../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Projecten</a>
+                <a href="../../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Aanpak</a>
+                <a href="../../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Insights</a>
+                <a href="../../kb/" class="block px-3 py-3 rounded-md text-base font-medium text-primary-600 dark:text-primary-400 hover:bg-slate-50 dark:hover:bg-slate-800">Knowledge Base</a>
+                <a href="../../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-12 relative overflow-hidden bg-gradient-to-b from-violet-600 to-purple-700">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-sm text-violet-200 mb-6">
+                <a href="../../kb/" class="hover:text-white transition-colors">Knowledge Base</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-white">AI Fundamentals</span>
+            </nav>
+
+            <!-- Category & Meta -->
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">AI Fundamentals</span>
+                <span class="text-violet-200 text-sm"><i class="far fa-clock mr-1"></i> 6 min read</span>
+                <span class="text-violet-200 text-sm"><i class="far fa-calendar mr-1"></i> December 2024</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                AI vs Machine Learning: Wat is het verschil?
+            </h1>
+            <p class="text-xl text-violet-100 leading-relaxed max-w-3xl">
+                Een heldere uitleg over de relatie tussen AI als vakgebied en Machine Learning als techniek. Begrijp hoe ze samenhangen en wanneer je welke term gebruikt.
+            </p>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Table of Contents -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-12">
+                    <h2 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-list text-primary-500"></i> In dit artikel
+                    </h2>
+                    <nav class="space-y-2">
+                        <a href="#korte-antwoord" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">1. Het korte antwoord</a>
+                        <a href="#wat-is-ai" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">2. Wat is Artificial Intelligence?</a>
+                        <a href="#wat-is-ml" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">3. Wat is Machine Learning?</a>
+                        <a href="#relatie" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">4. De relatie: ML is een subset van AI</a>
+                        <a href="#voorbeelden" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">5. Praktische voorbeelden</a>
+                        <a href="#wanneer-welke-term" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">6. Wanneer gebruik je welke term?</a>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="prose prose-lg dark:prose-invert max-w-none">
+
+                    <!-- Section 1 -->
+                    <h2 id="korte-antwoord" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-12 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">1</span>
+                        Het korte antwoord
+                    </h2>
+
+                    <div class="bg-violet-50 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 dark:bg-violet-500/20 flex items-center justify-center text-violet-600 dark:text-violet-400">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">TL;DR</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                                    <strong class="text-slate-900 dark:text-white">AI</strong> is het brede vakgebied dat streeft naar intelligente machines. <strong class="text-slate-900 dark:text-white">Machine Learning</strong> is een specifieke techniek binnen AI waarbij systemen leren van data. Alle ML is AI, maar niet alle AI is ML.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <h2 id="wat-is-ai" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">2</span>
+                        Wat is Artificial Intelligence?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Artificial Intelligence (AI)</strong> is een breed vakgebied binnen de informatica dat zich richt op het creëren van systemen die taken kunnen uitvoeren waarvoor normaal gesproken menselijke intelligentie nodig is.
+                    </p>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        AI als concept bestaat al sinds de jaren '50, toen pioniers als Alan Turing en John McCarthy de basis legden. Het omvat veel verschillende benaderingen:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-8">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400">
+                                    <i class="fas fa-code-branch"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Rule-based Systems</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Expert systems met handmatig geprogrammeerde regels ("if X then Y")</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Search Algorithms</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Zoekalgoritmes voor pathfinding en optimalisatie</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Knowledge Graphs</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Gestructureerde kennisrepresentatie en redeneren</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Machine Learning</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Systemen die leren van data (waar we het zo over hebben)</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <h2 id="wat-is-ml" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">3</span>
+                        Wat is Machine Learning?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Machine Learning (ML)</strong> is een specifieke tak van AI waarbij systemen automatisch patronen leren uit data, zonder expliciet geprogrammeerd te worden voor elke taak.
+                    </p>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        In plaats van regels te schrijven, geef je een ML-systeem voorbeelden. Het systeem ontdekt zelf de onderliggende patronen:
+                    </p>
+
+                    <!-- Comparison Diagram -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="text-center">
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-4">Traditioneel Programmeren</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <div class="px-4 py-2 bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 rounded-lg text-sm font-medium">Data</div>
+                                        <i class="fas fa-plus text-slate-400"></i>
+                                        <div class="px-4 py-2 bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 rounded-lg text-sm font-medium">Regels</div>
+                                    </div>
+                                    <i class="fas fa-arrow-down text-slate-300 dark:text-slate-600"></i>
+                                    <div class="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium inline-block">Antwoorden</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-4">Machine Learning</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <div class="px-4 py-2 bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 rounded-lg text-sm font-medium">Data</div>
+                                        <i class="fas fa-plus text-slate-400"></i>
+                                        <div class="px-4 py-2 bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 rounded-lg text-sm font-medium">Antwoorden</div>
+                                    </div>
+                                    <i class="fas fa-arrow-down text-slate-300 dark:text-slate-600"></i>
+                                    <div class="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium inline-block">Regels (Model)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        ML kent drie hoofdcategorieën:
+                    </p>
+
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-check text-violet-500 mt-1.5"></i>
+                            <span><strong class="text-slate-900 dark:text-white">Supervised Learning:</strong> Leren van gelabelde voorbeelden (input + correct antwoord)</span>
+                        </li>
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-check text-violet-500 mt-1.5"></i>
+                            <span><strong class="text-slate-900 dark:text-white">Unsupervised Learning:</strong> Patronen ontdekken in ongelabelde data</span>
+                        </li>
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-check text-violet-500 mt-1.5"></i>
+                            <span><strong class="text-slate-900 dark:text-white">Reinforcement Learning:</strong> Leren door trial-and-error met beloningen</span>
+                        </li>
+                    </ul>
+
+                    <!-- Section 4 -->
+                    <h2 id="relatie" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">4</span>
+                        De relatie: ML is een subset van AI
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        De eenvoudigste manier om de relatie te begrijpen is als concentrische cirkels:
+                    </p>
+
+                    <!-- Nested Circles Diagram -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <div class="flex items-center justify-center">
+                            <div class="relative">
+                                <!-- Outer circle: AI -->
+                                <div class="w-72 h-72 md:w-80 md:h-80 rounded-full bg-violet-100 dark:bg-violet-500/10 border-2 border-violet-300 dark:border-violet-500/30 flex items-center justify-center">
+                                    <!-- Middle circle: ML -->
+                                    <div class="w-52 h-52 md:w-56 md:h-56 rounded-full bg-purple-100 dark:bg-purple-500/10 border-2 border-purple-300 dark:border-purple-500/30 flex items-center justify-center">
+                                        <!-- Inner circle: DL -->
+                                        <div class="w-32 h-32 md:w-36 md:h-36 rounded-full bg-indigo-100 dark:bg-indigo-500/10 border-2 border-indigo-300 dark:border-indigo-500/30 flex items-center justify-center">
+                                            <span class="text-xs md:text-sm font-bold text-indigo-700 dark:text-indigo-400 text-center">Deep<br>Learning</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Labels -->
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 text-sm font-bold text-violet-700 dark:text-violet-400">
+                                    Artificial Intelligence
+                                </div>
+                                <div class="absolute top-16 left-1/2 -translate-x-1/2 text-xs font-bold text-purple-700 dark:text-purple-400">
+                                    Machine Learning
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
+                            Deep Learning is weer een subset van Machine Learning
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Belangrijk: <strong class="text-slate-900 dark:text-white">AI is niet synoniem met ML</strong>. Er bestaan AI-systemen die geen ML gebruiken (zoals rule-based expert systems), en ML is slechts één van de vele technieken om AI te realiseren.
+                    </p>
+
+                    <!-- Section 5 -->
+                    <h2 id="voorbeelden" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">5</span>
+                        Praktische voorbeelden
+                    </h2>
+
+                    <!-- Examples Table -->
+                    <div class="overflow-x-auto mb-8">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 dark:bg-slate-800">
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Toepassing</th>
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Type</th>
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Hoe het werkt</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Schaakcomputer (vroeger)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">AI (geen ML)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Zoekalgoritmes + handmatige evaluatiefuncties</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Spam filter</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">ML</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Leert van voorbeelden van spam/niet-spam</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">ChatGPT</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">ML (Deep Learning)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Neural network getraind op tekstdata</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Routeplanner</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">AI (geen ML)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Dijkstra's algoritme of A* search</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Netflix aanbevelingen</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">ML</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Collaborative filtering op kijkgedrag</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Section 6 -->
+                    <h2 id="wanneer-welke-term" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">6</span>
+                        Wanneer gebruik je welke term?
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-violet-50 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20 rounded-xl p-6">
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-3">Gebruik "AI" wanneer:</h4>
+                            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                <li class="flex gap-2">
+                                    <i class="fas fa-check text-violet-500 mt-1"></i>
+                                    <span>Je spreekt over intelligente systemen in het algemeen</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i class="fas fa-check text-violet-500 mt-1"></i>
+                                    <span>De technische implementatie niet relevant is</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i class="fas fa-check text-violet-500 mt-1"></i>
+                                    <span>Je communiceert met niet-technische stakeholders</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 rounded-xl p-6">
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-3">Gebruik "ML" wanneer:</h4>
+                            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                <li class="flex gap-2">
+                                    <i class="fas fa-check text-purple-500 mt-1"></i>
+                                    <span>Het systeem specifiek leert van data</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i class="fas fa-check text-purple-500 mt-1"></i>
+                                    <span>Je training, validatie en modellen bespreekt</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i class="fas fa-check text-purple-500 mt-1"></i>
+                                    <span>Je communiceert met data scientists of engineers</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-6 mb-8">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                            <i class="fas fa-exclamation-triangle text-amber-500"></i>
+                            Let op marketingtaal
+                        </h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">
+                            "AI" wordt vaak als buzzword gebruikt voor producten die technisch gezien ML gebruiken — of soms helemaal geen geavanceerde techniek. Wees kritisch wanneer leveranciers "AI" claimen zonder specifiek te zijn.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Related Articles -->
+                <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-6">Gerelateerde artikelen</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <a href="../ai-ml-dl-genai/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white">
+                                <i class="fas fa-brain text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">AI vs ML vs DL vs GenAI</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">De complete AI-hiërarchie uitgelegd.</p>
+                            </div>
+                        </a>
+                        <a href="../ml-vs-dl/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white">
+                                <i class="fas fa-layer-group text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Machine Learning vs Deep Learning</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Wanneer kies je voor klassieke ML of neural networks?</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-16 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-2xl p-8 border border-violet-500/20 text-center">
+                    <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-4">AI of ML voor uw organisatie?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                        Wij helpen u bepalen welke techniek het beste past bij uw vraagstuk — en bouwen de oplossing.
+                    </p>
+                    <a href="../../#contact" class="inline-block px-8 py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-violet-500/25 hover:-translate-y-0.5">
+                        Neem contact op
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // Theme toggle
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Load theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>

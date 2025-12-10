@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Knowledge Base - Begrijp de fundamenten van AI, Machine Learning, LLMs en Agentic AI met heldere uitleg en praktische voorbeelden.">
+    <title>AI Knowledge Base | Virtunet</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">
+                            V
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="../kb/" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Knowledge Base</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-sun hidden dark:block"></i>
+                        <i class="fas fa-moon block dark:hidden"></i>
+                    </button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Expertise</a>
+                <a href="../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Projecten</a>
+                <a href="../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Aanpak</a>
+                <a href="../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Insights</a>
+                <a href="../kb/" class="block px-3 py-3 rounded-md text-base font-medium text-primary-600 dark:text-primary-400 hover:bg-slate-50 dark:hover:bg-slate-800">Knowledge Base</a>
+                <a href="../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <div class="absolute top-0 right-1/4 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-primary-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 text-center max-w-4xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 border border-primary-200 dark:border-primary-500/20 mb-6 text-sm font-medium">
+                <i class="fas fa-graduation-cap"></i>
+                <span>AI Knowledge Base</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-6 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent">
+                Begrijp AI, van basis tot bleeding edge
+            </h1>
+            <p class="text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                Heldere uitleg over Machine Learning, LLMs, RAG, AI Agents en meer. Geschreven voor engineers en beslissers die AI willen begrijpen én toepassen.
+            </p>
+        </div>
+    </header>
+
+    <!-- Category Filter -->
+    <section class="py-8 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-20 z-40 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="px-4 py-2 rounded-full text-sm font-medium bg-primary-600 text-white shadow-lg shadow-primary-500/25">Alle artikelen</button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">AI Fundamentals</button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Generative AI</button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Agentic AI</button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">RAG & Data</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Articles -->
+    <section class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-display font-bold mb-8 text-slate-900 dark:text-white">
+                <i class="fas fa-fire text-orange-500 mr-2"></i> Populaire Artikelen
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Article 1: AI, ML, DL, GenAI -->
+                <article class="group bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-indigo-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-brain text-9xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">AI Fundamentals</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                            AI vs Machine Learning vs Deep Learning vs Generative AI
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                            Wat is het verschil? Een complete uitleg van de AI-hiërarchie en hoe deze technologieën zich tot elkaar verhouden.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500 dark:text-slate-500"><i class="far fa-clock mr-1"></i> 10 min read</span>
+                            <a href="ai-ml-dl-genai/" class="text-purple-600 dark:text-purple-400 text-sm font-bold hover:underline inline-flex items-center">
+                                Lees artikel <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2: What are AI Agents -->
+                <article class="group bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-cyan-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-robot text-9xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">Agentic AI</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            What are AI Agents?
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                            Autonome AI-systemen die kunnen waarnemen, redeneren en acties uitvoeren. De volgende revolutie in AI.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500 dark:text-slate-500"><i class="far fa-clock mr-1"></i> 12 min read</span>
+                            <a href="ai-agents/" class="text-blue-600 dark:text-blue-400 text-sm font-bold hover:underline inline-flex items-center">
+                                Lees artikel <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3: What is RAG -->
+                <article class="group bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-emerald-500 to-teal-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-database text-9xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">RAG & Data</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                            What is Retrieval-Augmented Generation (RAG)?
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                            Hoe RAG LLMs verbindt met externe kennisbronnen voor accurate, up-to-date antwoorden zonder hallucinaties.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500 dark:text-slate-500"><i class="far fa-clock mr-1"></i> 8 min read</span>
+                            <a href="rag/" class="text-emerald-600 dark:text-emerald-400 text-sm font-bold hover:underline inline-flex items-center">
+                                Lees artikel <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4: AI vs ML -->
+                <article class="group bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-violet-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up">
+                    <div class="h-48 bg-gradient-to-br from-violet-500 to-purple-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-microchip text-9xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">AI Fundamentals</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-slate-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                            AI vs Machine Learning: Wat is het verschil?
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                            Een heldere uitleg over de relatie tussen AI als vakgebied en Machine Learning als techniek.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500 dark:text-slate-500"><i class="far fa-clock mr-1"></i> 6 min read</span>
+                            <a href="ai-vs-ml/" class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline inline-flex items-center">
+                                Lees artikel <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5: How LLMs Work -->
+                <article class="group bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-br from-amber-500 to-orange-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-comments text-9xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">Generative AI</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                            How Large Language Models Work
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                            Van transformer architectuur tot tokenization: begrijp hoe ChatGPT en andere LLMs tekst genereren.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500 dark:text-slate-500"><i class="far fa-clock mr-1"></i> 8 min read</span>
+                            <a href="how-llms-work/" class="text-amber-600 dark:text-amber-400 text-sm font-bold hover:underline inline-flex items-center">
+                                Lees artikel <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6: Generative vs Agentic AI -->
+                <article class="group bg-slate-50 dark:bg-slate-850 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-rose-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-rose-500 to-pink-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-arrows-split-up-and-left text-9xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">Agentic AI</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-2 text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">
+                            Generative AI vs Agentic AI
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                            Het verschil tussen content genereren en autonoom handelen. Waarom Agentic AI de volgende stap is.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-500 dark:text-slate-500"><i class="far fa-clock mr-1"></i> 7 min read</span>
+                            <a href="generative-vs-agentic-ai/" class="text-rose-600 dark:text-rose-400 text-sm font-bold hover:underline inline-flex items-center">
+                                Lees artikel <i class="fas fa-arrow-right ml-2 text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- More Articles -->
+    <section class="py-16 bg-slate-50 dark:bg-slate-850 border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-display font-bold mb-8 text-slate-900 dark:text-white">
+                <i class="fas fa-book-open text-primary-500 mr-2"></i> Alle Artikelen
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- MCP vs API -->
+                <a href="mcp-vs-api/" class="group flex gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                    <div class="w-16 h-16 flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white">
+                        <i class="fas fa-plug text-2xl"></i>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">MCP vs API: AI Agent Integration</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">Hoe Model Context Protocol AI agents verbindt met externe data.</p>
+                    </div>
+                </a>
+
+                <!-- Transformers -->
+                <a href="transformers/" class="group flex gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                    <div class="w-16 h-16 flex-shrink-0 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white">
+                        <i class="fas fa-network-wired text-2xl"></i>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">What are Transformers?</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">De architectuur achter GPT, BERT en alle moderne LLMs uitgelegd.</p>
+                    </div>
+                </a>
+
+                <!-- CNNs -->
+                <a href="cnns/" class="group flex gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                    <div class="w-16 h-16 flex-shrink-0 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white">
+                        <i class="fas fa-image text-2xl"></i>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">What are Convolutional Neural Networks?</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">De basis van computer vision: convolution layers, pooling en meer.</p>
+                    </div>
+                </a>
+
+                <!-- ML vs DL -->
+                <a href="ml-vs-dl/" class="group flex gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                    <div class="w-16 h-16 flex-shrink-0 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white">
+                        <i class="fas fa-layer-group text-2xl"></i>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">Machine Learning vs Deep Learning</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">Wanneer kies je voor klassieke ML en wanneer voor neural networks?</p>
+                    </div>
+                </a>
+
+                <!-- LRMs -->
+                <a href="large-reasoning-models/" class="group flex gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                    <div class="w-16 h-16 flex-shrink-0 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white">
+                        <i class="fas fa-lightbulb text-2xl"></i>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">What are Large Reasoning Models (LRMs)?</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">De nieuwe generatie AI die echt kan redeneren, niet alleen patronen herkennen.</p>
+                    </div>
+                </a>
+
+                <!-- Prompt Engineering -->
+                <a href="prompt-engineering/" class="group flex gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                    <div class="w-16 h-16 flex-shrink-0 rounded-lg bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center text-white">
+                        <i class="fas fa-terminal text-2xl"></i>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">Prompt Engineering voor LLMs</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">Technieken om betere resultaten uit ChatGPT en andere LLMs te halen.</p>
+                    </div>
+                </a>
+
+                <!-- RAG vs Agentic AI -->
+                <a href="rag-vs-agentic-ai/" class="group flex gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                    <div class="w-16 h-16 flex-shrink-0 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white">
+                        <i class="fas fa-code-branch text-2xl"></i>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-1">RAG vs Agentic AI</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-1">Twee benaderingen om LLMs te verbinden met externe data en systemen.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <div class="bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-3xl p-12 border border-primary-500/20">
+                <h2 class="text-3xl font-display font-bold mb-4 text-slate-900 dark:text-white">AI in de praktijk brengen?</h2>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 text-lg max-w-2xl mx-auto">
+                    Van concept naar implementatie. Wij helpen u AI-oplossingen te bouwen die écht waarde leveren.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../#contact" class="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary-500/25 hover:-translate-y-0.5">
+                        Neem contact op
+                    </a>
+                    <a href="../whitepapers/" class="px-8 py-4 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 font-bold rounded-xl transition-all hover:-translate-y-0.5">
+                        Bekijk Case Studies
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // Theme toggle
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Load theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>

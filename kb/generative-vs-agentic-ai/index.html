@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wat is het verschil tussen Generative AI en Agentic AI? Ontdek hoe AI evolueert van content genereren naar autonome agents.">
+    <title>Generative AI vs Agentic AI | Virtunet Knowledge Base</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>.prose h2 { scroll-margin-top: 100px; }</style>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">V</div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="../../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="../../kb/" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Knowledge Base</a>
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors"><i class="fas fa-sun hidden dark:block"></i><i class="fas fa-moon block dark:hidden"></i></button>
+                        <a href="../../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500"><i class="fas fa-sun hidden dark:block"></i><i class="fas fa-moon block dark:hidden"></i></button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300" id="mobile-menu-btn"><i class="fas fa-bars text-xl"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Expertise</a>
+                <a href="../../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Projecten</a>
+                <a href="../../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Aanpak</a>
+                <a href="../../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Insights</a>
+                <a href="../../kb/" class="block px-3 py-3 rounded-md text-base font-medium text-primary-600 dark:text-primary-400">Knowledge Base</a>
+                <a href="../../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-12 relative overflow-hidden bg-gradient-to-b from-violet-600 to-purple-700">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
+            <nav class="flex items-center gap-2 text-sm text-violet-200 mb-6">
+                <a href="../../kb/" class="hover:text-white transition-colors">Knowledge Base</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-white">Agentic AI</span>
+            </nav>
+
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">Agentic AI</span>
+                <span class="text-violet-200 text-sm"><i class="far fa-clock mr-1"></i> 10 min read</span>
+                <span class="text-violet-200 text-sm"><i class="far fa-calendar mr-1"></i> December 2024</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                Generative AI vs Agentic AI
+            </h1>
+            <p class="text-xl text-violet-100 leading-relaxed max-w-3xl">
+                Van content creatie naar autonome actie: de volgende evolutie in kunstmatige intelligentie.
+            </p>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Table of Contents -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-12">
+                    <h2 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-list text-primary-500"></i> In dit artikel
+                    </h2>
+                    <nav class="space-y-2">
+                        <a href="#de-evolutie" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">1. De Evolutie van AI</a>
+                        <a href="#generative-ai" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">2. Generative AI: Creatie</a>
+                        <a href="#agentic-ai" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">3. Agentic AI: Autonomie</a>
+                        <a href="#vergelijking" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">4. Vergelijking</a>
+                        <a href="#synergie" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">5. Synergie: GenAI + Agents</a>
+                        <a href="#toepassingen" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">6. Praktische Toepassingen</a>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="prose prose-lg dark:prose-invert max-w-none">
+
+                    <!-- Section 1 -->
+                    <h2 id="de-evolutie" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-12 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">1</span>
+                        De Evolutie van AI
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        AI heeft verschillende fases doorgemaakt. Van <em>Predictive AI</em> (voorspellingen maken) naar <em>Generative AI</em> (content creëren) en nu naar <em>Agentic AI</em> (autonome acties uitvoeren).
+                    </p>
+
+                    <!-- Evolution Timeline -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mx-auto mb-3">
+                                    <i class="fas fa-chart-line text-2xl"></i>
+                                </div>
+                                <div class="font-bold text-slate-900 dark:text-white">Predictive AI</div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Classificatie & voorspelling</p>
+                                <p class="text-xs text-slate-400">2010s</p>
+                            </div>
+
+                            <i class="fas fa-arrow-right text-2xl text-slate-300 dark:text-slate-600 hidden md:block"></i>
+
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 mx-auto mb-3">
+                                    <i class="fas fa-wand-magic-sparkles text-2xl"></i>
+                                </div>
+                                <div class="font-bold text-slate-900 dark:text-white">Generative AI</div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Content creëren</p>
+                                <p class="text-xs text-slate-400">2022-2024</p>
+                            </div>
+
+                            <i class="fas fa-arrow-right text-2xl text-slate-300 dark:text-slate-600 hidden md:block"></i>
+
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 rounded-full bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 mx-auto mb-3">
+                                    <i class="fas fa-robot text-2xl"></i>
+                                </div>
+                                <div class="font-bold text-slate-900 dark:text-white">Agentic AI</div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Autonome actie</p>
+                                <p class="text-xs text-slate-400">2024+</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <h2 id="generative-ai" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">2</span>
+                        Generative AI: Creatie
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Generative AI</strong> is AI die nieuwe content creëert op basis van geleerde patronen. Denk aan ChatGPT, DALL-E, Midjourney. De focus ligt op <em>output generatie</em>.
+                    </p>
+
+                    <div class="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-6 mb-8">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-4">Kenmerken van Generative AI:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Reactief:</strong> Wacht op een prompt en genereert één response</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Stateless:</strong> Geen geheugen tussen sessies (tenzij expliciet)</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Single-turn:</strong> Prompt → Response, geen autonome follow-up</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Content-focused:</strong> Output is tekst, beeld, audio, video</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <h2 id="agentic-ai" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">3</span>
+                        Agentic AI: Autonomie
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Agentic AI</strong> gaat een stap verder: het kan <em>zelfstandig doelen nastreven</em>, tools gebruiken, beslissingen nemen en acties uitvoeren — vaak over meerdere stappen.
+                    </p>
+
+                    <div class="bg-violet-50 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20 rounded-xl p-6 mb-8">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-4">Kenmerken van Agentic AI:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-violet-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Proactief:</strong> Neemt initiatief, stelt vervolgvragen, plant vooruit</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-violet-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Persistent:</strong> Onthoudt context, leert van interacties</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-violet-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Multi-step:</strong> Plant en voert complexe taken uit in meerdere stappen</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-violet-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Tool-use:</strong> Kan APIs, databases, browsers en andere tools gebruiken</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-violet-500 mt-1"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Action-focused:</strong> Output is vaak een actie, niet alleen content</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <h2 id="vergelijking" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">4</span>
+                        Vergelijking
+                    </h2>
+
+                    <div class="overflow-x-auto mb-8">
+                        <table class="w-full border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 dark:bg-slate-800">
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Aspect</th>
+                                    <th class="text-left p-4 font-bold text-amber-600 dark:text-amber-400 border-b border-slate-200 dark:border-slate-700">Generative AI</th>
+                                    <th class="text-left p-4 font-bold text-violet-600 dark:text-violet-400 border-b border-slate-200 dark:border-slate-700">Agentic AI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Interactie</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Prompt → Response</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Goal → Plan → Execute → Evaluate</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Autonomie</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Laag (wacht op input)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Hoog (neemt initiatief)</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Tools</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Zelden</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Centraal (APIs, browsers, etc.)</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Output</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Content (tekst, beeld)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Acties + Content</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Planning</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Geen</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Multi-step reasoning</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Voorbeelden</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">ChatGPT, DALL-E, Claude</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">AutoGPT, Devin, Cursor Agent</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <h2 id="synergie" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">5</span>
+                        Synergie: GenAI + Agents
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Agentic AI en Generative AI zijn geen tegenpolen — <strong class="text-slate-900 dark:text-white">agents gebruiken GenAI als hun "brain"</strong>. Een LLM genereert de plannen, redeneringen en responses, terwijl de agent-architectuur zorgt voor tools, geheugen en executie.
+                    </p>
+
+                    <!-- Agent Architecture -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="text-center p-4 bg-amber-50 dark:bg-amber-500/10 rounded-xl border border-amber-200 dark:border-amber-500/20">
+                                <div class="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white mx-auto mb-3">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">LLM</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Redeneren, plannen, begrijpen</p>
+                            </div>
+                            <div class="text-center p-4 bg-violet-50 dark:bg-violet-500/10 rounded-xl border border-violet-200 dark:border-violet-500/20">
+                                <div class="w-12 h-12 rounded-full bg-violet-500 flex items-center justify-center text-white mx-auto mb-3">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Agent Loop</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Observe → Think → Act → Reflect</p>
+                            </div>
+                            <div class="text-center p-4 bg-blue-50 dark:bg-blue-500/10 rounded-xl border border-blue-200 dark:border-blue-500/20">
+                                <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white mx-auto mb-3">
+                                    <i class="fas fa-plug"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Tools</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">APIs, code execution, browsing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 6 -->
+                    <h2 id="toepassingen" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">6</span>
+                        Praktische Toepassingen
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-amber-50 dark:bg-amber-500/10 rounded-xl p-6 border border-amber-200 dark:border-amber-500/20">
+                            <h4 class="font-bold text-amber-700 dark:text-amber-400 mb-3 flex items-center gap-2">
+                                <i class="fas fa-wand-magic-sparkles"></i> Generative AI Use Cases
+                            </h4>
+                            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                <li>• Tekst schrijven (blogs, emails)</li>
+                                <li>• Afbeeldingen genereren</li>
+                                <li>• Code snippets maken</li>
+                                <li>• Samenvattingen</li>
+                                <li>• Vertalingen</li>
+                            </ul>
+                        </div>
+                        <div class="bg-violet-50 dark:bg-violet-500/10 rounded-xl p-6 border border-violet-200 dark:border-violet-500/20">
+                            <h4 class="font-bold text-violet-700 dark:text-violet-400 mb-3 flex items-center gap-2">
+                                <i class="fas fa-robot"></i> Agentic AI Use Cases
+                            </h4>
+                            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                <li>• Autonome code development</li>
+                                <li>• Research & report writing</li>
+                                <li>• Workflow automation</li>
+                                <li>• Booking & scheduling</li>
+                                <li>• Multi-step customer support</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Related Articles -->
+                <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-6">Gerelateerde artikelen</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <a href="../ai-agents/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What are AI Agents?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Diepgaand begrip van autonome AI-systemen.</p>
+                            </div>
+                        </a>
+                        <a href="../how-llms-work/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white">
+                                <i class="fas fa-comments text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">How LLMs Work</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">De technologie die Generative AI aandrijft.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-16 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-2xl p-8 border border-violet-500/20 text-center">
+                    <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-4">Klaar voor Agentic AI?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                        Wij bouwen AI agents die taken automatiseren, workflows versnellen en uw team ondersteunen.
+                    </p>
+                    <a href="../../#contact" class="inline-block px-8 py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-violet-500/25 hover:-translate-y-0.5">
+                        Neem contact op
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center"><p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p></div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); }
+    </script>
+</body>
+</html>

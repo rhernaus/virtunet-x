@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wat is het verschil tussen MCP, API en RAG? Ontdek de verschillende manieren om AI te verbinden met externe systemen en data.">
+    <title>MCP vs API vs RAG: AI Integration Patterns | Virtunet Knowledge Base</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>.prose h2 { scroll-margin-top: 100px; }</style>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">V</div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="../../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="../../kb/" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Knowledge Base</a>
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors"><i class="fas fa-sun hidden dark:block"></i><i class="fas fa-moon block dark:hidden"></i></button>
+                        <a href="../../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500"><i class="fas fa-sun hidden dark:block"></i><i class="fas fa-moon block dark:hidden"></i></button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300" id="mobile-menu-btn"><i class="fas fa-bars text-xl"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Expertise</a>
+                <a href="../../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Projecten</a>
+                <a href="../../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Aanpak</a>
+                <a href="../../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Insights</a>
+                <a href="../../kb/" class="block px-3 py-3 rounded-md text-base font-medium text-primary-600 dark:text-primary-400">Knowledge Base</a>
+                <a href="../../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-12 relative overflow-hidden bg-gradient-to-b from-blue-600 to-indigo-700">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
+            <nav class="flex items-center gap-2 text-sm text-blue-200 mb-6">
+                <a href="../../kb/" class="hover:text-white transition-colors">Knowledge Base</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-white">Integration</span>
+            </nav>
+
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">Integration</span>
+                <span class="text-blue-200 text-sm"><i class="far fa-clock mr-1"></i> 10 min read</span>
+                <span class="text-blue-200 text-sm"><i class="far fa-calendar mr-1"></i> December 2024</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                MCP vs API vs RAG
+            </h1>
+            <p class="text-xl text-blue-100 leading-relaxed max-w-3xl">
+                De verschillende manieren om AI te verbinden met externe systemen, tools en data.
+            </p>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Table of Contents -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-12">
+                    <h2 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-list text-primary-500"></i> In dit artikel
+                    </h2>
+                    <nav class="space-y-2">
+                        <a href="#het-probleem" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">1. Het Probleem: AI Verbinden</a>
+                        <a href="#wat-is-api" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">2. API: Directe Integratie</a>
+                        <a href="#wat-is-rag" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">3. RAG: Kennisbronnen</a>
+                        <a href="#wat-is-mcp" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">4. MCP: Gestandaardiseerde Tools</a>
+                        <a href="#vergelijking" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">5. Vergelijking</a>
+                        <a href="#wanneer-wat" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">6. Wanneer Gebruik Je Wat?</a>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="prose prose-lg dark:prose-invert max-w-none">
+
+                    <!-- Section 1 -->
+                    <h2 id="het-probleem" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-12 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 text-lg font-bold">1</span>
+                        Het Probleem: AI Verbinden
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        LLMs zijn krachtig, maar ze leven in isolatie. Ze weten niets van uw specifieke data, kunnen geen acties uitvoeren en hebben geen toegang tot real-time informatie. Er zijn verschillende patterns om dit probleem op te lossen:
+                    </p>
+
+                    <!-- Three Approaches -->
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-emerald-50 dark:bg-emerald-500/10 rounded-xl p-5 border border-emerald-200 dark:border-emerald-500/20 text-center">
+                            <div class="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center text-white mx-auto mb-3">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">RAG</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Kennis toevoegen</p>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-500/10 rounded-xl p-5 border border-amber-200 dark:border-amber-500/20 text-center">
+                            <div class="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white mx-auto mb-3">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">API</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Directe functie-calls</p>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-500/10 rounded-xl p-5 border border-blue-200 dark:border-blue-500/20 text-center">
+                            <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white mx-auto mb-3">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">MCP</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Standaard protocol</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <h2 id="wat-is-api" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">2</span>
+                        API: Directe Integratie
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Function calling / Tool use via APIs</strong> is de meest directe manier om LLMs te verbinden met externe systemen. Het LLM genereert structured output (JSON) die een functie aanroept.
+                    </p>
+
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-8 font-mono text-sm">
+                        <p class="text-slate-500 mb-2">// LLM output:</p>
+                        <div class="text-slate-700 dark:text-slate-300">
+                            <span class="text-amber-600">{</span><br>
+                            <span class="ml-4">"function": "get_weather",</span><br>
+                            <span class="ml-4">"arguments": { "city": "Amsterdam" }</span><br>
+                            <span class="text-amber-600">}</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-6 mb-8">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Kenmerken:</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-0.5"></i>
+                                <span>Elke provider heeft eigen implementatie (OpenAI, Anthropic, etc.)</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-0.5"></i>
+                                <span>U schrijft custom code per integratie</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-amber-500 mt-0.5"></i>
+                                <span>Flexibel maar niet gestandaardiseerd</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <h2 id="wat-is-rag" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-lg font-bold">3</span>
+                        RAG: Kennisbronnen
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Retrieval-Augmented Generation</strong> voegt context toe aan prompts door relevante documenten op te halen uit een vector database. Het LLM krijgt zo toegang tot specifieke kennis.
+                    </p>
+
+                    <div class="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-xl p-6 mb-8">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Kenmerken:</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-emerald-500 mt-0.5"></i>
+                                <span>Read-only: haalt informatie op, voert geen acties uit</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-emerald-500 mt-0.5"></i>
+                                <span>Uitstekend voor Q&A op interne documenten</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-emerald-500 mt-0.5"></i>
+                                <span>Vereist embedding pipeline en vector DB</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <h2 id="wat-is-mcp" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 text-lg font-bold">4</span>
+                        MCP: Gestandaardiseerde Tools
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Model Context Protocol (MCP)</strong> is een open standaard (door Anthropic) die een universele manier definieert om AI-modellen te verbinden met tools, data en services. Het is als USB voor AI.
+                    </p>
+
+                    <div class="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">MCP Architecture</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                    MCP definieert een client-server protocol met drie primitives:
+                                </p>
+                                <div class="grid grid-cols-3 gap-3 text-xs">
+                                    <div class="bg-white dark:bg-slate-900 rounded-lg p-3 text-center border border-blue-200 dark:border-blue-500/30">
+                                        <i class="fas fa-wrench text-blue-500 mb-1"></i>
+                                        <div class="font-bold">Tools</div>
+                                        <p class="text-slate-500">Functies aanroepen</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-slate-900 rounded-lg p-3 text-center border border-blue-200 dark:border-blue-500/30">
+                                        <i class="fas fa-file text-blue-500 mb-1"></i>
+                                        <div class="font-bold">Resources</div>
+                                        <p class="text-slate-500">Data ophalen</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-slate-900 rounded-lg p-3 text-center border border-blue-200 dark:border-blue-500/30">
+                                        <i class="fas fa-comment text-blue-500 mb-1"></i>
+                                        <div class="font-bold">Prompts</div>
+                                        <p class="text-slate-500">Templates</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-xl p-6 mb-8">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Voordelen van MCP:</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-blue-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Standaard:</strong> Eén protocol, werkt met alle MCP-compatible clients</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-blue-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Ecosystem:</strong> Groeiende library van pre-built servers</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-blue-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Bidirectioneel:</strong> Read én write, tools én resources</span>
+                            </li>
+                            <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-check text-blue-500 mt-0.5"></i>
+                                <span><strong class="text-slate-900 dark:text-white">Security:</strong> Gebouwde permissie en consent flows</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <h2 id="vergelijking" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 text-lg font-bold">5</span>
+                        Vergelijking
+                    </h2>
+
+                    <div class="overflow-x-auto mb-8">
+                        <table class="w-full border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 dark:bg-slate-800">
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Aspect</th>
+                                    <th class="text-left p-4 font-bold text-emerald-600 dark:text-emerald-400 border-b border-slate-200 dark:border-slate-700">RAG</th>
+                                    <th class="text-left p-4 font-bold text-amber-600 dark:text-amber-400 border-b border-slate-200 dark:border-slate-700">API/Functions</th>
+                                    <th class="text-left p-4 font-bold text-blue-600 dark:text-blue-400 border-b border-slate-200 dark:border-slate-700">MCP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Doel</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Kennis toevoegen</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Acties uitvoeren</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Beide + standaard</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Read/Write</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Read-only</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Both</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Both</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Standaard?</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Nee</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Nee (per provider)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Ja (open)</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Setup</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Vector DB + embeddings</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Custom code</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">MCP server</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Voorbeeld</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Chat over documenten</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Weather API call</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">GitHub MCP server</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Section 6 -->
+                    <h2 id="wanneer-wat" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 text-lg font-bold">6</span>
+                        Wanneer Gebruik Je Wat?
+                    </h2>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex gap-4 p-4 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl border border-emerald-200 dark:border-emerald-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">RAG</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Wanneer je AI toegang wilt geven tot interne documenten, FAQ's of kennisbases voor Q&A.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 bg-amber-50 dark:bg-amber-500/10 rounded-xl border border-amber-200 dark:border-amber-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-amber-500 flex items-center justify-center text-white">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">API Function Calling</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Simpele, eenmalige integraties waar je volledige controle wilt. Quick wins.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 bg-blue-50 dark:bg-blue-500/10 rounded-xl border border-blue-200 dark:border-blue-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-blue-500 flex items-center justify-center text-white">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">MCP</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Wanneer je een herbruikbare integratie bouwt die met meerdere AI-clients moet werken, of als er al een MCP server bestaat.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">Combineren is krachtig</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                                    In de praktijk combineer je vaak meerdere patterns. Een AI agent kan RAG gebruiken voor kennis, MCP voor tools, en custom API calls voor specifieke integraties.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Related Articles -->
+                <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-6">Gerelateerde artikelen</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <a href="../rag/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white">
+                                <i class="fas fa-database text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What is RAG?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Diepgaande uitleg van Retrieval-Augmented Generation.</p>
+                            </div>
+                        </a>
+                        <a href="../ai-agents/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What are AI Agents?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Hoe agents RAG, MCP en APIs combineren.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-16 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-2xl p-8 border border-blue-500/20 text-center">
+                    <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-4">AI integraties bouwen?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                        Wij helpen u de juiste architectuur te kiezen — RAG, MCP, custom APIs of een combinatie.
+                    </p>
+                    <a href="../../#contact" class="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-500/25 hover:-translate-y-0.5">
+                        Neem contact op
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center"><p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p></div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); }
+    </script>
+</body>
+</html>

@@ -41,6 +41,7 @@
                     <a href="#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
                     <a href="value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
                     <a href="whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="kb/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Knowledge Base</a>
 
                     <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
                         <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
@@ -71,6 +72,7 @@
                 <a href="#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Projecten</a>
                 <a href="value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Aanpak</a>
                 <a href="whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Insights</a>
+                <a href="kb/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Knowledge Base</a>
                 <a href="#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
             </div>
         </div>
@@ -305,6 +307,86 @@
         </div>
     </section>
 
+    <!-- AI Knowledge Base Section -->
+    <section id="knowledge" class="py-24 bg-slate-50 dark:bg-slate-850 border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12" data-aos="fade-up">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-wider mb-4">
+                        <i class="fas fa-graduation-cap"></i> Knowledge Base
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-900 dark:text-white">AI Concepts Uitgelegd</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mt-2">Van fundamenten tot cutting-edge technologie.</p>
+                </div>
+                <a href="kb/" class="mt-6 md:mt-0 inline-flex items-center text-primary-600 dark:text-primary-400 font-bold hover:underline transition-colors">
+                    Bekijk alle artikelen <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Article 1: AI, ML, DL, GenAI - 2.5M views -->
+                <a href="kb/ai-ml-dl-genai/" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up">
+                    <div class="h-32 bg-gradient-to-br from-purple-500 to-indigo-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-brain text-7xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-medium text-purple-600 dark:text-purple-400">AI Fundamentals</span>
+                        <h3 class="font-bold text-slate-900 dark:text-white mt-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors line-clamp-2">
+                            AI vs ML vs Deep Learning vs Generative AI
+                        </h3>
+                    </div>
+                </a>
+
+                <!-- Article 2: AI Agents - 1.6M views -->
+                <a href="kb/ai-agents/" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-32 bg-gradient-to-br from-blue-500 to-cyan-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-robot text-7xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-medium text-blue-600 dark:text-blue-400">Agentic AI</span>
+                        <h3 class="font-bold text-slate-900 dark:text-white mt-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                            What are AI Agents?
+                        </h3>
+                    </div>
+                </a>
+
+                <!-- Article 3: RAG - 1.5M views -->
+                <a href="kb/rag/" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-32 bg-gradient-to-br from-emerald-500 to-teal-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-database text-7xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-medium text-emerald-600 dark:text-emerald-400">RAG & Data</span>
+                        <h3 class="font-bold text-slate-900 dark:text-white mt-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-2">
+                            What is RAG?
+                        </h3>
+                    </div>
+                </a>
+
+                <!-- Article 4: How LLMs Work - 1.2M views -->
+                <a href="kb/how-llms-work/" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-32 bg-gradient-to-br from-amber-500 to-orange-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-white/20">
+                            <i class="fas fa-comments text-7xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-medium text-amber-600 dark:text-amber-400">Generative AI</span>
+                        <h3 class="font-bold text-slate-900 dark:text-white mt-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-2">
+                            How Large Language Models Work
+                        </h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Team Section -->
     <section id="team" class="py-24 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="container mx-auto px-4">
@@ -361,17 +443,6 @@
                     <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-slate-900 dark:text-white">Klaar om te starten?</h2>
                     <p class="text-slate-600 dark:text-slate-400 text-lg mb-8">Direct contact met engineers. Geen sales pitch, maar inhoudelijk advies over uw uitdaging.</p>
 
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-500/10 flex items-center justify-center text-primary-600 dark:text-primary-500">
-                                <i class="fas fa-phone text-xl"></i>
-                            </div>
-                            <div>
-                                <h6 class="font-bold text-slate-900 dark:text-white">Bel ons</h6>
-                                <p class="text-slate-500 dark:text-slate-400 text-sm">+31 6 42117210</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div data-aos="fade-left">

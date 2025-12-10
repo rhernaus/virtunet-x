@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hoe werken Large Language Models? Van transformer architectuur tot tokenization: begrijp hoe ChatGPT en andere LLMs tekst genereren.">
+    <title>How Large Language Models Work | Virtunet Knowledge Base</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>.prose h2 { scroll-margin-top: 100px; }</style>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">V</div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="../../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="../../kb/" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Knowledge Base</a>
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors"><i class="fas fa-sun hidden dark:block"></i><i class="fas fa-moon block dark:hidden"></i></button>
+                        <a href="../../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500"><i class="fas fa-sun hidden dark:block"></i><i class="fas fa-moon block dark:hidden"></i></button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300" id="mobile-menu-btn"><i class="fas fa-bars text-xl"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Expertise</a>
+                <a href="../../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Projecten</a>
+                <a href="../../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Aanpak</a>
+                <a href="../../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300">Insights</a>
+                <a href="../../kb/" class="block px-3 py-3 rounded-md text-base font-medium text-primary-600 dark:text-primary-400">Knowledge Base</a>
+                <a href="../../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-12 relative overflow-hidden bg-gradient-to-b from-amber-500 to-orange-600">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
+            <nav class="flex items-center gap-2 text-sm text-amber-200 mb-6">
+                <a href="../../kb/" class="hover:text-white transition-colors">Knowledge Base</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-white">Generative AI</span>
+            </nav>
+
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">Generative AI</span>
+                <span class="text-amber-200 text-sm"><i class="far fa-clock mr-1"></i> 8 min read</span>
+                <span class="text-amber-200 text-sm"><i class="far fa-calendar mr-1"></i> December 2024</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                How Large Language Models Work
+            </h1>
+            <p class="text-xl text-amber-100 leading-relaxed max-w-3xl">
+                Van transformer architectuur tot tokenization: begrijp hoe ChatGPT en andere LLMs tekst genereren.
+            </p>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Table of Contents -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-12">
+                    <h2 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-list text-primary-500"></i> In dit artikel
+                    </h2>
+                    <nav class="space-y-2">
+                        <a href="#wat-is-llm" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">1. Wat is een LLM?</a>
+                        <a href="#tokenization" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">2. Tokenization: Tekst naar Getallen</a>
+                        <a href="#transformer" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">3. De Transformer Architectuur</a>
+                        <a href="#attention" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">4. Attention: De Kern van LLMs</a>
+                        <a href="#training" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">5. Training: Next Token Prediction</a>
+                        <a href="#inference" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">6. Inference: Tekst Genereren</a>
+                        <a href="#parameters" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">7. Parameters en Schaal</a>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="prose prose-lg dark:prose-invert max-w-none">
+
+                    <!-- Section 1 -->
+                    <h2 id="wat-is-llm" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-12 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">1</span>
+                        Wat is een LLM?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Een <strong class="text-slate-900 dark:text-white">Large Language Model (LLM)</strong> is een type neural network dat getraind is op enorme hoeveelheden tekst om taal te begrijpen en te genereren. "Large" verwijst naar het aantal parameters — moderne LLMs hebben tientallen tot honderden miljarden parameters.
+                    </p>
+
+                    <div class="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">De kerngedachte</h4>
+                                <p class="text-slate-600 dark:text-slate-400">
+                                    LLMs zijn in essentie <strong>statistische machines die het volgende woord voorspellen</strong>. Door dit miljarden keren te doen op internet-schaal tekst, leren ze grammatica, feiten, redeneren en meer.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <h2 id="tokenization" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">2</span>
+                        Tokenization: Tekst naar Getallen
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        LLMs kunnen alleen met getallen werken, niet met tekst. <strong class="text-slate-900 dark:text-white">Tokenization</strong> splitst tekst op in stukjes (tokens) en wijst elk stukje een nummer toe.
+                    </p>
+
+                    <!-- Tokenization Example -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-8">
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Voorbeeld tokenization:</p>
+                        <div class="font-mono text-sm mb-4">
+                            <span class="bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 px-2 py-1 rounded mr-1">Hello</span>
+                            <span class="bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-300 px-2 py-1 rounded mr-1">,</span>
+                            <span class="bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 px-2 py-1 rounded mr-1">how</span>
+                            <span class="bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 px-2 py-1 rounded mr-1">are</span>
+                            <span class="bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 px-2 py-1 rounded mr-1">you</span>
+                            <span class="bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 px-2 py-1 rounded">?</span>
+                        </div>
+                        <div class="flex gap-2 text-xs text-slate-500">
+                            <span class="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded">15496</span>
+                            <span class="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded">11</span>
+                            <span class="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded">1521</span>
+                            <span class="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded">389</span>
+                            <span class="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded">499</span>
+                            <span class="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded">30</span>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-4">Elke token krijgt een uniek ID uit de vocabulary (50.000+ tokens).</p>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <h2 id="transformer" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">3</span>
+                        De Transformer Architectuur
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Alle moderne LLMs zijn gebaseerd op de <strong class="text-slate-900 dark:text-white">Transformer</strong> architectuur (2017). De key innovation: parallel processing van sequenties via het attention mechanisme.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
+                                <i class="fas fa-layer-group text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Embedding Layer</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Zet token IDs om naar dense vectors (bijv. 4096 dimensies) die semantische betekenis coderen.</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-500/10 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                                <i class="fas fa-bullseye text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Attention Layers</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Berekenen relaties tussen alle tokens. "Welke woorden zijn relevant voor dit woord?"</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
+                                <i class="fas fa-network-wired text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Feed-Forward Layers</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Neural network lagen die de representaties transformeren en "kennis" opslaan.</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="w-12 h-12 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 mb-4">
+                                <i class="fas fa-arrow-right text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Output Layer</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Produceert een probability distribution over alle mogelijke volgende tokens.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <h2 id="attention" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">4</span>
+                        Attention: De Kern van LLMs
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">"Attention is All You Need"</strong> — de titel van het originele paper. Het attention mechanisme laat elke token naar alle andere tokens "kijken" om context te begrijpen.
+                    </p>
+
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-8">
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Voorbeeld: In "The cat sat on the mat because <strong>it</strong> was tired"</p>
+                        <p class="text-slate-600 dark:text-slate-400">Attention leert dat "it" refereert naar "cat", niet naar "mat". Het model berekent attention weights die aangeven hoe sterk elk woord gerelateerd is aan andere woorden.</p>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <h2 id="training" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">5</span>
+                        Training: Next Token Prediction
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        LLMs worden getraind met één simpele taak: <strong class="text-slate-900 dark:text-white">voorspel het volgende woord</strong>. Dit heet "autoregressive language modeling" of "causal language modeling".
+                    </p>
+
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-8">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <span class="text-sm font-mono bg-slate-200 dark:bg-slate-700 px-3 py-1 rounded">Input:</span>
+                                <span class="text-slate-700 dark:text-slate-300">"The quick brown fox"</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-sm font-mono bg-emerald-200 dark:bg-emerald-500/20 px-3 py-1 rounded text-emerald-700 dark:text-emerald-300">Target:</span>
+                                <span class="text-slate-700 dark:text-slate-300">"jumps"</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-4">Dit wordt triljoenen keren herhaald over gigantische tekstcorpora (internet, boeken, code).</p>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Na pre-training volgen vaak extra stappen:
+                    </p>
+
+                    <ul class="space-y-2 mb-8">
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-check text-amber-500 mt-1"></i>
+                            <span><strong class="text-slate-900 dark:text-white">Supervised Fine-Tuning (SFT):</strong> Training op vraag-antwoord paren</span>
+                        </li>
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-check text-amber-500 mt-1"></i>
+                            <span><strong class="text-slate-900 dark:text-white">RLHF:</strong> Reinforcement Learning from Human Feedback voor betere antwoorden</span>
+                        </li>
+                    </ul>
+
+                    <!-- Section 6 -->
+                    <h2 id="inference" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">6</span>
+                        Inference: Tekst Genereren
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Bij inference genereert het model tekst token-voor-token:
+                    </p>
+
+                    <ol class="space-y-4 mb-8">
+                        <li class="flex gap-4">
+                            <div class="w-8 h-8 flex-shrink-0 rounded-full bg-amber-500 flex items-center justify-center text-white text-sm font-bold">1</div>
+                            <div class="text-slate-600 dark:text-slate-400">Neem de input prompt en tokenize deze</div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="w-8 h-8 flex-shrink-0 rounded-full bg-amber-500 flex items-center justify-center text-white text-sm font-bold">2</div>
+                            <div class="text-slate-600 dark:text-slate-400">Bereken de kans voor elke mogelijke volgende token</div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="w-8 h-8 flex-shrink-0 rounded-full bg-amber-500 flex items-center justify-center text-white text-sm font-bold">3</div>
+                            <div class="text-slate-600 dark:text-slate-400">Sample een token (bijv. top-p/temperature sampling)</div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="w-8 h-8 flex-shrink-0 rounded-full bg-amber-500 flex items-center justify-center text-white text-sm font-bold">4</div>
+                            <div class="text-slate-600 dark:text-slate-400">Voeg de token toe aan de sequentie en herhaal</div>
+                        </li>
+                    </ol>
+
+                    <!-- Section 7 -->
+                    <h2 id="parameters" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-lg font-bold">7</span>
+                        Parameters en Schaal
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        "Parameters" zijn de geleerde weights in het neural network. Meer parameters = meer capaciteit om patronen en kennis op te slaan.
+                    </p>
+
+                    <div class="overflow-x-auto mb-8">
+                        <table class="w-full border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 dark:bg-slate-800">
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Model</th>
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Parameters</th>
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Training Compute</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">GPT-2 (2019)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">1.5B</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">~$50K</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">GPT-3 (2020)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">175B</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">~$4-12M</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">GPT-4 (2023)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">~1.7T (rumored)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">~$78M+</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Llama 3 (2024)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">8B / 70B</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Varies</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Llama 3.1 (2024)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">8B / 70B / 405B</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Varies</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!-- Related Articles -->
+                <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-6">Gerelateerde artikelen</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <a href="../transformers/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white">
+                                <i class="fas fa-network-wired text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What are Transformers?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">De architectuur achter alle moderne LLMs.</p>
+                            </div>
+                        </a>
+                        <a href="../rag/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white">
+                                <i class="fas fa-database text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What is RAG?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">LLMs verbinden met externe kennisbronnen.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-16 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-2xl p-8 border border-amber-500/20 text-center">
+                    <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-4">LLMs inzetten in uw organisatie?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                        Van model selectie tot productie-deployment — wij helpen u de kracht van LLMs te benutten.
+                    </p>
+                    <a href="../../#contact" class="inline-block px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-amber-500/25 hover:-translate-y-0.5">
+                        Neem contact op
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center"><p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p></div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); }
+    </script>
+</body>
+</html>

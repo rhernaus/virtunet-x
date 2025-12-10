@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RAG vs Agentic AI: wat is het verschil? Leer wanneer je retrieval-augmented generation kiest en wanneer autonome agents de betere aanpak zijn.">
+    <title>RAG vs Agentic AI: How LLMs Connect Data | Virtunet Knowledge Base</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        .prose h2 { scroll-margin-top: 100px; }
+        .prose h3 { scroll-margin-top: 100px; }
+    </style>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">
+                            V
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="../../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="../../kb/" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Knowledge Base</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-sun hidden dark:block"></i>
+                        <i class="fas fa-moon block dark:hidden"></i>
+                    </button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Expertise</a>
+                <a href="../../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Projecten</a>
+                <a href="../../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Aanpak</a>
+                <a href="../../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Insights</a>
+                <a href="../../kb/" class="block px-3 py-3 rounded-md text-base font-medium text-primary-600 dark:text-primary-400 hover:bg-slate-50 dark:hover:bg-slate-800">Knowledge Base</a>
+                <a href="../../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-12 relative overflow-hidden bg-gradient-to-b from-violet-600 to-purple-700">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-sm text-violet-200 mb-6">
+                <a href="../../kb/" class="hover:text-white transition-colors">Knowledge Base</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-white">Integration</span>
+            </nav>
+
+            <!-- Category & Meta -->
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">Integration</span>
+                <span class="text-violet-200 text-sm"><i class="far fa-clock mr-1"></i> 10 min read</span>
+                <span class="text-violet-200 text-sm"><i class="far fa-calendar mr-1"></i> December 2024</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                RAG vs Agentic AI: How LLMs Connect Data
+            </h1>
+            <p class="text-xl text-violet-100 leading-relaxed max-w-3xl">
+                Twee benaderingen om LLMs slimmer te maken met externe data. Begrijp wanneer je kiest voor retrieval en wanneer voor autonome agents.
+            </p>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Table of Contents -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-12">
+                    <h2 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-list text-primary-500"></i> In dit artikel
+                    </h2>
+                    <nav class="space-y-2">
+                        <a href="#het-probleem" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">1. Het probleem: LLMs en externe data</a>
+                        <a href="#wat-is-rag" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">2. Wat is RAG?</a>
+                        <a href="#wat-is-agentic" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">3. Wat is Agentic AI?</a>
+                        <a href="#vergelijking" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">4. RAG vs Agentic: de verschillen</a>
+                        <a href="#wanneer-rag" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">5. Wanneer kies je RAG?</a>
+                        <a href="#wanneer-agentic" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">6. Wanneer kies je Agentic?</a>
+                        <a href="#combinatie" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">7. Het beste van beide: Agentic RAG</a>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="prose prose-lg dark:prose-invert max-w-none">
+
+                    <!-- Section 1 -->
+                    <h2 id="het-probleem" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-12 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">1</span>
+                        Het probleem: LLMs en externe data
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Large Language Models zijn krachtig, maar hebben fundamentele beperkingen:
+                    </p>
+
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-exclamation-circle text-amber-500 mt-1.5"></i>
+                            <span><strong class="text-slate-900 dark:text-white">Knowledge cutoff:</strong> Ze weten niets van na hun trainingsdatum</span>
+                        </li>
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-exclamation-circle text-amber-500 mt-1.5"></i>
+                            <span><strong class="text-slate-900 dark:text-white">Geen toegang tot jouw data:</strong> Ze kennen je interne documenten, databases of systemen niet</span>
+                        </li>
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-exclamation-circle text-amber-500 mt-1.5"></i>
+                            <span><strong class="text-slate-900 dark:text-white">Hallucinaties:</strong> Ze verzinnen antwoorden wanneer ze iets niet weten</span>
+                        </li>
+                    </ul>
+
+                    <!-- Key Concept Box -->
+                    <div class="bg-violet-50 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 dark:bg-violet-500/20 flex items-center justify-center text-violet-600 dark:text-violet-400">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">De kernvraag</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                                    Hoe verbind je een LLM met externe data en systemen? Twee hoofdbenaderingen: <strong>RAG</strong> (breng de data naar het model) en <strong>Agentic AI</strong> (laat het model tools gebruiken). Beide lossen het probleem op — maar op fundamenteel verschillende manieren.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <h2 id="wat-is-rag" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">2</span>
+                        Wat is RAG?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Retrieval-Augmented Generation (RAG)</strong> haalt relevante informatie op uit een kennisbron en voegt deze toe aan de prompt voordat het LLM antwoordt.
+                    </p>
+
+                    <!-- RAG Flow Diagram -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <h4 class="text-center font-bold text-slate-900 dark:text-white mb-6">RAG Workflow</h4>
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                            <div class="bg-blue-100 dark:bg-blue-500/20 rounded-xl p-4 text-center w-full md:w-auto">
+                                <i class="fas fa-user text-blue-600 dark:text-blue-400 text-2xl mb-2"></i>
+                                <p class="text-sm font-medium text-slate-900 dark:text-white">Vraag</p>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-400 hidden md:block"></i>
+                            <i class="fas fa-arrow-down text-slate-400 md:hidden"></i>
+                            <div class="bg-emerald-100 dark:bg-emerald-500/20 rounded-xl p-4 text-center w-full md:w-auto">
+                                <i class="fas fa-search text-emerald-600 dark:text-emerald-400 text-2xl mb-2"></i>
+                                <p class="text-sm font-medium text-slate-900 dark:text-white">Retrieve</p>
+                                <p class="text-xs text-slate-500">Vector DB</p>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-400 hidden md:block"></i>
+                            <i class="fas fa-arrow-down text-slate-400 md:hidden"></i>
+                            <div class="bg-purple-100 dark:bg-purple-500/20 rounded-xl p-4 text-center w-full md:w-auto">
+                                <i class="fas fa-file-alt text-purple-600 dark:text-purple-400 text-2xl mb-2"></i>
+                                <p class="text-sm font-medium text-slate-900 dark:text-white">Augment</p>
+                                <p class="text-xs text-slate-500">Context toevoegen</p>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-400 hidden md:block"></i>
+                            <i class="fas fa-arrow-down text-slate-400 md:hidden"></i>
+                            <div class="bg-amber-100 dark:bg-amber-500/20 rounded-xl p-4 text-center w-full md:w-auto">
+                                <i class="fas fa-brain text-amber-600 dark:text-amber-400 text-2xl mb-2"></i>
+                                <p class="text-sm font-medium text-slate-900 dark:text-white">Generate</p>
+                                <p class="text-xs text-slate-500">LLM</p>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-400 hidden md:block"></i>
+                            <i class="fas fa-arrow-down text-slate-400 md:hidden"></i>
+                            <div class="bg-rose-100 dark:bg-rose-500/20 rounded-xl p-4 text-center w-full md:w-auto">
+                                <i class="fas fa-comment text-rose-600 dark:text-rose-400 text-2xl mb-2"></i>
+                                <p class="text-sm font-medium text-slate-900 dark:text-white">Antwoord</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Hoe het werkt:</strong>
+                    </p>
+
+                    <ol class="space-y-3 mb-8 list-decimal list-inside text-slate-600 dark:text-slate-400">
+                        <li>Documenten worden omgezet naar vector embeddings en opgeslagen in een vector database</li>
+                        <li>Bij een vraag wordt de vraag ook omgezet naar een embedding</li>
+                        <li>De meest relevante documenten worden opgehaald via similarity search</li>
+                        <li>Deze context wordt toegevoegd aan de prompt</li>
+                        <li>Het LLM genereert een antwoord gebaseerd op de opgehaalde context</li>
+                    </ol>
+
+                    <!-- Section 3 -->
+                    <h2 id="wat-is-agentic" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">3</span>
+                        Wat is Agentic AI?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Agentic AI</strong> geeft het LLM de mogelijkheid om zelf te beslissen welke tools of acties nodig zijn. Het model plant, voert uit, observeert, en past aan — in een loop.
+                    </p>
+
+                    <!-- Agentic Flow Diagram -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <h4 class="text-center font-bold text-slate-900 dark:text-white mb-6">Agentic AI Loop</h4>
+                        <div class="flex justify-center">
+                            <div class="relative">
+                                <!-- Circular flow -->
+                                <div class="w-64 h-64 rounded-full border-4 border-dashed border-violet-300 dark:border-violet-600 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <i class="fas fa-brain text-4xl text-violet-500 mb-2"></i>
+                                        <p class="font-bold text-slate-900 dark:text-white text-sm">LLM Agent</p>
+                                    </div>
+                                </div>
+                                <!-- Labels around the circle -->
+                                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                    1. Think
+                                </div>
+                                <div class="absolute top-1/2 -right-12 -translate-y-1/2 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                    2. Act
+                                </div>
+                                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                    3. Observe
+                                </div>
+                                <div class="absolute top-1/2 -left-14 -translate-y-1/2 bg-rose-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                    4. Reflect
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
+                            De agent itereert totdat de taak is voltooid
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Beschikbare tools kunnen zijn:</strong>
+                    </p>
+
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mx-auto mb-2">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <p class="text-sm font-medium text-slate-900 dark:text-white">Web Search</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mx-auto mb-2">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <p class="text-sm font-medium text-slate-900 dark:text-white">Database Query</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 mx-auto mb-2">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <p class="text-sm font-medium text-slate-900 dark:text-white">Code Execution</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400 mx-auto mb-2">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <p class="text-sm font-medium text-slate-900 dark:text-white">Email Versturen</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-10 h-10 rounded-lg bg-rose-100 dark:bg-rose-500/20 flex items-center justify-center text-rose-600 dark:text-rose-400 mx-auto mb-2">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <p class="text-sm font-medium text-slate-900 dark:text-white">Calendar API</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 mx-auto mb-2">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <p class="text-sm font-medium text-slate-900 dark:text-white">File Operations</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <h2 id="vergelijking" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">4</span>
+                        RAG vs Agentic: de verschillen
+                    </h2>
+
+                    <!-- Comparison Table -->
+                    <div class="overflow-x-auto mb-8">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 dark:bg-slate-800">
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Aspect</th>
+                                    <th class="text-left p-4 font-bold text-emerald-600 dark:text-emerald-400 border-b border-slate-200 dark:border-slate-700">RAG</th>
+                                    <th class="text-left p-4 font-bold text-violet-600 dark:text-violet-400 border-b border-slate-200 dark:border-slate-700">Agentic AI</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Aanpak</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Breng data naar het model</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Model gaat naar de data/tools</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Databron</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Pre-geïndexeerde documenten</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Live APIs, databases, tools</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Complexiteit</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Eenvoudiger te implementeren</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Complexer, meer foutgevoelig</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Latency</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Single retrieval + generation</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Meerdere iteraties mogelijk</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Autonomie</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Passief: antwoordt op vragen</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Actief: kan acties uitvoeren</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Controle</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Hoog: voorspelbare pipeline</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Lager: agent bepaalt route</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Visual Comparison -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-emerald-50 dark:bg-emerald-500/10 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-500/20">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">RAG = Bibliothecaris</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">
+                                "Je vraagt iets, ik zoek de relevante boeken, en geef je een samenvatting."
+                            </p>
+                        </div>
+
+                        <div class="bg-violet-50 dark:bg-violet-500/10 rounded-2xl p-6 border border-violet-200 dark:border-violet-500/20">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-violet-500 flex items-center justify-center text-white">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Agentic = Assistent</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">
+                                "Je geeft me een doel, ik bepaal zelf welke stappen nodig zijn en voer ze uit."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <h2 id="wanneer-rag" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">5</span>
+                        Wanneer kies je RAG?
+                    </h2>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex gap-4 p-4 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl border border-emerald-200 dark:border-emerald-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Q&A over documenten</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Interne kennisbanken, handleidingen, beleidsdocumenten doorzoeken</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl border border-emerald-200 dark:border-emerald-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Lage latency vereist</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Chatbots die snel moeten antwoorden zonder meerdere tool-calls</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl border border-emerald-200 dark:border-emerald-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Voorspelbaarheid belangrijk</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Je wilt controle over welke bronnen worden geraadpleegd</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl border border-emerald-200 dark:border-emerald-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Statische kennisbasis</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Documenten die niet real-time hoeven te zijn</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 6 -->
+                    <h2 id="wanneer-agentic" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">6</span>
+                        Wanneer kies je Agentic?
+                    </h2>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex gap-4 p-4 bg-violet-50 dark:bg-violet-500/10 rounded-xl border border-violet-200 dark:border-violet-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-violet-500 flex items-center justify-center text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Multi-step taken</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">"Boek een vlucht, reserveer een hotel, en stuur een bevestiging naar mijn team"</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-violet-50 dark:bg-violet-500/10 rounded-xl border border-violet-200 dark:border-violet-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-violet-500 flex items-center justify-center text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Real-time data nodig</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Huidige aandelenkoersen, weer, live API-data</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-violet-50 dark:bg-violet-500/10 rounded-xl border border-violet-200 dark:border-violet-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-violet-500 flex items-center justify-center text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Acties uitvoeren</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Niet alleen lezen maar ook schrijven: emails versturen, tickets aanmaken, data updaten</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-violet-50 dark:bg-violet-500/10 rounded-xl border border-violet-200 dark:border-violet-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-violet-500 flex items-center justify-center text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Complexe redenatie</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Taken waarbij het model zelf moet bepalen welke stappen nodig zijn</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 7 -->
+                    <h2 id="combinatie" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-lg font-bold">7</span>
+                        Het beste van beide: Agentic RAG
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        In de praktijk combineren veel systemen beide benaderingen. <strong class="text-slate-900 dark:text-white">Agentic RAG</strong> geeft een agent toegang tot RAG als één van zijn tools:
+                    </p>
+
+                    <!-- Combined Approach -->
+                    <div class="bg-gradient-to-br from-emerald-50 to-violet-50 dark:from-emerald-500/10 dark:to-violet-500/10 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 mb-8">
+                        <h4 class="text-center font-bold text-slate-900 dark:text-white mb-6">Agentic RAG: Hybride Architectuur</h4>
+                        <div class="flex flex-col items-center gap-4">
+                            <div class="bg-white dark:bg-slate-900 rounded-xl p-4 shadow-sm border border-slate-200 dark:border-slate-700 w-full max-w-md">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-violet-500 flex items-center justify-center text-white">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-slate-900 dark:text-white">Agent (Orchestrator)</p>
+                                        <p class="text-xs text-slate-500">Bepaalt welke tools te gebruiken</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-down text-slate-400"></i>
+                            <div class="grid grid-cols-3 gap-4 w-full max-w-lg">
+                                <div class="bg-white dark:bg-slate-900 rounded-xl p-3 shadow-sm border border-emerald-200 dark:border-emerald-500/30 text-center">
+                                    <i class="fas fa-database text-emerald-500 mb-1"></i>
+                                    <p class="text-xs font-medium text-slate-900 dark:text-white">RAG Tool</p>
+                                </div>
+                                <div class="bg-white dark:bg-slate-900 rounded-xl p-3 shadow-sm border border-blue-200 dark:border-blue-500/30 text-center">
+                                    <i class="fas fa-globe text-blue-500 mb-1"></i>
+                                    <p class="text-xs font-medium text-slate-900 dark:text-white">Web Search</p>
+                                </div>
+                                <div class="bg-white dark:bg-slate-900 rounded-xl p-3 shadow-sm border border-amber-200 dark:border-amber-500/30 text-center">
+                                    <i class="fas fa-code text-amber-500 mb-1"></i>
+                                    <p class="text-xs font-medium text-slate-900 dark:text-white">Code Exec</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Voorbeeld workflow:</strong>
+                    </p>
+
+                    <ol class="space-y-3 mb-8 list-decimal list-inside text-slate-600 dark:text-slate-400">
+                        <li>Gebruiker: "Wat is ons retourbeleid en stuur een samenvatting naar jan@bedrijf.nl"</li>
+                        <li>Agent denkt: "Ik moet eerst het retourbeleid ophalen (RAG), dan een email sturen (Email tool)"</li>
+                        <li>Agent roept RAG tool aan → krijgt relevante documenten</li>
+                        <li>Agent formuleert samenvatting</li>
+                        <li>Agent roept Email tool aan → verstuurt email</li>
+                        <li>Agent bevestigt: "Samenvatting verstuurd naar jan@bedrijf.nl"</li>
+                    </ol>
+
+                    <!-- Decision Framework -->
+                    <div class="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                <i class="fas fa-compass text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">Beslisregel</h4>
+                                <ul class="text-slate-600 dark:text-slate-400 text-sm space-y-2">
+                                    <li><strong>Alleen lezen?</strong> → RAG is vaak genoeg</li>
+                                    <li><strong>Ook acties uitvoeren?</strong> → Agentic nodig</li>
+                                    <li><strong>Beide + controle over bronnen?</strong> → Agentic RAG</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Related Articles -->
+                <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-6">Gerelateerde artikelen</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <a href="../rag/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white">
+                                <i class="fas fa-database text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What is RAG?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Diep in de architectuur van Retrieval-Augmented Generation.</p>
+                            </div>
+                        </a>
+                        <a href="../ai-agents/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What are AI Agents?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Hoe autonome agents plannen, redeneren en tools gebruiken.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-16 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-2xl p-8 border border-violet-500/20 text-center">
+                    <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-4">RAG of Agentic oplossing nodig?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                        Wij helpen je de juiste architectuur kiezen en implementeren — van eenvoudige Q&A chatbots tot complexe multi-agent systemen.
+                    </p>
+                    <a href="../../#contact" class="inline-block px-8 py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-violet-500/25 hover:-translate-y-0.5">
+                        Neem contact op
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // Theme toggle
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Load theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>

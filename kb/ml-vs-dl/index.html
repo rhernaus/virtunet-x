@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Machine Learning vs Deep Learning: wat is het verschil? Leer wanneer je klassieke ML-algoritmes kiest en wanneer neural networks de beste keuze zijn.">
+    <title>Machine Learning vs Deep Learning | Virtunet Knowledge Base</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/tailwind-config.js"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        .prose h2 { scroll-margin-top: 100px; }
+        .prose h3 { scroll-margin-top: 100px; }
+    </style>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="../../" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-purple-600 shadow-lg shadow-primary-500/20 group-hover:scale-110 transition-transform flex items-center justify-center text-white font-bold text-xl font-display">
+                            V
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white">Virtunet</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../../#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Expertise</a>
+                    <a href="../../#projects" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Projecten</a>
+                    <a href="../../value-proposition/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Aanpak</a>
+                    <a href="../../whitepapers/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-white transition-colors">Insights</a>
+                    <a href="../../kb/" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Knowledge Base</a>
+
+                    <div class="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                        <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                            <i class="fas fa-sun hidden dark:block"></i>
+                            <i class="fas fa-moon block dark:hidden"></i>
+                        </button>
+                        <a href="../../#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-sun hidden dark:block"></i>
+                        <i class="fas fa-moon block dark:hidden"></i>
+                    </button>
+                    <button type="button" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="../../#services" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Expertise</a>
+                <a href="../../#projects" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Projecten</a>
+                <a href="../../value-proposition/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Aanpak</a>
+                <a href="../../whitepapers/" class="block px-3 py-3 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">Insights</a>
+                <a href="../../kb/" class="block px-3 py-3 rounded-md text-base font-medium text-primary-600 dark:text-primary-400 hover:bg-slate-50 dark:hover:bg-slate-800">Knowledge Base</a>
+                <a href="../../#contact" class="block mt-4 text-center bg-primary-600 text-white px-3 py-3 rounded-lg font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-12 relative overflow-hidden bg-gradient-to-b from-orange-500 to-red-600">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[length:20px_20px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-sm text-orange-200 mb-6">
+                <a href="../../kb/" class="hover:text-white transition-colors">Knowledge Base</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-white">AI Fundamentals</span>
+            </nav>
+
+            <!-- Category & Meta -->
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-sm">AI Fundamentals</span>
+                <span class="text-orange-200 text-sm"><i class="far fa-clock mr-1"></i> 8 min read</span>
+                <span class="text-orange-200 text-sm"><i class="far fa-calendar mr-1"></i> December 2024</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                Machine Learning vs Deep Learning
+            </h1>
+            <p class="text-xl text-orange-100 leading-relaxed max-w-3xl">
+                Wanneer kies je voor klassieke ML-algoritmes en wanneer voor neural networks? Begrijp de verschillen, trade-offs en toepassingen.
+            </p>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="py-16 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Table of Contents -->
+                <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 mb-12">
+                    <h2 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-list text-primary-500"></i> In dit artikel
+                    </h2>
+                    <nav class="space-y-2">
+                        <a href="#tldr" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">1. De korte versie</a>
+                        <a href="#wat-is-ml" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">2. Wat is Machine Learning?</a>
+                        <a href="#wat-is-dl" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">3. Wat is Deep Learning?</a>
+                        <a href="#key-differences" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">4. De belangrijkste verschillen</a>
+                        <a href="#wanneer-ml" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">5. Wanneer kies je ML?</a>
+                        <a href="#wanneer-dl" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">6. Wanneer kies je Deep Learning?</a>
+                        <a href="#conclusie" class="block text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">7. Conclusie</a>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="prose prose-lg dark:prose-invert max-w-none">
+
+                    <!-- Section 1 -->
+                    <h2 id="tldr" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-12 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 text-lg font-bold">1</span>
+                        De korte versie
+                    </h2>
+
+                    <!-- Key Concept Box -->
+                    <div class="bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">TL;DR</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                                    <strong class="text-slate-900 dark:text-white">Machine Learning</strong> omvat alle algoritmes die leren van data — van lineaire regressie tot random forests. <strong class="text-slate-900 dark:text-white">Deep Learning</strong> is een subset: het gebruikt neural networks met meerdere lagen.
+                                </p>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                                    Kies klassieke ML bij weinig data, interpreteerbare modellen, of gestructureerde data. Kies Deep Learning bij enorme datasets, ongestructureerde data (beelden, tekst, audio), of wanneer maximale accuracy belangrijker is dan verklaarbaarheid.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hierarchy Diagram -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <h4 class="text-center font-bold text-slate-900 dark:text-white mb-6">Hiërarchie: AI → ML → Deep Learning</h4>
+                        <div class="flex justify-center">
+                            <div class="relative">
+                                <!-- Outer circle - AI -->
+                                <div class="w-72 h-72 rounded-full border-4 border-blue-400 dark:border-blue-500 bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center relative">
+                                    <span class="absolute top-4 text-sm font-bold text-blue-600 dark:text-blue-400">Artificial Intelligence</span>
+
+                                    <!-- Middle circle - ML -->
+                                    <div class="w-52 h-52 rounded-full border-4 border-orange-400 dark:border-orange-500 bg-orange-50 dark:bg-orange-500/10 flex items-center justify-center relative">
+                                        <span class="absolute top-3 text-sm font-bold text-orange-600 dark:text-orange-400">Machine Learning</span>
+
+                                        <!-- Inner circle - DL -->
+                                        <div class="w-32 h-32 rounded-full border-4 border-red-500 dark:border-red-500 bg-red-50 dark:bg-red-500/10 flex items-center justify-center">
+                                            <span class="text-xs font-bold text-red-600 dark:text-red-400 text-center px-2">Deep<br>Learning</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
+                            Deep Learning is een subset van Machine Learning, dat weer een subset is van AI
+                        </p>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <h2 id="wat-is-ml" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 text-lg font-bold">2</span>
+                        Wat is Machine Learning?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Machine Learning</strong> is een brede categorie van algoritmes die patronen leren uit data, zonder expliciet geprogrammeerd te zijn voor elke taak.
+                    </p>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Klassieke ML-algoritmes omvatten:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-8">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800">
+                            <h5 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                                <i class="fas fa-chart-line text-orange-500"></i> Supervised Learning
+                            </h5>
+                            <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                <li>• Linear/Logistic Regression</li>
+                                <li>• Decision Trees</li>
+                                <li>• Random Forests</li>
+                                <li>• Support Vector Machines (SVM)</li>
+                                <li>• Gradient Boosting (XGBoost, LightGBM)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800">
+                            <h5 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                                <i class="fas fa-project-diagram text-purple-500"></i> Unsupervised Learning
+                            </h5>
+                            <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                <li>• K-Means Clustering</li>
+                                <li>• Hierarchical Clustering</li>
+                                <li>• Principal Component Analysis (PCA)</li>
+                                <li>• Anomaly Detection</li>
+                                <li>• Association Rules</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Deze algoritmes vereisen vaak <strong class="text-slate-900 dark:text-white">feature engineering</strong>: je moet zelf bepalen welke kenmerken van de data relevant zijn. Een model dat huizenprijzen voorspelt krijgt features als oppervlakte, aantal kamers, locatie — niet de ruwe pixeldata van foto's.
+                    </p>
+
+                    <!-- Section 3 -->
+                    <h2 id="wat-is-dl" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 text-lg font-bold">3</span>
+                        Wat is Deep Learning?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">Deep Learning</strong> gebruikt kunstmatige neural networks met meerdere verborgen lagen ("deep" verwijst naar de diepte van het netwerk, niet naar diepzinnigheid).
+                    </p>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Het belangrijkste verschil: deep learning doet <strong class="text-slate-900 dark:text-white">automatische feature extraction</strong>. Je geeft ruwe data (pixels, tekst, audio samples) en het netwerk leert zelf welke features relevant zijn.
+                    </p>
+
+                    <!-- Neural Network Diagram -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <h4 class="text-center font-bold text-slate-900 dark:text-white mb-6">Deep Neural Network</h4>
+                        <div class="flex justify-center items-center gap-8 overflow-x-auto py-4">
+                            <!-- Input Layer -->
+                            <div class="flex flex-col items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-blue-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-blue-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-blue-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-blue-500"></div>
+                                <span class="text-xs text-slate-500 mt-2">Input</span>
+                            </div>
+
+                            <div class="text-slate-300 dark:text-slate-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+
+                            <!-- Hidden Layer 1 -->
+                            <div class="flex flex-col items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-orange-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-orange-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-orange-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-orange-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-orange-500"></div>
+                                <span class="text-xs text-slate-500 mt-2">Hidden 1</span>
+                            </div>
+
+                            <div class="text-slate-300 dark:text-slate-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+
+                            <!-- Hidden Layer 2 -->
+                            <div class="flex flex-col items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-orange-600"></div>
+                                <div class="w-8 h-8 rounded-full bg-orange-600"></div>
+                                <div class="w-8 h-8 rounded-full bg-orange-600"></div>
+                                <div class="w-8 h-8 rounded-full bg-orange-600"></div>
+                                <span class="text-xs text-slate-500 mt-2">Hidden 2</span>
+                            </div>
+
+                            <div class="text-slate-300 dark:text-slate-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+
+                            <!-- Hidden Layer 3 -->
+                            <div class="flex flex-col items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-red-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-red-500"></div>
+                                <span class="text-xs text-slate-500 mt-2">Hidden 3</span>
+                            </div>
+
+                            <div class="text-slate-300 dark:text-slate-600">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+
+                            <!-- Output Layer -->
+                            <div class="flex flex-col items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-emerald-500"></div>
+                                <div class="w-8 h-8 rounded-full bg-emerald-500"></div>
+                                <span class="text-xs text-slate-500 mt-2">Output</span>
+                            </div>
+                        </div>
+                        <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-4">
+                            "Deep" verwijst naar meerdere verborgen lagen tussen input en output
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Populaire deep learning architecturen:
+                    </p>
+
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-500/20 flex items-center justify-center text-teal-600 dark:text-teal-400 mx-auto mb-3">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <h5 class="font-bold text-slate-900 dark:text-white text-sm">CNNs</h5>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Computer vision, beeldherkenning</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 mx-auto mb-3">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h5 class="font-bold text-slate-900 dark:text-white text-sm">Transformers</h5>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">NLP, LLMs, GPT-modellen</p>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-center">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mx-auto mb-3">
+                                <i class="fas fa-wave-square"></i>
+                            </div>
+                            <h5 class="font-bold text-slate-900 dark:text-white text-sm">RNNs/LSTMs</h5>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Sequentie-data, tijdreeksen</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <h2 id="key-differences" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 text-lg font-bold">4</span>
+                        De belangrijkste verschillen
+                    </h2>
+
+                    <!-- Comparison Table -->
+                    <div class="overflow-x-auto mb-8">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 dark:bg-slate-800">
+                                    <th class="text-left p-4 font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700">Aspect</th>
+                                    <th class="text-left p-4 font-bold text-orange-600 dark:text-orange-400 border-b border-slate-200 dark:border-slate-700">Machine Learning</th>
+                                    <th class="text-left p-4 font-bold text-red-600 dark:text-red-400 border-b border-slate-200 dark:border-slate-700">Deep Learning</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Feature Engineering</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Handmatig, vereist domeinkennis</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Automatisch geleerd door het netwerk</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Data Hoeveelheid</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Werkt met minder data (100-10.000 samples)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Vereist veel data (>10.000-miljoenen)</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Hardware</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Draait op CPU, normale laptops</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">GPU/TPU nodig voor training</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Training Tijd</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Seconden tot minuten</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Uren tot weken</td>
+                                </tr>
+                                <tr class="border-b border-slate-200 dark:border-slate-700">
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Interpretatie</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Vaak interpreteerbaar (decision trees)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">"Black box", moeilijk te verklaren</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-medium text-slate-900 dark:text-white">Typische Data</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Gestructureerd (tabellen, databases)</td>
+                                    <td class="p-4 text-slate-600 dark:text-slate-400">Ongestructureerd (beelden, tekst, audio)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <h2 id="wanneer-ml" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 text-lg font-bold">5</span>
+                        Wanneer kies je ML?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Klassieke machine learning is vaak de betere keuze wanneer:
+                    </p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex gap-4 p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl border border-orange-200 dark:border-orange-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-orange-500 flex items-center justify-center text-white">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Beperkte data beschikbaar</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Met honderden of enkele duizenden samples presteren klassieke algoritmes beter</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl border border-orange-200 dark:border-orange-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-orange-500 flex items-center justify-center text-white">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Gestructureerde/tabulaire data</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Spreadsheets, databases, CSV-bestanden — Gradient Boosting domineert Kaggle-competities op tabulaire data</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl border border-orange-200 dark:border-orange-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-orange-500 flex items-center justify-center text-white">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Interpretatie is belangrijk</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Regelgeving (finance, healthcare) of debugging vereist vaak uitlegbare modellen</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-orange-50 dark:bg-orange-500/10 rounded-xl border border-orange-200 dark:border-orange-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-orange-500 flex items-center justify-center text-white">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Snelheid en resources</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Geen GPU nodig, snelle iteratie, lage infrastructuurkosten</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 6 -->
+                    <h2 id="wanneer-dl" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 text-lg font-bold">6</span>
+                        Wanneer kies je Deep Learning?
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Deep learning excelleert in scenario's waar:
+                    </p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex gap-4 p-4 bg-red-50 dark:bg-red-500/10 rounded-xl border border-red-200 dark:border-red-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-red-500 flex items-center justify-center text-white">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Ongestructureerde data</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Afbeeldingen, video, audio, tekst — hier is handmatige feature engineering onpraktisch</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-red-50 dark:bg-red-500/10 rounded-xl border border-red-200 dark:border-red-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-red-500 flex items-center justify-center text-white">
+                                <i class="fas fa-infinity"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Enorme datasets beschikbaar</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Miljoenen samples laten deep learning schalen naar hogere accuracy</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-red-50 dark:bg-red-500/10 rounded-xl border border-red-200 dark:border-red-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-red-500 flex items-center justify-center text-white">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Complexe patronen</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Objectherkenning, spraakherkenning, natuurlijke taal — taken die menselijke intuïtie vereisen</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-red-50 dark:bg-red-500/10 rounded-xl border border-red-200 dark:border-red-500/20">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-lg bg-red-500 flex items-center justify-center text-white">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">State-of-the-art accuracy nodig</h5>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Pre-trained models (transfer learning) geven meteen sterke baselines</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decision Flowchart -->
+                    <div class="bg-slate-50 dark:bg-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 mb-8">
+                        <h4 class="text-center font-bold text-slate-900 dark:text-white mb-6">Beslisboom: ML of Deep Learning?</h4>
+                        <div class="flex flex-col items-center gap-4">
+                            <!-- Question 1 -->
+                            <div class="bg-blue-100 dark:bg-blue-500/20 rounded-xl p-4 text-center max-w-md">
+                                <p class="font-bold text-slate-900 dark:text-white">Is je data gestructureerd (tabellen)?</p>
+                            </div>
+                            <div class="flex gap-8">
+                                <div class="text-center">
+                                    <span class="text-emerald-600 dark:text-emerald-400 font-bold">Ja</span>
+                                    <div class="w-0.5 h-8 bg-emerald-400 mx-auto"></div>
+                                    <div class="bg-orange-100 dark:bg-orange-500/20 rounded-xl p-3 text-sm">
+                                        <span class="font-bold text-orange-600 dark:text-orange-400">→ Klassieke ML</span>
+                                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">XGBoost, Random Forest</p>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-red-600 dark:text-red-400 font-bold">Nee</span>
+                                    <div class="w-0.5 h-8 bg-red-400 mx-auto"></div>
+                                    <div class="bg-red-100 dark:bg-red-500/20 rounded-xl p-3 text-sm">
+                                        <span class="font-bold text-red-600 dark:text-red-400">→ Deep Learning</span>
+                                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">CNNs, Transformers</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 7 -->
+                    <h2 id="conclusie" class="text-2xl font-display font-bold text-slate-900 dark:text-white mt-16 mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 text-lg font-bold">7</span>
+                        Conclusie
+                    </h2>
+
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Het is geen "of-of" vraag. In de praktijk combineren veel systemen beide benaderingen:
+                    </p>
+
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-check text-orange-500 mt-1.5"></i>
+                            <span>Deep learning voor feature extraction uit ongestructureerde data (beelden, tekst)</span>
+                        </li>
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-check text-orange-500 mt-1.5"></i>
+                            <span>Klassieke ML als laatste classificatie-laag voor interpreteerbare output</span>
+                        </li>
+                        <li class="flex gap-3 text-slate-600 dark:text-slate-400">
+                            <i class="fas fa-check text-orange-500 mt-1.5"></i>
+                            <span>Ensemble-modellen die meerdere technieken combineren</span>
+                        </li>
+                    </ul>
+
+                    <div class="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 rounded-xl p-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-2">Praktische tip</h4>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                                    Begin altijd met de simpelste aanpak die kan werken. Vaak geeft een goed getuned XGBoost-model al 90% van de waarde. Schaal pas naar deep learning als de business case het rechtvaardigt én je voldoende data hebt.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Related Articles -->
+                <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-6">Gerelateerde artikelen</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <a href="../ai-ml-dl-genai/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white">
+                                <i class="fas fa-layer-group text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">AI vs ML vs DL vs GenAI</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Het complete plaatje: hoe verhouden alle AI-disciplines zich?</p>
+                            </div>
+                        </a>
+                        <a href="../cnns/" class="group flex gap-4 bg-slate-50 dark:bg-slate-850 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all">
+                            <div class="w-14 h-14 flex-shrink-0 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white">
+                                <i class="fas fa-image text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">What are CNNs?</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Diep in de architectuur van Convolutional Neural Networks.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-16 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-2xl p-8 border border-orange-500/20 text-center">
+                    <h3 class="text-2xl font-display font-bold text-slate-900 dark:text-white mb-4">ML-oplossing nodig?</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                        Of het nu gaat om voorspellende modellen, classificatie of computer vision — wij helpen je de juiste aanpak kiezen en implementeren.
+                    </p>
+                    <a href="../../#contact" class="inline-block px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-orange-500/25 hover:-translate-y-0.5">
+                        Neem contact op
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; Virtunet B.V.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+        // Theme toggle
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Load theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
