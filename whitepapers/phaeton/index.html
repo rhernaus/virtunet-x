@@ -105,12 +105,12 @@
                 Phaeton – Slim Laden
             </h1>
             <p class="text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto">
-                Slim EV-laden op basis van PV-overschot en prijsprikkels, volledig lokaal gestuurd op Victron Venus OS.
+                Slim EV-laden op basis van PV-overschot en Victron GX-data, lokaal gestuurd voor Victron Venus OS.
             </p>
 
             <div class="flex flex-wrap justify-center gap-3 mb-8">
                 <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">PV-Aware</span>
-                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Dynamic Tariffs</span>
+                <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Victron EVCS</span>
                 <span class="px-3 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-300">Local First</span>
             </div>
         </div>
@@ -125,7 +125,7 @@
                 <div>
                     <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white">Waarom Phaeton?</h2>
                     <p class="text-slate-600 dark:text-slate-400 text-lg mb-6">
-                        Veel EV-laders negeren zonne-energie en dynamische prijzen. Phaeton brengt energie- en prijsdata samen, zodat laden slimmer en betaalbaarder wordt zonder cloud-afhankelijkheid.
+                        Veel EV-laders missen een native koppeling met Victron. Phaeton vertaalt chargerdata naar Victron EVCS-compatibele signalen, zodat laden slimmer wordt zonder cloud-afhankelijkheid.
                     </p>
                     <ul class="space-y-4">
                         <li class="flex gap-4">
@@ -134,11 +134,11 @@
                         </li>
                         <li class="flex gap-4">
                             <div class="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-500 mt-1"><i class="fas fa-check text-xs"></i></div>
-                            <span class="text-slate-700 dark:text-slate-300"><strong>Prijsbewust:</strong> Integreert Tibber dagprijzen.</span>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>ESS-aware:</strong> Gebruikt GX-data voor batterij-, net- en PV-status.</span>
                         </li>
                         <li class="flex gap-4">
                             <div class="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-500 mt-1"><i class="fas fa-check text-xs"></i></div>
-                            <span class="text-slate-700 dark:text-slate-300"><strong>Victron Native:</strong> Volledige D-Bus integratie.</span>
+                            <span class="text-slate-700 dark:text-slate-300"><strong>Victron-compatible:</strong> Gedraagt zich als een EVCS voor het GX-systeem.</span>
                         </li>
                     </ul>
                 </div>
@@ -146,7 +146,7 @@
                     <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl text-emerald-500"><i class="fas fa-bolt"></i></div>
                     <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white relative z-10">De Uitdaging</h3>
                     <p class="text-slate-600 dark:text-slate-400 relative z-10 leading-relaxed">
-                        "Huiseigenaren willen laden wanneer stroom goedkoop of overvloedig is. Phaeton vervangt handmatig schakelen door een deterministische control loop op de Victron Cerbo."
+                        "Huiseigenaren willen laden wanneer er zonne-overschot beschikbaar is. Phaeton vervangt handmatig schakelen door een deterministische control loop naast het Victron GX-systeem."
                     </p>
                 </div>
             </div>
@@ -160,8 +160,8 @@
                         <p class="text-sm text-slate-500 dark:text-slate-400">Berekent veilige setpoints op basis van grid limits en PV excess.</p>
                     </div>
                     <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">D-Bus API</h5>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Exposeert status voor Victron dashboards en remote console.</p>
+                        <h5 class="font-bold text-slate-900 dark:text-white mb-2">EVCS Bridge</h5>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Exposeert laadpaalstatus via Victron EVCS-compatibele Modbus registers.</p>
                     </div>
                     <div class="bg-white dark:bg-slate-850 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
                         <h5 class="font-bold text-slate-900 dark:text-white mb-2">Rust Core</h5>
@@ -178,7 +178,7 @@
                         <h5 class="font-bold text-slate-900 dark:text-white mb-4">Modules</h5>
                         <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
                             <li><span class="font-semibold text-slate-700 dark:text-slate-300">Driver:</span> Modbus TCP naar Alfen lader.</li>
-                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">Tibber:</span> Prijzen ophalen voor planning.</li>
+                            <li><span class="font-semibold text-slate-700 dark:text-slate-300">GX Data:</span> Leest PV, verbruik, grid en batterijstatus uit Victron.</li>
                             <li><span class="font-semibold text-slate-700 dark:text-slate-300">Web:</span> Lokale Axum interface voor config.</li>
                         </ul>
                     </div>
@@ -197,11 +197,16 @@
             <div class="text-center bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-2xl p-12 border border-emerald-500/20">
                 <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Aan de slag met Phaeton</h3>
                 <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-                    Phaeton is vandaag inzetbaar voor Victron + Alfen omgevingen. Neem contact op voor installatie of partnerprogramma's.
+                    Phaeton is vandaag inzetbaar voor Victron + Alfen omgevingen. Download de software via het portal of neem contact op voor installatie en partnerprogramma's.
                 </p>
-                <a href="../../#contact" class="inline-block px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition-colors shadow-lg shadow-emerald-500/25">
-                    Neem contact op
-                </a>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <a href="https://phaeton.virtunet.io/" class="inline-block px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition-colors shadow-lg shadow-emerald-500/25">
+                        Open Phaeton portal
+                    </a>
+                    <a href="../../#contact" class="inline-block px-8 py-4 border border-emerald-600/40 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/10 font-bold rounded-lg transition-colors">
+                        Neem contact op
+                    </a>
+                </div>
             </div>
 
         </div>
